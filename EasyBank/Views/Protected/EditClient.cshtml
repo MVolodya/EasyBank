@@ -11,6 +11,8 @@
     <fieldset>
         <legend>Client</legend>
 
+        @Html.HiddenFor(model => model.ClientId)
+
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)
         </div>
@@ -51,12 +53,16 @@
             @Html.ValidationMessageFor(model => model.Email)
         </div>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RegistrationDate)
+        </div>
+
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Save" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "ClientsList")
+    @Html.ActionLink("Back to List", "Index")
 </div>
