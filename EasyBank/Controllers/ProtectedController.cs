@@ -38,13 +38,23 @@ namespace EasyBank.Controllers
         [HttpGet]
         public ActionResult AddClient()
         {
-
             return View();
         }
         
         [HttpPost]
         public ActionResult AddClient(Client client)
         {
+            if (client != null && client.Name != null && client.PIdNumber != null && client.BirthDate != null && client.Email != null && client.RegistrationDate != null)
+            {
+                client.RegistrationDate = DateTime.Now;
+                db.Clients.Add(client);
+                db.SaveChanges();
+            }
+            else
+            {
+                ViewBag.Message = "Problem with inputted data";
+                RedirectToAction("/");
+            }
             return RedirectToAction("/");
         }
 
