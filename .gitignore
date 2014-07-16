@@ -38,8 +38,14 @@ Icon
 EasyBank/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 EasyBank.v12.suo
 <<<<<<< HEAD
+<<<<<<< HEAD
 *.suo
 =======
 EasyBank.v12.suo
 EasyBank.v12.suo
 >>>>>>> origin/master
+=======
+EasyBank.v12.suo
+EasyBank.v12.suo*.suo
+*.Cache
+>>>>>>> origin/symbo

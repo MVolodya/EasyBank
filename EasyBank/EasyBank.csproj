@@ -332,6 +332,7 @@
     <Content Include="Views\Protected\Index.cshtml" />
     <Content Include="Views\File\FileUpload.cshtml" />
     <Content Include="Views\Protected\ClientsList.cshtml" />
+    <Content Include="Views\Protected\EditClient.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
