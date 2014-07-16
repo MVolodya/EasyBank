@@ -66,12 +66,12 @@ namespace EasyBank.Controllers
                 client = db.Clients.FirstOrDefault(c=>c.ClientId==id);
             if(client != null)
             {
-                return View();     
+                return View(client);     
             }
             else 
             {
                 ViewBag.Message = "No client with this Id";
-                return RedirectToAction("/ListUsers");
+                return RedirectToAction("ListUsers");
             }
         }
 
@@ -82,12 +82,12 @@ namespace EasyBank.Controllers
             {
                 db.Entry(client).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                return View();
+                return RedirectToAction("ClientsList");
             }
             else
             {
                 ViewBag.Message = "OOps.. Something wrong with data";
-                return RedirectToAction("/EditClient");
+                return RedirectToAction("EditClient");
             }
         }
 
