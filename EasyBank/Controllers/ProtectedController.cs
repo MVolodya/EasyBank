@@ -11,7 +11,7 @@ namespace EasyBank.Controllers
     {
         //
         // GET: /Client/
-
+        private ConnectionContext db = new ConnectionContext();
         public ActionResult Index()
         {
             return View();
@@ -25,7 +25,7 @@ namespace EasyBank.Controllers
         //edit client
         public ActionResult ClientsList()
         {
-            return View();
+            return View(db.Clients.ToList());
         }
 
         //link to:
