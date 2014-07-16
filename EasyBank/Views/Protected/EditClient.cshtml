@@ -4,13 +4,13 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("EditClient", "Protected", FormMethod.Post)) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
         <legend>Client</legend>
-
+        @ViewBag.Message
         @Html.HiddenFor(model => model.ClientId)
 
         <div class="editor-label">
@@ -53,10 +53,7 @@
             @Html.ValidationMessageFor(model => model.Email)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.RegistrationDate)
-        </div>
-
+            @Html.HiddenFor(model => model.RegistrationDate)
         <p>
             <input type="submit" value="Save" />
         </p>
@@ -64,5 +61,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "ClientsList")
 </div>
