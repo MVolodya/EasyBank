@@ -3,12 +3,12 @@
 @{
     ViewBag.Title = "Clients";
 }
-<h2>ClientsList</h2>
+<h2>Clients List</h2>
 <p>
     @Html.ActionLink("Add new Client", "AddClient")
 </p>
 <table>
-@*
+
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -30,15 +30,15 @@
         </th>
         <th></th>
     </tr>
-    *@
+
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+             <a href="/ClientsProfile/item.ClientId">@Html.DisplayFor(modelItem => item.Name)</a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Surname)
+             <a href="/ClientsProfire/item.ClientId"> @Html.DisplayFor(modelItem => item.Surname)</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PIdNumber)
@@ -53,7 +53,7 @@
                 @Html.DisplayFor(modelItem => item.RegistrationDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ClientId }) |
+                @Html.ActionLink("Edit", "EditClient", new { id = item.ClientId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.ClientId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ClientId })
             </td>
