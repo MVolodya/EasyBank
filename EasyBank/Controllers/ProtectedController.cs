@@ -40,38 +40,38 @@ namespace EasyBank.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         public ActionResult AddClient(Client client)
         {
-            if (client != null && client.Name != null && client.PIdNumber != null && client.BirthDate != null && client.Email != null && client.RegistrationDate != null)
+            if (ModelState.IsValid)
             {
                 client.RegistrationDate = DateTime.Now;
                 db.Clients.Add(client);
                 db.SaveChanges();
+                return RedirectToAction("ClientsList");
             }
             else
             {
                 ViewBag.Message = "Problem with inputted data";
-                RedirectToAction("/");
+                return RedirectToAction("AddClient");
             }
-            return RedirectToAction("/");
         }
 
         [HttpGet]
         public ActionResult EditClient(int? id)
         {
-            Client client=null;
-            if (id!=0)
-                client = db.Clients.FirstOrDefault(c=>c.ClientId==id);
-            if(client != null)
+            Client client = null;
+            if (id != 0)
+                client = db.Clients.FirstOrDefault(c => c.ClientId == id);
+            if (client != null)
             {
-                return View();     
+                return View(client);
             }
-            else 
+            else
             {
                 ViewBag.Message = "No client with this Id";
-                return RedirectToAction("/ListUsers");
+                return RedirectToAction("ClientsList");
             }
         }
 
@@ -82,12 +82,12 @@ namespace EasyBank.Controllers
             {
                 db.Entry(client).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                return View();
+                return RedirectToAction("ClientsList");
             }
             else
             {
                 ViewBag.Message = "OOps.. Something wrong with data";
-                return RedirectToAction("/EditClient");
+                return RedirectToAction("EditClient");
             }
         }
 
