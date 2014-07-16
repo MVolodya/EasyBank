@@ -59,15 +59,36 @@ namespace EasyBank.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditClient()
+        public ActionResult EditClient(int? id)
         {
-            return View();
+            Client client=null;
+            if (id!=0)
+                client = db.Clients.FirstOrDefault(c=>c.ClientId==id);
+            if(client != null)
+            {
+                return View();     
+            }
+            else 
+            {
+                ViewBag.Message = "No client with this Id";
+                return RedirectToAction("/ListUsers");
+            }
         }
 
         [HttpPost]
-        public ActionResult EditClient(int? id)
+        public ActionResult EditClient(Client client)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                db.Entry(client).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return View();
+            }
+            else
+            {
+                ViewBag.Message = "OOps.. Something wrong with data";
+                return RedirectToAction("/EditClient");
+            }
         }
 
         [HttpGet]
