@@ -35,10 +35,10 @@
     {
         <tr>
             <td>
-             <a href="/ClientsProfile/item.ClientId">@Html.DisplayFor(modelItem => item.Name)</a>
+                @Html.ActionLink(@Html.DisplayFor(modelItem => item.Name).ToString(), "ClientsProfile", new { id = item.ClientId })
             </td>
             <td>
-             <a href="/ClientsProfire/item.ClientId"> @Html.DisplayFor(modelItem => item.Surname)</a>
+                @Html.ActionLink(@Html.DisplayFor(modelItem => item.Surname).ToString(), "ClientsProfile", new { id = item.ClientId })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PIdNumber)
@@ -54,7 +54,7 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "EditClient", new { id = item.ClientId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ClientId }) |
+                @Html.ActionLink("Details", "ClientsProfile", new { id = item.ClientId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ClientId })
             </td>
         </tr>
