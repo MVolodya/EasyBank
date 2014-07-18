@@ -7,11 +7,11 @@
 @using (Html.BeginForm("AddAccount", "Protected", FormMethod.Post)) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    @Html.HiddenFor(x => Model.ClientId)
+    
 
     <fieldset>
         <legend>Account</legend>
-
+        @Html.HiddenFor(model => model.ClientId, new { @Value = ViewBag.ClientId})
         <div class="editor-label">
             @Html.LabelFor(model => model.AccountNumber)
         </div>
