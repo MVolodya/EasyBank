@@ -4,14 +4,15 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-@using (Html.BeginForm("AddAccount", "Protected", FormMethod.Post)) {
+@using (Html.BeginForm("AddAccount", "Protected", FormMethod.Post))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    
+
 
     <fieldset>
         <legend>Account</legend>
-        @Html.HiddenFor(model => model.ClientId, new { @Value = ViewBag.ClientId})
+        @Html.HiddenFor(model => model.ClientId, new { @Value = ViewBag.ClientId })
         <div class="editor-label">
             @Html.LabelFor(model => model.AccountNumber)
         </div>
@@ -39,19 +40,31 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.TypeId)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.TypeId)
-            @Html.ValidationMessageFor(model => model.TypeId)
-        </div>
+
+        @{
+            List<SelectListItem> listType = new List<SelectListItem>();
+            var ListTypes = ViewBag.Types;
+            foreach (var item in ListTypes)
+            {
+                listType.Add(new SelectListItem() { Text = item.TypeName, Value = item.TypeId.ToString() });
+            }
+        }
+        @Html.DropDownListFor(model => model.TypeId, listType)
+
 
         <div class="editor-label">
             @Html.LabelFor(model => model.CurrencyId)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CurrencyId)
-            @Html.ValidationMessageFor(model => model.CurrencyId)
+        @{
+            List<SelectListItem> listCurrency = new List<SelectListItem>();
+            var ListCurrencys = ViewBag.Currencys;
+            foreach (var item in ListCurrencys)
+            {
+                listCurrency.Add(new SelectListItem() { Text = item.CurrencyName, Value = item.CurrencyId.ToString() });
+            }
+        }
+        @Html.DropDownListFor(model => model.CurrencyId, listCurrency)
 
-        </div>
 
         <p>
             <input type="submit" value="Create" />

@@ -115,9 +115,14 @@ namespace EasyBank.Controllers
         [HttpGet]
         public ActionResult AddAccount(int? UserId)
         {
+            var ListTypes = db.AccountTypes.ToList();
+            ViewBag.Types = ListTypes;
+            var ListCurrency = db.Currencies.ToList();
+            ViewBag.Currencys = ListCurrency;
             if (UserId != null)
             {
                 ViewBag.ClientId = UserId;
+
                 return View();
             }
             else return HttpNotFound();
