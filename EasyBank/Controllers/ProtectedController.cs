@@ -94,23 +94,29 @@ namespace EasyBank.Controllers
             }
         }
 
-		[HttpGet]
+        [HttpGet]
         public ActionResult AddAccount(int? UserId)
         {
-            return View();
+            if (UserId != null)
+            {
+                ViewBag.ClientId = UserId;
+                return View();
+            }
+            else return HttpNotFound();
         }
 
         [HttpPost]
         public ActionResult AddAccount(Account account)
         {
+            account.StatusId = 1;//normal
             if (ModelState.IsValid)
             {
                 account.ExpirationDate = DateTime.Now;
-               
+
                 account.StatusId = 1;
                 //account.ClientId = 1;
                 db.Accounts.Add(account);
-                
+
                 db.SaveChanges();
             }
             else
