@@ -6,7 +6,7 @@
 <h2>Client accounts</h2>
 
 <p>
-    @Html.ActionLink("Add new account", "AddAccount")
+    @Html.ActionLink("Add new account", "AddAccount", new { UserId = Model.ClientId })
 </p>
 <table>
     <tr>
