@@ -362,3 +362,5 @@ C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migratio
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.csproj.GenerateResource.Cache
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
+C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.ErrorMessagesAdded.resources
+C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Resources.Resource.resources

@@ -12,6 +12,7 @@ namespace EasyBank.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TypeId { get; set; }
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "AccountTypeRequired")]
         public string TypeName { get; set; }
 
         public virtual ICollection<Account> Account { get; set; }
