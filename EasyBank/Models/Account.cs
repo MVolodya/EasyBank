@@ -12,18 +12,16 @@ namespace EasyBank.Models
         public int AccountId { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "AccountNumberRequired")]
-        [StringLength(8, MinimumLength=8, ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "Len8")]
-        [RegularExpression(@"^[0-9]+$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "OnlyDigits")]
+        [DataType(DataType.CreditCard)]
         [Display(Name = "Account number")]
         public string AccountNumber { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "ExpirationDateRequired")]
-        [DataType(DataType.Date, ErrorMessageResourceType=typeof(Resources.Resource), ErrorMessageResourceName="DateNotValid")]
+        [DataType(DataType.Date)]
         [Display(Name = "Expiration Date")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ExpirationDate { get; set; }
 
-        [RegularExpression(@"[0-9]*\.?[0-9]*", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "OnlyDigits")]
         public decimal Amount { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "ClientIdRequired")]

@@ -106,29 +106,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose Language.
-        /// </summary>
-        public static string ChooseLang {
-            get {
-                return ResourceManager.GetString("ChooseLang", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Client required.
         /// </summary>
         public static string ClientIdRequired {
             get {
                 return ResourceManager.GetString("ClientIdRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Country.
-        /// </summary>
-        public static string Country {
-            get {
-                return ResourceManager.GetString("Country", resourceCulture);
             }
         }
         
@@ -151,15 +133,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date is not Valid.
-        /// </summary>
-        public static string DateNotValid {
-            get {
-                return ResourceManager.GetString("DateNotValid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Email required.
         /// </summary>
         public static string EmailRequired {
@@ -178,29 +151,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Length must be 8 chars.
-        /// </summary>
-        public static string Len8 {
-            get {
-                return ResourceManager.GetString("Len8", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to First name required.
         /// </summary>
         public static string NameRequired {
             get {
                 return ResourceManager.GetString("NameRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Only digits are allowed.
-        /// </summary>
-        public static string OnlyDigits {
-            get {
-                return ResourceManager.GetString("OnlyDigits", resourceCulture);
             }
         }
         
@@ -228,15 +183,6 @@ namespace Resources {
         public static string SurnameRequired {
             get {
                 return ResourceManager.GetString("SurnameRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Template.
-        /// </summary>
-        public static string Template {
-            get {
-                return ResourceManager.GetString("Template", resourceCulture);
             }
         }
         

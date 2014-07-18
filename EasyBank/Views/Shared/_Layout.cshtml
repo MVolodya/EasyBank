@@ -7,19 +7,7 @@
     @Styles.Render("~/Content/Style.css")
 </head>
 <body>
-    <div>
-        @using (Html.BeginForm("ChangeCulture", "Home"))
-        {
-            <select name="lang">
-                <option disabled selected>@Resources.Resource.ChooseLang</option>
-                <option value="uk-UA">Українська</option>
-                <option value="ru">Русский</option>
-                <option value="en">English</option>
-            </select>
-            <input type="submit" name="submit" value="@Resources.Resource.ChooseLang">
-        }
-    </div>
-
+    This is page with layout
     <div id="PartialViews">
         @RenderBody()
     </div>

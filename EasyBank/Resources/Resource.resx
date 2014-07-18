@@ -132,14 +132,8 @@
   <data name="BirthDateRequired" xml:space="preserve">
     <value>PId number required</value>
   </data>
-  <data name="ChooseLang" xml:space="preserve">
-    <value>Choose Language</value>
-  </data>
   <data name="ClientIdRequired" xml:space="preserve">
     <value>Client required</value>
-  </data>
-  <data name="Country" xml:space="preserve">
-    <value>Country</value>
   </data>
   <data name="CurrencyIdRequired" xml:space="preserve">
     <value>Currency required</value>
@@ -147,23 +141,14 @@
   <data name="CurrencyNameRequired" xml:space="preserve">
     <value>Currency name required</value>
   </data>
-  <data name="DateNotValid" xml:space="preserve">
-    <value>Date is not Valid</value>
-  </data>
   <data name="EmailRequired" xml:space="preserve">
     <value>Email required</value>
   </data>
   <data name="ExpirationDateRequired" xml:space="preserve">
     <value>Expiration date required</value>
   </data>
-  <data name="Len8" xml:space="preserve">
-    <value>Length must be 8 chars</value>
-  </data>
   <data name="NameRequired" xml:space="preserve">
     <value>First name required</value>
-  </data>
-  <data name="OnlyDigits" xml:space="preserve">
-    <value>Only digits are allowed</value>
   </data>
   <data name="PIdNumberRequired" xml:space="preserve">
     <value>PId number required</value>
@@ -173,9 +158,6 @@
   </data>
   <data name="SurnameRequired" xml:space="preserve">
     <value>Surname required</value>
-  </data>
-  <data name="Template" xml:space="preserve">
-    <value>Template</value>
   </data>
   <data name="TypeIdRequired" xml:space="preserve">
     <value>Type required</value>

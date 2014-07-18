@@ -1,5 +1,4 @@
-﻿using EasyBank.Filters;
-using EasyBank.Models;
+﻿using EasyBank.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,6 @@ using System.Web.Mvc;
 
 namespace EasyBank.Controllers
 {
-    [Culture]
     public class ProtectedController : Controller
     {
         //
@@ -52,8 +50,7 @@ namespace EasyBank.Controllers
         //add account
         public ActionResult ClientsProfile(int? id)
         {
-            var client = db.Clients.FirstOrDefault(c => c.ClientId == id);
-            return View(client);
+            return View();
         }
 
         [HttpGet]
@@ -115,33 +112,13 @@ namespace EasyBank.Controllers
         [HttpGet]
         public ActionResult AddAccount(int? UserId)
         {
-            if (UserId != null)
-            {
-                ViewBag.ClientId = UserId;
-                return View();
-            }
-            else return HttpNotFound();
+            return View();
         }
 
         [HttpPost]
-        public ActionResult AddAccount(Account account)
+        public ActionResult AddAccount(int UserId)
         {
-            account.StatusId = 1;
-            // Normal status is default
-            if (ModelState.IsValid)
-            {
-                account.ExpirationDate = DateTime.Now;
-
-                db.Accounts.Add(account);
-
-                db.SaveChanges();
-            }
-            else
-            {
-                ViewBag.Message = "Problem with inputted data";
-                RedirectToAction("/");
-            }
-            return RedirectToAction("/");
+            return View();
         }
 
     }
