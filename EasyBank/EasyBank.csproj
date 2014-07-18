@@ -368,6 +368,8 @@
     <Content Include="Views\File\FileUpload.cshtml" />
     <Content Include="Views\Protected\ClientsList.cshtml" />
     <Content Include="Views\Protected\EditClient.cshtml" />
+    <Content Include="Views\Protected\AddAccount.cshtml" />
+    <Content Include="Views\Protected\ClientsProfile.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

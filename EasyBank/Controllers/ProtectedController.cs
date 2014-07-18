@@ -34,7 +34,8 @@ namespace EasyBank.Controllers
         //add account
         public ActionResult ClientsProfile(int? id)
         {
-            return View();
+            var client = db.Clients.FirstOrDefault(c => c.ClientId == id);
+            return View(client);
         }
 
         [HttpGet]
@@ -93,16 +94,31 @@ namespace EasyBank.Controllers
             }
         }
 
-        [HttpGet]
+		[HttpGet]
         public ActionResult AddAccount(int? UserId)
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddAccount(int UserId)
+        public ActionResult AddAccount(Account account)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                account.ExpirationDate = DateTime.Now;
+               
+                account.StatusId = 1;
+                //account.ClientId = 1;
+                db.Accounts.Add(account);
+                
+                db.SaveChanges();
+            }
+            else
+            {
+                ViewBag.Message = "Problem with inputted data";
+                RedirectToAction("/");
+            }
+            return RedirectToAction("/");
         }
 
     }
