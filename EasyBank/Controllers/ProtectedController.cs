@@ -83,7 +83,7 @@ namespace EasyBank.Controllers
         public ActionResult EditClient(int? id)
         {
             Client client = null;
-            if (id != 0)
+            if (id != null)
                 client = db.Clients.FirstOrDefault(c => c.ClientId == id);
             if (client != null)
             {
@@ -143,6 +143,5 @@ namespace EasyBank.Controllers
             }
             return RedirectToAction("/");
         }
-
     }
 }
