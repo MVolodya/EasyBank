@@ -25,9 +25,27 @@ namespace EasyBank.Controllers
         //add Client
         //remove client
         //edit client
-        public ActionResult ClientsList()
+        public ActionResult ClientsList(string sortOrder, string SearchString)
         {
-            return View(db.Clients.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name desc" : "";
+            var clients = from c in db.Clients
+                          select c;
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                clients = clients.Where(c => c.Name.ToUpper().Contains(SearchString.ToUpper())
+                                       || c.Surname.ToUpper().Contains(SearchString.ToUpper())
+                                       || c.PIdNumber.ToUpper().Contains(SearchString.ToUpper()));
+            }
+            switch (sortOrder)
+            {
+                case "Name desc":
+                    clients = clients.OrderByDescending(c => c.Name);
+                    break;
+                default:
+                    clients = clients.OrderBy(c => c.Name);
+                    break;
+            }
+            return View(clients);
         }
 
         //link to:
