@@ -37,9 +37,7 @@
             @Html.ValidationMessageFor(model => model.Amount)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.TypeId)
-        </div>
+        <p>Account type</p>
 
         @{
             List<SelectListItem> listType = new List<SelectListItem>();
@@ -52,9 +50,8 @@
         @Html.DropDownListFor(model => model.TypeId, listType)
 
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CurrencyId)
-        </div>
+        <p>Currency</p>
+
         @{
             List<SelectListItem> listCurrency = new List<SelectListItem>();
             var ListCurrencys = ViewBag.Currencys;
