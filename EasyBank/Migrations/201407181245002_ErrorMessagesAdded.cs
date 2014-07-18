@@ -7,6 +7,7 @@ namespace EasyBank.Migrations
     {
         public override void Up()
         {
+            AlterColumn("dbo.Account", "AccountNumber", c => c.String(nullable: false, maxLength: 8));
             AlterColumn("dbo.AccountStatus", "StatusName", c => c.String(nullable: false));
             AlterColumn("dbo.AccountType", "TypeName", c => c.String(nullable: false));
             AlterColumn("dbo.Client", "Name", c => c.String(nullable: false, maxLength: 20));
@@ -21,6 +22,7 @@ namespace EasyBank.Migrations
             AlterColumn("dbo.Client", "Name", c => c.String(nullable: false, maxLength: 50));
             AlterColumn("dbo.AccountType", "TypeName", c => c.String());
             AlterColumn("dbo.AccountStatus", "StatusName", c => c.String());
+            AlterColumn("dbo.Account", "AccountNumber", c => c.String(nullable: false));
         }
     }
 }

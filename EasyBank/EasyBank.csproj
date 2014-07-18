@@ -197,9 +197,9 @@
     <Compile Include="Migrations\201407160910318_first.Designer.cs">
       <DependentUpon>201407160910318_first.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407180802574_ErrorMessagesAdded.cs" />
-    <Compile Include="Migrations\201407180802574_ErrorMessagesAdded.Designer.cs">
-      <DependentUpon>201407180802574_ErrorMessagesAdded.cs</DependentUpon>
+    <Compile Include="Migrations\201407181245002_ErrorMessagesAdded.cs" />
+    <Compile Include="Migrations\201407181245002_ErrorMessagesAdded.Designer.cs">
+      <DependentUpon>201407181245002_ErrorMessagesAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -226,6 +226,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Migrations\201407181245002_ErrorMessagesAdded.resx">
+      <DependentUpon>201407181245002_ErrorMessagesAdded.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.uk-UA.Designer.cs</LastGenOutput>
@@ -378,10 +381,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201407160910318_first.resx">
       <DependentUpon>201407160910318_first.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407180802574_ErrorMessagesAdded.resx">
-      <DependentUpon>201407180802574_ErrorMessagesAdded.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

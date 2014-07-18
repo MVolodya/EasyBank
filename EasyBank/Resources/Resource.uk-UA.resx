@@ -147,14 +147,23 @@
   <data name="CurrencyNameRequired" xml:space="preserve">
     <value>Потрібна назва валюти</value>
   </data>
+  <data name="DateNotValid" xml:space="preserve">
+    <value>Невірна дата</value>
+  </data>
   <data name="EmailRequired" xml:space="preserve">
     <value>Потрібна поштова скринька</value>
   </data>
   <data name="ExpirationDateRequired" xml:space="preserve">
     <value>Потрібен термін дії</value>
   </data>
+  <data name="Len8" xml:space="preserve">
+    <value>Довжина повинна бути 8 символів</value>
+  </data>
   <data name="NameRequired" xml:space="preserve">
     <value>Потрібне ім'я</value>
+  </data>
+  <data name="OnlyDigits" xml:space="preserve">
+    <value>Тільки цифри дозволені</value>
   </data>
   <data name="PIdNumberRequired" xml:space="preserve">
     <value>Потрібен ідентифікаційний код</value>

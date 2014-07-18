@@ -151,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date is not Valid.
+        /// </summary>
+        public static string DateNotValid {
+            get {
+                return ResourceManager.GetString("DateNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email required.
         /// </summary>
         public static string EmailRequired {
@@ -169,11 +178,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Length must be 8 chars.
+        /// </summary>
+        public static string Len8 {
+            get {
+                return ResourceManager.GetString("Len8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First name required.
         /// </summary>
         public static string NameRequired {
             get {
                 return ResourceManager.GetString("NameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only digits are allowed.
+        /// </summary>
+        public static string OnlyDigits {
+            get {
+                return ResourceManager.GetString("OnlyDigits", resourceCulture);
             }
         }
         

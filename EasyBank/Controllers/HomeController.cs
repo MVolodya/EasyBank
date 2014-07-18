@@ -45,7 +45,7 @@ namespace EasyBank.Controllers
 
         public ActionResult ChangeCulture(string lang)
         {
-            string returnUrl = Request.UrlReferrer.AbsolutePath;
+            string returnUrl = Request.UrlReferrer.AbsoluteUri;
             // Список культур
             List<string> cultures = new List<string>() { "uk-UA", "ru", "en" };
             if (!cultures.Contains(lang))
@@ -62,7 +62,7 @@ namespace EasyBank.Controllers
                 cookie = new HttpCookie("lang");
                 cookie.HttpOnly = false;
                 cookie.Value = lang;
-                cookie.Expires = DateTime.Now.AddYears(1);
+                cookie.Expires = DateTime.Now.AddMonths(1);
             }
             Response.Cookies.Add(cookie);
             return Redirect(returnUrl);
