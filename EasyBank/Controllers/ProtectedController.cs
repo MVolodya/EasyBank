@@ -108,13 +108,12 @@ namespace EasyBank.Controllers
         [HttpPost]
         public ActionResult AddAccount(Account account)
         {
-            account.StatusId = 1;//normal
+            account.StatusId = 1;
+            // Normal status is default
             if (ModelState.IsValid)
             {
                 account.ExpirationDate = DateTime.Now;
 
-                account.StatusId = 1;
-                //account.ClientId = 1;
                 db.Accounts.Add(account);
 
                 db.SaveChanges();
