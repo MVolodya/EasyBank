@@ -12,6 +12,7 @@ namespace EasyBank.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CurrencyId { get; set; }
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "CurrencyNameRequired")]
         public string CurrencyName { get; set; }
 
         public virtual ICollection<Account> Account { get; set; }

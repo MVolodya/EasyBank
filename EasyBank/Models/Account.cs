@@ -11,12 +11,12 @@ namespace EasyBank.Models
     {
         public int AccountId { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "AccountNumberRequired")]
         [DataType(DataType.CreditCard)]
         [Display(Name = "Account number")]
         public string AccountNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "ExpirationDateRequired")]
         [DataType(DataType.Date)]
         [Display(Name = "Expiration Date")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
@@ -24,20 +24,19 @@ namespace EasyBank.Models
 
         public decimal Amount { get; set; }
 
-
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "ClientIdRequired")]
         [ForeignKey("Client")]
         public int ClientId { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "TypeIdRequired")]
         [ForeignKey("AccountType")]
         public int TypeId { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "CurrencyIdRequired")]
         [ForeignKey("Currency")]
         public int CurrencyId { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "AccountStatusRequired")]
         [ForeignKey("AccountStatus")]
         public int StatusId { get; set; }
 
