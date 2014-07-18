@@ -147,14 +147,23 @@
   <data name="CurrencyNameRequired" xml:space="preserve">
     <value>Currency name required</value>
   </data>
+  <data name="DateNotValid" xml:space="preserve">
+    <value>Date is not Valid</value>
+  </data>
   <data name="EmailRequired" xml:space="preserve">
     <value>Email required</value>
   </data>
   <data name="ExpirationDateRequired" xml:space="preserve">
     <value>Expiration date required</value>
   </data>
+  <data name="Len8" xml:space="preserve">
+    <value>Length must be 8 chars</value>
+  </data>
   <data name="NameRequired" xml:space="preserve">
     <value>First name required</value>
+  </data>
+  <data name="OnlyDigits" xml:space="preserve">
+    <value>Only digits are allowed</value>
   </data>
   <data name="PIdNumberRequired" xml:space="preserve">
     <value>PId number required</value>

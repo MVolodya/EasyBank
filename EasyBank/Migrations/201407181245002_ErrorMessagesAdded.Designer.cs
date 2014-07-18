@@ -13,7 +13,7 @@ namespace EasyBank.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201407180802574_ErrorMessagesAdded"; }
+            get { return "201407181245002_ErrorMessagesAdded"; }
         }
         
         string IMigrationMetadata.Source
