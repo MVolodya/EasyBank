@@ -364,3 +364,9 @@ C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.ErrorMessagesAdded.resources
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Resources.Resource.resources
+C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\bin\ru\EasyBank.resources.dll
+C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Resources.Resource.ru.resources
+C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resources.dll
+C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\bin\uk-UA\EasyBank.resources.dll
+C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Resources.Resource.uk-UA.resources
+C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\uk-UA\EasyBank.resources.dll

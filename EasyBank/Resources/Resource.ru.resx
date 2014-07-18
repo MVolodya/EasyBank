@@ -133,13 +133,13 @@
     <value>PId number required</value>
   </data>
   <data name="ChooseLang" xml:space="preserve">
-    <value>Choose Language</value>
+    <value>Выберите язык</value>
   </data>
   <data name="ClientIdRequired" xml:space="preserve">
     <value>Client required</value>
   </data>
   <data name="Country" xml:space="preserve">
-    <value>Country</value>
+    <value>Страна</value>
   </data>
   <data name="CurrencyIdRequired" xml:space="preserve">
     <value>Currency required</value>
@@ -166,7 +166,7 @@
     <value>Surname required</value>
   </data>
   <data name="Template" xml:space="preserve">
-    <value>Template</value>
+    <value>Шаблон</value>
   </data>
   <data name="TypeIdRequired" xml:space="preserve">
     <value>Type required</value>

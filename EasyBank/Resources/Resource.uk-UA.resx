@@ -118,57 +118,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccountNumberRequired" xml:space="preserve">
-    <value>Account number required</value>
+    <value>Потрібен номер рахунку</value>
   </data>
   <data name="AccountStatusRequired" xml:space="preserve">
-    <value>Account status required</value>
+    <value>Потрібен статус рахунку</value>
   </data>
   <data name="AccountTypeRequired" xml:space="preserve">
-    <value>Account type required</value>
+    <value>Потрібен тип рахунку</value>
   </data>
   <data name="AmountRequired" xml:space="preserve">
-    <value>Amount required</value>
+    <value>Потрібна сума</value>
   </data>
   <data name="BirthDateRequired" xml:space="preserve">
-    <value>PId number required</value>
+    <value>Потрібна дата народження</value>
   </data>
   <data name="ChooseLang" xml:space="preserve">
-    <value>Choose Language</value>
+    <value>Виберіть мову</value>
   </data>
   <data name="ClientIdRequired" xml:space="preserve">
-    <value>Client required</value>
+    <value>Потрібен клієнт</value>
   </data>
   <data name="Country" xml:space="preserve">
-    <value>Country</value>
+    <value>Країна</value>
   </data>
   <data name="CurrencyIdRequired" xml:space="preserve">
-    <value>Currency required</value>
+    <value>Потрібна валюта</value>
   </data>
   <data name="CurrencyNameRequired" xml:space="preserve">
-    <value>Currency name required</value>
+    <value>Потрібна назва валюти</value>
   </data>
   <data name="EmailRequired" xml:space="preserve">
-    <value>Email required</value>
+    <value>Потрібна поштова скринька</value>
   </data>
   <data name="ExpirationDateRequired" xml:space="preserve">
-    <value>Expiration date required</value>
+    <value>Потрібен термін дії</value>
   </data>
   <data name="NameRequired" xml:space="preserve">
-    <value>First name required</value>
+    <value>Потрібне ім'я</value>
   </data>
   <data name="PIdNumberRequired" xml:space="preserve">
-    <value>PId number required</value>
+    <value>Потрібен ідентифікаційний код</value>
   </data>
   <data name="StatusIdRequired" xml:space="preserve">
-    <value>Status required</value>
+    <value>Потрібен статус</value>
   </data>
   <data name="SurnameRequired" xml:space="preserve">
-    <value>Surname required</value>
+    <value>Потрібне прізвище</value>
   </data>
   <data name="Template" xml:space="preserve">
-    <value>Template</value>
+    <value>Шаблон</value>
   </data>
   <data name="TypeIdRequired" xml:space="preserve">
-    <value>Type required</value>
+    <value>Потрібен тип</value>
   </data>
 </root>
