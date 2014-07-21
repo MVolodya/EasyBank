@@ -14,7 +14,6 @@
         @ViewBag.Message
 
         @Html.HiddenFor(model => model.ClientId)
-        @Html.HiddenFor(model => model.RegistrationDate, new { @Value = Model.RegistrationDate})
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)
