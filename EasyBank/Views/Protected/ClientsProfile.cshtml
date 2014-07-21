@@ -3,11 +3,93 @@
 @{
     ViewBag.Title = "Clients profile";
 }
-<h2>Client accounts</h2>
+<h2>Client profile</h2>
+<table>
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Name)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+        </td>
+    </tr>
 
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Surname)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Surname)
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Email)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Email)
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.BirthDate)
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.PIdNumber)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.PIdNumber)
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.RegistrationDate)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.RegistrationDate)
+            </div>
+        </td>
+    </tr>
+
+</table>
+
+<h3>Accounts:</h3>
 <p>
     @Html.ActionLink("Add new account", "AddAccount", new { UserId = Model.ClientId })
 </p>
+
 <table>
     <tr>
         <th>Account number</th>
