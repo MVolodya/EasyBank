@@ -37,7 +37,7 @@
             @Html.ValidationMessageFor(model => model.Amount)
         </div>
 
-        <p>Account type</p>
+        <p>@Resources.Resource.Type</p>
 
         @{
             List<SelectListItem> listType = new List<SelectListItem>();
@@ -50,7 +50,7 @@
         @Html.DropDownListFor(model => model.TypeId, listType)
 
 
-        <p>Currency</p>
+        <p>@Resources.Resource.Currency</p>
 
         @{
             List<SelectListItem> listCurrency = new List<SelectListItem>();
@@ -70,5 +70,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(@Resources.Resource.BackToList, "Index")
 </div>

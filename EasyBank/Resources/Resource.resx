@@ -159,6 +159,12 @@
   <data name="Len8" xml:space="preserve">
     <value>Length must be 8 chars</value>
   </data>
+  <data name="NameFromCap" xml:space="preserve">
+    <value>Must start with capital letter and have latin characters only</value>
+  </data>
+  <data name="NameLen3To20" xml:space="preserve">
+    <value>Name must have length from 3 to 20 characters</value>
+  </data>
   <data name="NameRequired" xml:space="preserve">
     <value>First name required</value>
   </data>
@@ -174,10 +180,55 @@
   <data name="SurnameRequired" xml:space="preserve">
     <value>Surname required</value>
   </data>
+  <data name="SurnLen3To30" xml:space="preserve">
+    <value>Surname must have length from 3 to 30 characters</value>
+  </data>
   <data name="Template" xml:space="preserve">
     <value>Template</value>
   </data>
   <data name="TypeIdRequired" xml:space="preserve">
     <value>Type required</value>
+  </data>
+  <data name="AccNumb" xml:space="preserve">
+    <value>Account Number</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Back to list</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ExpDate" xml:space="preserve">
+    <value>Expiration Date</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PIdNum" xml:space="preserve">
+    <value>PId Number</value>
+  </data>
+  <data name="RegDate" xml:space="preserve">
+    <value>Registration Date</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
   </data>
 </root>

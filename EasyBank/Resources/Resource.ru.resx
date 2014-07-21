@@ -147,11 +147,23 @@
   <data name="CurrencyNameRequired" xml:space="preserve">
     <value>Currency name required</value>
   </data>
+  <data name="DateNotValid" xml:space="preserve">
+    <value>Date is not Valid</value>
+  </data>
   <data name="EmailRequired" xml:space="preserve">
     <value>Email required</value>
   </data>
   <data name="ExpirationDateRequired" xml:space="preserve">
     <value>Expiration date required</value>
+  </data>
+  <data name="Len8" xml:space="preserve">
+    <value>Length must be 8 chars</value>
+  </data>
+  <data name="NameFromCap" xml:space="preserve">
+    <value>Must start with capital letter and have latin characters only</value>
+  </data>
+  <data name="NameLen3To20" xml:space="preserve">
+    <value>Name must have length from 3 to 20 characters</value>
   </data>
   <data name="NameRequired" xml:space="preserve">
     <value>First name required</value>
@@ -165,10 +177,16 @@
   <data name="SurnameRequired" xml:space="preserve">
     <value>Surname required</value>
   </data>
+  <data name="SurnLen3To30" xml:space="preserve">
+    <value>Surname must have length from 3 to 30 characters</value>
+  </data>
   <data name="Template" xml:space="preserve">
     <value>Шаблон</value>
   </data>
   <data name="TypeIdRequired" xml:space="preserve">
     <value>Type required</value>
+  </data>
+  <data name="OnlyDigits" xml:space="preserve">
+    <value>Только цифры</value>
   </data>
 </root>
