@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account Number.
+        /// </summary>
+        public static string AccNumb {
+            get {
+                return ResourceManager.GetString("AccNumb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account number required.
         /// </summary>
         public static string AccountNumberRequired {
@@ -88,11 +97,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string Amount {
+            get {
+                return ResourceManager.GetString("Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount required.
         /// </summary>
         public static string AmountRequired {
             get {
                 return ResourceManager.GetString("AmountRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back to list.
+        /// </summary>
+        public static string BackToList {
+            get {
+                return ResourceManager.GetString("BackToList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Birth Date.
+        /// </summary>
+        public static string BirthDate {
+            get {
+                return ResourceManager.GetString("BirthDate", resourceCulture);
             }
         }
         
@@ -115,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Client.
+        /// </summary>
+        public static string Client {
+            get {
+                return ResourceManager.GetString("Client", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Client required.
         /// </summary>
         public static string ClientIdRequired {
@@ -129,6 +174,15 @@ namespace Resources {
         public static string Country {
             get {
                 return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        public static string Currency {
+            get {
+                return ResourceManager.GetString("Currency", resourceCulture);
             }
         }
         
@@ -160,11 +214,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email required.
         /// </summary>
         public static string EmailRequired {
             get {
                 return ResourceManager.GetString("EmailRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expiration Date.
+        /// </summary>
+        public static string ExpDate {
+            get {
+                return ResourceManager.GetString("ExpDate", resourceCulture);
             }
         }
         
@@ -187,6 +259,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must start with capital letter and have latin characters only.
+        /// </summary>
+        public static string NameFromCap {
+            get {
+                return ResourceManager.GetString("NameFromCap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name must have length from 3 to 20 characters.
+        /// </summary>
+        public static string NameLen3To20 {
+            get {
+                return ResourceManager.GetString("NameLen3To20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First name required.
         /// </summary>
         public static string NameRequired {
@@ -205,11 +304,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PId Number.
+        /// </summary>
+        public static string PIdNum {
+            get {
+                return ResourceManager.GetString("PIdNum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PId number required.
         /// </summary>
         public static string PIdNumberRequired {
             get {
                 return ResourceManager.GetString("PIdNumberRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration Date.
+        /// </summary>
+        public static string RegDate {
+            get {
+                return ResourceManager.GetString("RegDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
             }
         }
         
@@ -223,6 +349,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Surname.
+        /// </summary>
+        public static string Surname {
+            get {
+                return ResourceManager.GetString("Surname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Surname required.
         /// </summary>
         public static string SurnameRequired {
@@ -232,11 +367,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Surname must have length from 3 to 30 characters.
+        /// </summary>
+        public static string SurnLen3To30 {
+            get {
+                return ResourceManager.GetString("SurnLen3To30", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Template.
         /// </summary>
         public static string Template {
             get {
                 return ResourceManager.GetString("Template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
             }
         }
         

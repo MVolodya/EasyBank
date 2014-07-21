@@ -25,7 +25,7 @@ else
         <table>
             <tr>
                 <th>
-                    @Html.ActionLink("Name", "ClientsList", new { sortOrder = ViewBag.NameSortParm })
+                    @Html.ActionLink(@Resources.Resource.Name, "ClientsList", new { sortOrder = ViewBag.NameSortParm })
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Surname)
