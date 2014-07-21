@@ -189,4 +189,7 @@
   <data name="OnlyDigits" xml:space="preserve">
     <value>Только цифры</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
 </root>
