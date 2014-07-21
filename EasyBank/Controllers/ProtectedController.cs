@@ -65,9 +65,9 @@ namespace EasyBank.Controllers
         [HttpPost]
         public ActionResult AddClient(Client client)
         {
+            client.RegistrationDate = DateTime.Now;
             if (ModelState.IsValid)
             {
-                client.RegistrationDate = DateTime.Now;
                 db.Clients.Add(client);
                 db.SaveChanges();
                 return RedirectToAction("ClientsList");
