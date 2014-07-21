@@ -1,10 +1,10 @@
-﻿@model EasyBank.Models.Client
+﻿@model EasyBank.Models.TempClient
 
 <script src="~/Scripts/jquery-1.8.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-@using (Html.BeginForm("AddClient", "Protected", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+@using (Html.BeginForm("AddTempClient", "Protected", FormMethod.Post, new { enctype = "multipart/form-data" })) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -52,11 +52,8 @@
             @Html.EditorFor(model => model.Email)
             @Html.ValidationMessageFor(model => model.Email)
         </div>
-        <label for=" file">Uplolad Passport Scan:</label>
+        <label for=" file">Uplolad Image:</label>
         <input type="file" name="file" id="file" style="width: 100%;" />
-        <br />
-                <label for=" file">Uplolad Your Photo:</label>
-        <input type="file" name="file2" id="file2" style="width: 100%;" />
         <p>
             <input type="submit" value="Create" class="submit" />
         </p>
