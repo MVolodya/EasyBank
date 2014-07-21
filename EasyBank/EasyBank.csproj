@@ -202,6 +202,10 @@
     <Compile Include="Migrations\201407181245002_ErrorMessagesAdded.Designer.cs">
       <DependentUpon>201407181245002_ErrorMessagesAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407211409146_TablesForFileAdded.cs" />
+    <Compile Include="Migrations\201407211409146_TablesForFileAdded.Designer.cs">
+      <DependentUpon>201407211409146_TablesForFileAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -211,6 +215,7 @@
     <Compile Include="Models\ConnectionContext.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\CurrencyOperation.cs" />
+    <Compile Include="Models\Image.cs" />
     <Compile Include="Models\OperationModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.uk-UA.Designer.cs">
@@ -230,6 +235,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201407181245002_ErrorMessagesAdded.resx">
       <DependentUpon>201407181245002_ErrorMessagesAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407211409146_TablesForFileAdded.resx">
+      <DependentUpon>201407211409146_TablesForFileAdded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

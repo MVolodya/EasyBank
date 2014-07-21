@@ -41,6 +41,7 @@ namespace EasyBank.Models
 
         [Display(Name = "RegDate", ResourceType = typeof(Resources.Resource))]
         [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime RegistrationDate { get; set; }
 
         
