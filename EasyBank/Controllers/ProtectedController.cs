@@ -63,20 +63,35 @@ namespace EasyBank.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddClient(Client client)
+        public ActionResult AddClient(Client client, HttpPostedFileBase file, HttpPostedFileBase avatar )
         {
             if (ModelState.IsValid)
             {
-                client.RegistrationDate = DateTime.Now;
-                db.Clients.Add(client);
-                db.SaveChanges();
-                return RedirectToAction("ClientsList");
+                if (file != null)
+                {
+                    Image photo = new Image();
+                    photo.Name = System.IO.Path.GetFileName(file.FileName);
+                    byte[] n = new byte[file.InputStream.Length];
+
+                    file.InputStream.Read(n, 0, (int)file.InputStream.Length);
+                    photo.ImageContent = n;
+                    photo.ContentType = file.ContentType;
+                   
+                    db.Images.Add(photo);
+
+                    client.RegistrationDate = DateTime.Now;
+
+                    db.Clients.Add(client);
+                    db.SaveChanges();
+                    return RedirectToAction("ClientsList");
+                }
             }
             else
             {
                 ViewBag.Message = "Problem with inputted data";
                 return RedirectToAction("AddClient");
             }
+            return View();
         }
 
         [HttpGet]
@@ -148,5 +163,6 @@ namespace EasyBank.Controllers
             }
             return RedirectToAction("/");
         }
+       
     }
 }

@@ -1,0 +1,8 @@
+﻿
+{
+    <label for=" file">Uplolad Image:</label>
+    <input type="file" name="file" id="file" style="width: 100%;" />
+    @Html.ActionLink("FileUpload", "Protected", FormMethod.Post, new { enctype = "multipart/form-data" })
+       @* <input type="submit" value="Upload" class="submit" />*@
+
+}

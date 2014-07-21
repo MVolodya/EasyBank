@@ -201,6 +201,10 @@
     <Compile Include="Migrations\201407181245002_ErrorMessagesAdded.Designer.cs">
       <DependentUpon>201407181245002_ErrorMessagesAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407210948248_CreatingTempUser.cs" />
+    <Compile Include="Migrations\201407210948248_CreatingTempUser.Designer.cs">
+      <DependentUpon>201407210948248_CreatingTempUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -210,6 +214,7 @@
     <Compile Include="Models\ConnectionContext.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\CurrencyOperation.cs" />
+    <Compile Include="Models\Image.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.uk-UA.Designer.cs">
       <DependentUpon>Resource.uk-UA.resx</DependentUpon>
@@ -228,6 +233,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201407181245002_ErrorMessagesAdded.resx">
       <DependentUpon>201407181245002_ErrorMessagesAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407210948248_CreatingTempUser.resx">
+      <DependentUpon>201407210948248_CreatingTempUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -369,11 +377,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Protected\AddClient.cshtml" />
     <Content Include="Views\Protected\Index.cshtml" />
-    <Content Include="Views\File\FileUpload.cshtml" />
     <Content Include="Views\Protected\ClientsList.cshtml" />
     <Content Include="Views\Protected\EditClient.cshtml" />
     <Content Include="Views\Protected\AddAccount.cshtml" />
     <Content Include="Views\Protected\ClientsProfile.cshtml" />
+    <Content Include="Views\Protected\FileUpload.cshtml" />
+    <Content Include="Views\Protected\AddTempClient.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
