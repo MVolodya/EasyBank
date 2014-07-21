@@ -3,11 +3,27 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/Style.css")
+     @Styles.Render("~/Content/Style.css")
+    <script src="~/Scripts/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/script.js"></script>
+    <title>@ViewBag.Title</title>    
+    
+
 </head>
 <body>
-    This is page with layout
+    <div id="header">
+        <b>EB</b>
+        @using (Html.BeginForm("ChangeCulture", "Home", FormMethod.Post, new {name = "langForm" }))
+        {
+            <select id="langSelect" name="lang">
+                <option disabled selected>@Resources.Resource.ChooseLang</option>
+                <option value="uk-UA">Українська</option>
+                <option value="ru">Русский</option>
+                <option value="en">English</option>
+            </select>
+        }
+    </div>
+
     <div id="PartialViews">
         @RenderBody()
     </div>

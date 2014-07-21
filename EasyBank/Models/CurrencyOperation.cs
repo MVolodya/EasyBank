@@ -18,6 +18,7 @@ namespace EasyBank.Models
         [ForeignKey("ToAccount")]
         public int ToAccountId { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "AmountRequired")]
         public decimal TransferAmount { get; set; }//needs to be transformed into right currency!!!!
 
 

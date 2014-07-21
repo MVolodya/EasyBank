@@ -11,33 +11,34 @@ namespace EasyBank.Models
     {
         public int AccountId { get; set; }
 
-        [Required]
-        [DataType(DataType.CreditCard)]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "AccountNumberRequired")]
+        [StringLength(8, MinimumLength=8, ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "Len8")]
+        [RegularExpression(@"^[0-9]+$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "OnlyDigits")]
         [Display(Name = "Account number")]
         public string AccountNumber { get; set; }
 
-        [Required]
-        [DataType(DataType.Date)]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "ExpirationDateRequired")]
+        [DataType(DataType.Date, ErrorMessageResourceType=typeof(Resources.Resource), ErrorMessageResourceName="DateNotValid")]
         [Display(Name = "Expiration Date")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ExpirationDate { get; set; }
 
+        [RegularExpression(@"[0-9]*\.?[0-9]*", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "OnlyDigits")]
         public decimal Amount { get; set; }
 
-
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "ClientIdRequired")]
         [ForeignKey("Client")]
         public int ClientId { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "TypeIdRequired")]
         [ForeignKey("AccountType")]
         public int TypeId { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "CurrencyIdRequired")]
         [ForeignKey("Currency")]
         public int CurrencyId { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "AccountStatusRequired")]
         [ForeignKey("AccountStatus")]
         public int StatusId { get; set; }
 

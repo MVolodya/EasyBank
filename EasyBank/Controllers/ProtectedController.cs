@@ -1,4 +1,5 @@
-﻿using EasyBank.Models;
+﻿using EasyBank.Filters;
+using EasyBank.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Web.Mvc;
 
 namespace EasyBank.Controllers
 {
+    [Culture]
     public class ProtectedController : Controller
     {
         //
@@ -23,16 +25,35 @@ namespace EasyBank.Controllers
         //add Client
         //remove client
         //edit client
-        public ActionResult ClientsList()
+        public ActionResult ClientsList(string sortOrder, string SearchString)
         {
-            return View(db.Clients.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name desc" : "";
+            var clients = from c in db.Clients
+                          select c;
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                clients = clients.Where(c => c.Name.ToUpper().Contains(SearchString.ToUpper())
+                                       || c.Surname.ToUpper().Contains(SearchString.ToUpper())
+                                       || c.PIdNumber.ToUpper().Contains(SearchString.ToUpper()));
+            }
+            switch (sortOrder)
+            {
+                case "Name desc":
+                    clients = clients.OrderByDescending(c => c.Name);
+                    break;
+                default:
+                    clients = clients.OrderBy(c => c.Name);
+                    break;
+            }
+            return View(clients);
         }
 
         //link to:
         //add account
         public ActionResult ClientsProfile(int? id)
         {
-            return View();
+            var client = db.Clients.FirstOrDefault(c => c.ClientId == id);
+            return View(client);
         }
 
         [HttpGet]
@@ -40,38 +61,38 @@ namespace EasyBank.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         public ActionResult AddClient(Client client)
         {
-            if (client != null && client.Name != null && client.PIdNumber != null && client.BirthDate != null && client.Email != null && client.RegistrationDate != null)
+            if (ModelState.IsValid)
             {
                 client.RegistrationDate = DateTime.Now;
                 db.Clients.Add(client);
                 db.SaveChanges();
+                return RedirectToAction("ClientsList");
             }
             else
             {
                 ViewBag.Message = "Problem with inputted data";
-                RedirectToAction("/");
+                return RedirectToAction("AddClient");
             }
-            return RedirectToAction("/");
         }
 
         [HttpGet]
         public ActionResult EditClient(int? id)
         {
-            Client client=null;
-            if (id!=0)
-                client = db.Clients.FirstOrDefault(c=>c.ClientId==id);
-            if(client != null)
+            Client client = null;
+            if (id != null)
+                client = db.Clients.FirstOrDefault(c => c.ClientId == id);
+            if (client != null)
             {
-                return View();     
+                return View(client);
             }
-            else 
+            else
             {
                 ViewBag.Message = "No client with this Id";
-                return RedirectToAction("/ListUsers");
+                return RedirectToAction("ClientsList");
             }
         }
 
@@ -82,26 +103,50 @@ namespace EasyBank.Controllers
             {
                 db.Entry(client).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                return View();
+                return RedirectToAction("ClientsList");
             }
             else
             {
                 ViewBag.Message = "OOps.. Something wrong with data";
-                return RedirectToAction("/EditClient");
+                return RedirectToAction("EditClient");
             }
         }
 
         [HttpGet]
         public ActionResult AddAccount(int? UserId)
         {
-            return View();
+            var ListTypes = db.AccountTypes.ToList();
+            ViewBag.Types = ListTypes;
+            var ListCurrency = db.Currencies.ToList();
+            ViewBag.Currencys = ListCurrency;
+            if (UserId != null)
+            {
+                ViewBag.ClientId = UserId;
+
+                return View();
+            }
+            else return HttpNotFound();
         }
 
         [HttpPost]
-        public ActionResult AddAccount(int UserId)
+        public ActionResult AddAccount(Account account)
         {
-            return View();
-        }
+            account.StatusId = 1;
+            // Normal status is default
+            if (ModelState.IsValid)
+            {
+                account.ExpirationDate = DateTime.Now;
 
+                db.Accounts.Add(account);
+
+                db.SaveChanges();
+            }
+            else
+            {
+                ViewBag.Message = "Problem with inputted data";
+                RedirectToAction("/");
+            }
+            return RedirectToAction("/");
+        }
     }
 }

@@ -39,13 +39,27 @@ EasyBank/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 EasyBank.v12.suo
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/Volodymyr
 *.suo
 =======
 EasyBank.v12.suo
 EasyBank.v12.suo
 >>>>>>> origin/master
+<<<<<<< HEAD
+=======
 =======
 EasyBank.v12.suo
 EasyBank.v12.suo*.suo
 *.Cache
 >>>>>>> origin/symbo
+>>>>>>> origin/Volodymyr
+
+*.Cache
+*.cache
+EasyBank/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+EasyBank/obj/Debug/EasyBank.csproj.GenerateResource.Cache
+EasyBank/obj/Debug/EasyBank.csprojResolveAssemblyReference.cache
+EasyBank.v12.suo
+EasyBank.v12.suo
