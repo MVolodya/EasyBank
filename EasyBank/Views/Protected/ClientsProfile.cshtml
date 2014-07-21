@@ -7,9 +7,7 @@
 <table>
     <tr>
         <td>
-            <div class="display-label">
-                @Html.DisplayNameFor(model => model.Name)
-            </div>
+            @Html.DisplayNameFor(model => model.Name)
         </td>
         <td>
             <div class="display-field">
@@ -20,9 +18,7 @@
 
     <tr>
         <td>
-            <div class="display-label">
-                @Html.DisplayNameFor(model => model.Surname)
-            </div>
+            @Html.DisplayNameFor(model => model.Surname)
         </td>
         <td>
             <div class="display-field">
@@ -33,9 +29,7 @@
 
     <tr>
         <td>
-            <div class="display-label">
-                @Html.DisplayNameFor(model => model.Email)
-            </div>
+            @Html.DisplayNameFor(model => model.Email)
         </td>
         <td>
             <div class="display-field">
@@ -46,9 +40,7 @@
 
     <tr>
         <td>
-            <div class="display-label">
-                @Html.DisplayNameFor(model => model.BirthDate)
-            </div>
+            @Html.DisplayNameFor(model => model.BirthDate)
         </td>
         <td>
             <div class="display-field">
@@ -59,9 +51,7 @@
 
     <tr>
         <td>
-            <div class="display-label">
-                @Html.DisplayNameFor(model => model.PIdNumber)
-            </div>
+            @Html.DisplayNameFor(model => model.PIdNumber)
         </td>
         <td>
             <div class="display-field">
@@ -72,9 +62,7 @@
 
     <tr>
         <td>
-            <div class="display-label">
-                @Html.DisplayNameFor(model => model.RegistrationDate)
-            </div>
+            @Html.DisplayNameFor(model => model.RegistrationDate)
         </td>
         <td>
             <div class="display-field">
@@ -92,12 +80,12 @@
 
 <table>
     <tr>
-        <th>@Html.ActionLink(@Resources.Resource.AccNumb, "ClientsProfile", new { sortOrder = ViewBag.NameSortParm })</th>
-        <th>@Html.ActionLink(@Resources.Resource.ExpDate, "ClientsProfile", new { sortOrder = ViewBag.NameSortParm })</th>
-        <th>@Html.ActionLink(@Resources.Resource.Amount, "ClientsProfile", new { sortOrder = ViewBag.NameSortParm })</th>
-        <th>@Html.ActionLink(@Resources.Resource.Currency, "ClientsProfile", new { sortOrder = ViewBag.NameSortParm })</th>
-        <th>@Html.ActionLink(@Resources.Resource.Type, "ClientsProfile", new { sortOrder = ViewBag.NameSortParm })</th>
-        <th>@Html.ActionLink(@Resources.Resource.Status, "ClientsProfile", new { sortOrder = ViewBag.NameSortParm })</th>
+        <th>@Html.Label(@Resources.Resource.AccNumb)</th>
+        <th>@Html.Label(@Resources.Resource.ExpDate)</th>
+        <th>@Html.Label(@Resources.Resource.Amount)</th>
+        <th>@Html.Label(@Resources.Resource.Currency)</th>
+        <th>@Html.Label(@Resources.Resource.Type)</th>
+        <th>@Html.Label(@Resources.Resource.Status)</th>
     </tr>
     @foreach (var item in Model.Accounts) { 
         
