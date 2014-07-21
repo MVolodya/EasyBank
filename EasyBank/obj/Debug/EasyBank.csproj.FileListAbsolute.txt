@@ -760,3 +760,14 @@ C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
 C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.CreatingTempUser.resources
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.TablesForFileAdded.resources
+C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\bin\uk-UA\EasyBank.resources.dll
+C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\bin\ru\EasyBank.resources.dll
+C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\bin\PagedList.dll
+C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\bin\PagedList.Mvc.dll
+C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\bin\PagedList.xml
+C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\bin\PagedList.Mvc.xml
+C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.TablesForFileAdded.resources
+C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Resources.Resource.uk-UA.resources
+C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Resources.Resource.ru.resources
+C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\uk-UA\EasyBank.resources.dll
+C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resources.dll

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace EasyBank.Controllers
 {
@@ -19,33 +20,70 @@ namespace EasyBank.Controllers
             return View();
         }
 
-        //volodya
-        //links to: 
-        //clients profile
-        //add Client
-        //remove client
-        //edit client
-        public ActionResult ClientsList(string sortOrder, string SearchString)
+        public ViewResult ClientsList(string sort, string currentFilter, string Search, int? page)
         {
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name desc" : "";
+            ViewBag.CurrentSort = sort;
+            ViewBag.NameSort = String.IsNullOrEmpty(sort) ? "Name" : "";
+            ViewBag.SurnameSort = String.IsNullOrEmpty(sort) ? "Surname" : "";
+            ViewBag.PIdNumberSort = String.IsNullOrEmpty(sort) ? "PIdNumber" : "";
+            ViewBag.BirthDateSort = sort == "BirthDate" ? "birthdate" : "BirthDate";
+            ViewBag.EmailSort = String.IsNullOrEmpty(sort) ? "Email" : "";
+            ViewBag.RegistrationDateSort = sort == "RegistrationDate" ? "registrationdate" : "RegistrationDate";
+
+            if (Search != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                Search = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = Search;
+
             var clients = from c in db.Clients
                           select c;
-            if (!String.IsNullOrEmpty(SearchString))
+            if (!String.IsNullOrEmpty(Search))
             {
-                clients = clients.Where(c => c.Name.ToUpper().Contains(SearchString.ToUpper())
-                                       || c.Surname.ToUpper().Contains(SearchString.ToUpper())
-                                       || c.PIdNumber.ToUpper().Contains(SearchString.ToUpper()));
+                clients = clients.Where(c => c.Name.ToUpper().Contains(Search.ToUpper())
+                                       || c.Surname.ToUpper().Contains(Search.ToUpper())
+                                       || c.PIdNumber.ToUpper().Contains(Search.ToUpper())
+                                       || c.BirthDate.ToString().Contains(Search.ToString())
+                                       || c.RegistrationDate.ToString().Contains(Search.ToString()));
             }
-            switch (sortOrder)
+            switch (sort)
             {
-                case "Name desc":
+                case "Name":
                     clients = clients.OrderByDescending(c => c.Name);
                     break;
+                case "Surname":
+                    clients = clients.OrderByDescending(c => c.Surname);
+                    break;
+                case "PIdNumber":
+                    clients = clients.OrderByDescending(c => c.PIdNumber);
+                    break;
+                case "BirthDate":
+                    clients = clients.OrderBy(c => c.BirthDate);
+                    break;
+                case "birthdate":
+                    clients = clients.OrderByDescending(c => c.BirthDate);
+                    break;
+                case "Email":
+                    clients = clients.OrderByDescending(c => c.Email);
+                    break;
+                case "RegistrationDate":
+                    clients = clients.OrderBy(c => c.RegistrationDate);
+                    break;
+                case "registrationdate":
+                    clients = clients.OrderByDescending(c => c.RegistrationDate);
+                    break;
                 default:
-                    clients = clients.OrderBy(c => c.Name);
+                    clients = clients.OrderBy(c => c.Surname);
                     break;
             }
-            return View(clients);
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(clients.ToPagedList(pageNumber, pageSize));
         }
 
         //link to:

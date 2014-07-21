@@ -1,5 +1,6 @@
-﻿@model IEnumerable<EasyBank.Models.Client>
-
+﻿@model PagedList.IPagedList<EasyBank.Models.Client>
+@using PagedList.Mvc;
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Clients";
 }
@@ -7,10 +8,18 @@
 <p>
     @Html.ActionLink("Add new Client", "AddClient")
 </p>
-@using (Html.BeginForm())
+@using (Html.BeginForm("ClientsList", "Protected", FormMethod.Get))
 {
     <p>
-        Input: @Html.TextBox("SearchString")
+        <select>
+            <option disabled selected>Критерій пошуку</option>
+            <option value="Name">@Resources.Resource.Name</option>
+            <option value="Surname">@Resources.Resource.Surname</option>
+            <option value="PId Number">@Resources.Resource.PIdNum</option>
+            <option value="Birth Date">@Resources.Resource.BirthDate</option>
+            <option value="Registration Date">@Resources.Resource.RegDate</option>
+        </select>
+        Input: @Html.TextBox("Search", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
 
@@ -25,23 +34,27 @@ else
         <table>
             <tr>
                 <th>
+
+                    @Html.ActionLink(@Resources.Resource.Name, "ClientsList", new { sort = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    @Html.ActionLink(@Resources.Resource.Surname, "ClientsList", new { sort = ViewBag.SurnameSort, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    @Html.ActionLink(@Resources.Resource.PIdNum, "ClientsList", new { sort = ViewBag.PIdNumberSort, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    @Html.ActionLink(@Resources.Resource.BirthDate, "ClientsList", new { sort = ViewBag.BirthDateSort, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    @Html.ActionLink(@Resources.Resource.Email, "ClientsList", new { sort = ViewBag.EmailSort, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    @Html.ActionLink(@Resources.Resource.RegDate, "ClientsList", new { sort = ViewBag.RegistrationDateSort, currentFilter = ViewBag.CurrentFilter })
+
                     @Html.ActionLink(@Resources.Resource.Name, "ClientsList", new { sortOrder = ViewBag.NameSortParm })
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Surname)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PIdNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.BirthDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.RegistrationDate)
-                </th>
+
                 <th></th>
             </tr>
             @foreach (var item in Model)
@@ -74,4 +87,10 @@ else
             }
         </table>
     }
+
 }
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("ClientsList", new { page, sort = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
