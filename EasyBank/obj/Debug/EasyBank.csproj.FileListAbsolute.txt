@@ -1,4 +1,4 @@
-﻿C:\Users\oper4\Desktop\MyBranch\EasyBank\bin\EasyBank.dll.config
+C:\Users\oper4\Desktop\MyBranch\EasyBank\bin\EasyBank.dll.config
 C:\Users\oper4\Desktop\MyBranch\EasyBank\bin\EasyBank.dll
 C:\Users\oper4\Desktop\MyBranch\EasyBank\bin\EasyBank.pdb
 C:\Users\oper4\Desktop\MyBranch\EasyBank\bin\Antlr3.Runtime.dll
@@ -758,7 +758,6 @@ C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\uk-UA\EasyBank.resources.dll
 C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resources.dll
 C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
-C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.CreatingTempUser.resources
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.TablesForFileAdded.resources
 C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\bin\uk-UA\EasyBank.resources.dll
 C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\bin\ru\EasyBank.resources.dll
@@ -771,3 +770,9 @@ C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Resources.Re
 C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Resources.Resource.ru.resources
 C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\uk-UA\EasyBank.resources.dll
 C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resources.dll
+C:\Users\Alex\Documents\EasyBank\EasyBank\bin\PagedList.dll
+C:\Users\Alex\Documents\EasyBank\EasyBank\bin\PagedList.Mvc.dll
+C:\Users\Alex\Documents\EasyBank\EasyBank\bin\PagedList.xml
+C:\Users\Alex\Documents\EasyBank\EasyBank\bin\PagedList.Mvc.xml
+C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.TablesForFileAdded.resources
+C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.PhotoTypes.resources
