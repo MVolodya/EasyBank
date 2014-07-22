@@ -83,7 +83,7 @@ namespace EasyBank.Controllers
                     clients = clients.OrderBy(c => c.Surname);
                     break;
             }
-            int pageSize = 20;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(clients.ToPagedList(pageNumber, pageSize));
         }
