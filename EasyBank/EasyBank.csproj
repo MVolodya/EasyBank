@@ -188,6 +188,7 @@
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\ProtectedController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAL\ImageType.cs" />
     <Compile Include="Filters\CultureAttribute.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -205,12 +206,17 @@
     <Compile Include="Migrations\201407210948248_CreatingTempUser.Designer.cs">
       <DependentUpon>201407210948248_CreatingTempUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407211544526_PhotoTypes.cs" />
+    <Compile Include="Migrations\201407211544526_PhotoTypes.Designer.cs">
+      <DependentUpon>201407211544526_PhotoTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AccountStatus.cs" />
     <Compile Include="Models\AccountType.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\ClientExtended.cs" />
     <Compile Include="Models\ConnectionContext.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\CurrencyOperation.cs" />
@@ -236,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407210948248_CreatingTempUser.resx">
       <DependentUpon>201407210948248_CreatingTempUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407211544526_PhotoTypes.resx">
+      <DependentUpon>201407211544526_PhotoTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -383,6 +392,8 @@
     <Content Include="Views\Protected\ClientsProfile.cshtml" />
     <Content Include="Views\Protected\FileUpload.cshtml" />
     <Content Include="Views\Protected\AddTempClient.cshtml" />
+    <Content Include="Views\Protected\AddPhoto.cshtml" />
+    <Content Include="Views\Protected\ShowPassport.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

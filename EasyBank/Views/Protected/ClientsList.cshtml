@@ -66,6 +66,8 @@ else
                         @Html.DisplayFor(modelItem => item.RegistrationDate)
                     </td>
                     <td>
+                        @Html.ActionLink("Passport","ShowPassport", new {id = item.ClientId}) |
+                        @Html.ActionLink("AddPhoto", "AddPhoto", new { id = item.ClientId }) |
                         @Html.ActionLink("Edit", "EditClient", new { id = item.ClientId }) |
                         @Html.ActionLink("Details", "ClientsProfile", new { id = item.ClientId }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.ClientId })

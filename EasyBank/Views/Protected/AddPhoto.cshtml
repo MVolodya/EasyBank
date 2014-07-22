@@ -1,0 +1,45 @@
+﻿@model EasyBank.Models.Client
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginForm("AddPhoto", "Protected", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Client</legend>
+        
+        @ViewBag.Message
+
+        
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+           @Html.DisplayFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name) 
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Surname)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Surname)
+            @Html.ValidationMessageFor(model => model.Surname)
+        </div>
+        <label for=" file">Uplolad Client Photo:</label>
+        <input type="file" name="file" id="file" style="width: 100%;" />
+
+        <p>
+            <input type="submit" value="Save" class="submit" />
+        </p>
+    </fieldset>
+
+}
+<div>
+    @Html.ActionLink("Back to List", "ClientsList")
+</div>
