@@ -1,5 +1,4 @@
-﻿using EasyBank.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,7 +9,6 @@ namespace EasyBank.Controllers
 {
     public class FileController : Controller
     {
-        ConnectionContext db = new ConnectionContext();
         //
         // GET: /File/
 
@@ -22,17 +20,17 @@ namespace EasyBank.Controllers
         {
             if (file != null)
             {
-                Image photo = new Image();
-                photo.Name = System.IO.Path.GetFileName(file.FileName);
-                byte[] n = new byte[file.InputStream.Length];
+                string pic = System.IO.Path.GetFileName(file.FileName);
+                string path = System.IO.Path.Combine(Server.MapPath("~/images/profile"), pic);
 
-                file.InputStream.Read(n, 0, (int)file.InputStream.Length);
-                photo.ImageContent = n;
-                photo.ContentType = file.ContentType;
+               file.SaveAs(path);
 
-                db.Images.Add(photo);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    file.InputStream.CopyTo(ms);
+                    byte[] array = ms.GetBuffer();
+                }
 
-                db.SaveChanges();
             }
             return View();
         }

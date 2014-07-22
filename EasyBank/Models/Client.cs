@@ -40,8 +40,8 @@ namespace EasyBank.Models
         public string Email { get; set; }
 
         [Display(Name = "RegDate", ResourceType = typeof(Resources.Resource))]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime RegistrationDate { get; set; }
 
         
