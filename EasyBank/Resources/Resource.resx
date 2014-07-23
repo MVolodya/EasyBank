@@ -250,7 +250,7 @@
     <value>Make sure you've entered correct information and try again!</value>
   </data>
   <data name="ClientListSearchTypeRequirement" xml:space="preserve">
-    <value>Enter only the surname or identification number</value>
+    <value>Enter surname or identification number</value>
   </data>
   <data name="ClientNotFound" xml:space="preserve">
     <value>Client not found</value>
@@ -275,5 +275,8 @@
   </data>
   <data name="TransMoney" xml:space="preserve">
     <value>Transfer money</value>
+  </data>
+  <data name="BackToProfile" xml:space="preserve">
+    <value>Back to profile</value>
   </data>
 </root>

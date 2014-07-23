@@ -178,6 +178,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Back to profile.
+        /// </summary>
+        public static string BackToProfile {
+            get {
+                return ResourceManager.GetString("BackToProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Birth Date.
         /// </summary>
         public static string BirthDate {
@@ -223,7 +232,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Enter only the surname or identification number.
+        ///   Ищет локализованную строку, похожую на Enter surname or identification number.
         /// </summary>
         public static string ClientListSearchTypeRequirement {
             get {

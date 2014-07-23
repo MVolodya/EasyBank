@@ -13,9 +13,6 @@
     <fieldset>
         <legend>Account</legend>
         @Html.HiddenFor(model => model.ClientId, new { @Value = ViewBag.ClientId })
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AccountNumber)
-        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.ExpirationDate)
@@ -65,5 +62,5 @@
 }
 
 <div>
-    @Html.ActionLink(@Resources.Resource.BackToList, "ClientsProfile", new { id = Model.ClientId })
+    @Html.ActionLink(@Resources.Resource.BackToProfile, "ClientsProfile", new { id = ViewBag.ClientId })
 </div>
