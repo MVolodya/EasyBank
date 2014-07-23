@@ -8,25 +8,20 @@
 <p>
     @Html.ActionLink("Add new Client", "AddClient")
 </p>
+
 @using (Html.BeginForm("ClientsList", "Protected", FormMethod.Get))
 {
     <p>
-       @* <select>
-        <option disabled selected>Критерій пошуку</option>
-        <option value="Name">@Resources.Resource.Name</option>
-        <option value="Surname">@Resources.Resource.Surname</option>
-        <option value="PId Number">@Resources.Resource.PIdNum</option>
-        <option value="Birth Date">@Resources.Resource.BirthDate</option>
-        <option value="Registration Date">@Resources.Resource.RegDate</option>
-    </select>*@
-        Input: @Html.TextBox("Search", ViewBag.CurrentFilter as string)
+        Enter only the Surname or identification number: @Html.TextBox("Search", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
-
 }
 @if (Model.Count() == 0)
 {
     <h3>Client is not found!</h3>
+    <h4>
+        Make sure you've entered correct information and try again!
+    </h4>
 }
 else
 {
@@ -87,7 +82,6 @@ else
             }
         </table>
     }
-
 }
 <br />
 @if (!Request["Search"].IsEmpty())
