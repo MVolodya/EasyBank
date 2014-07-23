@@ -8,25 +8,20 @@
 <p>
     @Html.ActionLink("Add new Client", "AddClient")
 </p>
+
 @using (Html.BeginForm("ClientsList", "Protected", FormMethod.Get))
 {
     <p>
-        <select>
-            <option disabled selected>Критерій пошуку</option>
-            <option value="Name">@Resources.Resource.Name</option>
-            <option value="Surname">@Resources.Resource.Surname</option>
-            <option value="PId Number">@Resources.Resource.PIdNum</option>
-            <option value="Birth Date">@Resources.Resource.BirthDate</option>
-            <option value="Registration Date">@Resources.Resource.RegDate</option>
-        </select>
-        Input: @Html.TextBox("Search", ViewBag.CurrentFilter as string)
+        Enter only the Surname or identification number: @Html.TextBox("Search", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
-
 }
 @if (Model.Count() == 0)
 {
     <h3>Client is not found!</h3>
+    <h4>
+        Make sure you've entered correct information and try again!
+    </h4>
 }
 else
 {
@@ -51,8 +46,6 @@ else
                 </th>
                 <th>
                     @Html.ActionLink(@Resources.Resource.RegDate, "ClientsList", new { sort = ViewBag.RegistrationDateSort, currentFilter = ViewBag.CurrentFilter })
-
-                    @Html.ActionLink(@Resources.Resource.Name, "ClientsList", new { sortOrder = ViewBag.NameSortParm })
                 </th>
 
                 <th></th>
@@ -79,7 +72,7 @@ else
                         @Html.DisplayFor(modelItem => item.RegistrationDate)
                     </td>
                     <td>
-                        @Html.ActionLink("Passport","ShowPassport", new {id = item.ClientId}) |
+                        @Html.ActionLink("Passport", "ShowPassport", new { id = item.ClientId }) |
                         @Html.ActionLink("AddPhoto", "AddPhoto", new { id = item.ClientId }) |
                         @Html.ActionLink("Edit", "EditClient", new { id = item.ClientId }) |
                         @Html.ActionLink("Details", "ClientsProfile", new { id = item.ClientId }) |
@@ -89,10 +82,13 @@ else
             }
         </table>
     }
-
+}
+<br />
+@if (!Request["Search"].IsEmpty())
+{
+    @Html.ActionLink("Back to List", "ClientsList")
 }
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
 @Html.PagedListPager(Model, page => Url.Action("ClientsList", new { page, sort = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-

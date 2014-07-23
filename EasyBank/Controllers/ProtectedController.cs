@@ -25,12 +25,12 @@ namespace EasyBank.Controllers
         public ViewResult ClientsList(string sort, string currentFilter, string Search, int? page)
         {
             ViewBag.CurrentSort = sort;
-            ViewBag.NameSort = String.IsNullOrEmpty(sort) ? "Name" : "";
-            ViewBag.SurnameSort = String.IsNullOrEmpty(sort) ? "Surname" : "";
-            ViewBag.PIdNumberSort = String.IsNullOrEmpty(sort) ? "PIdNumber" : "";
-            ViewBag.BirthDateSort = sort == "BirthDate" ? "birthdate" : "BirthDate";
-            ViewBag.EmailSort = String.IsNullOrEmpty(sort) ? "Email" : "";
-            ViewBag.RegistrationDateSort = sort == "RegistrationDate" ? "registrationdate" : "RegistrationDate";
+            ViewBag.NameSort = String.IsNullOrEmpty(sort) ? "name_desc" : "";
+            ViewBag.SurnameSort = sort == "surname_desc" ? "surname_asc" : "surname_desc";
+            ViewBag.PIdNumberSort = sort == "pidnumber_desc" ? "pidnumber_asc" : "pidnumber_desc";
+            ViewBag.BirthDateSort = sort == "birthDate_desc" ? "birthdate_asc" : "birthDate_desc";
+            ViewBag.EmailSort = sort == "email_desc" ? "email_asc" : "email_desc";
+            ViewBag.RegistrationDateSort = sort == "registrationDate_desc" ? "registrationdate_asc" : "registrationDate_desc";
 
             if (Search != null)
             {
@@ -47,43 +47,49 @@ namespace EasyBank.Controllers
                           select c;
             if (!String.IsNullOrEmpty(Search))
             {
-                clients = clients.Where(c => c.Name.ToUpper().Contains(Search.ToUpper())
-                                       || c.Surname.ToUpper().Contains(Search.ToUpper())
-                                       || c.PIdNumber.ToUpper().Contains(Search.ToUpper())
-                                       || c.BirthDate.ToString().Contains(Search.ToString())
-                                       || c.RegistrationDate.ToString().Contains(Search.ToString()));
+                clients = clients.Where(c => c.Surname.ToUpper().Contains(Search.ToUpper())
+                                       || c.PIdNumber.ToUpper().Contains(Search.ToUpper()));
             }
             switch (sort)
             {
-                case "Name":
+                case "name_desc":
                     clients = clients.OrderByDescending(c => c.Name);
                     break;
-                case "Surname":
+                case "surname_desc":
                     clients = clients.OrderByDescending(c => c.Surname);
                     break;
-                case "PIdNumber":
-                    clients = clients.OrderByDescending(c => c.PIdNumber);
-                    break;
-                case "BirthDate":
-                    clients = clients.OrderBy(c => c.BirthDate);
-                    break;
-                case "birthdate":
-                    clients = clients.OrderByDescending(c => c.BirthDate);
-                    break;
-                case "Email":
-                    clients = clients.OrderByDescending(c => c.Email);
-                    break;
-                case "RegistrationDate":
-                    clients = clients.OrderBy(c => c.RegistrationDate);
-                    break;
-                case "registrationdate":
-                    clients = clients.OrderByDescending(c => c.RegistrationDate);
-                    break;
-                default:
+                case "surname_asc":
                     clients = clients.OrderBy(c => c.Surname);
                     break;
+                case "pidnumber_desc":
+                    clients = clients.OrderByDescending(c => c.PIdNumber);
+                    break;
+                case "pidnumber_asc":
+                    clients = clients.OrderBy(c => c.PIdNumber);
+                    break;
+                case "birthDate_desc":
+                    clients = clients.OrderByDescending(c => c.BirthDate);
+                    break;
+                case "birthdate_asc":
+                    clients = clients.OrderBy(c => c.BirthDate);
+                    break;
+                case "email_desc":
+                    clients = clients.OrderByDescending(c => c.Email);
+                    break;
+                case "email_asc":
+                    clients = clients.OrderBy(c => c.Email);
+                    break;
+                case "registrationDate_desc":
+                    clients = clients.OrderByDescending(c => c.RegistrationDate);
+                    break;
+                case "registrationdate_asc":
+                    clients = clients.OrderBy(c => c.RegistrationDate);
+                    break;
+                default:
+                    clients = clients.OrderBy(c => c.Name);
+                    break;
             }
-            int pageSize = 20;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(clients.ToPagedList(pageNumber, pageSize));
         }
@@ -117,7 +123,7 @@ namespace EasyBank.Controllers
                     photo.ImageContent = n;
                     photo.ContentType = file.ContentType;
                     photo.PhotoType = (int)ImageType.PassportScan;
-                   
+
                     db.Images.Add(photo);
 
                     client.RegistrationDate = DateTime.Now;
@@ -132,7 +138,7 @@ namespace EasyBank.Controllers
                 ViewBag.Message = "Problem with inputted data";
                 return RedirectToAction("AddClient");
             }
-return View();
+            return View();
         }
 
         [HttpGet]
@@ -157,9 +163,9 @@ return View();
         {
             if (ModelState.IsValid)
             {
-                    db.Entry(client).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("ClientsList"); 
+                db.Entry(client).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ClientsList");
             }
             else
             {
@@ -175,7 +181,7 @@ return View();
             if (id != null)
                 client = db.Clients.FirstOrDefault(c => c.ClientId == id);
             if (client != null)
-            { 
+            {
                 return View(client);
             }
             else
@@ -186,47 +192,58 @@ return View();
         }
 
         [HttpPost]
-        public ActionResult AddPhoto(/*HttpPostedFileBase clientPhoto */ int id)
+        public ActionResult AddPhoto(int id)
         {
-
-               // var client = db.Clients.FirstOrDefault(c => c.ClientId == id);
-                
-            
-                if (ModelState.IsValid)
+            if (ModelState.IsValid)
+            {
+                if (Request != null && Request.Files != null && Request.Files.Count > 0)
                 {
-                    if (Request != null && Request.Files != null && Request.Files.Count > 0)
-                    {
-                        var clientPhoto = Request.Files["file"];
-                    
-                        Image photo = new Image();
-                        photo.Name = System.IO.Path.GetFileName(clientPhoto.FileName);
-                        byte[] n = new byte[clientPhoto.InputStream.Length];
+                    var clientPhoto = Request.Files["file"];
 
-                        clientPhoto.InputStream.Read(n, 0, (int)clientPhoto.InputStream.Length);
-                        photo.ImageContent = n;
-                        photo.ContentType = clientPhoto.ContentType;
-                        photo.ClientId = id;
-                        photo.PhotoType = (int)ImageType.ClientPhoto;
-                        db.Images.Add(photo);
-                    
-                    //db.Entry(client).State = System.Data.Entity.EntityState.Modified;
+                    Image photo = new Image();
+                    photo.Name = System.IO.Path.GetFileName(clientPhoto.FileName);
+                    byte[] n = new byte[clientPhoto.InputStream.Length];
+
+                    clientPhoto.InputStream.Read(n, 0, (int)clientPhoto.InputStream.Length);
+                    photo.ImageContent = n;
+                    photo.ContentType = clientPhoto.ContentType;
+                    photo.ClientId = id;
+                    photo.PhotoType = (int)ImageType.ClientPhoto;
+                    db.Images.Add(photo);
+
                     db.SaveChanges();
                     return RedirectToAction("ClientsList");
-                    }
                 }
-            
-                ViewBag.Message = "OOps.. Something wrong with data";
-                return RedirectToAction("EditClient");
+            }
+
+            ViewBag.Message = "OOps.. Something wrong with data";
+            return RedirectToAction("EditClient");
         }
 
         public ActionResult ShowPassport(int id)
         {
-                        var image = (from images in db.Images
-                         select images.ImageContent).FirstOrDefault();
-            var stream = new MemoryStream(image.ToArray());
-            return new FileStreamResult(stream, "image/jpeg");
-        }
 
+            var image = (from images in db.Images
+                         where images.ClientId == id
+                         where images.PhotoType == 0
+                         select images).FirstOrDefault();
+
+            return View(image);
+        }
+        public ActionResult ShowClientPhoto(int id)
+        {
+            var image = (from images in db.Images
+                         where images.ClientId == id
+                         where images.PhotoType == 1
+                         select images).FirstOrDefault();
+            if (image != null)
+            {
+                return PartialView(image);
+            }
+
+            return PartialView();
+
+        }
 
         [HttpGet]
         public ActionResult AddAccount(int? UserId)
