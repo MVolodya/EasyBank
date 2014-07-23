@@ -17,6 +17,17 @@ namespace EasyBank.Models
         public int AccountId { get; set; }
 
         public virtual Account Account { get; set; }
+
+        public UnaryOperation()
+        {
+        }
+
+        public UnaryOperation(Account account, int amount)
+        {
+            Date = DateTime.Now;
+            AccountId = account.AccountId;
+            Amount = amount;
+        }
     }
 
     public class DepositOperation : UnaryOperation

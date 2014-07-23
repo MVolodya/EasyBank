@@ -1,0 +1,63 @@
+﻿@model EasyBank.Models.Account
+
+<fieldset>
+    <legend>Account</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AccountNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AccountNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ExpirationDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExpirationDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Amount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Amount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ClientId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ClientId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TypeId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TypeId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CurrencyId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CurrencyId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StatusId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StatusId)
+    </div>
+</fieldset>
+<p><b>Add Funds</b></p>
+@using (Html.BeginForm("AddMoney", "Operation", new { id = Model.AccountId, amount = Request["Sum"]}))
+{
+@Html.TextBox("Sum", ViewBag.CurrentFilter as string)
+<input type="submit" value="submit" />
+}
+<p>
+    @Html.ActionLink("Back to profile", "ClientsProfile", "Protected", new { clientId = Model.ClientId })
+</p>
