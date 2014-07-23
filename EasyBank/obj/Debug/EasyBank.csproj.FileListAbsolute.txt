@@ -781,4 +781,13 @@ C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\bin\PagedList.Mvc.dll
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\bin\PagedList.xml
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\bin\PagedList.Mvc.xml
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.PhotoTypes.resources
+<<<<<<< HEAD
 C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.PhotoTypes.resources
+=======
+C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\bin\PagedList.dll
+C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\bin\PagedList.Mvc.dll
+C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\bin\PagedList.xml
+C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\bin\PagedList.Mvc.xml
+C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.TablesForFileAdded.resources
+C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.PhotoTypes.resources
+>>>>>>> Ivan

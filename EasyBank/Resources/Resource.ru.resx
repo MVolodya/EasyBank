@@ -118,75 +118,114 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccountNumberRequired" xml:space="preserve">
-    <value>Account number required</value>
+    <value>Требуется номер счета</value>
   </data>
   <data name="AccountStatusRequired" xml:space="preserve">
-    <value>Account status required</value>
+    <value>Требуется статус счета</value>
   </data>
   <data name="AccountTypeRequired" xml:space="preserve">
-    <value>Account type required</value>
+    <value>Требуется тип счета</value>
   </data>
   <data name="AmountRequired" xml:space="preserve">
-    <value>Amount required</value>
+    <value>Требуется сумма</value>
   </data>
   <data name="BirthDateRequired" xml:space="preserve">
-    <value>PId number required</value>
+    <value>Требуется дата рождения</value>
   </data>
   <data name="ChooseLang" xml:space="preserve">
     <value>Выберите язык</value>
   </data>
   <data name="ClientIdRequired" xml:space="preserve">
-    <value>Client required</value>
+    <value>Требуется клиент</value>
   </data>
   <data name="Country" xml:space="preserve">
     <value>Страна</value>
   </data>
   <data name="CurrencyIdRequired" xml:space="preserve">
-    <value>Currency required</value>
+    <value>Требуется валюта</value>
   </data>
   <data name="CurrencyNameRequired" xml:space="preserve">
-    <value>Currency name required</value>
+    <value>Требуется название валюты</value>
   </data>
   <data name="DateNotValid" xml:space="preserve">
-    <value>Date is not Valid</value>
+    <value>Ошибочный ввод даты</value>
   </data>
   <data name="EmailRequired" xml:space="preserve">
-    <value>Email required</value>
+    <value>Требуется электронный адрес </value>
   </data>
   <data name="ExpirationDateRequired" xml:space="preserve">
-    <value>Expiration date required</value>
+    <value>Требуется срок действия</value>
   </data>
   <data name="Len8" xml:space="preserve">
-    <value>Length must be 8 chars</value>
+    <value>Длинна должна быть 8 симоволов</value>
   </data>
   <data name="NameFromCap" xml:space="preserve">
-    <value>Must start with capital letter and have latin characters only</value>
+    <value>Должно начинаться с большой буквы и состоять только из латинских букв</value>
   </data>
   <data name="NameLen3To20" xml:space="preserve">
-    <value>Name must have length from 3 to 20 characters</value>
+    <value>В этом поле должно быть от 3 до 20 символов</value>
   </data>
   <data name="NameRequired" xml:space="preserve">
-    <value>First name required</value>
+    <value>Требуется имя</value>
   </data>
   <data name="PIdNumberRequired" xml:space="preserve">
-    <value>PId number required</value>
+    <value>Требуется идентификационный код</value>
   </data>
   <data name="StatusIdRequired" xml:space="preserve">
-    <value>Status required</value>
+    <value>Требуется статус</value>
   </data>
   <data name="SurnameRequired" xml:space="preserve">
-    <value>Surname required</value>
+    <value>Требуется фамилия</value>
   </data>
   <data name="SurnLen3To30" xml:space="preserve">
-    <value>Surname must have length from 3 to 30 characters</value>
+    <value>В этом поле должно быть от 3 до 20 символов</value>
   </data>
   <data name="Template" xml:space="preserve">
     <value>Шаблон</value>
   </data>
   <data name="TypeIdRequired" xml:space="preserve">
-    <value>Type required</value>
+    <value>Требуется тип</value>
   </data>
   <data name="OnlyDigits" xml:space="preserve">
     <value>Только цифры</value>
+  </data>
+  <data name="AccNumber" xml:space="preserve">
+    <value>Номер счета</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Вернуться к списку</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Дата рождения</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>Клиент</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ExpDate" xml:space="preserve">
+    <value>Дата окончания действия</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="PIdNum" xml:space="preserve">
+    <value>Идентификационный код</value>
+  </data>
+  <data name="RegDate" xml:space="preserve">
+    <value>Дата регистрации</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
   </data>
 </root>
