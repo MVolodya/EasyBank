@@ -186,12 +186,8 @@ return View();
         }
 
         [HttpPost]
-        public ActionResult AddPhoto(/*HttpPostedFileBase clientPhoto */ int id)
+        public ActionResult AddPhoto(int id)
         {
-
-               // var client = db.Clients.FirstOrDefault(c => c.ClientId == id);
-                
-            
                 if (ModelState.IsValid)
                 {
                     if (Request != null && Request.Files != null && Request.Files.Count > 0)
@@ -209,9 +205,8 @@ return View();
                         photo.PhotoType = (int)ImageType.ClientPhoto;
                         db.Images.Add(photo);
                     
-                    //db.Entry(client).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("ClientsList");
+                        db.SaveChanges();
+                        return RedirectToAction("ClientsList");
                     }
                 }
             
@@ -221,12 +216,28 @@ return View();
 
         public ActionResult ShowPassport(int id)
         {
-                        var image = (from images in db.Images
-                         select images.ImageContent).FirstOrDefault();
-            var stream = new MemoryStream(image.ToArray());
-            return new FileStreamResult(stream, "image/jpeg");
+            
+            var image = (from images in db.Images
+                         where images.ClientId == id
+                         where images.PhotoType == 0
+                         select images).FirstOrDefault(); 
+            
+            return View(image);
         }
+        public ActionResult ShowClientPhoto(int id)
+        {
+            var image = (from images in db.Images
+                         where images.ClientId == id
+                         where images.PhotoType == 1
+                         select images).FirstOrDefault();
+            if (image !=null)
+            {
+                return PartialView(image);
+            }
 
+            return PartialView();
+
+        }
 
         [HttpGet]
         public ActionResult AddAccount(int? UserId)
