@@ -23,9 +23,11 @@
             </select>
         }
     </div>
-
+    @Html.ActionLink("Home", "Index")
+    @Html.ActionLink("Client List", "ClientsList","Protected")
     <div id="PartialViews">
         @RenderBody()
     </div>
+
 </body>
 </html>

@@ -409,6 +409,7 @@
     <Content Include="Views\Protected\AddTempClient.cshtml" />
     <Content Include="Views\Protected\AddPhoto.cshtml" />
     <Content Include="Views\Protected\ShowPassport.cshtml" />
+    <Content Include="Views\Protected\ShowClientPhoto.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
