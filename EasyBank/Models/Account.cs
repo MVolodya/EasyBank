@@ -9,11 +9,12 @@ namespace EasyBank.Models
 {
     public class Account
     {
+        [Key]
         public int AccountId { get; set; }
 
+        [Index("UniqueAccNumb", IsUnique=true)]
         [Display(Name = "AccNumb", ResourceType = typeof(Resources.Resource))]
-        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "AccountNumberRequired")]
-        [StringLength(8, MinimumLength=8, ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "Len8")]
+        [StringLength(10, MinimumLength=10, ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "Len8")]
         [RegularExpression(@"^[0-9]+$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "OnlyDigits")]
         public string AccountNumber { get; set; }
 
@@ -51,6 +52,7 @@ namespace EasyBank.Models
         public virtual AccountType AccountType { get; set; }
         public virtual Currency Currency { get; set; }
         public virtual AccountStatus AccountStatus { get; set; }
-        public ICollection<CurrencyOperation> CurrencyOperations { get; set; }
+        public virtual ICollection<UnaryOperation> UnOperationsHistory { get; set; }
+        public virtual ICollection<BinaryOperation> BinOperationsHistory { get; set; }
     }
 }

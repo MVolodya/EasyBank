@@ -58,23 +58,23 @@ namespace EasyBank.Migrations
 
             var accounts = new List<Account>
             {
-                new Account{
-                    AccountNumber="11356785", ExpirationDate=DateTime.MaxValue.Date, Amount=23444, ClientId=clients.First(c=>c.Surname=="Symonenko").ClientId,
+                new Account{ 
+                    ExpirationDate=DateTime.MaxValue.Date, Amount=23444, ClientId=clients.First(c=>c.Surname=="Symonenko").ClientId,
                     TypeId=accoutTypes.First(t=>t.TypeName=="Normal").TypeId, CurrencyId=currencies.First(c=>c.CurrencyName=="UAH").CurrencyId, 
                     StatusId=accoutStatuses.First(s=>s.StatusName=="Normal").StatusId
                 },
                 new Account{
-                    AccountNumber="12454365", ExpirationDate=DateTime.MaxValue.Date, Amount=3453, ClientId=clients.First(c=>c.Surname=="Symonenko").ClientId,
+                    ExpirationDate=DateTime.MaxValue.Date, Amount=3453, ClientId=clients.First(c=>c.Surname=="Symonenko").ClientId,
                     TypeId=accoutTypes.First(t=>t.TypeName=="Deposit").TypeId, CurrencyId=currencies.First(c=>c.CurrencyName=="USD").CurrencyId, 
                     StatusId=accoutStatuses.First(s=>s.StatusName=="Normal").StatusId
                 },
                 new Account{
-                    AccountNumber="21454465", ExpirationDate=DateTime.MaxValue.Date, Amount=2323, ClientId=clients.First(c=>c.Surname=="Dontknow").ClientId,
+                    ExpirationDate=DateTime.MaxValue.Date, Amount=2323, ClientId=clients.First(c=>c.Surname=="Dontknow").ClientId,
                     TypeId=accoutTypes.First(t=>t.TypeName=="Normal").TypeId, CurrencyId=currencies.First(c=>c.CurrencyName=="EUR").CurrencyId, 
                     StatusId=accoutStatuses.First(s=>s.StatusName=="Frozen").StatusId
                 },
                 new Account{
-                    AccountNumber="31454365", ExpirationDate=DateTime.MaxValue.Date, Amount=6654, ClientId=clients.First(c=>c.Surname=="Nikonov").ClientId,
+                    ExpirationDate=DateTime.MaxValue.Date, Amount=6654, ClientId=clients.First(c=>c.Surname=="Nikonov").ClientId,
                     TypeId=accoutTypes.First(t=>t.TypeName=="Credit").TypeId, CurrencyId=currencies.First(c=>c.CurrencyName=="USD").CurrencyId, 
                     StatusId=accoutStatuses.First(s=>s.StatusName=="Normal").StatusId
                 }

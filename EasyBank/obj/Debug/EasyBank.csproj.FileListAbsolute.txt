@@ -781,3 +781,4 @@ C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\bin\PagedList.Mvc.dll
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\bin\PagedList.xml
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\bin\PagedList.Mvc.xml
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.PhotoTypes.resources
+C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.operationHistoryAdded.resources

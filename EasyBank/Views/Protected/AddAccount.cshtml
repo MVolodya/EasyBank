@@ -16,10 +16,6 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.AccountNumber)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.AccountNumber)
-            @Html.ValidationMessageFor(model => model.AccountNumber)
-        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.ExpirationDate)
@@ -69,5 +65,5 @@
 }
 
 <div>
-    @Html.ActionLink(@Resources.Resource.BackToList, "Index")
+    @Html.ActionLink(@Resources.Resource.BackToList, "ClientsProfile", new { id = Model.ClientId })
 </div>
