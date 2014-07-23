@@ -276,4 +276,13 @@
   <data name="TransMoney" xml:space="preserve">
     <value>Переказати кошти</value>
   </data>
+  <data name="Of" xml:space="preserve">
+    <value>з</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Сторінка</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Пошук</value>
+  </data>
 </root>

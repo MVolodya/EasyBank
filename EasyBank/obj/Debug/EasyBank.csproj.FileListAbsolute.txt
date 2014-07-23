@@ -788,3 +788,5 @@ C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\bin\PagedList.Mvc.xml
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.TablesForFileAdded.resources
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.PhotoTypes.resources
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.operationHistoryAdded.resources
+C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.PhotoTypes.resources
+C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.operationHistoryAdded.resources
