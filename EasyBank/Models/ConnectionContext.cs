@@ -16,9 +16,9 @@ namespace EasyBank.Models
         public DbSet<AccountStatus> AccountStatuses { get; set; }
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<Image> Images { get; set; }
-        public DbSet<DepositOperation> DepositHistory { get; set; }
+        /*public DbSet<DepositOperation> DepositHistory { get; set; }
         public DbSet<TransferOperation> TransferHistory { get; set; }
-        public DbSet<WithdrawOperation> WithdrawHistory { get; set; }
+        public DbSet<WithdrawOperation> WithdrawHistory { get; set; }*/
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

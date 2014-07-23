@@ -217,10 +217,6 @@
     <Compile Include="Migrations\201407211544526_PhotoTypes.Designer.cs">
       <DependentUpon>201407211544526_PhotoTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407220917425_OperationHistoryAdded.cs" />
-    <Compile Include="Migrations\201407220917425_OperationHistoryAdded.Designer.cs">
-      <DependentUpon>201407220917425_OperationHistoryAdded.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -256,9 +252,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407211544526_PhotoTypes.resx">
       <DependentUpon>201407211544526_PhotoTypes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407220917425_OperationHistoryAdded.resx">
-      <DependentUpon>201407220917425_OperationHistoryAdded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
