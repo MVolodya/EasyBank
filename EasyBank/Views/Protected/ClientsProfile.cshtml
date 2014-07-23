@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Clients profile";
 }
-<h2>Client profile</h2>
+<h2>@Html.Label(@Resources.Resource.ClientsProfileTitle)</h2>
 <table>
     <tr>
         <td>
@@ -75,9 +75,9 @@
 
 @Html.Action("ShowClientPhoto")
 
-<h3>Accounts:</h3>
+<h3>@Html.Label(@Resources.Resource.AccountsTitle):</h3>
 <p>
-    @Html.ActionLink("Add new account", "AddAccount", new { UserId = Model.ClientId })
+    @Html.ActionLink(@Resources.Resource.AddAccount, "AddAccount", new { UserId = Model.ClientId })
 </p>
 
 <table>
@@ -123,9 +123,9 @@
                 </div>
             </td>
             <td>
-                @Html.ActionLink("Add money", "AddMoney", new { id = item.AccountId }) |
-                @Html.ActionLink("Transfer money", "TransferMoney", new { id = item.AccountId }) |
-                @Html.ActionLink("Edit account", "EditAccount", new { id = item.AccountId })
+                @Html.ActionLink(@Resources.Resource.AddMoney, "AddMoney", new { id = item.AccountId }) |
+                @Html.ActionLink(@Resources.Resource.TransMoney, "TransferMoney", new { id = item.AccountId }) |
+                @Html.ActionLink(@Resources.Resource.Edit, "EditAccount", new { id = item.AccountId })
             </td>
         </tr>
     }

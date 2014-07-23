@@ -228,4 +228,49 @@
   <data name="Type" xml:space="preserve">
     <value>Тип</value>
   </data>
+  <data name="AccountsTitle" xml:space="preserve">
+    <value>Счета</value>
+  </data>
+  <data name="AddAccount" xml:space="preserve">
+    <value>Создать счет</value>
+  </data>
+  <data name="AddClient" xml:space="preserve">
+    <value>Добавить клиента</value>
+  </data>
+  <data name="AddMoney" xml:space="preserve">
+    <value>Добавить деньги</value>
+  </data>
+  <data name="AddPhoto" xml:space="preserve">
+    <value>Добавить фото</value>
+  </data>
+  <data name="AdviceMessageInClientListSearch" xml:space="preserve">
+    <value>Убедитесь, что Вы ввели корректную информацию в поиске</value>
+  </data>
+  <data name="ClientListSearchTypeRequirement" xml:space="preserve">
+    <value>Введите фамилию или идентификационный код клиента</value>
+  </data>
+  <data name="ClientNotFound" xml:space="preserve">
+    <value>Клиент не найден</value>
+  </data>
+  <data name="ClientsListTitle" xml:space="preserve">
+    <value>Список клиентов</value>
+  </data>
+  <data name="ClientsProfileTitle" xml:space="preserve">
+    <value>Профиль клиента</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Подробности</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="Passport" xml:space="preserve">
+    <value>Паспорт</value>
+  </data>
+  <data name="TransMoney" xml:space="preserve">
+    <value>Перевести деньги</value>
+  </data>
 </root>
