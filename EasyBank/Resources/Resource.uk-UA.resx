@@ -196,7 +196,7 @@
     <value>Сума</value>
   </data>
   <data name="BackToList" xml:space="preserve">
-    <value>Назад до списку</value>
+    <value>Повернутися до списку</value>
   </data>
   <data name="BirthDate" xml:space="preserve">
     <value>Дата народження</value>
@@ -230,5 +230,50 @@
   </data>
   <data name="Type" xml:space="preserve">
     <value>Тип</value>
+  </data>
+  <data name="AccountsTitle" xml:space="preserve">
+    <value>Рахунки</value>
+  </data>
+  <data name="AddAccount" xml:space="preserve">
+    <value>Створити рахунок</value>
+  </data>
+  <data name="AddClient" xml:space="preserve">
+    <value>Додати клієнта</value>
+  </data>
+  <data name="AddMoney" xml:space="preserve">
+    <value>Додати кошти</value>
+  </data>
+  <data name="AddPhoto" xml:space="preserve">
+    <value>Додати фото</value>
+  </data>
+  <data name="AdviceMessageInClientListSearch" xml:space="preserve">
+    <value>Переконайтесь, що Ви ввели правильну інформацію в пошуку</value>
+  </data>
+  <data name="ClientListSearchTypeRequirement" xml:space="preserve">
+    <value>Введіть прізвище або ідентифікаційний код клієнта</value>
+  </data>
+  <data name="ClientNotFound" xml:space="preserve">
+    <value>Клієнт не знайдений</value>
+  </data>
+  <data name="ClientsListTitle" xml:space="preserve">
+    <value>Список клієнтів</value>
+  </data>
+  <data name="ClientsProfileTitle" xml:space="preserve">
+    <value>Профіль клієнта</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Подробиці</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редагувати</value>
+  </data>
+  <data name="Passport" xml:space="preserve">
+    <value>Паспорт</value>
+  </data>
+  <data name="TransMoney" xml:space="preserve">
+    <value>Переказати кошти</value>
   </data>
 </root>

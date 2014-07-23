@@ -4,23 +4,25 @@
 @{
     ViewBag.Title = "Clients";
 }
-<h2>Clients List</h2>
+<h2>@Html.Label(@Resources.Resource.ClientsListTitle)</h2>
 <p>
-    @Html.ActionLink("Add new Client", "AddClient")
+    @Html.ActionLink(@Resources.Resource.AddClient, "AddClient")
 </p>
 
 @using (Html.BeginForm("ClientsList", "Protected", FormMethod.Get))
 {
     <p>
-        Enter only the Surname or identification number: @Html.TextBox("Search", ViewBag.CurrentFilter as string)
+        @*Enter only the Surname or identification number*@
+        @Html.Label(@Resources.Resource.ClientListSearchTypeRequirement): @Html.TextBox("Search", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
 }
 @if (Model.Count() == 0)
 {
-    <h3>Client is not found!</h3>
+    <h3>@Html.Label(@Resources.Resource.ClientNotFound)!</h3>
     <h4>
-        Make sure you've entered correct information and try again!
+        <!--Make sure you've entered correct information and try again!-->
+        @Html.Label(@Resources.Resource.AdviceMessageInClientListSearch)
     </h4>
 }
 else
@@ -72,11 +74,11 @@ else
                         @Html.DisplayFor(modelItem => item.RegistrationDate)
                     </td>
                     <td>
-                        @Html.ActionLink("Passport", "ShowPassport", new { id = item.ClientId }) |
-                        @Html.ActionLink("AddPhoto", "AddPhoto", new { id = item.ClientId }) |
-                        @Html.ActionLink("Edit", "EditClient", new { id = item.ClientId }) |
-                        @Html.ActionLink("Details", "ClientsProfile", new { id = item.ClientId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ClientId })
+                        @Html.ActionLink(@Resources.Resource.Passport, "ShowPassport", new { id = item.ClientId }) |
+                        @Html.ActionLink(@Resources.Resource.AddPhoto, "AddPhoto", new { id = item.ClientId }) |
+                        @Html.ActionLink(@Resources.Resource.Edit, "EditClient", new { id = item.ClientId }) |
+                        @Html.ActionLink(@Resources.Resource.Details, "ClientsProfile", new { id = item.ClientId }) |
+                        @Html.ActionLink(@Resources.Resource.Delete, "Delete", new { id = item.ClientId })
                     </td>
                 </tr>
             }
@@ -86,7 +88,7 @@ else
 <br />
 @if (!Request["Search"].IsEmpty())
 {
-    @Html.ActionLink("Back to List", "ClientsList")
+    @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList")
 }
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
