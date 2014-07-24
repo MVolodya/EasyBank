@@ -73,22 +73,27 @@
 
 </table>
 
-@Html.Action("ShowClientPhoto")
-
-<h3>@Html.Label(@Resources.Resource.AccountsTitle):</h3>
+@Html.Action("ShowClientPhoto", new { id = Model.ClientId })
+@*
 <p>
-    @Html.ActionLink(@Resources.Resource.AddAccount, "AddAccount", new { UserId = Model.ClientId })
+    @Html.ActionLink(@Resources.Resource.AddAccount, "AddAccount", new { clientId = Model.ClientId })
 </p>
-
+*@
 <table>
-    <tr>
-        <th>@Html.Label(@Resources.Resource.AccNumb)</th>
-        <th>@Html.Label(@Resources.Resource.ExpDate)</th>
-        <th>@Html.Label(@Resources.Resource.Amount)</th>
-        <th>@Html.Label(@Resources.Resource.Currency)</th>
-        <th>@Html.Label(@Resources.Resource.Type)</th>
-        <th>@Html.Label(@Resources.Resource.Status)</th>
-    </tr>
+    @if (Model.Accounts.Count() != 0) { 
+        <tr>
+            <th>@Html.Label(@Resources.Resource.AccNumb)</th>
+            <th>@Html.Label(@Resources.Resource.ExpDate)</th>
+            <th>@Html.Label(@Resources.Resource.Amount)</th>
+            <th>@Html.Label(@Resources.Resource.Currency)</th>
+            <th>@Html.Label(@Resources.Resource.Type)</th>
+            <th>@Html.Label(@Resources.Resource.Status)</th>
+        </tr>
+    }
+    else { 
+        <br />
+        @Resources.Resource.AccountsAreAbsent
+    }
     @foreach (var item in Model.Accounts) { 
         
         <tr>
@@ -123,9 +128,8 @@
                 </div>
             </td>
             <td>
-                @Html.ActionLink(@Resources.Resource.AddMoney, "AddMoney", new { id = item.AccountId }) |
+                @Html.ActionLink(@Resources.Resource.AddMoney, "AddMoney", "Operation", new { accountId = item.AccountId }, null) |
                 @Html.ActionLink(@Resources.Resource.TransMoney, "TransferMoney", new { id = item.AccountId }) |
-                @Html.ActionLink(@Resources.Resource.Edit, "EditAccount", new { id = item.AccountId })
             </td>
         </tr>
     }

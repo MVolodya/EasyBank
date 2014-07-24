@@ -1,0 +1,31 @@
+﻿@model EasyBank.Models.Currency
+@{
+    ViewBag.Title = "CurrencyList";
+}
+
+@using (Html.BeginForm("AddCurrency", "Protected", FormMethod.Post))
+{
+    @Html.TextBox("name")
+    <input type="submit" value="@Resources.Resource.AddCurrency" />
+}
+@Html.Raw(TempData["verifyDelete"])
+@Html.Raw(TempData["verifyAdd"])
+
+<h2>@Resources.Resource.CurrencyList</h2>
+
+@using (Html.BeginForm("verifyDelete", "Protected", FormMethod.Post))
+{
+    <select id="selection" name="selection">
+        @foreach (var currency in ViewBag.Currencies)
+        {
+            <option value="@currency.CurrencyId">@currency.CurrencyName</option>
+        }
+    </select>
+    <input type="text" name="id" id="hid" hidden="hidden" value="1">
+    <input type="submit" value="@Resources.Resource.Delete" />
+    <script>
+        $("#selection").on("change", function () {
+            $("#hid").val($("#selection").val());
+        });
+    </script>
+}

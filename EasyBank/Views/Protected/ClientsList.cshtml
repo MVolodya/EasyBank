@@ -13,7 +13,7 @@
 {
     <p>
         @*Enter only the Surname or identification number*@
-        @Html.Label(@Resources.Resource.ClientListSearchTypeRequirement): @Html.TextBox("Search", ViewBag.CurrentFilter as string)
+        @Html.Label(@Resources.Resource.ClientListSearchTypeRequirement)@Html.TextBox("Search", ViewBag.CurrentFilter as string)
         <input type="submit" value=@Resources.Resource.Search />
     </p>
 }
@@ -56,10 +56,10 @@ else
             {
                 <tr>
                     <td>
-                        @Html.ActionLink(@Html.DisplayFor(modelItem => item.Name).ToString(), "ClientsProfile", new { id = item.ClientId })
+                        @Html.ActionLink(@Html.DisplayFor(modelItem => item.Name).ToString(), "ClientsProfile", new { clientId = item.ClientId })
                     </td>
                     <td>
-                        @Html.ActionLink(@Html.DisplayFor(modelItem => item.Surname).ToString(), "ClientsProfile", new { id = item.ClientId })
+                        @Html.ActionLink(@Html.DisplayFor(modelItem => item.Surname).ToString(), "ClientsProfile", new { clientId = item.ClientId })
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.PIdNumber)
@@ -77,8 +77,7 @@ else
                         @Html.ActionLink(@Resources.Resource.Passport, "ShowPassport", new { id = item.ClientId }) |
                         @Html.ActionLink(@Resources.Resource.AddPhoto, "AddPhoto", new { id = item.ClientId }) |
                         @Html.ActionLink(@Resources.Resource.Edit, "EditClient", new { id = item.ClientId }) |
-                        @Html.ActionLink(@Resources.Resource.Details, "ClientsProfile", new { id = item.ClientId }) |
-                        @Html.ActionLink(@Resources.Resource.Delete, "Delete", new { id = item.ClientId })
+                        @Html.ActionLink(@Resources.Resource.Details, "ClientsProfile", new { clientId = item.ClientId }) |
                     </td>
                 </tr>
             }

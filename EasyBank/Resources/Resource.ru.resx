@@ -189,7 +189,7 @@
   <data name="OnlyDigits" xml:space="preserve">
     <value>Только цифры</value>
   </data>
-  <data name="AccNumber" xml:space="preserve">
+  <data name="AccNumb" xml:space="preserve">
     <value>Номер счета</value>
   </data>
   <data name="Amount" xml:space="preserve">
@@ -281,5 +281,59 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>Поиск</value>
+  </data>
+  <data name="AccountsAreAbsent" xml:space="preserve">
+    <value>Счета отсутствуют</value>
+  </data>
+  <data name="ChooseFile" xml:space="preserve">
+    <value>Выбрать файл</value>
+  </data>
+  <data name="ClientsList" xml:space="preserve">
+    <value>Список клиентов</value>
+  </data>
+  <data name="ClientsPhotoTitle" xml:space="preserve">
+    <value>Фотография клиента</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="FileUpload" xml:space="preserve">
+    <value>Загрузить файл</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Главная страница</value>
+  </data>
+  <data name="NoPhoto" xml:space="preserve">
+    <value>Нет фотографии</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="UploadClientPhotoTitle" xml:space="preserve">
+    <value>Загрузить фотографию клиента</value>
+  </data>
+  <data name="UploadImage" xml:space="preserve">
+    <value>Загрузка фотографии</value>
+  </data>
+  <data name="UploadPassportScan" xml:space="preserve">
+    <value>Загрузить паспорт</value>
+  </data>
+  <data name="AskToDeleteCurrency" xml:space="preserve">
+    <value>Вы уверенны, что хотите удалить валюту?</value>
+  </data>
+  <data name="Currencies" xml:space="preserve">
+    <value>Валюты</value>
+  </data>
+  <data name="CurrencyList" xml:space="preserve">
+    <value>Список валют</value>
+  </data>
+  <data name="AddCurrency" xml:space="preserve">
+    <value>Добавить валюту</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="WelcomeMessage" xml:space="preserve">
+    <value>Добро пожаловать в Easy Bank!</value>
   </data>
 </root>

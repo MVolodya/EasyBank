@@ -112,9 +112,9 @@ namespace EasyBank.Controllers
 
         //link to:
         //add account
-        public ActionResult ClientsProfile(int? id)
+        public ActionResult ClientsProfile(int? clientId)
         {
-            var client = db.Clients.FirstOrDefault(c => c.ClientId == id);
+            var client = db.Clients.FirstOrDefault(c => c.ClientId == clientId);
             return View(client);
         }
 
@@ -129,6 +129,8 @@ namespace EasyBank.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (db.Clients.FirstOrDefault(c => c.PIdNumber == client.PIdNumber) != null)
+                    return HttpNotFound();//Change for partial view later-----------------------!!!!!!!!!!!!!!!
                 if (file != null)
                 {
                     Image photo = new Image();
@@ -246,7 +248,7 @@ namespace EasyBank.Controllers
 
             return View(image);
         }
-        public ActionResult ShowClientPhoto(int id)
+        public ActionResult ShowClientPhoto(int? id)
         {
             var image = (from images in db.Images
                          where images.ClientId == id
@@ -262,15 +264,15 @@ namespace EasyBank.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddAccount(int? UserId)
+        public ActionResult AddAccount(int? clientId)
         {
             var ListTypes = db.AccountTypes.ToList();
             ViewBag.Types = ListTypes;
             var ListCurrency = db.Currencies.ToList();
             ViewBag.Currencys = ListCurrency;
-            if (UserId != null)
+            if (clientId != null)
             {
-                ViewBag.ClientId = UserId;
+                ViewBag.ClientId = clientId;
 
                 return View();
             }
@@ -284,18 +286,94 @@ namespace EasyBank.Controllers
             // Normal status is default
             if (ModelState.IsValid)
             {
-                account.ExpirationDate = DateTime.Now;
-
                 db.Accounts.Add(account);
 
                 db.SaveChanges();
+                return RedirectToAction("ClientsProfile", new { clientId = account.ClientId });
             }
             else
             {
                 ViewBag.Message = "Problem with inputted data";
-                RedirectToAction("/");
+                return RedirectToAction("AddAccount");
             }
-            return RedirectToAction("/");
+        }
+        public ActionResult CurrencyList()
+        {
+            var mostRecentEntries = (from currency in db.Currencies select currency).ToList();
+            ViewBag.Currencies = mostRecentEntries;
+            return View();
+        }
+        public ActionResult AddCurrency(String name)
+        {
+            if (name != null)
+            {
+                if ((from Currency in db.Currencies where Currency.CurrencyName == name select Currency).Count() == 0 && name.Length != 0)
+                {
+                    Currency currency = new Currency();
+                    currency.CurrencyName = name;
+                    db.Currencies.Add(currency);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    TempData["verifyAdd"] = "<script>alert('This currency is avaliable');</script>";
+                }
+                return RedirectToAction("CurrencyList");
+            }
+            else
+            {
+                return RedirectToAction("CurrencyList");
+            }
+        }
+        public ActionResult verifyDelete(int? id)
+        {
+            
+            if (id != null)
+            {
+                var CurrencyDelete = (from Currency in db.Currencies
+                                      where Currency.CurrencyId == id
+                                      select Currency).First();
+                var CurrencyAvaliable = (from Account in db.Accounts
+                                         where Account.CurrencyId == CurrencyDelete.CurrencyId
+                                         select Account);
+                if (CurrencyAvaliable.Count()==0)
+                {
+                    return View(CurrencyDelete);
+                }
+                else
+                {
+                    TempData["verifyDelete"] = "<script>alert('This currency is in using');</script>";
+                    return RedirectToAction("CurrencyList");
+                }
+            }
+            else
+            {
+                return RedirectToAction("CurrencyList");
+            }
+
+        }
+        public ActionResult CurrencyDelete(int? id)
+        {
+            if (id != null)
+            {
+                var CurrencyDelete = (from Currency in db.Currencies
+                                      where Currency.CurrencyId == id
+                                      select Currency).First();
+                try
+                {
+                    db.Currencies.Remove(CurrencyDelete);
+                    db.SaveChanges();
+                    return RedirectToAction("CurrencyList");
+                }
+                catch
+                {
+                    return View(CurrencyDelete);
+                }
+            }
+            else
+            {
+                return HttpNotFound();
+            }
         }
     }
 }

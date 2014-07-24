@@ -31,15 +31,15 @@
             @Html.DisplayFor(model => model.Surname)
             @Html.ValidationMessageFor(model => model.Surname)
         </div>
-        <label for=" file">Uplolad Client Photo:</label>
+        <label for=" file">@Resources.Resource.UploadClientPhotoTitle:</label>
         <input type="file" name="file" id="file" style="width: 100%;" />
 
         <p>
-            <input type="submit" value="Save" class="submit" />
+            <input type="submit" value="@Resources.Resource.Save" class="submit" />
         </p>
     </fieldset>
 
 }
 <div>
-    @Html.ActionLink("Back to List", "ClientsList")
+    @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList")
 </div>

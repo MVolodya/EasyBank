@@ -1,0 +1,27 @@
+﻿@model EasyBank.Models.Currency
+
+@{
+    ViewBag.Title = "CurrDelete";
+}
+
+<h2>CurrDelete</h2>
+
+<h3>@Resources.Resource.AskToDeleteCurrency</h3>
+<fieldset>
+    <legend>@Resources.Resource.Currency</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.CurrencyName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CurrencyName)
+    </div>
+</fieldset>
+@using (Html.BeginForm("CurrencyDelete", "Protected"))
+{
+    <p>
+        @Html.Hidden("id", Model.CurrencyId)
+        <input type="submit" value="Delete" />
+        @Html.ActionLink(@Resources.Resource.BackToList, "CurrencyList")
+    </p>
+}
