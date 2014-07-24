@@ -53,5 +53,10 @@ namespace EasyBank.Models
         public virtual Currency Currency { get; set; }
         public virtual AccountStatus AccountStatus { get; set; }
         public virtual ICollection<Operation> BinOperationsHistory { get; set; }
+
+        public Account() 
+        {
+            ExpirationDate = DateTime.Now.AddYears(3);
+        }
     }
 }

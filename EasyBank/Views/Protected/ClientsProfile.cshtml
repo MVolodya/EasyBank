@@ -75,9 +75,8 @@
 
 @Html.Action("ShowClientPhoto")
 
-<h3>@Html.Label(@Resources.Resource.AccountsTitle):</h3>
 <p>
-    @Html.ActionLink(@Resources.Resource.AddAccount, "AddAccount", new { UserId = Model.ClientId })
+    @Html.ActionLink(@Resources.Resource.AddAccount, "AddAccount", new { clientId = Model.ClientId })
 </p>
 
 <table>
@@ -125,7 +124,6 @@
             <td>
                 @Html.ActionLink(@Resources.Resource.AddMoney, "AddMoney", "Operation", new { accountId = item.AccountId }, null) |
                 @Html.ActionLink(@Resources.Resource.TransMoney, "TransferMoney", new { id = item.AccountId }) |
-                @Html.ActionLink(@Resources.Resource.Edit, "EditAccount", new { id = item.AccountId })
             </td>
         </tr>
     }

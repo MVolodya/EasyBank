@@ -96,9 +96,9 @@ namespace EasyBank.Controllers
 
         //link to:
         //add account
-        public ActionResult ClientsProfile(int? id)
+        public ActionResult ClientsProfile(int? clientId)
         {
-            var client = db.Clients.FirstOrDefault(c => c.ClientId == id);
+            var client = db.Clients.FirstOrDefault(c => c.ClientId == clientId);
             return View(client);
         }
 
@@ -230,7 +230,7 @@ namespace EasyBank.Controllers
 
             return View(image);
         }
-        public ActionResult ShowClientPhoto(int id)
+        public ActionResult ShowClientPhoto(int? id)
         {
             var image = (from images in db.Images
                          where images.ClientId == id
@@ -246,15 +246,15 @@ namespace EasyBank.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddAccount(int? UserId)
+        public ActionResult AddAccount(int? clientId)
         {
             var ListTypes = db.AccountTypes.ToList();
             ViewBag.Types = ListTypes;
             var ListCurrency = db.Currencies.ToList();
             ViewBag.Currencys = ListCurrency;
-            if (UserId != null)
+            if (clientId != null)
             {
-                ViewBag.ClientId = UserId;
+                ViewBag.ClientId = clientId;
 
                 return View();
             }
@@ -268,18 +268,16 @@ namespace EasyBank.Controllers
             // Normal status is default
             if (ModelState.IsValid)
             {
-                account.ExpirationDate = DateTime.Now;
-
                 db.Accounts.Add(account);
 
                 db.SaveChanges();
+                return RedirectToAction("ClientsProfile", new { clientId = account.ClientId });
             }
             else
             {
                 ViewBag.Message = "Problem with inputted data";
-                RedirectToAction("/");
+                return RedirectToAction("AddAccount");
             }
-            return RedirectToAction("/");
         }
     }
 }
