@@ -318,4 +318,13 @@
   <data name="UploadPassportScan" xml:space="preserve">
     <value>Завантажити паспорт</value>
   </data>
+  <data name="AskToDeleteCurrency" xml:space="preserve">
+    <value>Ви впевненні, що бажаєте видалити валюту?</value>
+  </data>
+  <data name="Currencies" xml:space="preserve">
+    <value>Валюти</value>
+  </data>
+  <data name="CurrencyList" xml:space="preserve">
+    <value>Список валют</value>
+  </data>
 </root>

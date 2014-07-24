@@ -11,7 +11,7 @@
 @Html.Raw(TempData["verifyDelete"])
 @Html.Raw(TempData["verifyAdd"])
 
-<h2>List</h2>
+<h2>@Resources.Resource.CurrencyList</h2>
 
 @using (Html.BeginForm("verifyDelete", "Protected", FormMethod.Post))
 {

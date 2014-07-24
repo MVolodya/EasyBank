@@ -321,4 +321,13 @@
   <data name="UploadPassportScan" xml:space="preserve">
     <value>Upload passport scan</value>
   </data>
+  <data name="AskToDeleteCurrency" xml:space="preserve">
+    <value>Are you sure you want to delete this?</value>
+  </data>
+  <data name="Currencies" xml:space="preserve">
+    <value>Currencies</value>
+  </data>
+  <data name="CurrencyList" xml:space="preserve">
+    <value>Currencies list</value>
+  </data>
 </root>

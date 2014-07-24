@@ -178,6 +178,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Are you sure you want to delete this?.
+        /// </summary>
+        public static string AskToDeleteCurrency {
+            get {
+                return ResourceManager.GetString("AskToDeleteCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Back to list.
         /// </summary>
         public static string BackToList {
@@ -322,6 +331,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Currencies.
+        /// </summary>
+        public static string Currencies {
+            get {
+                return ResourceManager.GetString("Currencies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Currency.
         /// </summary>
         public static string Currency {
@@ -336,6 +354,15 @@ namespace Resources {
         public static string CurrencyIdRequired {
             get {
                 return ResourceManager.GetString("CurrencyIdRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Currencies list.
+        /// </summary>
+        public static string CurrencyList {
+            get {
+                return ResourceManager.GetString("CurrencyList", resourceCulture);
             }
         }
         
