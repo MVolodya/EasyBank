@@ -6,7 +6,7 @@
 @using (Html.BeginForm("AddCurrency", "Protected", FormMethod.Post))
 {
     @Html.TextBox("name")
-    <input type="submit" value="AddCurrency" />
+    <input type="submit" value="@Resources.Resource.AddCurrency" />
 }
 @Html.Raw(TempData["verifyDelete"])
 @Html.Raw(TempData["verifyAdd"])
@@ -22,7 +22,7 @@
         }
     </select>
     <input type="text" name="id" id="hid" hidden="hidden" value="1">
-    <input type="submit" value="delete" />
+    <input type="submit" value="@Resources.Resource.Delete" />
     <script>
         $("#selection").on("change", function () {
             $("#hid").val($("#selection").val());

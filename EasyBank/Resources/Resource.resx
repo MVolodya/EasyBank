@@ -330,4 +330,13 @@
   <data name="CurrencyList" xml:space="preserve">
     <value>Currencies list</value>
   </data>
+  <data name="AddCurrency" xml:space="preserve">
+    <value>Add currency</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="WelcomeMessage" xml:space="preserve">
+    <value>Welcome to Easy Bank!</value>
+  </data>
 </root>
