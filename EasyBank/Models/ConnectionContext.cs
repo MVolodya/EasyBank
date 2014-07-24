@@ -26,8 +26,8 @@ namespace EasyBank.Models
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            modelBuilder.Entity<BinaryOperation>().HasRequired(u => u.Account).WithMany().WillCascadeOnDelete(false);
-            modelBuilder.Entity<BinaryOperation>().HasRequired(u => u.ToAccount).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<Operation>().HasRequired(u => u.FromAccount).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<Operation>().HasRequired(u => u.ToAccount).WithMany().WillCascadeOnDelete(false);
 
             /*modelBuilder.Entity<AccountType>().HasRequired(d => d.Account).WithMany().WillCascadeOnDelete(false);
             modelBuilder.Entity<AccountStatus>().HasRequired(d => d.Account).WithMany().WillCascadeOnDelete(false);
@@ -35,8 +35,8 @@ namespace EasyBank.Models
 
             modelBuilder.Entity<Account>()
     .HasMany(u => u.BinOperationsHistory)
-    .WithRequired(f => f.Account)
-    .HasForeignKey(f => f.AccountId);
+    .WithRequired(f => f.FromAccount)
+    .HasForeignKey(f => f.FromAccountId);
         }
 
         public override int SaveChanges()
