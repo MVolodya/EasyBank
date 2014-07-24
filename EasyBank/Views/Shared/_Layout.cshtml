@@ -32,6 +32,8 @@
 </body>
 </html>
 *@
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -60,15 +62,15 @@
                     <p class="site-title">@Html.ActionLink("Easy Bank", "Index", "Home")</p>
                 </div>
                 <div class="float-right">
-                    <section id="login">
+                    @*<section id="login">
                         @Html.Partial("_LoginPartial")
-                    </section>
+                    </section>*@
                     <nav>
                         <ul id="menu">
                             <li>@Html.ActionLink(Resources.Resource.Home, "Index", "Home")</li>
                             <li>@Html.ActionLink(Resources.Resource.ClientsList, "ClientsList", "Protected")</li>
                             <li>@Html.ActionLink(Resources.Resource.Currencies, "CurrencyList", "Protected")</li>
-                          @*<li>@Html.ActionLink("PreRegister","PreRegister","Account")</li*@
+                         @* <li>@Html.ActionLink("PreRegister","PreRegister","Account")</li>*@
                         </ul>
                     </nav>
                 </div>
@@ -83,7 +85,7 @@
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                    <p>&copy; @DateTime.Now.Year - Easy Bank</p>
                 </div>
             </div>
         </footer>

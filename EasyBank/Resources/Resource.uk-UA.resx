@@ -327,4 +327,13 @@
   <data name="CurrencyList" xml:space="preserve">
     <value>Список валют</value>
   </data>
+  <data name="AddCurrency" xml:space="preserve">
+    <value>Додати валюту</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Зберегти</value>
+  </data>
+  <data name="WelcomeMessage" xml:space="preserve">
+    <value>Ласкаво просимо до Easy Bank!</value>
+  </data>
 </root>
