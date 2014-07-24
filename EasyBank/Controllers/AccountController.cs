@@ -10,6 +10,8 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using EasyBank.Filters;
 using EasyBank.Models;
+using SimpleMembershipTest.Filters;
+using EasyBank.DAL;
 
 namespace EasyBank.Controllers
 {
@@ -17,6 +19,44 @@ namespace EasyBank.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
+        ConnectionContext db = new ConnectionContext();
+        public ActionResult PreRegister(RegisterCompositeModel registerCompModel, HttpPostedFileBase file)
+        {
+            if (ModelState.IsValid)
+            {
+                if (file != null)
+                {
+                    Image photo = new Image();
+                    photo.Name = System.IO.Path.GetFileName(file.FileName);
+                    byte[] n = new byte[file.InputStream.Length];
+
+                    file.InputStream.Read(n, 0, (int)file.InputStream.Length);
+                    photo.ImageContent = n;
+                    photo.ContentType = file.ContentType;
+                    photo.PhotoType = (int)ImageType.PassportScan;
+                    db.Images.Add(photo);
+
+                    Client client = new Client();
+                    registerCompModel.Name = client.Name;
+                    registerCompModel.Surname = client.Surname;
+                    registerCompModel.PIdNumber = client.PIdNumber;
+                    registerCompModel.BirthDate = client.BirthDate;
+                    registerCompModel.Email = client.Email;
+                    client.RegistrationDate = DateTime.Now;
+                    db.Clients.Add(client);
+
+                    RegisterModel registerModel = new RegisterModel();
+                    registerModel.UserName = registerCompModel.Email;
+                    registerModel.Password = registerCompModel.Password;
+                    registerModel.ConfirmPassword = registerCompModel.ConfirmPassword;
+
+                    db.SaveChanges();
+                    return RedirectToAction("Register", new { model = registerModel});
+                }
+                
+            }
+            return View();
+        }
         //
         // GET: /Account/Login
 

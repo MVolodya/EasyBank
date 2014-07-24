@@ -228,6 +228,7 @@
     <Compile Include="Models\CurrencyOperation.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\OperationModels.cs" />
+    <Compile Include="Models\RegisterCompositeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.uk-UA.Designer.cs">
       <DependentUpon>Resource.uk-UA.resx</DependentUpon>
@@ -388,7 +389,9 @@
     <Content Include="Views\DefaultViews\Shared\Error.cshtml" />
     <Content Include="Views\DefaultViews\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\DefaultViews\Shared\_Layout.cshtml" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -404,6 +407,16 @@
     <Content Include="Views\Protected\AddPhoto.cshtml" />
     <Content Include="Views\Protected\ShowPassport.cshtml" />
     <Content Include="Views\Protected\ShowClientPhoto.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\PreRegister.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

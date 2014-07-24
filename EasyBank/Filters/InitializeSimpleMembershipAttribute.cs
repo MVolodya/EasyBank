@@ -6,7 +6,8 @@ using System.Web.Mvc;
 using WebMatrix.WebData;
 using EasyBank.Models;
 
-namespace EasyBank.Filters
+
+namespace SimpleMembershipTest.Filters
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public sealed class InitializeSimpleMembershipAttribute : ActionFilterAttribute
@@ -16,6 +17,7 @@ namespace EasyBank.Filters
         private static bool _isInitialized;
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
+        
         {
             // Ensure ASP.NET Simple Membership is initialized only once per app start
             LazyInitializer.EnsureInitialized(ref _initializer, ref _isInitialized, ref _initializerLock);
