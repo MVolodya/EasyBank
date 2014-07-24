@@ -113,6 +113,8 @@ namespace EasyBank.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (db.Clients.FirstOrDefault(c => c.PIdNumber == client.PIdNumber) != null)
+                    return HttpNotFound();//Change for partial view later-----------------------!!!!!!!!!!!!!!!
                 if (file != null)
                 {
                     Image photo = new Image();

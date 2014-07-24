@@ -223,6 +223,10 @@
     <Compile Include="Migrations\201407241311029_operationsHistoryAdded.Designer.cs">
       <DependentUpon>201407241311029_operationsHistoryAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407241522573_smallFix.cs" />
+    <Compile Include="Migrations\201407241522573_smallFix.Designer.cs">
+      <DependentUpon>201407241522573_smallFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -261,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407241311029_operationsHistoryAdded.resx">
       <DependentUpon>201407241311029_operationsHistoryAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407241522573_smallFix.resx">
+      <DependentUpon>201407241522573_smallFix.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

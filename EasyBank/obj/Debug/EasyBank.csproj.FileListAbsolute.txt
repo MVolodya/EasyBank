@@ -894,3 +894,5 @@ C:\Users\V\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.o
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.operationsHistoryAdded.resources
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.csprojResolveAssemblyReference.cache
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.operationsHistoryAdded.resources
+C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.csprojResolveAssemblyReference.cache
+C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.smallFix.resources

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -22,6 +23,7 @@ namespace EasyBank.Models
         [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "Name")]
         public string Surname { get; set; }
 
+        [Index("UniquePId", IsUnique = true)]
         [Display(Name = "PIdNum", ResourceType = typeof(Resources.Resource))]
         [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "PIdNumberRequired")]
         [StringLength(10, MinimumLength = 10, ErrorMessage="PId number must have 10 numbers")]
