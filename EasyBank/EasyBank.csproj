@@ -427,6 +427,8 @@
     <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
     <Content Include="Views\Account\PreRegister.cshtml" />
+    <Content Include="Views\Protected\CurrencyList.cshtml" />
+    <Content Include="Views\Protected\verifyDelete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

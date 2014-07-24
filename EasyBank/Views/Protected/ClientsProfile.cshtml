@@ -80,14 +80,19 @@
 </p>
 
 <table>
-    <tr>
-        <th>@Html.Label(@Resources.Resource.AccNumb)</th>
-        <th>@Html.Label(@Resources.Resource.ExpDate)</th>
-        <th>@Html.Label(@Resources.Resource.Amount)</th>
-        <th>@Html.Label(@Resources.Resource.Currency)</th>
-        <th>@Html.Label(@Resources.Resource.Type)</th>
-        <th>@Html.Label(@Resources.Resource.Status)</th>
-    </tr>
+    @if (Model.Accounts.Count() != 0) { 
+        <tr>
+            <th>@Html.Label(@Resources.Resource.AccNumb)</th>
+            <th>@Html.Label(@Resources.Resource.ExpDate)</th>
+            <th>@Html.Label(@Resources.Resource.Amount)</th>
+            <th>@Html.Label(@Resources.Resource.Currency)</th>
+            <th>@Html.Label(@Resources.Resource.Type)</th>
+            <th>@Html.Label(@Resources.Resource.Status)</th>
+        </tr>
+    }
+    else { 
+        @Resources.Resource.AccountsAreAbsent
+    }
     @foreach (var item in Model.Accounts) { 
         
         <tr>
