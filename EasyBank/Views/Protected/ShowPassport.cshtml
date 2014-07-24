@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Clients passport";
 }
-<h2>Clients passport</h2>
+<h2>@Resources.Resource.Passport</h2>
 
 @{
     var base64 = Convert.ToBase64String(Model.ImageContent);
@@ -12,4 +12,4 @@
 <img style="width:1024px" src="@imgSrc" />
 
 <br />
-    @Html.ActionLink("Back to List", "ClientsList")
+    @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList")

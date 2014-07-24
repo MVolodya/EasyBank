@@ -9,7 +9,7 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Client</legend>
+        <legend>@Resources.Resource.Client</legend>
         
         @ViewBag.Message
 
@@ -69,5 +69,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "ClientsList")
+    @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList")
 </div>
