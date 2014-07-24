@@ -275,5 +275,83 @@ return View();
             }
             return RedirectToAction("/");
         }
+        public ActionResult CurrencyList()
+        {
+            var mostRecentEntries = (from currency in db.Currencies select currency).ToList();
+            ViewBag.Currencies = mostRecentEntries;
+            return View();
+        }
+        public ActionResult AddCurrency(String name)
+        {
+            if (name != null)
+            {
+                if ((from Currency in db.Currencies where Currency.CurrencyName == name select Currency).Count() == 0 && name.Length != 0)
+                {
+                    Currency currency = new Currency();
+                    currency.CurrencyName = name;
+                    db.Currencies.Add(currency);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    TempData["verifyAdd"] = "<script>alert('This currency is avaliable');</script>";
+                }
+                return RedirectToAction("CurrencyList");
+            }
+            else
+            {
+                return RedirectToAction("CurrencyList");
+            }
+        }
+        public ActionResult verifyDelete(int? id)
+        {
+            
+            if (id != null)
+            {
+                var CurrencyDelete = (from Currency in db.Currencies
+                                      where Currency.CurrencyId == id
+                                      select Currency).First();
+                var CurrencyAvaliable = (from Account in db.Accounts
+                                         where Account.CurrencyId == CurrencyDelete.CurrencyId
+                                         select Account);
+                if (CurrencyAvaliable.Count()==0)
+                {
+                    return View(CurrencyDelete);
+                }
+                else
+                {
+                    TempData["verifyDelete"] = "<script>alert('This currency is in using');</script>";
+                    return RedirectToAction("CurrencyList");
+                }
+            }
+            else
+            {
+                return RedirectToAction("CurrencyList");
+            }
+
+        }
+        public ActionResult CurrencyDelete(int? id)
+        {
+            if (id != null)
+            {
+                var CurrencyDelete = (from Currency in db.Currencies
+                                      where Currency.CurrencyId == id
+                                      select Currency).First();
+                try
+                {
+                    db.Currencies.Remove(CurrencyDelete);
+                    db.SaveChanges();
+                    return RedirectToAction("CurrencyList");
+                }
+                catch
+                {
+                    return View(CurrencyDelete);
+                }
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+        }
     }
 }

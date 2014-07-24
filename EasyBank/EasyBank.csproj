@@ -404,6 +404,8 @@
     <Content Include="Views\Protected\AddPhoto.cshtml" />
     <Content Include="Views\Protected\ShowPassport.cshtml" />
     <Content Include="Views\Protected\ShowClientPhoto.cshtml" />
+    <Content Include="Views\Protected\CurrencyList.cshtml" />
+    <Content Include="Views\Protected\verifyDelete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
