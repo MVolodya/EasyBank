@@ -195,9 +195,11 @@
     <Compile Include="Controllers\OperationController.cs" />
     <Compile Include="Controllers\ProtectedController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAL\HistoryManager.cs" />
     <Compile Include="DAL\ImageType.cs" />
     <Compile Include="Filters\CultureAttribute.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="DAL\OperationService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -217,9 +219,9 @@
     <Compile Include="Migrations\201407211544526_PhotoTypes.Designer.cs">
       <DependentUpon>201407211544526_PhotoTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407231234302_operationHistoryAdded.cs" />
-    <Compile Include="Migrations\201407231234302_operationHistoryAdded.Designer.cs">
-      <DependentUpon>201407231234302_operationHistoryAdded.cs</DependentUpon>
+    <Compile Include="Migrations\201407241221364_AddedOperationsHistory.cs" />
+    <Compile Include="Migrations\201407241221364_AddedOperationsHistory.Designer.cs">
+      <DependentUpon>201407241221364_AddedOperationsHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -256,8 +258,8 @@
     <EmbeddedResource Include="Migrations\201407211544526_PhotoTypes.resx">
       <DependentUpon>201407211544526_PhotoTypes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407231234302_operationHistoryAdded.resx">
-      <DependentUpon>201407231234302_operationHistoryAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407241221364_AddedOperationsHistory.resx">
+      <DependentUpon>201407241221364_AddedOperationsHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -273,6 +275,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -410,6 +413,7 @@
     <Content Include="Views\Protected\AddPhoto.cshtml" />
     <Content Include="Views\Protected\ShowPassport.cshtml" />
     <Content Include="Views\Protected\ShowClientPhoto.cshtml" />
+    <Content Include="Views\Operation\AddMoney.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

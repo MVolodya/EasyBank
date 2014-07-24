@@ -123,7 +123,7 @@
                 </div>
             </td>
             <td>
-                @Html.ActionLink(@Resources.Resource.AddMoney, "AddMoney", new { id = item.AccountId }) |
+                @Html.ActionLink(@Resources.Resource.AddMoney, "AddMoney", "Operation", new { accountId = item.AccountId }, null) |
                 @Html.ActionLink(@Resources.Resource.TransMoney, "TransferMoney", new { id = item.AccountId }) |
                 @Html.ActionLink(@Resources.Resource.Edit, "EditAccount", new { id = item.AccountId })
             </td>

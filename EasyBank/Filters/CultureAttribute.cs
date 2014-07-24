@@ -18,18 +18,18 @@ namespace EasyBank.Filters
             if (cultureCookie != null)
                 cultureName = cultureCookie.Value;
             else
-                cultureName = "en"; 
- 
+                cultureName = "en";
+
             // Список культур
-            List<string> cultures = new List<string>() { "uk-UA", "ru", "en"};
+            List<string> cultures = new List<string>() { "uk-UA", "ru", "en" };
             if (!cultures.Contains(cultureName))
             {
                 cultureName = "en";
             }
-                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(cultureName);
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(cultureName);
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(cultureName);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(cultureName);
         }
- 
+
         public void OnActionExecuting(ActionExecutingContext filterContext)
         {
             //не реализован
