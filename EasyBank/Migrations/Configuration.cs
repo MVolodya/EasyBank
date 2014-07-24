@@ -18,9 +18,9 @@ namespace EasyBank.Migrations
         {
             var clients = new List<Client>
             {
-                new Client{Name="Borys", Surname="Symonenko", PIdNumber="1234567895", Email="symonenkob@gmail.com", BirthDate=DateTime.Parse("12.07.1995"), RegistrationDate=DateTime.Now, Accounts=new List<Account>()},
-                new Client{Name="Ivan", Surname="Dontknow", PIdNumber="2234567895",Email="some@mail.com", BirthDate=DateTime.Parse("12.03.2000"), RegistrationDate=DateTime.Now, Accounts=new List<Account>()},
-                new Client{Name="Aleksey", Surname="Nikonov", PIdNumber="3234567895",Email="some@gmail.com", BirthDate=DateTime.Parse("03.05.1989"), RegistrationDate=DateTime.Now, Accounts=new List<Account>()}
+                new Client{Name="Borys", Surname="Symonenko", PIdNumber="1234567895", Email="symonenkob@gmail.com", BirthDate=DateTime.Parse("15.07.1995"), RegistrationDate=DateTime.Now, Accounts=new List<Account>()},
+                new Client{Name="Ivan", Surname="Dontknow", PIdNumber="2234567895",Email="some@mail.com", BirthDate=DateTime.Parse("15.03.2000"), RegistrationDate=DateTime.Now, Accounts=new List<Account>()},
+                new Client{Name="Aleksey", Surname="Nikonov", PIdNumber="3234567895",Email="some@gmail.com", BirthDate=DateTime.Parse("19.05.1989"), RegistrationDate=DateTime.Now, Accounts=new List<Account>()}
             };
             clients.ForEach(c => context.Clients.AddOrUpdate(p => p.Email, c));
             context.SaveChanges();
