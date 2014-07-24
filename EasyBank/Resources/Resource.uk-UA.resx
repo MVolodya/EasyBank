@@ -285,4 +285,37 @@
   <data name="Search" xml:space="preserve">
     <value>Пошук</value>
   </data>
+  <data name="AccountsAreAbsent" xml:space="preserve">
+    <value>Немає жодного рахунку</value>
+  </data>
+  <data name="ChooseFile" xml:space="preserve">
+    <value>Обрати файл</value>
+  </data>
+  <data name="ClientsList" xml:space="preserve">
+    <value>Список клієнтів</value>
+  </data>
+  <data name="ClientsPhotoTitle" xml:space="preserve">
+    <value>Фотографія клієнта</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Створити</value>
+  </data>
+  <data name="FileUpload" xml:space="preserve">
+    <value>Завантажити файл</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Головна сторінка</value>
+  </data>
+  <data name="NoPhoto" xml:space="preserve">
+    <value>Фотографія відсутня</value>
+  </data>
+  <data name="UploadClientPhotoTitle" xml:space="preserve">
+    <value>Завантажити фотографію клієнта</value>
+  </data>
+  <data name="UploadImage" xml:space="preserve">
+    <value>Завантаження фотографії</value>
+  </data>
+  <data name="UploadPassportScan" xml:space="preserve">
+    <value>Завантажити паспорт</value>
+  </data>
 </root>

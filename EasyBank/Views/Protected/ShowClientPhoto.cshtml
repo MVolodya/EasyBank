@@ -1,5 +1,5 @@
 ﻿@model EasyBank.Models.Image
-<h2>Clients Photo</h2>
+<h2>@Resources.Resource.ClientsPhotoTitle</h2>
 
 @{
     ViewBag.Title = "Clients passport";
@@ -7,7 +7,7 @@
 
 @if (Model == null )
 {  
-        <h2>Client has no photo</h2> 
+        <h2>@Resources.Resource.NoPhoto</h2> 
 } 
 else
 {
