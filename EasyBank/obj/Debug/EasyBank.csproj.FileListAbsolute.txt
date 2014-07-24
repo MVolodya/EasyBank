@@ -1,4 +1,4 @@
-﻿C:\Users\oper4\Desktop\MyBranch\EasyBank\bin\EasyBank.dll.config
+C:\Users\oper4\Desktop\MyBranch\EasyBank\bin\EasyBank.dll.config
 C:\Users\oper4\Desktop\MyBranch\EasyBank\bin\EasyBank.dll
 C:\Users\oper4\Desktop\MyBranch\EasyBank\bin\EasyBank.pdb
 C:\Users\oper4\Desktop\MyBranch\EasyBank\bin\Antlr3.Runtime.dll
@@ -357,7 +357,6 @@ C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\bin\ko\System.Spatial.resou
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\bin\ru\System.Spatial.resources.dll
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.csprojResolveAssemblyReference.cache
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.first.resources
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.csproj.GenerateResource.Cache
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.dll

@@ -39,6 +39,8 @@
         <title>@ViewBag.Title - My ASP.NET MVC Application</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
+        <script src="~/Scripts/jquery-1.8.2.js"></script>
+        <script type="text/javascript" src="~/Scripts/script.js"></script>
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
     </head>
@@ -63,8 +65,9 @@
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Client List", "ClientsList","Protected")</li>
+                            <li>@Html.ActionLink(Resources.Resource.Home, "Index", "Home")</li>
+                            <li>@Html.ActionLink(Resources.Resource.ClientsList, "ClientsList", "Protected")</li>
+                            <li>@Html.ActionLink(Resources.Resource.Currencies, "CurrencyList", "Protected")</li>
                           @*<li>@Html.ActionLink("PreRegister","PreRegister","Account")</li*@
                         </ul>
                     </nav>
