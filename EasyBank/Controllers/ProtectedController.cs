@@ -22,8 +22,9 @@ namespace EasyBank.Controllers
             return View();
         }
 
-        public ViewResult ClientsList(string sort, string currentFilter, string Search, int? page)
+        public ActionResult ClientsList(string sort, string currentFilter, string Search, int? page)
         {
+            
             ViewBag.CurrentSort = sort;
             ViewBag.NameSort = String.IsNullOrEmpty(sort) ? "name_desc" : "";
             ViewBag.SurnameSort = sort == "surname_desc" ? "surname_asc" : "surname_desc";
@@ -32,8 +33,30 @@ namespace EasyBank.Controllers
             ViewBag.EmailSort = sort == "email_desc" ? "email_asc" : "email_desc";
             ViewBag.RegistrationDateSort = sort == "registrationDate_desc" ? "registrationdate_asc" : "registrationDate_desc";
 
-            if (Search != null)
+            var clients = from c in db.Clients
+                      select c;
+
+            string[] searchWords = null;
+            if (!String.IsNullOrEmpty(Search))
             {
+                searchWords = new string[2];
+                searchWords = Search.Split(' ');
+
+                if (searchWords.Length == 1)
+                {
+                    clients = clients.Where(c => c.Name.ToUpper().Contains(Search.ToUpper())
+                                           || c.Surname.ToUpper().Contains(Search.ToUpper())
+                                           || c.PIdNumber.ToUpper().Contains(Search.ToUpper()));
+                }
+                else if (searchWords.Length == 2)
+                {
+                    string word1 = searchWords[0];
+                    string word2 = searchWords[1]; 
+                    clients = clients.Where(c => (c.Name.ToUpper().Contains(word1.ToUpper())
+                                           && c.Surname.ToUpper().Contains(word2.ToUpper()))
+                                           || (c.Name.ToUpper().Contains(word2.ToUpper())
+                                           && c.Surname.ToUpper().Contains(word1.ToUpper())));              
+                }
                 page = 1;
             }
             else
@@ -43,13 +66,6 @@ namespace EasyBank.Controllers
 
             ViewBag.CurrentFilter = Search;
 
-            var clients = from c in db.Clients
-                          select c;
-            if (!String.IsNullOrEmpty(Search))
-            {
-                clients = clients.Where(c => c.Surname.ToUpper().Contains(Search.ToUpper())
-                                       || c.PIdNumber.ToUpper().Contains(Search.ToUpper()));
-            }
             switch (sort)
             {
                 case "name_desc":
