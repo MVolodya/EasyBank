@@ -7,34 +7,57 @@ using System.Web;
 
 namespace EasyBank.Models
 {
-    public class Operation
+    public class UnaryOperation
     {
         [Key]
         public int OperationId { get; set; }
         public decimal Amount { get; set; }
         public DateTime Date { get; set; }
-        [ForeignKey("FromAccount")]
-        public int FromAccountId { get; set; }
-        [ForeignKey("ToAccount")]
-        public int ToAccountId { get; set; }
+        [ForeignKey("Account")]
+        public int AccountId { get; set; }
 
-        public virtual Account FromAccount { get; set; }
-        public virtual Account ToAccount { get; set; }
+        public virtual Account Account { get; set; }
+
+        public UnaryOperation()
+        {
+        }
+
+        public UnaryOperation(Account account, int amount)
+        {
+            Date = DateTime.Now;
+            AccountId = account.AccountId;
+            Amount = amount;
+        }
     }
 
-    public class DepositOperation : Operation
+    public class DepositOperation : UnaryOperation
     {
     }    
 
-    public class WithdrawOperation : Operation
+    public class WithdrawOperation : UnaryOperation
     {
     }
 
-    public class TransferOperation : Operation
+    public class BinaryOperation
+    {
+        [Key]
+        public int OperationId { get; set; }
+        public decimal Amount { get; set; }
+        public DateTime Date { get; set; }
+        [ForeignKey("Account")]
+        public int AccountId { get; set; }
+        [ForeignKey("ToAccount")]
+        public int ToAccountId { get; set; }
+
+        public virtual Account Account { get; set; }
+        public virtual Account ToAccount { get; set; }
+    }
+
+    public class TransferOperation : BinaryOperation
     {        
     }
 
-    public class CurrencOperation : Operation
+    public class CurrencOperation : BinaryOperation
     {
     }
 }

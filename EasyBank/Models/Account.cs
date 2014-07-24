@@ -52,6 +52,7 @@ namespace EasyBank.Models
         public virtual AccountType AccountType { get; set; }
         public virtual Currency Currency { get; set; }
         public virtual AccountStatus AccountStatus { get; set; }
-        public virtual ICollection<Operation> OperationsHistory { get; set; }
+        public virtual ICollection<UnaryOperation> UnOperationsHistory { get; set; }
+        public virtual ICollection<BinaryOperation> BinOperationsHistory { get; set; }
     }
 }

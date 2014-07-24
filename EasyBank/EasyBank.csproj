@@ -219,9 +219,9 @@
     <Compile Include="Migrations\201407211544526_PhotoTypes.Designer.cs">
       <DependentUpon>201407211544526_PhotoTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407241221364_AddedOperationsHistory.cs" />
-    <Compile Include="Migrations\201407241221364_AddedOperationsHistory.Designer.cs">
-      <DependentUpon>201407241221364_AddedOperationsHistory.cs</DependentUpon>
+    <Compile Include="Migrations\201407231234302_operationHistoryAdded.cs" />
+    <Compile Include="Migrations\201407231234302_operationHistoryAdded.Designer.cs">
+      <DependentUpon>201407231234302_operationHistoryAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -258,8 +258,8 @@
     <EmbeddedResource Include="Migrations\201407211544526_PhotoTypes.resx">
       <DependentUpon>201407211544526_PhotoTypes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407241221364_AddedOperationsHistory.resx">
-      <DependentUpon>201407241221364_AddedOperationsHistory.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407231234302_operationHistoryAdded.resx">
+      <DependentUpon>201407231234302_operationHistoryAdded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

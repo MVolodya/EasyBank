@@ -7,13 +7,13 @@ namespace EasyBank.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class AddedOperationsHistory : IMigrationMetadata
+    public sealed partial class operationHistoryAdded : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedOperationsHistory));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(operationHistoryAdded));
         
         string IMigrationMetadata.Id
         {
-            get { return "201407241221364_AddedOperationsHistory"; }
+            get { return "201407231234302_operationHistoryAdded"; }
         }
         
         string IMigrationMetadata.Source
