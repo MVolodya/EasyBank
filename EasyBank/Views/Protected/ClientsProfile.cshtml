@@ -74,11 +74,9 @@
 </table>
 
 @Html.Action("ShowClientPhoto", new { id = Model.ClientId })
-@*
 <p>
     @Html.ActionLink(@Resources.Resource.AddAccount, "AddAccount", new { clientId = Model.ClientId })
 </p>
-*@
 <table>
     @if (Model.Accounts.Count() != 0) { 
         <tr>

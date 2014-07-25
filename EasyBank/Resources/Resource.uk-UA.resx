@@ -336,4 +336,13 @@
   <data name="WelcomeMessage" xml:space="preserve">
     <value>Ласкаво просимо до Easy Bank!</value>
   </data>
+<<<<<<< HEAD
+=======
+  <data name="EmailInvalid" xml:space="preserve">
+    <value>Невірний адрес</value>
+  </data>
+  <data name="Len10" xml:space="preserve">
+    <value>Довжина повинна мати 10 символів</value>
+  </data>
+>>>>>>> origin/Borys
 </root>

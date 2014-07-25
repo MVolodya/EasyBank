@@ -28,7 +28,7 @@ namespace EasyBank
 
         protected void Application_BeginRequest()
         {
-            CultureInfo cInf = new CultureInfo("en-GB", false);
+            CultureInfo cInf = new CultureInfo("uk-UA", false);
             // NOTE: change the culture name en-ZA to whatever culture suits your needs
 
             cInf.DateTimeFormat.DateSeparator = "/";

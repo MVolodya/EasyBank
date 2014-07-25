@@ -24,7 +24,6 @@ namespace EasyBank.Controllers
 
         public ActionResult ClientsList(string sort, string currentFilter, string Search, int? page)
         {
-            
             ViewBag.CurrentSort = sort;
             ViewBag.NameSort = String.IsNullOrEmpty(sort) ? "name_desc" : "";
             ViewBag.SurnameSort = sort == "surname_desc" ? "surname_asc" : "surname_desc";
@@ -35,6 +34,8 @@ namespace EasyBank.Controllers
 
             var clients = from c in db.Clients
                       select c;
+
+>>>>>>> origin/Borys
 
             string[] searchWords = null;
             if (!String.IsNullOrEmpty(Search))
@@ -51,11 +52,11 @@ namespace EasyBank.Controllers
                 else if (searchWords.Length == 2)
                 {
                     string word1 = searchWords[0];
-                    string word2 = searchWords[1]; 
+                    string word2 = searchWords[1];
                     clients = clients.Where(c => (c.Name.ToUpper().Contains(word1.ToUpper())
                                            && c.Surname.ToUpper().Contains(word2.ToUpper()))
                                            || (c.Name.ToUpper().Contains(word2.ToUpper())
-                                           && c.Surname.ToUpper().Contains(word1.ToUpper())));              
+                                           && c.Surname.ToUpper().Contains(word1.ToUpper())));
                 }
                 page = 1;
             }
@@ -105,7 +106,7 @@ namespace EasyBank.Controllers
                     clients = clients.OrderBy(c => c.Name);
                     break;
             }
-            int pageSize = 10;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View(clients.ToPagedList(pageNumber, pageSize));
         }
