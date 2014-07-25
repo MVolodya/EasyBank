@@ -5,11 +5,17 @@
 }
 <h2>@Resources.Resource.Passport</h2>
 
-@{
+@if (Model == null)
+{
+    @Resources.Resource.NoPhoto
+}
+else
+{
     var base64 = Convert.ToBase64String(Model.ImageContent);
     var imgSrc = String.Format("data:image/jpeg;base64,{0}", base64);
+
+    <img style="width:180px" src="@imgSrc" />
 }
-<img style="width:1024px" src="@imgSrc" />
 
 <br />
-    @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList")
+@Html.ActionLink(@Resources.Resource.BackToList, "ClientsList")
