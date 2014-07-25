@@ -20,7 +20,7 @@ namespace EasyBank.Controllers
     public class AccountController : Controller
     {
         ConnectionContext db = new ConnectionContext();
-        public ActionResult PreRegister(RegisterCompositeModel registerCompModel, HttpPostedFileBase file)
+        /*public ActionResult PreRegister(RegisterCompositeModel registerCompModel, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
@@ -56,7 +56,7 @@ namespace EasyBank.Controllers
                 
             }
             return View();
-        }
+        }*/
         //
         // GET: /Account/Login
 
@@ -108,19 +108,103 @@ namespace EasyBank.Controllers
 
         //
         // POST: /Account/Register
-
+        // Register Clients
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterModel model)
+        public ActionResult Register(RegisterCompositeModel registerCompModel, HttpPostedFileBase file )
         {
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
+                 if (db.Clients.FirstOrDefault(c => c.PIdNumber == registerCompModel.PIdNumber) != null)
+                    return HttpNotFound();//Change for partial view later-----------------------!!!!!!!
+                 if (file != null)
+                 {
+                     // Attempt to register the user
+                     try
+                     {
+                         var client = new Client();
+                         client.Name = registerCompModel.Name;
+                         client.Surname = registerCompModel.Surname;
+                         client.PIdNumber = registerCompModel.PIdNumber;
+                         client.BirthDate = registerCompModel.BirthDate;
+                         client.Email = registerCompModel.Email;
+                         client.RegistrationDate = DateTime.Now;
+                         db.Clients.Add(client);
+                         db.SaveChanges();
+
+                         var model = new RegisterModel();
+                         model.UserName = registerCompModel.Email;
+                         model.Password = registerCompModel.Password;
+                         model.ConfirmPassword = registerCompModel.ConfirmPassword;
+                         WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+                         WebSecurity.Login(model.UserName, model.Password);
+                         Roles.AddUserToRole(model.UserName, "Client");
+                         return RedirectToAction("Index", "Home");
+                     }
+                     catch (MembershipCreateUserException e)
+                     {
+                         ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+                     }
+                 }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(registerCompModel);
+        }
+
+
+        //Register Operators
+        [HttpGet]
+        [Authorize(Roles="Administrator")]
+        public ActionResult RegisterOperator()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles="Administrator")]
+        public ActionResult RegisterOperator(Operator oper)
+        {
+            if (ModelState.IsValid)
+            {
+                    // Attempt to register the Operator
+                    try
+                    {
+                        db.Operatoe.Add(oper);
+                        db.SaveChanges();
+
+                        var model = new RegisterModel();
+                        model.UserName = oper.Email;
+                        model.Password = oper.Password;
+                        model.ConfirmPassword = oper.Password;
+                        WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+                        //WebSecurity.Login(model.UserName, model.Password);
+                        Roles.AddUserToRole(model.UserName, "Operator");
+                        return RedirectToAction("Index", "Home");
+                    }
+                    catch (MembershipCreateUserException e)
+                    {
+                        ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+                    }
+                }
+            // If we got this far, something failed, redisplay form
+            return View(oper);
+        }
+
+        //Register Admin
+        /*
+        [AllowAnonymous]
+        public ActionResult RegisterAdmin(RegisterModel admin)
+        {
+            if (ModelState.IsValid)
+            {
+                // Attempt to register the Operator
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
+                    WebSecurity.CreateUserAndAccount(admin.UserName, admin.Password);
+                    WebSecurity.Login(admin.UserName, admin.Password);
+                    Roles.AddUserToRole(admin.UserName, "Administrator");
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
@@ -128,11 +212,10 @@ namespace EasyBank.Controllers
                     ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
                 }
             }
-
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View(admin);
         }
-
+        */
         //
         // POST: /Account/Disassociate
 

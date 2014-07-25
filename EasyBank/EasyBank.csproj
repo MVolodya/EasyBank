@@ -227,6 +227,14 @@
     <Compile Include="Migrations\201407241522573_smallFix.Designer.cs">
       <DependentUpon>201407241522573_smallFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407251102525_UpdatedClientProfile.cs" />
+    <Compile Include="Migrations\201407251102525_UpdatedClientProfile.Designer.cs">
+      <DependentUpon>201407251102525_UpdatedClientProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407251231098_AddedOperator.cs" />
+    <Compile Include="Migrations\201407251231098_AddedOperator.Designer.cs">
+      <DependentUpon>201407251231098_AddedOperator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -237,6 +245,7 @@
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\OperationModels.cs" />
+    <Compile Include="Models\Operator.cs" />
     <Compile Include="Models\RegisterCompositeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.uk-UA.Designer.cs">
@@ -268,6 +277,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407241522573_smallFix.resx">
       <DependentUpon>201407241522573_smallFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407251102525_UpdatedClientProfile.resx">
+      <DependentUpon>201407251102525_UpdatedClientProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407251231098_AddedOperator.resx">
+      <DependentUpon>201407251231098_AddedOperator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -433,9 +448,11 @@
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\PreRegister.cshtml" />
+    <Content Include="Views\Protected\PreRegister.cshtml" />
     <Content Include="Views\Protected\CurrencyList.cshtml" />
     <Content Include="Views\Protected\verifyDelete.cshtml" />
+    <Content Include="Views\Account\RegisterAdmin.cshtml" />
+    <Content Include="Views\Account\RegisterOperator.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

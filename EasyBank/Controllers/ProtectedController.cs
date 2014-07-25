@@ -8,12 +8,55 @@ using System.Web.Mvc;
 using PagedList;
 using EasyBank.DAL;
 using System.IO;
+using SimpleMembershipTest.Filters;
 
 namespace EasyBank.Controllers
 {
     [Culture]
+    [Authorize]
+    [InitializeSimpleMembership]
     public class ProtectedController : Controller
     {
+        [Authorize(Roles="Administrator, Operator")]
+        public ActionResult PreRegister(RegisterCompositeModel registerCompModel, HttpPostedFileBase file)
+        {
+            if (ModelState.IsValid)
+            {
+                if (file != null)
+                {
+                    Image photo = new Image();
+                    photo.Name = System.IO.Path.GetFileName(file.FileName);
+                    byte[] n = new byte[file.InputStream.Length];
+
+                    file.InputStream.Read(n, 0, (int)file.InputStream.Length);
+                    photo.ImageContent = n;
+                    photo.ContentType = file.ContentType;
+                    photo.PhotoType = (int)ImageType.PassportScan;
+                    db.Images.Add(photo);
+
+                    Client client = new Client();
+                    client.Name = registerCompModel.Name;
+                    client.Surname = registerCompModel.Surname;
+                    client.PIdNumber = registerCompModel.PIdNumber;
+                    client.BirthDate = registerCompModel.BirthDate;
+                    client.Email = registerCompModel.Email;
+                    client.RegistrationDate = DateTime.Now;
+                    db.Clients.Add(client);
+                    db.SaveChanges();
+
+                    var registerModel = new RegisterModel();
+                    registerModel.UserName = registerCompModel.Email;
+                    registerModel.Password = registerCompModel.Password;
+                    registerModel.ConfirmPassword = registerCompModel.ConfirmPassword;
+                    TempData["a"] = registerModel;
+
+
+                    return RedirectToAction("Register","Account", new { model = registerModel });
+                }
+
+            }
+            return View();
+        }
         //
         // GET: /Client/
         private ConnectionContext db = new ConnectionContext();
@@ -22,6 +65,7 @@ namespace EasyBank.Controllers
             return View();
         }
 
+        [Authorize(Roles="Operator")]
         public ActionResult ClientsList(string sort, string currentFilter, string Search, int? page)
         {
             ViewBag.CurrentSort = sort;
@@ -296,6 +340,8 @@ namespace EasyBank.Controllers
                 return RedirectToAction("AddAccount");
             }
         }
+
+        [Authorize(Roles = "Administrator, Operator")]
         public ActionResult CurrencyList()
         {
             var mostRecentEntries = (from currency in db.Currencies select currency).ToList();

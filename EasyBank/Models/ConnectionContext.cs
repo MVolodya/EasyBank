@@ -21,6 +21,7 @@ namespace EasyBank.Models
         public DbSet<DepositOperation> DepositHistory { get; set; }
         public DbSet<TransferOperation> TransferHistory { get; set; }
         public DbSet<WithdrawOperation> WithdrawHistory { get; set; }
+        public DbSet<Operator> Operatoe { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
