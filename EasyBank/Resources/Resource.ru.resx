@@ -336,4 +336,10 @@
   <data name="WelcomeMessage" xml:space="preserve">
     <value>Добро пожаловать в Easy Bank!</value>
   </data>
+  <data name="EmailInvalid" xml:space="preserve">
+    <value>Некорректный адрес</value>
+  </data>
+  <data name="Len10" xml:space="preserve">
+    <value>Длина должна быть 10 символов</value>
+  </data>
 </root>

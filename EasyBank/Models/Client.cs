@@ -12,21 +12,21 @@ namespace EasyBank.Models
         public int ClientId { get; set; }
 
         [Display(Name = "Name", ResourceType = typeof(Resources.Resource))]
-        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName="NameRequired")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "NameRequired")]
         [StringLength(20, MinimumLength = 3, ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "NameLen3To20")]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "Name")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "NameFromCap")]
         public string Name { get; set; }
 
         [Display(Name = "Surname", ResourceType = typeof(Resources.Resource))]
         [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "SurnameRequired")]
         [StringLength(30, MinimumLength = 3, ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "SurnLen3To30")]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "Name")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "NameFromCap")]
         public string Surname { get; set; }
 
         [Index("UniquePId", IsUnique = true)]
         [Display(Name = "PIdNum", ResourceType = typeof(Resources.Resource))]
         [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "PIdNumberRequired")]
-        [StringLength(10, MinimumLength = 10, ErrorMessage="PId number must have 10 numbers")]
+        [StringLength(10, MinimumLength = 10, ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "Len10")]
         [RegularExpression(@"^[0-9]+$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "OnlyDigits")]
         public string PIdNumber { get; set; }
 
@@ -38,7 +38,7 @@ namespace EasyBank.Models
 
         [Display(Name = "Email", ResourceType = typeof(Resources.Resource))]
         [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "EmailRequired")]
-        [DataType(DataType.EmailAddress)]
+        [DataType(DataType.EmailAddress, ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessage = "EmailInvalid")]
         public string Email { get; set; }
 
         [Display(Name = "RegDate", ResourceType = typeof(Resources.Resource))]
@@ -46,7 +46,7 @@ namespace EasyBank.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime RegistrationDate { get; set; }
 
-        
+
         public virtual ICollection<Image> Images { get; set; }
         public virtual ICollection<Account> Accounts { get; set; }
     }

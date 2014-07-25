@@ -339,4 +339,10 @@
   <data name="WelcomeMessage" xml:space="preserve">
     <value>Welcome to Easy Bank!</value>
   </data>
+  <data name="EmailInvalid" xml:space="preserve">
+    <value>Invalid email</value>
+  </data>
+  <data name="Len10" xml:space="preserve">
+    <value>This field must be 10 characters long</value>
+  </data>
 </root>
