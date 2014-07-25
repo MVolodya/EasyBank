@@ -35,8 +35,6 @@ namespace EasyBank.Controllers
             var clients = from c in db.Clients
                       select c;
 
->>>>>>> origin/Borys
-
             string[] searchWords = null;
             if (!String.IsNullOrEmpty(Search))
             {
