@@ -144,7 +144,7 @@ namespace EasyBank.Controllers
                     try
                     {
                         oper.RegistrationDate = DateTime.Now;
-                        db.Operatoe.Add(oper);
+                        db.Operators.Add(oper);
                         db.SaveChanges();
 
                         var model = new RegisterModel();

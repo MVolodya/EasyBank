@@ -18,6 +18,6 @@ namespace EasyBank.Models
         public string Password { get; set; }
 
         public virtual UserProfile UserProfile { get; set; }
-        
+        public virtual ICollection<Operation> OperationsHistory { get; set; }
     }
 }

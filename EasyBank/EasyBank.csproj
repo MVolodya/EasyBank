@@ -235,9 +235,9 @@
     <Compile Include="Migrations\201407251231098_AddedOperator.Designer.cs">
       <DependentUpon>201407251231098_AddedOperator.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407281001042_OperatorModelUpdate.cs" />
-    <Compile Include="Migrations\201407281001042_OperatorModelUpdate.Designer.cs">
-      <DependentUpon>201407281001042_OperatorModelUpdate.cs</DependentUpon>
+    <Compile Include="Migrations\201407281310523_UpdatedOperationHistory.cs" />
+    <Compile Include="Migrations\201407281310523_UpdatedOperationHistory.Designer.cs">
+      <DependentUpon>201407281310523_UpdatedOperationHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -288,8 +288,8 @@
     <EmbeddedResource Include="Migrations\201407251231098_AddedOperator.resx">
       <DependentUpon>201407251231098_AddedOperator.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407281001042_OperatorModelUpdate.resx">
-      <DependentUpon>201407281001042_OperatorModelUpdate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407281310523_UpdatedOperationHistory.resx">
+      <DependentUpon>201407281310523_UpdatedOperationHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

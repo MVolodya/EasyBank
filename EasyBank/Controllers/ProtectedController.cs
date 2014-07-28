@@ -74,7 +74,7 @@ namespace EasyBank.Controllers
             ViewBag.EmailSort = sort == "email_desc" ? "email_asc" : "email_desc";
             ViewBag.RegistrationDateSort = sort == "registrationDate_desc" ? "registrationdate_asc" : "registrationDate_desc";
 
-            var operators = from opr in db.Operatoe
+            var operators = from opr in db.Operators
                           select opr;
 
             string[] searchWords = null;
@@ -248,7 +248,7 @@ namespace EasyBank.Controllers
                 if (db.Clients.FirstOrDefault(c => c.PIdNumber == client.PIdNumber) != null)
                     return HttpNotFound();//Change for partial view later-----------------------!!!!!!!!!!!!!!!
                 if (file != null)
-                {
+                {                    
                     Image photo = new Image();
                     photo.Name = System.IO.Path.GetFileName(file.FileName);
                     byte[] n = new byte[file.InputStream.Length];

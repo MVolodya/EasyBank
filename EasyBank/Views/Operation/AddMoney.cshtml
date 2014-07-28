@@ -53,10 +53,12 @@
     </div>
 </fieldset>
 <p><b>Add Funds</b></p>
-@using (Html.BeginForm("AddMoney", "Operation", new { id = Model.AccountId, amount = Request["Sum"]}))
+@using (Html.BeginForm("AddMoney", "Operation", new { accountId = Model.AccountId}, FormMethod.Post))
 {
-@Html.TextBox("Sum", ViewBag.CurrentFilter as string)
-<input type="submit" value="submit" />
+    @Html.EditorFor(model => model.Amount)
+    @Html.ValidationMessageFor(model => model.Amount)
+    //<input type="number" name="amount" />
+    <input type="submit" value="submit" />
 }
 <p>
     @Html.ActionLink("Back to profile", "ClientsProfile", "Protected", new { clientId = Model.ClientId })

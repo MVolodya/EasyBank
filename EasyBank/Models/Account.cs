@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -24,8 +24,9 @@ namespace EasyBank.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ExpirationDate { get; set; }
 
+        [Range(0, 9999999999999999.99)]
         [Display(Name = "Amount", ResourceType = typeof(Resources.Resource))]
-        [RegularExpression(@"[0-9]*\.?[0-9]*", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "OnlyDigits")]
+        [RegularExpression(@"^\d+.\d{0,2}$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "OnlyDigits")]
         public decimal Amount { get; set; }
 
         [Display(Name = "Client", ResourceType = typeof(Resources.Resource))]
@@ -52,7 +53,7 @@ namespace EasyBank.Models
         public virtual AccountType AccountType { get; set; }
         public virtual Currency Currency { get; set; }
         public virtual AccountStatus AccountStatus { get; set; }
-        public virtual ICollection<Operation> BinOperationsHistory { get; set; }
+        public virtual ICollection<Operation> OperationsHistory { get; set; }
 
         public Account() 
         {

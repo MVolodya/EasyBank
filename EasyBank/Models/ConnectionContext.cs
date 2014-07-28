@@ -21,23 +21,18 @@ namespace EasyBank.Models
         public DbSet<DepositOperation> DepositHistory { get; set; }
         public DbSet<TransferOperation> TransferHistory { get; set; }
         public DbSet<WithdrawOperation> WithdrawHistory { get; set; }
-        public DbSet<Operator> Operatoe { get; set; }
+        public DbSet<Operator> Operators { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            modelBuilder.Entity<Operation>().HasRequired(u => u.FromAccount).WithMany().WillCascadeOnDelete(false);
-            modelBuilder.Entity<Operation>().HasRequired(u => u.ToAccount).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<Operation>().HasOptional(u => u.Account).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<TransferOperation>().HasRequired(u => u.ToAccount).WithMany().WillCascadeOnDelete(false);
 
-            /*modelBuilder.Entity<AccountType>().HasRequired(d => d.Account).WithMany().WillCascadeOnDelete(false);
-            modelBuilder.Entity<AccountStatus>().HasRequired(d => d.Account).WithMany().WillCascadeOnDelete(false);
-            modelBuilder.Entity<Currency>().HasRequired(d => d.Account).WithMany().WillCascadeOnDelete(false);*/
-
-            modelBuilder.Entity<Account>()
-    .HasMany(u => u.BinOperationsHistory)
-    .WithRequired(f => f.FromAccount)
-    .HasForeignKey(f => f.FromAccountId);
+            modelBuilder.Entity<Operation>()
+    .HasOptional(o => o.Account)
+    .WithMany(a => a.OperationsHistory);
         }
 
         public override int SaveChanges()
