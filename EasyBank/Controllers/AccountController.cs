@@ -20,43 +20,6 @@ namespace EasyBank.Controllers
     public class AccountController : Controller
     {
         ConnectionContext db = new ConnectionContext();
-        /*public ActionResult PreRegister(RegisterCompositeModel registerCompModel, HttpPostedFileBase file)
-        {
-            if (ModelState.IsValid)
-            {
-                if (file != null)
-                {
-                    Image photo = new Image();
-                    photo.Name = System.IO.Path.GetFileName(file.FileName);
-                    byte[] n = new byte[file.InputStream.Length];
-
-                    file.InputStream.Read(n, 0, (int)file.InputStream.Length);
-                    photo.ImageContent = n;
-                    photo.ContentType = file.ContentType;
-                    photo.PhotoType = (int)ImageType.PassportScan;
-                    db.Images.Add(photo);
-
-                    Client client = new Client();
-                    registerCompModel.Name = client.Name;
-                    registerCompModel.Surname = client.Surname;
-                    registerCompModel.PIdNumber = client.PIdNumber;
-                    registerCompModel.BirthDate = client.BirthDate;
-                    registerCompModel.Email = client.Email;
-                    client.RegistrationDate = DateTime.Now;
-                    db.Clients.Add(client);
-
-                    RegisterModel registerModel = new RegisterModel();
-                    registerModel.UserName = registerCompModel.Email;
-                    registerModel.Password = registerCompModel.Password;
-                    registerModel.ConfirmPassword = registerCompModel.ConfirmPassword;
-
-                    db.SaveChanges();
-                    return RedirectToAction("Register", new { model = registerModel});
-                }
-                
-            }
-            return View();
-        }*/
         //
         // GET: /Account/Login
 
@@ -100,7 +63,7 @@ namespace EasyBank.Controllers
         //
         // GET: /Account/Register
 
-        [AllowAnonymous]
+        [Authorize(Roles="Operator")]
         public ActionResult Register()
         {
             return View();
@@ -110,7 +73,7 @@ namespace EasyBank.Controllers
         // POST: /Account/Register
         // Register Clients
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles="Operator")]
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterCompositeModel registerCompModel, HttpPostedFileBase file )
         {
@@ -133,14 +96,23 @@ namespace EasyBank.Controllers
                          db.Clients.Add(client);
                          db.SaveChanges();
 
+                         Image photo = new Image();
+                         photo.Name = System.IO.Path.GetFileName(file.FileName);
+                         byte[] n = new byte[file.InputStream.Length];
+                         file.InputStream.Read(n, 0, (int)file.InputStream.Length);
+                         photo.ImageContent = n;
+                         photo.ContentType = file.ContentType;
+                         photo.PhotoType = (int)ImageType.PassportScan;
+
+                         db.Images.Add(photo);
+
                          var model = new RegisterModel();
                          model.UserName = registerCompModel.Email;
                          model.Password = registerCompModel.Password;
                          model.ConfirmPassword = registerCompModel.ConfirmPassword;
                          WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                         WebSecurity.Login(model.UserName, model.Password);
                          Roles.AddUserToRole(model.UserName, "Client");
-                         return RedirectToAction("Index", "Home");
+                         return RedirectToAction("ClientsList", "Protected");
                      }
                      catch (MembershipCreateUserException e)
                      {
@@ -171,6 +143,7 @@ namespace EasyBank.Controllers
                     // Attempt to register the Operator
                     try
                     {
+                        oper.RegistrationDate = DateTime.Now;
                         db.Operatoe.Add(oper);
                         db.SaveChanges();
 
@@ -179,7 +152,6 @@ namespace EasyBank.Controllers
                         model.Password = oper.Password;
                         model.ConfirmPassword = oper.Password;
                         WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                        //WebSecurity.Login(model.UserName, model.Password);
                         Roles.AddUserToRole(model.UserName, "Operator");
                         return RedirectToAction("Index", "Home");
                     }

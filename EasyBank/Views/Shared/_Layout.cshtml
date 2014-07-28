@@ -67,16 +67,24 @@
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink(Resources.Resource.Home, "Index", "Home")</li>
-                           @* @if (User.IsInRole("Operator"))
+                                <li>@Html.ActionLink(Resources.Resource.Home, "Index", "Home")</li>
+                            @if (User.IsInRole("Client"))
                             {
-                            <li>@Html.ActionLink(Resources.Resource.ClientsList, "ClientsList", "Protected")</li>
-                            }   *@                        
-                                @* @if (User.IsInRole("Client"))
+                                <li>@Html.ActionLink(@Resources.Resource.Details, "ClientsProfile", "Protected")</li>
+                            }
+                            @if (User.IsInRole("Operator"))
                             {
-                            <li>@Html.ActionLink(Resources.Resource.Currencies, "CurrencyList", "Protected")</li>
-                            }*@
-                            
+                                <li>@Html.ActionLink(Resources.Resource.ClientsList, "ClientsList", "Protected")</li>
+                            }                       
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                <li>@Html.ActionLink(Resources.Resource.Currencies, "CurrencyList", "Protected")</li>
+                            }
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                <li>@Html.ActionLink("Operators list","OperatorsList","Protected")</li>
+                            }
+
                             @if (User.IsInRole("Administrator"))
                             {
                                 <li>@Html.ActionLink("Register Operator","RegisterOperator", "Account")</li>

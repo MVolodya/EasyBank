@@ -39,7 +39,7 @@
 
 @model EasyBank.Models.RegisterCompositeModel
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
@@ -103,6 +103,9 @@
             @Html.ValidationMessageFor(model => model.ConfirmPassword)
         </div>
 
+                <label for=" file">@Resources.Resource.UploadPassportScan:</label>
+        <input type="file" name="file" id="file" style="width: 100%;" value="@Resources.Resource.ChooseFile" />
+
         <p>
             <input type="submit" value="Create" class="submit" />
         </p>
@@ -113,4 +116,3 @@
     @Html.ActionLink("Back to List", "ClientsList")
 </div>
 
-}

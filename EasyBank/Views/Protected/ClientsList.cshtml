@@ -6,7 +6,7 @@
 }
 <h2>@Html.Label(@Resources.Resource.ClientsListTitle)</h2>
 <p>
-    @Html.ActionLink(@Resources.Resource.AddClient, "AddClient")
+    @Html.ActionLink(@Resources.Resource.AddClient, "Register","Account")
 </p>
 
 @using (Html.BeginForm("ClientsList", "Protected", FormMethod.Get))

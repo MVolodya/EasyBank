@@ -65,6 +65,79 @@ namespace EasyBank.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Administrator")]
+        public ActionResult OperatorsList(string sort, string currentFilter, string Search, int? page)
+        {
+            ViewBag.CurrentSort = sort;
+            ViewBag.NameSort = String.IsNullOrEmpty(sort) ? "name_desc" : "";
+            ViewBag.SurnameSort = sort == "surname_desc" ? "surname_asc" : "surname_desc";
+            ViewBag.EmailSort = sort == "email_desc" ? "email_asc" : "email_desc";
+            ViewBag.RegistrationDateSort = sort == "registrationDate_desc" ? "registrationdate_asc" : "registrationDate_desc";
+
+            var operators = from opr in db.Operatoe
+                          select opr;
+
+            string[] searchWords = null;
+            if (!String.IsNullOrEmpty(Search))
+            {
+                searchWords = new string[2];
+                searchWords = Search.Split(' ');
+
+                if (searchWords.Length == 1)
+                {
+                    operators = operators.Where(c => c.Name.ToUpper().Contains(Search.ToUpper())
+                                           || c.Surname.ToUpper().Contains(Search.ToUpper()));
+                }
+                else if (searchWords.Length == 2)
+                {
+                    string word1 = searchWords[0];
+                    string word2 = searchWords[1];
+                    operators = operators.Where(c => (c.Name.ToUpper().Contains(word1.ToUpper())
+                                           && c.Surname.ToUpper().Contains(word2.ToUpper()))
+                                           || (c.Name.ToUpper().Contains(word2.ToUpper())
+                                           && c.Surname.ToUpper().Contains(word1.ToUpper())));
+                }
+                page = 1;
+            }
+            else
+            {
+                Search = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = Search;
+
+            switch (sort)
+            {
+                case "name_desc":
+                    operators = operators.OrderByDescending(c => c.Name);
+                    break;
+                case "surname_desc":
+                    operators = operators.OrderByDescending(c => c.Surname);
+                    break;
+                case "surname_asc":
+                    operators = operators.OrderBy(c => c.Surname);
+                    break;
+                case "email_desc":
+                    operators = operators.OrderByDescending(c => c.Email);
+                    break;
+                case "email_asc":
+                    operators = operators.OrderBy(c => c.Email);
+                    break;
+                case "registrationDate_desc":
+                    operators = operators.OrderByDescending(c => c.RegistrationDate);
+                    break;
+                case "registrationdate_asc":
+                    operators = operators.OrderBy(c => c.RegistrationDate);
+                    break; 
+                default:
+                    operators = operators.OrderBy(c => c.Name);
+                    break;
+            }
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(operators.ToPagedList(pageNumber, pageSize));
+        }
+
         [Authorize(Roles="Operator")]
         public ActionResult ClientsList(string sort, string currentFilter, string Search, int? page)
         {
