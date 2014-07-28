@@ -345,4 +345,7 @@
   <data name="Len10" xml:space="preserve">
     <value>This field must be 10 characters long</value>
   </data>
+  <data name="WrongFileChoose" xml:space="preserve">
+    <value>Wrong input type. Image is expected.</value>
+  </data>
 </root>

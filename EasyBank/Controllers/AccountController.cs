@@ -94,7 +94,7 @@ namespace EasyBank.Controllers
                          client.Email = registerCompModel.Email;
                          client.RegistrationDate = DateTime.Now;
                          db.Clients.Add(client);
-                         db.SaveChanges();
+                         
 
                          Image photo = new Image();
                          photo.Name = System.IO.Path.GetFileName(file.FileName);
@@ -103,8 +103,9 @@ namespace EasyBank.Controllers
                          photo.ImageContent = n;
                          photo.ContentType = file.ContentType;
                          photo.PhotoType = (int)ImageType.PassportScan;
-
+                         photo.ClientId = client.ClientId;
                          db.Images.Add(photo);
+                         db.SaveChanges();
 
                          var model = new RegisterModel();
                          model.UserName = registerCompModel.Email;

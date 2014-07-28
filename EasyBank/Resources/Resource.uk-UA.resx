@@ -342,4 +342,7 @@
   <data name="Len10" xml:space="preserve">
     <value>Довжина повинна мати 10 символів</value>
   </data>
+  <data name="WrongFileChoose" xml:space="preserve">
+    <value>Помилка: файл має бути зображенням</value>
+  </data>
 </root>

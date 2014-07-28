@@ -12,10 +12,6 @@
     <fieldset>
         <legend>Client</legend>
         
-        @ViewBag.Message
-
-        
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)
         </div>
@@ -32,8 +28,8 @@
             @Html.ValidationMessageFor(model => model.Surname)
         </div>
         <label for=" file">@Resources.Resource.UploadClientPhotoTitle:</label>
-        <input type="file" name="file" id="file" style="width: 100%;" />
-
+        <input type="file" name="file" accept="image/jpeg,image/png" id="file" style="width: 100%;" />
+        @ViewBag.Message
         <p>
             <input type="submit" value="@Resources.Resource.Save" class="submit" />
         </p>

@@ -342,4 +342,7 @@
   <data name="Len10" xml:space="preserve">
     <value>Длина должна быть 10 символов</value>
   </data>
+  <data name="WrongFileChoose" xml:space="preserve">
+    <value>Ошибка загрузки. Файл должен быть картинкой</value>
+  </data>
 </root>

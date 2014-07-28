@@ -138,7 +138,7 @@ namespace EasyBank.Controllers
             return View(operators.ToPagedList(pageNumber, pageSize));
         }
 
-        [Authorize(Roles="Operator")]
+        [Authorize(Roles="Operator, Administrator")]
         public ActionResult ClientsList(string sort, string currentFilter, string Search, int? page)
         {
             ViewBag.CurrentSort = sort;
@@ -261,10 +261,15 @@ namespace EasyBank.Controllers
                     db.Images.Add(photo);
 
                     client.RegistrationDate = DateTime.Now;
-
+                    
                     db.Clients.Add(client);
-                    db.SaveChanges();
-                    return RedirectToAction("ClientsList");
+                    if (fileIsImage(file))
+                    {
+                        db.SaveChanges();
+                        return RedirectToAction("ClientsList");
+                    }
+                    ViewBag.Message = @Resources.Resource.WrongFileChoose;
+                    return View();
                 }
             }
             else
@@ -343,10 +348,28 @@ namespace EasyBank.Controllers
                     photo.ContentType = clientPhoto.ContentType;
                     photo.ClientId = id;
                     photo.PhotoType = (int)ImageType.ClientPhoto;
-                    db.Images.Add(photo);
 
-                    db.SaveChanges();
-                    return RedirectToAction("ClientsList");
+                    var image = (from images in db.Images
+                                 where images.ClientId == id
+                                 where images.PhotoType == 1
+                                 select images).FirstOrDefault();
+                    if (image != null) {
+                        db.Images.Remove(image);
+                        db.SaveChanges();
+                    }
+
+                    db.Images.Add(photo);
+                    if (fileIsImage(clientPhoto))
+                    {
+                        db.SaveChanges();
+                        return RedirectToAction("ClientsList");
+                    }
+
+                    ViewBag.Message = @Resources.Resource.WrongFileChoose;
+                    return View();
+                    
+                    
+                
                 }
             }
 
@@ -492,6 +515,17 @@ namespace EasyBank.Controllers
             {
                 return HttpNotFound();
             }
+        }
+
+        private Boolean fileIsImage(HttpPostedFileBase file)
+        {
+
+            string fileType = file.FileName.ToString().Remove(0, file.FileName.LastIndexOf('.'));
+            if (fileType == ".jpg" || fileType == ".jpeg" || fileType == ".JPG" || fileType == ".JPEG" || fileType == ".png" || fileType == ".PNG")
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
