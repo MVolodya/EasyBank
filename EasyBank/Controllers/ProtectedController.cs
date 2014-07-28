@@ -138,7 +138,7 @@ namespace EasyBank.Controllers
             return View(operators.ToPagedList(pageNumber, pageSize));
         }
 
-        [Authorize(Roles="Operator")]
+        [Authorize(Roles="Operator, Administrator")]
         public ActionResult ClientsList(string sort, string currentFilter, string Search, int? page)
         {
             ViewBag.CurrentSort = sort;
