@@ -109,7 +109,6 @@ C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\uk-UA\EasyBank.re
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resources.dll
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
-=======
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.smallFix.resources
 C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.operationsHistoryAdded.resources
 C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.smallFix.resources
