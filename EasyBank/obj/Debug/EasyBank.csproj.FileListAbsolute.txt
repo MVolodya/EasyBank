@@ -1031,3 +1031,6 @@ C:\Users\oper4\Documents\GitHub\EasyBank\EasyBank\obj\Debug\EasyBank.Resources.R
 C:\Users\oper4\Documents\GitHub\EasyBank\EasyBank\obj\Debug\EasyBank.Resources.Resource.ru.resources
 C:\Users\oper4\Documents\GitHub\EasyBank\EasyBank\obj\Debug\uk-UA\EasyBank.resources.dll
 C:\Users\oper4\Documents\GitHub\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resources.dll
+C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.UpdatedClientProfile.resources
+C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.AddedOperator.resources
+C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.OperatorModelUpdate.resources

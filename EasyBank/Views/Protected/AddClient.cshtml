@@ -11,8 +11,7 @@
 
     <fieldset>
         <legend>@Resources.Resource.Client</legend>
-        
-        @ViewBag.Message
+       
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)
@@ -54,8 +53,9 @@
             @Html.ValidationMessageFor(model => model.Email)
         </div>
         <label for=" file">@Resources.Resource.UploadPassportScan:</label>
-        <input type="file" name="file" id="file" style="width: 100%;" value="@Resources.Resource.ChooseFile" />
 
+        <input type="file" name="file" id="file" accept="image/jpeg,image/png" style="width: 100%;" value="@Resources.Resource.ChooseFile" />
+        @ViewBag.Message
         <p>
             <input type="submit" value="@Resources.Resource.Create" class="submit" />
         </p>
