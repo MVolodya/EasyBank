@@ -52,7 +52,7 @@ namespace EasyBank.Models
         public DateTime RegistrationDate { get; set; }
 
         public virtual UserProfile UserProfile { get; set; }
-        public virtual ICollection<Image> Images { get; set; }
+        public virtual ICollection<ClientsImage> Images { get; set; }
         public virtual ICollection<Account> Accounts { get; set; }
     }
 }

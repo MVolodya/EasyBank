@@ -17,7 +17,7 @@ namespace EasyBank.Models
         public DbSet<AccountType> AccountTypes { get; set; }
         public DbSet<AccountStatus> AccountStatuses { get; set; }
         public DbSet<Currency> Currencies { get; set; }
-        public DbSet<Image> Images { get; set; }
+        public DbSet<ClientsImage> Images { get; set; }
         public DbSet<Operation> OperationHistory { get; set; }
         public DbSet<Operator> Operators { get; set; }
 

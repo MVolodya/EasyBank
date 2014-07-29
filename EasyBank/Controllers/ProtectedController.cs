@@ -17,14 +17,14 @@ namespace EasyBank.Controllers
     [InitializeSimpleMembership]
     public class ProtectedController : Controller
     {
-        [Authorize(Roles="Administrator, Operator")]
+        /*[Authorize(Roles="Administrator, Operator")]
         public ActionResult PreRegister(RegisterCompositeModel registerCompModel, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
                 if (file != null)
                 {
-                    Image photo = new Image();
+                    ClientsImage photo = new ClientsImage();
                     photo.Name = System.IO.Path.GetFileName(file.FileName);
                     byte[] n = new byte[file.InputStream.Length];
 
@@ -56,7 +56,7 @@ namespace EasyBank.Controllers
 
             }
             return View();
-        }
+        } */
         //
         // GET: /Client/
         private ConnectionContext db = new ConnectionContext();
@@ -249,7 +249,7 @@ namespace EasyBank.Controllers
                     return HttpNotFound();//Change for partial view later-----------------------!!!!!!!!!!!!!!!
                 if (file != null)
                 {                    
-                    Image photo = new Image();
+                    ClientsImage photo = new ClientsImage();
                     photo.Name = System.IO.Path.GetFileName(file.FileName);
                     byte[] n = new byte[file.InputStream.Length];
 
@@ -339,7 +339,7 @@ namespace EasyBank.Controllers
                 {
                     var clientPhoto = Request.Files["file"];
 
-                    Image photo = new Image();
+                    ClientsImage photo = new ClientsImage();
                     photo.Name = System.IO.Path.GetFileName(clientPhoto.FileName);
                     byte[] n = new byte[clientPhoto.InputStream.Length];
 

@@ -251,7 +251,7 @@
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ConnectionContext.cs" />
     <Compile Include="Models\Currency.cs" />
-    <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\ClientsImage.cs" />
     <Compile Include="Models\OperationModels.cs" />
     <Compile Include="Models\Operator.cs" />
     <Compile Include="Models\RegisterCompositeModel.cs" />
