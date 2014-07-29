@@ -344,6 +344,7 @@
   </data>
   <data name="WrongFileChoose" xml:space="preserve">
     <value>Помилка: файл має бути зображенням</value>
+    </data>
   <data name="AvailableAmount" xml:space="preserve">
     <value>Доступна сума</value>
   </data>

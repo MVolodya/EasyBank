@@ -347,6 +347,7 @@
   </data>
   <data name="WrongFileChoose" xml:space="preserve">
     <value>Wrong input type. Image is expected.</value>
+    </data>
   <data name="AvailableAmount" xml:space="preserve">
     <value>Available amount</value>
   </data>

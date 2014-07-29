@@ -344,6 +344,7 @@
   </data>
   <data name="WrongFileChoose" xml:space="preserve">
     <value>Ошибка загрузки. Файл должен быть картинкой</value>
+    </data>
   <data name="AvailableAmount" xml:space="preserve">
     <value>Доступная сумма</value>
   </data>
