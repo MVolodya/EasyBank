@@ -196,7 +196,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Back to list.
+        ///   Looks up a localized string similar to Available amount.
+        /// </summary>
+        public static string AvailableAmount {
+            get {
+                return ResourceManager.GetString("AvailableAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back to list.
         /// </summary>
         public static string BackToList {
             get {
@@ -484,7 +493,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на This field must be 10 characters long.
+        ///   Looks up a localized string similar to Is online system user.
+        /// </summary>
+        public static string IsOnlineUser {
+            get {
+                return ResourceManager.GetString("IsOnlineUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field must be 10 characters long.
         /// </summary>
         public static string Len10 {
             get {

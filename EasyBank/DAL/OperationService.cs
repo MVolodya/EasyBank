@@ -20,9 +20,14 @@ namespace EasyBank
             else return false;
         }
 
+        //0 - ok
+        //1 - too small amount (min 5)
+        //2 - 
         public int DepositMoney(int? operatorId, int? toAccountId, decimal? amount)
         {
             ConnectionContext db = new ConnectionContext();
+
+            
 
             if (operatorId != null && toAccountId != null && amount != null && amount > 0)
             {

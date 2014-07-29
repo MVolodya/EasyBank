@@ -235,9 +235,13 @@
     <Compile Include="Migrations\201407251231098_AddedOperator.Designer.cs">
       <DependentUpon>201407251231098_AddedOperator.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407281310523_UpdatedOperationHistory.cs" />
-    <Compile Include="Migrations\201407281310523_UpdatedOperationHistory.Designer.cs">
-      <DependentUpon>201407281310523_UpdatedOperationHistory.cs</DependentUpon>
+    <Compile Include="Migrations\201407291018223_UpdatedOperationHistory.cs" />
+    <Compile Include="Migrations\201407291018223_UpdatedOperationHistory.Designer.cs">
+      <DependentUpon>201407291018223_UpdatedOperationHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407291117353_UpdatedAccountAndClient.cs" />
+    <Compile Include="Migrations\201407291117353_UpdatedAccountAndClient.Designer.cs">
+      <DependentUpon>201407291117353_UpdatedAccountAndClient.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -288,8 +292,11 @@
     <EmbeddedResource Include="Migrations\201407251231098_AddedOperator.resx">
       <DependentUpon>201407251231098_AddedOperator.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407281310523_UpdatedOperationHistory.resx">
-      <DependentUpon>201407281310523_UpdatedOperationHistory.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407291018223_UpdatedOperationHistory.resx">
+      <DependentUpon>201407291018223_UpdatedOperationHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407291117353_UpdatedAccountAndClient.resx">
+      <DependentUpon>201407291117353_UpdatedAccountAndClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

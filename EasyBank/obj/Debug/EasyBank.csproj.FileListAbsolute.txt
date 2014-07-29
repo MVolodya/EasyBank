@@ -96,10 +96,8 @@ C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migratio
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.PhotoTypes.resources
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.operationsHistoryAdded.resources
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.smallFix.resources
-<<<<<<< HEAD
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.UpdatedClientProfile.resources
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.AddedOperator.resources
-C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.UpdatedOperationHistory.resources
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Resources.Resource.resources
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.first.resources
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Resources.Resource.uk-UA.resources
@@ -109,7 +107,6 @@ C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\uk-UA\EasyBank.re
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resources.dll
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
-C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.smallFix.resources
 C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.operationsHistoryAdded.resources
 C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.smallFix.resources
 C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.UpdatedClientProfile.resources
@@ -247,3 +244,5 @@ C:\Users\oper4\Documents\GitHub\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resource
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.UpdatedClientProfile.resources
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.AddedOperator.resources
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.OperatorModelUpdate.resources
+C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.UpdatedOperationHistory.resources
+C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.UpdatedAccountAndClient.resources

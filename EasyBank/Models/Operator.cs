@@ -19,5 +19,10 @@ namespace EasyBank.Models
 
         public virtual UserProfile UserProfile { get; set; }
         public virtual ICollection<Operation> OperationsHistory { get; set; }
+
+        public Operator()
+        {
+            RegistrationDate = DateTime.Now;
+        }
     }
 }

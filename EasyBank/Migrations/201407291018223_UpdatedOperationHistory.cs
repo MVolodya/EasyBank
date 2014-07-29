@@ -9,28 +9,30 @@ namespace EasyBank.Migrations
         {
             DropIndex("dbo.Operation", new[] { "FromAccountId" });
             DropIndex("dbo.Operation", new[] { "ToAccountId" });
-            RenameColumn(table: "dbo.Operation", name: "FromAccountId", newName: "AccountId");
+            AddColumn("dbo.Operation", "Type", c => c.Int(nullable: false));
             AddColumn("dbo.Operation", "OperatorId", c => c.Int());
             AddColumn("dbo.Operator", "RegistrationDate", c => c.DateTime(nullable: false));
-            AlterColumn("dbo.Operation", "AccountId", c => c.Int());
+            AlterColumn("dbo.Operation", "FromAccountId", c => c.Int());
             AlterColumn("dbo.Operation", "ToAccountId", c => c.Int());
             CreateIndex("dbo.Operation", "OperatorId");
-            CreateIndex("dbo.Operation", "AccountId");
+            CreateIndex("dbo.Operation", "FromAccountId");
             CreateIndex("dbo.Operation", "ToAccountId");
             AddForeignKey("dbo.Operation", "OperatorId", "dbo.Operator", "OperatorID");
+            DropColumn("dbo.Operation", "Discriminator");
         }
         
         public override void Down()
         {
+            AddColumn("dbo.Operation", "Discriminator", c => c.String(nullable: false, maxLength: 128));
             DropForeignKey("dbo.Operation", "OperatorId", "dbo.Operator");
             DropIndex("dbo.Operation", new[] { "ToAccountId" });
-            DropIndex("dbo.Operation", new[] { "AccountId" });
+            DropIndex("dbo.Operation", new[] { "FromAccountId" });
             DropIndex("dbo.Operation", new[] { "OperatorId" });
             AlterColumn("dbo.Operation", "ToAccountId", c => c.Int(nullable: false));
-            AlterColumn("dbo.Operation", "AccountId", c => c.Int(nullable: false));
+            AlterColumn("dbo.Operation", "FromAccountId", c => c.Int(nullable: false));
             DropColumn("dbo.Operator", "RegistrationDate");
             DropColumn("dbo.Operation", "OperatorId");
-            RenameColumn(table: "dbo.Operation", name: "AccountId", newName: "FromAccountId");
+            DropColumn("dbo.Operation", "Type");
             CreateIndex("dbo.Operation", "ToAccountId");
             CreateIndex("dbo.Operation", "FromAccountId");
         }

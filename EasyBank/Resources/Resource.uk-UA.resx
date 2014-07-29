@@ -344,5 +344,10 @@
   </data>
   <data name="WrongFileChoose" xml:space="preserve">
     <value>Помилка: файл має бути зображенням</value>
+  <data name="AvailableAmount" xml:space="preserve">
+    <value>Доступна сума</value>
+  </data>
+  <data name="IsOnlineUser" xml:space="preserve">
+    <value>Користувач інтернет банкінгу</value>
   </data>
 </root>

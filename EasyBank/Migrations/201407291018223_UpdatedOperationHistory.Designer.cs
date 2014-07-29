@@ -13,7 +13,7 @@ namespace EasyBank.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201407281310523_UpdatedOperationHistory"; }
+            get { return "201407291018223_UpdatedOperationHistory"; }
         }
         
         string IMigrationMetadata.Source
