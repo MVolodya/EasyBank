@@ -18,20 +18,18 @@ namespace EasyBank.Models
         public DbSet<AccountStatus> AccountStatuses { get; set; }
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<Image> Images { get; set; }
-        public DbSet<DepositOperation> DepositHistory { get; set; }
-        public DbSet<TransferOperation> TransferHistory { get; set; }
-        public DbSet<WithdrawOperation> WithdrawHistory { get; set; }
+        public DbSet<Operation> OperationHistory { get; set; }
         public DbSet<Operator> Operators { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            modelBuilder.Entity<Operation>().HasOptional(u => u.Account).WithMany().WillCascadeOnDelete(false);
-            modelBuilder.Entity<TransferOperation>().HasRequired(u => u.ToAccount).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<Operation>().HasOptional(u => u.FromAccount).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<Operation>().HasOptional(u => u.ToAccount).WithMany().WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Operation>()
-    .HasOptional(o => o.Account)
+    .HasOptional(o => o.FromAccount)
     .WithMany(a => a.OperationsHistory);
         }
 

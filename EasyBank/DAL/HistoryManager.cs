@@ -9,9 +9,9 @@ namespace EasyBank.DAL
 {
     public class HistoryManager
     {
-        public static void AddDepositOperation(ConnectionContext db, int fromId, int toId, int amount)
+        public static void AddDepositOperation(ConnectionContext db, int amount, int toId, int operatorId)
         {
-            db.DepositHistory.Add(new DepositOperation(fromId, toId, amount));
+            db.OperationHistory.Add(new Operation(amount, OperationTypes.Deposit, toId, operatorId));
             db.SaveChanges();
         }
     }

@@ -342,4 +342,10 @@
   <data name="Len10" xml:space="preserve">
     <value>Довжина повинна мати 10 символів</value>
   </data>
+  <data name="AvailableAmount" xml:space="preserve">
+    <value>Доступна сума</value>
+  </data>
+  <data name="IsOnlineUser" xml:space="preserve">
+    <value>Користувач інтернет банкінгу</value>
+  </data>
 </root>

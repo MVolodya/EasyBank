@@ -7,57 +7,38 @@ using System.Web;
 
 namespace EasyBank.Models
 {
+    public enum OperationTypes { None = 0, Deposit = 1, Withdraw = 2, Transfer = 3 }
+
     public class Operation
     {
         [Key]
         public int OperationId { get; set; }
         public DateTime Date { get; set; }
+        public OperationTypes Type { get; set; }
         public decimal Amount { get; set; }
 
         [ForeignKey("Operator")]
         public int? OperatorId { get; set; }
-        [ForeignKey("Account")]
-        public int? AccountId { get; set; }
+
+        [ForeignKey("FromAccount")]
+        public int? FromAccountId { get; set; }
+        [ForeignKey("ToAccount")]
+        public int? ToAccountId { get; set; }
 
         public virtual Operator Operator { get; set; }
-        public virtual Account Account { get; set; }
-
-        public Operation()
-        {
-            Date = DateTime.Now;
-        }
-        public Operation(int accountId, int amount, int? operatorId = null)
-        {
-            Date = DateTime.Now;
-            AccountId = accountId;
-            Amount = amount;
-            OperatorId = operatorId;
-        }
-    }
-
-    public class DepositOperation : Operation
-    {
-        public DepositOperation():base() { }
-        public DepositOperation(int accountId, int amount, int? operatorId = null) : base(accountId, amount, operatorId) { }
-    }
-
-    public class WithdrawOperation : Operation
-    {
-        public WithdrawOperation():base() { }
-        public WithdrawOperation(int accountId, int amount, int? operatorId = null) : base(accountId, amount, operatorId) { }
-    }
-
-    public class TransferOperation : Operation
-    {
-        [ForeignKey("ToAccount")]
-        public int ToAccountId { get; set; }
-
+        public virtual Account FromAccount { get; set; }
         public virtual Account ToAccount { get; set; }
 
-        public TransferOperation():base() { }
-        public TransferOperation(int fromAccountId, int toAccountId, int amount, int? operatorId = null):base(fromAccountId, amount, operatorId)
+        public Operation() : this(0, OperationTypes.None) { }
+
+        public Operation(int amount, OperationTypes type, int? fromAccountId = null, int? toAccountId = null, int? operatorId = null)
         {
+            Date = DateTime.Now;
+            Amount = amount;
+            Type = type;
+            FromAccountId = fromAccountId;
             ToAccountId = toAccountId;
+            OperatorId = operatorId;
         }
     }
 }

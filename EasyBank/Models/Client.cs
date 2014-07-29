@@ -11,6 +11,11 @@ namespace EasyBank.Models
     {
         public int ClientId { get; set; }
 
+        [Display(Name="IsOnlineUser", ResourceType=typeof(Resources.Resource))]
+        public bool IsOnlineUser { get; set; }
+
+        public bool IsAlreadyRegistered { get; set; }
+
         [Display(Name = "Name", ResourceType = typeof(Resources.Resource))]
         [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "NameRequired")]
         [StringLength(20, MinimumLength = 3, ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "NameLen3To20")]

@@ -29,6 +29,9 @@ namespace EasyBank.Models
         [RegularExpression(@"^\d+.\d{0,2}$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "OnlyDigits")]
         public decimal Amount { get; set; }
 
+        [Display(Name = "AvailableAmount", ResourceType = typeof(Resources.Resource))]
+        public decimal AvailableAmount { get; set; }
+
         [Display(Name = "Client", ResourceType = typeof(Resources.Resource))]
         [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "ClientIdRequired")]
         [ForeignKey("Client")]

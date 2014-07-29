@@ -345,4 +345,10 @@
   <data name="Len10" xml:space="preserve">
     <value>This field must be 10 characters long</value>
   </data>
+  <data name="AvailableAmount" xml:space="preserve">
+    <value>Available amount</value>
+  </data>
+  <data name="IsOnlineUser" xml:space="preserve">
+    <value>Is online system user</value>
+  </data>
 </root>
