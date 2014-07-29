@@ -243,6 +243,10 @@
     <Compile Include="Migrations\201407291117353_UpdatedAccountAndClient.Designer.cs">
       <DependentUpon>201407291117353_UpdatedAccountAndClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407291219033_updatedImageModel.cs" />
+    <Compile Include="Migrations\201407291219033_updatedImageModel.Designer.cs">
+      <DependentUpon>201407291219033_updatedImageModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -297,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407291117353_UpdatedAccountAndClient.resx">
       <DependentUpon>201407291117353_UpdatedAccountAndClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407291219033_updatedImageModel.resx">
+      <DependentUpon>201407291219033_updatedImageModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
