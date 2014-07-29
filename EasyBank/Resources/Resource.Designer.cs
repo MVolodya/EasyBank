@@ -752,5 +752,23 @@ namespace Resources {
                 return ResourceManager.GetString("WrongFileChoose", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Only for admins and operators.
+        /// </summary>
+        public static string WrongLogInForAdminAndOperPage {
+            get {
+                return ResourceManager.GetString("WrongLogInForAdminAndOperPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Only for clients.
+        /// </summary>
+        public static string WrongLogInForClientPage {
+            get {
+                return ResourceManager.GetString("WrongLogInForClientPage", resourceCulture);
+            }
+        }
     }
 }

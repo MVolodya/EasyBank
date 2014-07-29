@@ -20,9 +20,10 @@ namespace EasyBank.Controllers
     public class AccountController : Controller
     {
         ConnectionContext db = new ConnectionContext();
+        
         //
         // GET: /Account/Login
-
+        
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -38,8 +39,17 @@ namespace EasyBank.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            if (Roles.IsUserInRole(model.UserName, "Operator") || Roles.IsUserInRole(model.UserName, "Administrator"))
             {
+                ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                return View(model);
+
+            }
+
+            if ((ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe)) && (Roles.IsUserInRole(model.UserName, "Operator") || Roles.IsUserInRole(model.UserName, "Administrator")))
+            {
+
+               
                 return RedirectToLocal(returnUrl);
             }
 
@@ -47,7 +57,7 @@ namespace EasyBank.Controllers
             ModelState.AddModelError("", "The user name or password provided is incorrect.");
             return View(model);
         }
-
+        
         //
         // POST: /Account/LogOff
 

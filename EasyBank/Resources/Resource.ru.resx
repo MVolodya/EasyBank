@@ -345,4 +345,10 @@
   <data name="WrongFileChoose" xml:space="preserve">
     <value>Ошибка загрузки. Файл должен быть картинкой</value>
   </data>
+  <data name="WrongLogInForAdminAndOperPage" xml:space="preserve">
+    <value>Вход только для администраторов и операторов</value>
+  </data>
+  <data name="WrongLogInForClientPage" xml:space="preserve">
+    <value>Вход только для клиентов</value>
+  </data>
 </root>
