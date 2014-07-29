@@ -195,11 +195,11 @@
     <Compile Include="Controllers\OperationController.cs" />
     <Compile Include="Controllers\ProtectedController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DAL\HistoryManager.cs" />
+    <Compile Include="BAL\HistoryManager.cs" />
     <Compile Include="DAL\ImageType.cs" />
     <Compile Include="Filters\CultureAttribute.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
-    <Compile Include="DAL\OperationService.cs" />
+    <Compile Include="BAL\OperationService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -352,3 +352,4 @@ C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resources.dll
 C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
 C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.updatedImageModel.resources
+C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.updatedImageModel.resources
