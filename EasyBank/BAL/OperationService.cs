@@ -29,8 +29,12 @@ namespace EasyBank
 
         //1 - too small amount (min 5 for TA)
         //2 - too small amount (min 100 for DA)
-        //3 - too small amount (10% of credit for CA)
+        //3 - too small amount (10% of credit for CA) //not developed
         //4 - account is Blocked or Frozen or Expired
+        //5 - not enough money on account
+        //6 - attempt to widthdraw from credit account
+        //7 - adding specified amount will make credit acc balance positive(can't be bigger then 0)
+        //8 - attempt to transfer from account that is not MT account
 
         //10 - operatorName == null
         //11 - accountId == null
@@ -38,6 +42,8 @@ namespace EasyBank
 
         //21 - operator not found in db
         //22 - account not found in db
+
+        //99 - uncatched error
 
 
         public int DepositMoney(string operatorEmail, int? toAccountId, decimal? amount)
@@ -53,7 +59,9 @@ namespace EasyBank
 
             if (oper == null) return 21;
             if (acc == null) return 22;
-            
+
+            bool dataChanged = false;
+
             switch (acc.AccountType.TypeName)
             {
                 case "Normal"://transfer account
@@ -61,9 +69,7 @@ namespace EasyBank
                         if (amount < 5) return 1;
                         acc.Amount += (decimal)amount; //add on main acc
                         acc.AvailableAmount += (decimal) amount; // add on available acc
-                        db.Entry(acc).State = System.Data.Entity.EntityState.Modified;
-                        db.SaveChanges();
-                        HistoryManager.AddDepositOperation(db, (int)amount, (int)toAccountId, (int)oper.OperatorID);
+                        dataChanged = true;
                     }
                     break;
                 case "Deposit":
@@ -71,21 +77,118 @@ namespace EasyBank
                         if (amount > 100) return 2;
                         acc.Amount += (decimal)amount;
                         acc.AvailableAmount += (decimal)amount;
-                        db.Entry(acc).State = System.Data.Entity.EntityState.Modified;
-                        db.SaveChanges();
-                        HistoryManager.AddDepositOperation(db, (int)amount, (int)toAccountId, (int)oper.OperatorID);
+                        dataChanged = true;
                     }
                     break;
                 case "Credit":
                     {
-                        if (amount > Decimal.Multiply(acc.Amount, (decimal)0.1)) return 3;
+                        //if (amount > Decimal.Multiply(acc.Amount, (decimal)0.1)) return 3;
+                        if (acc.Amount + amount > 0) return 7;
+                        acc.Amount += (decimal)amount;
                         acc.AvailableAmount += (decimal)amount;
-                        db.Entry(acc).State = System.Data.Entity.EntityState.Modified;
-                        db.SaveChanges();
-                        HistoryManager.AddDepositOperation(db, (int)amount, (int)toAccountId, (int)oper.OperatorID);
+                        dataChanged = true;
                     }
                     break;
             }
+            if(dataChanged)
+            {
+                db.Entry(acc).State = System.Data.Entity.EntityState.Modified;
+                HistoryManager.AddDepositOperation(db, (int)amount, (int)toAccountId, (int)oper.OperatorID);
+                db.SaveChanges();
+                return 0;
+            }
+            return 99;
+        }
+
+        public int WithdrawMoney(string operatorEmail, int? fromAccountId, decimal? amount)
+        {
+            ConnectionContext db = new ConnectionContext();
+
+            if (operatorEmail == null) return 10;
+            if (fromAccountId == null) return 11;
+            if (amount == null) return 12;
+
+            Operator oper = db.Operators.FirstOrDefault(o => o.Email == operatorEmail);
+            Account acc = db.Accounts.FirstOrDefault(a => a.AccountId == fromAccountId);
+
+            if (oper == null) return 21;
+            if (acc == null) return 22;
+
+            bool dataChanged = false;
+
+            switch (acc.AccountType.TypeName)
+            {
+                case "Normal"://transfer account
+                    {
+                        if (acc.AvailableAmount - amount < 0) return 5;
+
+                        acc.AvailableAmount -= (decimal)amount;
+                        acc.Amount -= (decimal)amount;
+                        dataChanged = true;
+                    }
+                    break;
+                case "Deposit":
+                    {
+                        //HAS TO BE DEVELOPED---------------------------+
+                    }
+                    break;
+                case "Credit":
+                    {
+                        return 6;
+                    }
+                    break;
+            }
+            if (dataChanged)
+            {
+                db.Entry(acc).State = System.Data.Entity.EntityState.Modified;
+                HistoryManager.AddDepositOperation(db, (int)amount, (int)fromAccountId, (int)oper.OperatorID);
+                db.SaveChanges();
+                
+                return 0;
+            }
+            return 99;
+        }
+        public int TransferMoney(string operatorEmail, int? fromAccountId, int? toAccountId, decimal? amount)
+        {
+            ConnectionContext db = new ConnectionContext();
+
+            if (operatorEmail == null) return 10;
+            if (fromAccountId == null || toAccountId == null) return 11;
+            if (amount == null) return 12;
+
+            Operator oper = db.Operators.FirstOrDefault(o => o.Email == operatorEmail);
+            Account fromAcc = db.Accounts.FirstOrDefault(a => a.AccountId == fromAccountId);
+            Account toAcc = db.Accounts.FirstOrDefault(a => a.AccountId == toAccountId);
+
+            if (oper == null) return 21;
+            if (fromAcc == null) return 22;
+            if (toAcc == null) return 22;
+
+            bool dataChanged = false;
+
+            /*switch (acc.AccountType.TypeName)
+            {
+                case "Normal"://transfer account
+                    {
+                        if (acc.AvailableAmount - amount < 0) return 5;
+
+                        acc.AvailableAmount -= (decimal)amount;
+                        acc.Amount -= (decimal)amount;
+                        dataChanged = true;
+                    }
+                    break;
+                case "Deposit":
+                    {
+                        //HAS TO BE DEVELOPED---------------------------+
+                    }
+                    break;
+                case "Credit":
+                    {
+                        return 6;
+                    }
+                    break;
+            }*/
+
             return 0;
         }
     }

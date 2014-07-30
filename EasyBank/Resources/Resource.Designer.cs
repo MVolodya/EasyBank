@@ -403,6 +403,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount must have a formal like (0.00 or 0.0 or 0).
+        /// </summary>
+        public static string DecimalFormat {
+            get {
+                return ResourceManager.GetString("DecimalFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {
@@ -763,6 +772,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Widthdraw money.
+        /// </summary>
+        public static string WidthdrawMoney {
+            get {
+                return ResourceManager.GetString("WidthdrawMoney", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wrong input type. Image is expected..
         /// </summary>
         public static string WrongFileChoose {
@@ -772,7 +790,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Only for admins and operators.
+        ///   Looks up a localized string similar to Only for admins and operators.
         /// </summary>
         public static string WrongLogInForAdminAndOperPage {
             get {
@@ -781,7 +799,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Only for clients.
+        ///   Looks up a localized string similar to Only for clients.
         /// </summary>
         public static string WrongLogInForClientPage {
             get {
