@@ -103,7 +103,7 @@ namespace EasyBank.Controllers
                         db.Clients.Add(client);
 
 
-                        Image photo = new Image();
+                        ClientsImage photo = new ClientsImage();
                         photo.Name = System.IO.Path.GetFileName(file.FileName);
                         byte[] n = new byte[file.InputStream.Length];
                         file.InputStream.Read(n, 0, (int)file.InputStream.Length);

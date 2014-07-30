@@ -242,7 +242,6 @@ C:\Users\oper4\Documents\GitHub\EasyBank\EasyBank\obj\Debug\uk-UA\EasyBank.resou
 C:\Users\oper4\Documents\GitHub\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resources.dll
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.UpdatedClientProfile.resources
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.AddedOperator.resources
-<<<<<<< HEAD
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.OperatorModelUpdate.resources
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.UpdatedOperationHistory.resources
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.UpdatedAccountAndClient.resources
@@ -354,7 +353,6 @@ C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
 C:\Users\Alex\Documents\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.updatedImageModel.resources
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.updatedImageModel.resources
-=======
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\bin\EasyBank.dll.config
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\bin\EasyBank.dll
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\bin\EasyBank.pdb
@@ -462,4 +460,6 @@ C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\uk-UA\EasyBank.resour
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resources.dll
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
->>>>>>> Ivan2
+C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.smallFix.resources
+C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.UpdatedAccountAndClient.resources
+C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.updatedImageModel.resources
