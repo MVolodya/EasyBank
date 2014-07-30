@@ -314,7 +314,7 @@ namespace EasyBank.Controllers
             }
         }
 
-        
+
         public ActionResult AddPhoto(int? id)
         {
             Client client = null;
@@ -330,7 +330,6 @@ namespace EasyBank.Controllers
                 return RedirectToAction("ClientsList");
             }
         }
-        public static int IndexOfFoto = 0;
         public ActionResult Capture(int? id)
         {
             var stream = Request.InputStream;
@@ -354,17 +353,17 @@ namespace EasyBank.Controllers
                 //    var path = Server.MapPath("~/test.jpg");
                 //       System.IO.File.WriteAllBytes(path, String_To_Bytes2(dump));
                 ClientsImage photo = new ClientsImage();
-                photo.Name = "Clients" + (IndexOfFoto++);
+                photo.Name = db.Clients.Single(model => model.ClientId == id).PIdNumber;
                 photo.ImageContent = String_To_Bytes2(dump);
                 ContentType ct = new ContentType("image/jpeg");
-                photo.ContentType = ct.MediaType;   
+                photo.ContentType = ct.MediaType;
                 photo.PhotoType = (int)ImageType.ClientPhoto;
                 photo.ClientId = (int)id;
-                
+
                 db.Images.Add(photo);
                 db.SaveChanges();
             }
-            return RedirectToAction("ClientsProfile", new {clientId = id});
+            return RedirectToAction("ClientsProfile", new { clientId = id });
         }
         private byte[] String_To_Bytes2(string strInput)
         {
