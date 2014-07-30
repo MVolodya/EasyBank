@@ -22,6 +22,11 @@ namespace EasyBank.Controllers
         ConnectionContext db = new ConnectionContext();
         //
         // GET: /Account/Login
+        [AllowAnonymous]
+        public ActionResult Index()
+        {
+            return RedirectToAction("Login","Office");
+        }
 
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -435,7 +440,11 @@ namespace EasyBank.Controllers
         [Authorize(Roles="Administrator")]
         public ActionResult AddDepositCredit()
         {
-            return View();
+            var ListTypes = db.AccountTypes.ToList();
+            ViewBag.Types = ListTypes;
+            
+                return View();
+
         }
 
         [HttpPost]
@@ -444,7 +453,7 @@ namespace EasyBank.Controllers
         {
             db.DepositCreditModels.Add(depositCreditModel);
             db.SaveChanges();
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         #region Helpers
