@@ -52,11 +52,17 @@ namespace EasyBank.Models
         [ForeignKey("AccountStatus")]
         public int StatusId { get; set; }
 
+        public decimal Interest { get; set; }
+
+        [ForeignKey("DepositCreditModel")]
+        public int? DepositCreditModelID { get; set; }
+
         public virtual Client Client { get; set; }
         public virtual AccountType AccountType { get; set; }
         public virtual Currency Currency { get; set; }
         public virtual AccountStatus AccountStatus { get; set; }
         public virtual ICollection<Operation> OperationsHistory { get; set; }
+        public virtual DepositCreditModel DepositCreditModel { get; set; }
 
         public Account() 
         {

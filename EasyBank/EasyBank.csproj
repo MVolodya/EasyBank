@@ -198,6 +198,7 @@
     <Compile Include="Controllers\ProtectedController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="BAL\HistoryManager.cs" />
+    <Compile Include="DAL\EarlyTerminationPossibility.cs" />
     <Compile Include="DAL\ImageType.cs" />
     <Compile Include="Filters\CultureAttribute.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -249,6 +250,14 @@
     <Compile Include="Migrations\201407291219033_updatedImageModel.Designer.cs">
       <DependentUpon>201407291219033_updatedImageModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407301301301_DepCredModel.cs" />
+    <Compile Include="Migrations\201407301301301_DepCredModel.Designer.cs">
+      <DependentUpon>201407301301301_DepCredModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407301311111_DCModel.cs" />
+    <Compile Include="Migrations\201407301311111_DCModel.Designer.cs">
+      <DependentUpon>201407301311111_DCModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -258,6 +267,7 @@
     <Compile Include="Models\ConnectionContext.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\ClientsImage.cs" />
+    <Compile Include="Models\DepositCreditModel.cs" />
     <Compile Include="Models\OperationModels.cs" />
     <Compile Include="Models\Operator.cs" />
     <Compile Include="Models\RegisterCompositeModel.cs" />
@@ -306,6 +316,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407291219033_updatedImageModel.resx">
       <DependentUpon>201407291219033_updatedImageModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407301301301_DepCredModel.resx">
+      <DependentUpon>201407301301301_DepCredModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407301311111_DCModel.resx">
+      <DependentUpon>201407301311111_DCModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -399,6 +415,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery.webcam.js" />
+    <Content Include="Scripts\jscam.swf" />
+    <Content Include="Scripts\jscam_canvas_only.swf" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -491,6 +510,7 @@
     <Content Include="Views\Office\index.cshtml" />
     <Content Include="Views\Error\OperationError.cshtml" />
     <Content Include="Views\Operation\WidthdrawMoney.cshtml" />
+    <Content Include="Views\Office\AddDepositCredit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

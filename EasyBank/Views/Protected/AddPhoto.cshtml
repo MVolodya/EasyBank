@@ -11,13 +11,13 @@
 
     <fieldset>
         <legend>Client</legend>
-        
+
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)
         </div>
         <div class="editor-field">
-           @Html.DisplayFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name) 
+            @Html.DisplayFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
         </div>
 
         <div class="editor-label">
@@ -27,15 +27,35 @@
             @Html.DisplayFor(model => model.Surname)
             @Html.ValidationMessageFor(model => model.Surname)
         </div>
-        <label for=" file">@Resources.Resource.UploadClientPhotoTitle:</label>
-        <input type="file" name="file" accept="image/jpeg,image/png" id="file" style="width: 100%;" />
-        @ViewBag.Message
-        <p>
-            <input type="submit" value="@Resources.Resource.Save" class="submit" />
-        </p>
     </fieldset>
 
+    @section scripts
+{
+        <script src="@Url.Content("~/Scripts/jquery.webcam.js")">
+        </script>
+        <script>
+            $("#Camera").webcam({
+                width: 320,
+                height: 240,
+                mode: "save",
+                swffile: "@Url.Content("~/Scripts/jscam.swf")",
+                onTick: function () { },
+                onSave: function () {
+                },
+                onCapture: function () {
+
+                    webcam.save("@Url.Content("~/Protected/Capture")/@Model.ClientId");
+                },
+                debug: function () { },
+                onLoad: function () { }
+            });
+        </script>
+    }
+    <input type="button" value="Shoot!" onclick="webcam.capture();" />
+    <div id="Camera"></div>
+    <div> @Html.ActionLink("Clients profile", "ClientsProfile", new { clientId = Model.ClientId })</div>
 }
+
 <div>
     @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList")
 </div>

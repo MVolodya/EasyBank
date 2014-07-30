@@ -9,6 +9,7 @@ using PagedList;
 using EasyBank.DAL;
 using System.IO;
 using SimpleMembershipTest.Filters;
+using System.Net.Mime;
 
 namespace EasyBank.Controllers
 {
@@ -313,7 +314,7 @@ namespace EasyBank.Controllers
             }
         }
 
-        [HttpGet]
+
         public ActionResult AddPhoto(int? id)
         {
             Client client = null;
@@ -329,52 +330,52 @@ namespace EasyBank.Controllers
                 return RedirectToAction("ClientsList");
             }
         }
-
-        [HttpPost]
-        public ActionResult AddPhoto(int id)
+        public ActionResult Capture(int? id)
         {
-            if (ModelState.IsValid)
+            var stream = Request.InputStream;
+            string dump;
+
+            using (var reader = new StreamReader(stream))
+                dump = reader.ReadToEnd();
+
+            var image = (from images in db.Images
+                         where images.ClientId == id
+                         where images.PhotoType == 1
+                         select images).FirstOrDefault();
+            if (image != null)
             {
-                if (Request != null && Request.Files != null && Request.Files.Count > 0)
-                {
-                    var clientPhoto = Request.Files["file"];
+                image.ImageContent = String_To_Bytes2(dump);
+                db.Entry(image).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+            else
+            {
+                //    var path = Server.MapPath("~/test.jpg");
+                //       System.IO.File.WriteAllBytes(path, String_To_Bytes2(dump));
+                ClientsImage photo = new ClientsImage();
+                photo.Name = db.Clients.Single(model => model.ClientId == id).PIdNumber;
+                photo.ImageContent = String_To_Bytes2(dump);
+                ContentType ct = new ContentType("image/jpeg");
+                photo.ContentType = ct.MediaType;
+                photo.PhotoType = (int)ImageType.ClientPhoto;
+                photo.ClientId = (int)id;
 
-                    ClientsImage photo = new ClientsImage();
-                    photo.Name = System.IO.Path.GetFileName(clientPhoto.FileName);
-                    byte[] n = new byte[clientPhoto.InputStream.Length];
+                db.Images.Add(photo);
+                db.SaveChanges();
+            }
+            return RedirectToAction("ClientsProfile", new { clientId = id });
+        }
+        private byte[] String_To_Bytes2(string strInput)
+        {
+            int numBytes = (strInput.Length) / 2;
+            byte[] bytes = new byte[numBytes];
 
-                    clientPhoto.InputStream.Read(n, 0, (int)clientPhoto.InputStream.Length);
-                    photo.ImageContent = n;
-                    photo.ContentType = clientPhoto.ContentType;
-                    photo.ClientId = id;
-                    photo.PhotoType = (int)ImageType.ClientPhoto;
-
-                    var image = (from images in db.Images
-                                 where images.ClientId == id
-                                 where images.PhotoType == 1
-                                 select images).FirstOrDefault();
-                    if (image != null) {
-                        db.Images.Remove(image);
-                        db.SaveChanges();
-                    }
-
-                    db.Images.Add(photo);
-                    if (fileIsImage(clientPhoto))
-                    {
-                        db.SaveChanges();
-                        return RedirectToAction("ClientsList");
-                    }
-
-                    ViewBag.Message = @Resources.Resource.WrongFileChoose;
-                    return View();
-                    
-                    
-                
-                }
+            for (int x = 0; x < numBytes; ++x)
+            {
+                bytes[x] = Convert.ToByte(strInput.Substring(x * 2, 2), 16);
             }
 
-            ViewBag.Message = "OOps.. Something wrong with data";
-            return RedirectToAction("EditClient");
+            return bytes;
         }
 
         public ActionResult ShowPassport(int id)

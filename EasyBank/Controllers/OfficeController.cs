@@ -431,6 +431,22 @@ namespace EasyBank.Controllers
             return PartialView("_RemoveExternalLoginsPartial", externalLogins);
         }
 
+        [HttpGet]
+        [Authorize(Roles="Administrator")]
+        public ActionResult AddDepositCredit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Administrator")]
+        public ActionResult AddDepositCredit(DepositCreditModel depositCreditModel)
+        {
+            db.DepositCreditModels.Add(depositCreditModel);
+            db.SaveChanges();
+            return View();
+        }
+
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)
         {
