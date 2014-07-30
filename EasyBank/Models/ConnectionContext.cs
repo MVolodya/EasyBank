@@ -20,6 +20,7 @@ namespace EasyBank.Models
         public DbSet<ClientsImage> Images { get; set; }
         public DbSet<Operation> OperationHistory { get; set; }
         public DbSet<Operator> Operators { get; set; }
+        public DbSet<DepositCreditModel> DepositCreditModels { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
