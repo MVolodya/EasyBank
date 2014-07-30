@@ -35,6 +35,8 @@ namespace EasyBank
         //6 - attempt to widthdraw from credit account
         //7 - adding specified amount will make credit acc balance positive(can't be bigger then 0)
         //8 - attempt to transfer from account that is not MT account
+        //9 - attempt to transfer to account that is not MT account
+        //31 - if early termination is false only whole amount can be widthdrawn
 
         //10 - operatorName == null
         //11 - accountId == null
@@ -129,7 +131,35 @@ namespace EasyBank
                     break;
                 case "Deposit":
                     {
-                        //HAS TO BE DEVELOPED---------------------------+
+                        if (DateTime.Now < acc.ExpirationDate)
+                        {
+                            if (acc.DepositCreditModel.EarlyTermination == true)
+                            {
+                                if (acc.AvailableAmount - amount < 0) return 5;
+                                else
+                                {
+                                    acc.Amount -= (decimal)amount;
+                                    acc.AvailableAmount -= (decimal)amount;
+                                    dataChanged = true;
+                                }
+                            }
+                            else
+                            {
+                                if(!(acc.AvailableAmount - amount).Equals(0))return 31;
+                                else
+                                {
+                                    acc.Amount -=(decimal)amount;
+                                    acc.AvailableAmount-=(decimal)amount;
+                                    dataChanged = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            acc.Amount -= (decimal)amount;
+                            acc.AvailableAmount -= (decimal)amount;
+                            dataChanged = true;
+                        }
                     }
                     break;
                 case "Credit":
@@ -148,17 +178,18 @@ namespace EasyBank
             }
             return 99;
         }
-        public int TransferMoney(string operatorEmail, int? fromAccountId, int? toAccountId, decimal? amount)
+        public int TransferMoney(string operatorEmail, int? fromAccountId, string toAccountNumber, decimal? amount)
         {
             ConnectionContext db = new ConnectionContext();
 
             if (operatorEmail == null) return 10;
-            if (fromAccountId == null || toAccountId == null) return 11;
+            if (fromAccountId == null || toAccountNumber == null) return 11;
             if (amount == null) return 12;
 
             Operator oper = db.Operators.FirstOrDefault(o => o.Email == operatorEmail);
             Account fromAcc = db.Accounts.FirstOrDefault(a => a.AccountId == fromAccountId);
-            Account toAcc = db.Accounts.FirstOrDefault(a => a.AccountId == toAccountId);
+            Account toAcc = db.Accounts.FirstOrDefault(a => a.AccountNumber == toAccountNumber);
+            int toAccountId = toAcc.AccountId;
 
             if (oper == null) return 21;
             if (fromAcc == null) return 22;
@@ -166,30 +197,40 @@ namespace EasyBank
 
             bool dataChanged = false;
 
-            /*switch (acc.AccountType.TypeName)
+            switch (fromAcc.AccountType.TypeName)
             {
                 case "Normal"://transfer account
                     {
-                        if (acc.AvailableAmount - amount < 0) return 5;
+                        if (fromAcc.AvailableAmount - amount < 0) return 5;
 
-                        acc.AvailableAmount -= (decimal)amount;
-                        acc.Amount -= (decimal)amount;
-                        dataChanged = true;
-                    }
-                    break;
-                case "Deposit":
-                    {
-                        //HAS TO BE DEVELOPED---------------------------+
-                    }
-                    break;
-                case "Credit":
-                    {
-                        return 6;
-                    }
-                    break;
-            }*/
+                        if (toAcc.AccountType.TypeName == "Normal")
+                        {
+                            fromAcc.AvailableAmount -= (decimal)amount;
+                            fromAcc.Amount -= (decimal)amount;
 
-            return 0;
+                            toAcc.AvailableAmount += (decimal)amount;
+                            toAcc.Amount += (decimal)amount;
+
+                            dataChanged = true;
+                        }
+                        else return 9;
+                    }
+                    break;
+                default:
+                    {
+                        return 8;
+                    }
+                    break;
+            }
+            if (dataChanged)
+            {
+                db.Entry(fromAcc).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(toAcc).State = System.Data.Entity.EntityState.Modified;
+                HistoryManager.AddTransferOperation(db, (int)amount, (int)fromAccountId, (int)toAccountId, (int)oper.OperatorID);
+                db.SaveChanges();
+                return 0;
+            }
+            return 99;
         }
     }
 }
