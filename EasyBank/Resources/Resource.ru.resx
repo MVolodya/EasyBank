@@ -344,7 +344,7 @@
   </data>
   <data name="WrongFileChoose" xml:space="preserve">
     <value>Ошибка загрузки. Файл должен быть картинкой</value>
-    </data>
+  </data>
   <data name="AvailableAmount" xml:space="preserve">
     <value>Доступная сумма</value>
   </data>
@@ -356,5 +356,11 @@
   </data>
   <data name="WrongLogInForClientPage" xml:space="preserve">
     <value>Вход только для клиентов</value>
+  </data>
+  <data name="WidthdrawMoney" xml:space="preserve">
+    <value>Снять деньги</value>
+  </data>
+  <data name="DecimalFormat" xml:space="preserve">
+    <value>Сумма должна иметь формат (0.00 або 0.0 або 0)</value>
   </data>
 </root>

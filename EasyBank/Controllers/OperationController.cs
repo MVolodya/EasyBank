@@ -12,25 +12,47 @@ using WebMatrix.WebData;
 namespace EasyBank.Controllers
 {
     [Culture]
-    [Authorize]
+    [Authorize(Roles="Administrator, Operator")]
     [InitializeSimpleMembership]
     public class OperationController : Controller
     {
         [HttpGet]
-        public ActionResult AddMoney(int? Id)
+        public ActionResult AddMoney(int? id)
         {
             ConnectionContext db = new ConnectionContext();
-            Account account = db.Accounts.FirstOrDefault(a => a.AccountId == Id);
+            Account account = db.Accounts.FirstOrDefault(a => a.AccountId == id);
             if (account != null)
                 return View(account);
             else return HttpNotFound();
         }
         [HttpPost]
-        public ActionResult AddMoney(int? accountId, int? amount)
+        public ActionResult AddMoney(int? accountId, int? amount, int? clientId)
         {
             OperationManager om = new OperationManager();
-            om.DepositMoney(User.Identity.Name, accountId, amount);
-            return RedirectToAction("ClientsProfile", "Protected"/*, new { clientId = client.ClientId }*/);
+            int result = om.DepositMoney(User.Identity.Name, accountId, amount);
+            if (result == 0)
+                return RedirectToAction("ClientsProfile", "Protected", new { clientId = clientId });
+            return RedirectToAction("OperationError", "Error", new { errorCode = result });
         }
+
+        [HttpGet]
+        public ActionResult WidthdrawMoney(int? id)
+        {
+            ConnectionContext db = new ConnectionContext();
+            Account account = db.Accounts.FirstOrDefault(a => a.AccountId == id);
+            if (account != null)
+                return View(account);
+            else return HttpNotFound();
+        }
+        [HttpPost]
+        public ActionResult WidthdrawMoney(int? accountId, int? amount, int? clientId)
+        {
+            OperationManager om = new OperationManager();
+            int result = om.WithdrawMoney(User.Identity.Name, accountId, amount);
+            if (result == 0)
+                return RedirectToAction("ClientsProfile", "Protected", new { clientId = clientId });
+            return RedirectToAction("OperationError", "Error", new { errorCode = result });
+        }
+
     }
 }

@@ -78,7 +78,8 @@
     @Html.ActionLink(@Resources.Resource.AddAccount, "AddAccount", new { clientId = Model.ClientId })
 </p>
 <table>
-    @if (Model.Accounts.Count() != 0) { 
+    @if (Model.Accounts.Count() != 0)
+    {
         <tr>
             <th>@Html.Label(@Resources.Resource.AccNumb)</th>
             <th>@Html.Label(@Resources.Resource.ExpDate)</th>
@@ -88,12 +89,14 @@
             <th>@Html.Label(@Resources.Resource.Status)</th>
         </tr>
     }
-    else { 
-        <br />
+    else
+    {
+
         @Resources.Resource.AccountsAreAbsent
     }
-    @foreach (var item in Model.Accounts) { 
-        
+    @foreach (var item in Model.Accounts)
+    {
+
         <tr>
             <td>
                 <div class="display-field">
@@ -126,10 +129,11 @@
                 </div>
             </td>
             <td>
-                @Html.ActionLink(@Resources.Resource.AddMoney, "AddMoney", "Operation", new { Id = item.AccountId }, null) |
-                @Html.ActionLink(@Resources.Resource.AddMoney, "WithdrawMoney", "Operation", new { accountId = item.AccountId }, null) |
-                @Html.ActionLink(@Resources.Resource.TransMoney, "TransferMoney", new { id = item.AccountId }) |
+                @Html.ActionLink(@Resources.Resource.AddMoney, "AddMoney", "Operation", new { id = item.AccountId }, null) |
+                @Html.ActionLink(@Resources.Resource.WidthdrawMoney, "WidthdrawMoney", "Operation", new { id = item.AccountId }, null) |
+                @Html.ActionLink(@Resources.Resource.TransMoney, "TransferMoney", "Operation", new { id = item.AccountId }, null) |
             </td>
         </tr>
     }
 </table>
+

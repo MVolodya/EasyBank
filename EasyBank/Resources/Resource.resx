@@ -347,7 +347,7 @@
   </data>
   <data name="WrongFileChoose" xml:space="preserve">
     <value>Wrong input type. Image is expected.</value>
-    </data>
+  </data>
   <data name="AvailableAmount" xml:space="preserve">
     <value>Available amount</value>
   </data>
@@ -359,5 +359,11 @@
   </data>
   <data name="WrongLogInForClientPage" xml:space="preserve">
     <value>Only for clients</value>
+  </data>
+  <data name="WidthdrawMoney" xml:space="preserve">
+    <value>Widthdraw money</value>
+  </data>
+  <data name="DecimalFormat" xml:space="preserve">
+    <value>Amount must have a formal like (0.00 or 0.0 or 0)</value>
   </data>
 </root>
