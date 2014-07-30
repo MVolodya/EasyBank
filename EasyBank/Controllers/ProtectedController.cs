@@ -444,6 +444,7 @@ namespace EasyBank.Controllers
             ViewBag.Currencies = mostRecentEntries;
             return View();
         }
+        [Authorize(Roles = "Administrator")]
         public ActionResult AddCurrency(String name)
         {
             if (name != null)
@@ -466,6 +467,8 @@ namespace EasyBank.Controllers
                 return RedirectToAction("CurrencyList");
             }
         }
+
+        [Authorize(Roles = "Administrator")]
         public ActionResult verifyDelete(int? id)
         {
             
@@ -493,6 +496,8 @@ namespace EasyBank.Controllers
             }
 
         }
+
+        [Authorize(Roles = "Administrator")]
         public ActionResult CurrencyDelete(int? id)
         {
             if (id != null)
@@ -527,5 +532,6 @@ namespace EasyBank.Controllers
             }
             return false;
         }
+
     }
 }

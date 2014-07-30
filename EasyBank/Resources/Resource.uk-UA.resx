@@ -160,7 +160,7 @@
     <value>Довжина повинна бути 8 символів</value>
   </data>
   <data name="NameFromCap" xml:space="preserve">
-    <value>Повинне починатись з великої букви та складатись із латинських букв</value>
+    <value>Повинне починатись з великої літери та складатись із латинських букв</value>
   </data>
   <data name="NameLen3To20" xml:space="preserve">
     <value>Це поле повинне вміщувати від 3 до 20 символів</value>
@@ -350,5 +350,11 @@
   </data>
   <data name="IsOnlineUser" xml:space="preserve">
     <value>Користувач інтернет банкінгу</value>
+  </data>
+  <data name="WrongLogInForAdminAndOperPage" xml:space="preserve">
+    <value>Вхід тільки для операторів та адміністраторів</value>
+  </data>
+  <data name="WrongLogInForClientPage" xml:space="preserve">
+    <value>Вхід тільки для клієнтів</value>
   </data>
 </root>

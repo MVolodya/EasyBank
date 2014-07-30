@@ -354,4 +354,10 @@
   <data name="IsOnlineUser" xml:space="preserve">
     <value>Is online system user</value>
   </data>
+  <data name="WrongLogInForAdminAndOperPage" xml:space="preserve">
+    <value>Only for admins and operators</value>
+  </data>
+  <data name="WrongLogInForClientPage" xml:space="preserve">
+    <value>Only for clients</value>
+  </data>
 </root>

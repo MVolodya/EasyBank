@@ -191,6 +191,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\OfficeController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\OperationController.cs" />
     <Compile Include="Controllers\ProtectedController.cs" />
@@ -474,6 +475,19 @@
     <Content Include="Views\Account\RegisterAdmin.cshtml" />
     <Content Include="Views\Account\RegisterOperator.cshtml" />
     <Content Include="Views\Protected\OperatorsList.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Office\RegisterOperator.cshtml" />
+    <Content Include="Views\Office\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Office\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Office\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Office\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Office\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Office\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Office\Login.cshtml" />
+    <Content Include="Views\Office\Manage.cshtml" />
+    <Content Include="Views\Office\Register.cshtml" />
+    <Content Include="Views\Office\RegisterAdmin.cshtml" />
+    <Content Include="Views\Office\index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
