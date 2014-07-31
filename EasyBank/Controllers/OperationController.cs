@@ -64,11 +64,11 @@ namespace EasyBank.Controllers
             else return HttpNotFound();
         }
         [HttpPost]
-        public ActionResult TransferMoney(int? fromAccountId, string toAccountNumber, decimal? amount, int? clientId)
+        public ActionResult TransferMoney(int? fromAccountId, string accountNumber, decimal? amount, int? clientId)
         {
             OperationManager om = new OperationManager();
             
-            int result = om.TransferMoney(User.Identity.Name, fromAccountId, toAccountNumber, amount);
+            int result = om.TransferMoney(User.Identity.Name, fromAccountId, accountNumber, amount);
             if (result == 0)
                 return RedirectToAction("ClientsProfile", "Protected", new { clientId = clientId });
             return RedirectToAction("OperationError", "Error", new { errorCode = result });
