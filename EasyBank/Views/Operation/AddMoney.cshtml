@@ -64,6 +64,7 @@
 @using (Html.BeginForm("AddMoney", "Operation", FormMethod.Post))
 {
     Model.Amount = 0;
+    @Html.HiddenFor(model => model.AccountId)
     @Html.HiddenFor(model => model.ClientId)
     @Html.EditorFor(model => model.Amount)
     @Html.ValidationMessageFor(model => model.Amount)

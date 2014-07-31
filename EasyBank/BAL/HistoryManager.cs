@@ -13,10 +13,15 @@ namespace EasyBank.DAL
         {
             db.OperationHistory.Add(new Operation(amount, OperationTypes.Deposit, toAccountId:toId, operatorId:operatorId));
         }
+
         public static void AddWidthdrawOperation(ConnectionContext db, int amount, int fromId, int operatorId)
         {
             db.OperationHistory.Add(new Operation(-amount, OperationTypes.Withdraw, fromAccountId: fromId, operatorId: operatorId));
         }
-        
+
+        public static void AddTransferOperation(ConnectionContext db, int amount, int fromId, int toId, int operatorId)
+        {
+            db.OperationHistory.Add(new Operation(amount, OperationTypes.Transfer, fromId, toId, operatorId));
+        }
     }
 }

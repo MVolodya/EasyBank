@@ -40,10 +40,8 @@
                 mode: "save",
                 swffile: "@Url.Content("~/Scripts/jscam.swf")",
                 onTick: function () { },
-                onSave: function () {
-                },
+                onSave: function () { window.location.href = "/Protected/ClientsProfile?clientId=@Model.ClientId"; },
                 onCapture: function () {
-
                     webcam.save("@Url.Content("~/Protected/Capture")/@Model.ClientId");
                 },
                 debug: function () { },
@@ -53,7 +51,7 @@
     }
     <input type="button" value="Shoot!" onclick="webcam.capture();" />
     <div id="Camera"></div>
-    <div> @Html.ActionLink("Clients profile", "ClientsProfile", new { clientId = Model.ClientId })</div>
+    @*<div> @Html.ActionLink("Clients profile", "ClientsProfile", new { clientId = Model.ClientId })</div>*@
 }
 
 <div>

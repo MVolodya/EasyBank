@@ -329,6 +329,7 @@ namespace EasyBank.Controllers
                 ViewBag.Message = "No client with this Id";
                 return RedirectToAction("ClientsList");
             }
+
         }
         public ActionResult Capture(int? id)
         {
