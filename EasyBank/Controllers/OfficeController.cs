@@ -440,11 +440,12 @@ namespace EasyBank.Controllers
         [Authorize(Roles="Administrator")]
         public ActionResult AddDepositCredit()
         {
-            var ListTypes = db.AccountTypes.ToList();
+            var ListTypes = (from lt in db.AccountTypes
+                             where lt.TypeId != 1
+                             select lt).ToList();
             ViewBag.Types = ListTypes;
-            
-                return View();
 
+            return View();
         }
 
         [HttpPost]
@@ -454,6 +455,26 @@ namespace EasyBank.Controllers
             db.DepositCreditModels.Add(depositCreditModel);
             db.SaveChanges();
             return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public ActionResult DepositList()
+        {
+            var deposits = (from d in db.DepositCreditModels
+                            where d.AccountTypeId== 2
+                            select d).ToList();
+
+            return View(deposits);
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public ActionResult CreditList()
+        {
+            var credits = (from c in db.DepositCreditModels
+                            where c.AccountTypeId == 3
+                            select c).ToList();
+
+            return PartialView(credits);
         }
 
         #region Helpers

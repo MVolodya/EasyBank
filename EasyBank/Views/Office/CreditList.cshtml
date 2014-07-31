@@ -1,0 +1,38 @@
+﻿@model List<EasyBank.Models.DepositCreditModel>
+
+<table>
+    <tr>
+        <th>
+
+            Credit Name
+        </th>
+        <th>
+            Duration
+        </th>
+        <th>
+            Interest Rate
+        </th>
+        <th>
+            Early Termination
+        </th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterestRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EarlyTermination)
+            </td>
+
+        </tr>
+    }
+</table>
