@@ -69,6 +69,7 @@ namespace EasyBank.Controllers
             OperationManager om = new OperationManager();
             
             int result = om.TransferMoney(User.Identity.Name, fromAccountId, accountNumber, amount);
+
             if (result == 0)
                 return RedirectToAction("ClientsProfile", "Protected", new { clientId = clientId });
             return RedirectToAction("OperationError", "Error", new { errorCode = result });

@@ -89,9 +89,10 @@
                             {
                                 <li>@Html.ActionLink("Register Operator","RegisterOperator", "Account")</li>
                             }
+                            
                             @if (User.IsInRole("Administrator"))
                             {
-                                <li>@Html.ActionLink("Add Bank Product", "AddDepositCredit","Office")</li>
+                                <li>@Html.ActionLink("Bank Products","DepositList","Office")</li>
                             }
                                     
 

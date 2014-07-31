@@ -77,6 +77,9 @@
 <p>
     @Html.ActionLink(@Resources.Resource.AddAccount, "AddAccount", new { clientId = Model.ClientId })
 </p>
+ <div>
+    @Html.ActionLink("AddPhoto", "AddPhoto", new { id = Model.ClientId })
+</div>
 <table>
     @if (Model.Accounts.Count() != 0)
     {

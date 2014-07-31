@@ -512,6 +512,8 @@
     <Content Include="Views\Operation\WidthdrawMoney.cshtml" />
     <Content Include="Views\Office\AddDepositCredit.cshtml" />
     <Content Include="Views\Operation\TransferMoney.cshtml" />
+    <Content Include="Views\Office\DepositList.cshtml" />
+    <Content Include="Views\Office\CreditList.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

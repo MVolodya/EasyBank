@@ -785,3 +785,5 @@ C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.DepCredModel.resources
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.DCModel.resources
+C:\Users\V\Desktop\GitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.DepCredModel.resources
+C:\Users\V\Desktop\GitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.DCModel.resources
