@@ -1,0 +1,111 @@
+﻿@model EasyBank.Models.Account
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<fieldset>
+    <legend>Account</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.AccountNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AccountNumber)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ExpirationDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExpirationDate)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Amount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Amount)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.AvailableAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AvailableAmount)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ClientId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Client.Name)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.TypeId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AccountType.TypeName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.CurrencyId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Currency.CurrencyName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.StatusId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AccountStatus.StatusName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Interest)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Interest)
+    </div>
+</fieldset>
+
+<h4><b>Transfer Funds</b></h4>
+@if (Model.AccountType.TypeName != "Credit")
+{
+    using (Html.BeginForm("TransferMoney", "Operation", new{fromAccountId = Model.AccountId}, FormMethod.Post))
+    {
+        Model.AccountNumber = "";
+        
+        @Html.HiddenFor(model => model.ClientId)
+        @Html.HiddenFor(model => model.AccountId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AccountNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AccountNumber)
+            @Html.ValidationMessageFor(model => model.AccountNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Amount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Amount)
+            @Html.ValidationMessageFor(model => model.Amount)
+        </div>
+
+        <br />
+        <input type="submit" value="submit" />
+    }
+}
+else
+{
+    <h6>Can't transfer money from credit account</h6>
+}
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

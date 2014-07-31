@@ -37,6 +37,12 @@ namespace EasyBank
 
             System.Threading.Thread.CurrentThread.CurrentCulture = cInf;
             System.Threading.Thread.CurrentThread.CurrentUICulture = cInf;
+
+
+            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+
+            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
         }
     }
 }

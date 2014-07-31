@@ -22,14 +22,15 @@ namespace EasyBank
 
         private void AddMoneyOnDepositAccount(ConnectionContext db, Account account, decimal amount)
         {
-            
+
         }
 
         //0 - ok
 
         //1 - too small amount (min 5 for TA)
         //2 - too small amount (min 100 for DA)
-        //3 - too small amount (10% of credit for CA) //not developed
+        //3 - negative operation amount
+        //--------3 - too small amount (10% of credit for CA) //not developed
         //4 - account is Blocked or Frozen or Expired
         //5 - not enough money on account
         //6 - attempt to widthdraw from credit account
@@ -37,6 +38,7 @@ namespace EasyBank
         //8 - attempt to transfer from account that is not MT account
         //9 - attempt to transfer to account that is not MT account
         //31 - if early termination is false only whole amount can be widthdrawn
+        //32 - can't transfer money to yourself
 
         //10 - operatorName == null
         //11 - accountId == null
@@ -44,6 +46,14 @@ namespace EasyBank
 
         //21 - operator not found in db
         //22 - account not found in db
+
+        //41 - Sending account is blocked
+        //42 - Sending account is frozen
+        //43 - Sending account is expired
+        //44 - Receiving account is blocked
+        //45 - Receiving account is frozen
+        //46 - Receiving account is expired
+
 
         //99 - uncatched error
 
@@ -55,12 +65,16 @@ namespace EasyBank
             if (operatorEmail == null) return 10;
             if (toAccountId == null) return 11;
             if (amount == null) return 12;
-                
+
             Operator oper = db.Operators.FirstOrDefault(o => o.Email == operatorEmail);
             Account acc = db.Accounts.FirstOrDefault(a => a.AccountId == toAccountId);
 
             if (oper == null) return 21;
             if (acc == null) return 22;
+
+            if (acc.AccountType.TypeName == "Blocked") return 44;
+            if (acc.AccountType.TypeName == "Frozen") return 45;
+            if (acc.AccountType.TypeName == "Expired") return 46;
 
             bool dataChanged = false;
 
@@ -70,15 +84,17 @@ namespace EasyBank
                     {
                         if (amount < 5) return 1;
                         acc.Amount += (decimal)amount; //add on main acc
-                        acc.AvailableAmount += (decimal) amount; // add on available acc
+                        acc.AvailableAmount += (decimal)amount; // add on available acc
                         dataChanged = true;
                     }
                     break;
                 case "Deposit":
                     {
-                        if (amount > 100) return 2;
+                        if (amount < 100) return 2;
+
                         acc.Amount += (decimal)amount;
                         acc.AvailableAmount += (decimal)amount;
+
                         dataChanged = true;
                     }
                     break;
@@ -87,12 +103,11 @@ namespace EasyBank
                         //if (amount > Decimal.Multiply(acc.Amount, (decimal)0.1)) return 3;
                         if (acc.Amount + amount > 0) return 7;
                         acc.Amount += (decimal)amount;
-                        acc.AvailableAmount += (decimal)amount;
                         dataChanged = true;
                     }
                     break;
             }
-            if(dataChanged)
+            if (dataChanged)
             {
                 db.Entry(acc).State = System.Data.Entity.EntityState.Modified;
                 HistoryManager.AddDepositOperation(db, (int)amount, (int)toAccountId, (int)oper.OperatorID);
@@ -110,11 +125,17 @@ namespace EasyBank
             if (fromAccountId == null) return 11;
             if (amount == null) return 12;
 
+            if (amount <= 0) return 3;
+
             Operator oper = db.Operators.FirstOrDefault(o => o.Email == operatorEmail);
             Account acc = db.Accounts.FirstOrDefault(a => a.AccountId == fromAccountId);
 
             if (oper == null) return 21;
             if (acc == null) return 22;
+
+            if (acc.AccountType.TypeName == "Blocked") return 41;
+            if (acc.AccountType.TypeName == "Frozen") return 42;
+            if (acc.AccountType.TypeName == "Expired") return 43;
 
             bool dataChanged = false;
 
@@ -145,11 +166,11 @@ namespace EasyBank
                             }
                             else
                             {
-                                if(!(acc.AvailableAmount - amount).Equals(0))return 31;
+                                if (!(acc.AvailableAmount - amount).Equals(0)) return 31;
                                 else
                                 {
-                                    acc.Amount -=(decimal)amount;
-                                    acc.AvailableAmount-=(decimal)amount;
+                                    acc.Amount -= (decimal)amount;
+                                    acc.AvailableAmount -= (decimal)amount;
                                     dataChanged = true;
                                 }
                             }
@@ -171,9 +192,9 @@ namespace EasyBank
             if (dataChanged)
             {
                 db.Entry(acc).State = System.Data.Entity.EntityState.Modified;
-                HistoryManager.AddDepositOperation(db, (int)amount, (int)fromAccountId, (int)oper.OperatorID);
+                HistoryManager.AddWidthdrawOperation(db, (int)amount, (int)fromAccountId, (int)oper.OperatorID);
                 db.SaveChanges();
-                
+
                 return 0;
             }
             return 99;
@@ -186,14 +207,26 @@ namespace EasyBank
             if (fromAccountId == null || toAccountNumber == null) return 11;
             if (amount == null) return 12;
 
+            if (amount <= 0) return 3;
+
             Operator oper = db.Operators.FirstOrDefault(o => o.Email == operatorEmail);
             Account fromAcc = db.Accounts.FirstOrDefault(a => a.AccountId == fromAccountId);
             Account toAcc = db.Accounts.FirstOrDefault(a => a.AccountNumber == toAccountNumber);
-            int toAccountId = toAcc.AccountId;
 
             if (oper == null) return 21;
             if (fromAcc == null) return 22;
             if (toAcc == null) return 22;
+
+            int toAccountId = toAcc.AccountId;
+
+            if (fromAccountId == toAccountId) return 32;
+
+            if (fromAcc.AccountType.TypeName == "Blocked") return 41;
+            if (fromAcc.AccountType.TypeName == "Frozen") return 42;
+            if (fromAcc.AccountType.TypeName == "Expired") return 43; 
+            if (toAcc.AccountType.TypeName == "Blocked") return 44;
+            if (toAcc.AccountType.TypeName == "Frozen") return 45;
+            if (toAcc.AccountType.TypeName == "Expired") return 46;
 
             bool dataChanged = false;
 
