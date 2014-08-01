@@ -513,6 +513,8 @@
     <Content Include="Views\Office\AddDepositCredit.cshtml" />
     <Content Include="Views\Office\DepositList.cshtml" />
     <Content Include="Views\Office\CreditList.cshtml" />
+    <Content Include="Views\Operation\TotalDepositedAmount.cshtml" />
+    <Content Include="Views\Operation\TotalCreditedAmount.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

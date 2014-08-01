@@ -7,18 +7,18 @@ namespace EasyBank.Models
 {
     public class RegisterCompositeModel
     {
-        public int ClientId { get; set; }
+        /*public int ClientId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string PIdNumber { get; set; }
         public DateTime BirthDate { get; set; }
         public string Email { get; set; }
-        public DateTime RegistrationDate { get; set; }
+        public DateTime RegistrationDate { get; set; } */
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
 
-
-        public virtual ICollection<ClientsImage> Images { get; set; }
-        public virtual ICollection<Account> Accounts { get; set; }
+        public Client Client { get; set; } 
+        /*public virtual ICollection<ClientsImage> Images { get; set; }
+        public virtual ICollection<Account> Accounts { get; set; }*/
     }
 }

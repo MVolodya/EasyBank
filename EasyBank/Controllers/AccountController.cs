@@ -89,7 +89,7 @@ namespace EasyBank.Controllers
         {
             if (ModelState.IsValid)
             {
-                 if (db.Clients.FirstOrDefault(c => c.PIdNumber == registerCompModel.PIdNumber) != null)
+                 if (db.Clients.FirstOrDefault(c => c.PIdNumber == registerCompModel.Client.PIdNumber) != null)
                     return HttpNotFound();//Change for partial view later-----------------------!!!!!!!
                  if (file != null)
                  {
@@ -97,33 +97,36 @@ namespace EasyBank.Controllers
                      try
                      {
                          var client = new Client();
-                         client.Name = registerCompModel.Name;
-                         client.Surname = registerCompModel.Surname;
-                         client.PIdNumber = registerCompModel.PIdNumber;
-                         client.BirthDate = registerCompModel.BirthDate;
-                         client.Email = registerCompModel.Email;
+                         client.Name = registerCompModel.Client.Name;
+                         client.Surname = registerCompModel.Client.Surname;
+                         client.PIdNumber = registerCompModel.Client.PIdNumber;
+                         client.BirthDate = registerCompModel.Client.BirthDate;
+                         client.Email = registerCompModel.Client.Email;
                          client.RegistrationDate = DateTime.Now;
                          db.Clients.Add(client);
-                         
-
-                         ClientsImage photo = new ClientsImage();
-                         photo.Name = System.IO.Path.GetFileName(file.FileName);
-                         byte[] n = new byte[file.InputStream.Length];
-                         file.InputStream.Read(n, 0, (int)file.InputStream.Length);
-                         photo.ImageContent = GetCompressedImage(n);
-                         photo.ContentType = file.ContentType;
-                         photo.PhotoType = (int)ImageType.PassportScan;
-                         photo.ClientId = client.ClientId;
-                         db.Images.Add(photo);
-                         db.SaveChanges();
 
                          var model = new RegisterModel();
-                         model.UserName = registerCompModel.Email;
+                         model.UserName = registerCompModel.Client.Email;
                          model.Password = registerCompModel.Password;
                          model.ConfirmPassword = registerCompModel.ConfirmPassword;
                          WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                          Roles.AddUserToRole(model.UserName, "Client");
-                         return RedirectToAction("ClientsList", "Protected");
+
+
+                         ClientsImage photo = new ClientsImage();
+                         if (fileIsImage(file))
+                         {
+                             photo.Name = System.IO.Path.GetFileName(file.FileName);
+                             byte[] n = new byte[file.InputStream.Length];
+                             file.InputStream.Read(n, 0, (int)file.InputStream.Length);
+                             photo.ImageContent = GetCompressedImage(n);
+                             photo.ContentType = file.ContentType;
+                             photo.PhotoType = (int)ImageType.PassportScan;
+                             photo.ClientId = client.ClientId;
+                             db.Images.Add(photo);
+                             db.SaveChanges();
+                             return RedirectToAction("ClientsList", "Protected");
+                         }
                      }
                      catch (MembershipCreateUserException e)
                      {
@@ -131,7 +134,7 @@ namespace EasyBank.Controllers
                      }
                  }
             }
-
+            ViewBag.Message = @Resources.Resource.WrongFileChoose;
             // If we got this far, something failed, redisplay form
             return View(registerCompModel);
         }
@@ -492,6 +495,17 @@ namespace EasyBank.Controllers
                     }
                 }
             }
+        }
+
+        private Boolean fileIsImage(HttpPostedFileBase file)
+        {
+
+            string fileType = file.FileName.ToString().Remove(0, file.FileName.LastIndexOf('.'));
+            if (fileType == ".jpg" || fileType == ".jpeg" || fileType == ".JPG" || fileType == ".JPEG" || fileType == ".png" || fileType == ".PNG")
+            {
+                return true;
+            }
+            return false;
         }
 
         #region Helpers

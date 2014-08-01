@@ -402,7 +402,7 @@ namespace EasyBank.Controllers
 
             return PartialView();
 
-        }
+        } 
 
         [HttpGet]
         public ActionResult AddAccount(int? clientId)

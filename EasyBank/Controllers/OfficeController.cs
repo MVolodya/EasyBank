@@ -91,7 +91,7 @@ namespace EasyBank.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (db.Clients.FirstOrDefault(c => c.PIdNumber == registerCompModel.PIdNumber) != null)
+                if (db.Clients.FirstOrDefault(c => c.PIdNumber == registerCompModel.Client.PIdNumber) != null)
                     return HttpNotFound();//Change for partial view later-----------------------!!!!!!!
                 if (file != null)
                 {
@@ -99,11 +99,11 @@ namespace EasyBank.Controllers
                     try
                     {
                         var client = new Client();
-                        client.Name = registerCompModel.Name;
-                        client.Surname = registerCompModel.Surname;
-                        client.PIdNumber = registerCompModel.PIdNumber;
-                        client.BirthDate = registerCompModel.BirthDate;
-                        client.Email = registerCompModel.Email;
+                        client.Name = registerCompModel.Client.Name;
+                        client.Surname = registerCompModel.Client.Surname;
+                        client.PIdNumber = registerCompModel.Client.PIdNumber;
+                        client.BirthDate = registerCompModel.Client.BirthDate;
+                        client.Email = registerCompModel.Client.Email;
                         client.RegistrationDate = DateTime.Now;
                         db.Clients.Add(client);
 
@@ -120,7 +120,7 @@ namespace EasyBank.Controllers
                         db.SaveChanges();
 
                         var model = new RegisterModel();
-                        model.UserName = registerCompModel.Email;
+                        model.UserName = registerCompModel.Client.Email;
                         model.Password = registerCompModel.Password;
                         model.ConfirmPassword = registerCompModel.ConfirmPassword;
                         WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
