@@ -15,6 +15,8 @@ namespace EasyBank.Models
         [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "CurrencyNameRequired")]
         public string CurrencyName { get; set; }
 
+        public decimal ExchangeRate { get; set; }
+
         public virtual ICollection<Account> Account { get; set; }
     }
 }

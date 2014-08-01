@@ -255,9 +255,9 @@
     <Compile Include="Migrations\201407301301301_DepCredModel.Designer.cs">
       <DependentUpon>201407301301301_DepCredModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407301311111_DCModel.cs" />
-    <Compile Include="Migrations\201407301311111_DCModel.Designer.cs">
-      <DependentUpon>201407301311111_DCModel.cs</DependentUpon>
+    <Compile Include="Migrations\201408011735189_AddedErrorReportAndUpdatedOperatorAndCurrencyModels.cs" />
+    <Compile Include="Migrations\201408011735189_AddedErrorReportAndUpdatedOperatorAndCurrencyModels.Designer.cs">
+      <DependentUpon>201408011735189_AddedErrorReportAndUpdatedOperatorAndCurrencyModels.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -269,6 +269,7 @@
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\ClientsImage.cs" />
     <Compile Include="Models\DepositCreditModel.cs" />
+    <Compile Include="Models\ErrorReport.cs" />
     <Compile Include="Models\OperationModels.cs" />
     <Compile Include="Models\Operator.cs" />
     <Compile Include="Models\RegisterCompositeModel.cs" />
@@ -321,8 +322,8 @@
     <EmbeddedResource Include="Migrations\201407301301301_DepCredModel.resx">
       <DependentUpon>201407301301301_DepCredModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407301311111_DCModel.resx">
-      <DependentUpon>201407301311111_DCModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201408011735189_AddedErrorReportAndUpdatedOperatorAndCurrencyModels.resx">
+      <DependentUpon>201408011735189_AddedErrorReportAndUpdatedOperatorAndCurrencyModels.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
