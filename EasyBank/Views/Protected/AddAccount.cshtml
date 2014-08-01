@@ -24,7 +24,7 @@
                 listType.Add(new SelectListItem() { Text = item.TypeName, Value = item.TypeId.ToString() });
             }
         }
-        @Html.DropDownListFor(model => model.TypeId, listType)
+        @Html.DropDownListFor(model => model.TypeId, listType, new { @Size = "3" })
 
         <p>@Resources.Resource.Currency</p>
 
@@ -36,9 +36,29 @@
                 listCurrency.Add(new SelectListItem() { Text = item.CurrencyName, Value = item.CurrencyId.ToString() });
             }
         }
-        @Html.DropDownListFor(model => model.CurrencyId, listCurrency)
+        @Html.DropDownListFor(model => model.CurrencyId, listCurrency, new {@Size="3" })
+        <p>Deposits</p>
+        @{
+            List<SelectListItem> listDeposits = new List<SelectListItem>();
+            var ListDeposits = ViewBag.Deposits;
+            foreach (var item in ListDeposits)
+            {
+                listDeposits.Add(new SelectListItem() { Text = item.Name, Value = item.DepositCreditModelID.ToString() });
+            }
+        }
+        @Html.DropDownListFor(model => model.TypeId, listDeposits, new { @Size = "3" })
 
-
+        <p>Credits</p>
+        @{
+            List<SelectListItem> listCredits = new List<SelectListItem>();
+            var ListCredits = ViewBag.Credits;
+            foreach (var item in ListCredits)
+            {
+                listCredits.Add(new SelectListItem() { Text = item.Name, Value = item.DepositCreditModelID.ToString() });
+            }
+        }
+        @Html.DropDownListFor(model => model.TypeId, listCredits, new { @Size = "3" })
+    
         <p>
             <input type="submit" value="@Resources.Resource.Create"  />
         </p>

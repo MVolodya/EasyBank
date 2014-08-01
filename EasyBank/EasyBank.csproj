@@ -517,6 +517,7 @@
     <Content Include="Views\Office\CreditList.cshtml" />
     <Content Include="Views\Operation\TotalDepositedAmount.cshtml" />
     <Content Include="Views\Operation\TotalCreditedAmount.cshtml" />
+    <Content Include="Views\Protected\ChooseBankProduct.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

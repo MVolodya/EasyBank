@@ -403,7 +403,7 @@ namespace EasyBank.Controllers
             return PartialView();
 
         } 
-
+        
         [HttpGet]
         public ActionResult AddAccount(int? clientId)
         {
@@ -411,6 +411,14 @@ namespace EasyBank.Controllers
             ViewBag.Types = ListTypes;
             var ListCurrency = db.Currencies.ToList();
             ViewBag.Currencys = ListCurrency;
+            var ListDeposits = (from deps in db.DepositCreditModels
+                                where deps.AccountTypeId == 2
+                                select deps).ToList();
+            ViewBag.Deposits = ListDeposits;
+            var ListCredits = (from creds in db.DepositCreditModels
+                               where creds.AccountTypeId == 3
+                               select creds).ToList();
+            ViewBag.Credits = ListCredits;
             if (clientId != null)
             {
                 ViewBag.ClientId = clientId;
@@ -428,7 +436,6 @@ namespace EasyBank.Controllers
             if (ModelState.IsValid)
             {
                 db.Accounts.Add(account);
-
                 db.SaveChanges();
                 return RedirectToAction("ClientsProfile", new { clientId = account.ClientId });
             }
@@ -438,14 +445,47 @@ namespace EasyBank.Controllers
                 return RedirectToAction("AddAccount");
             }
         }
+ 
+        [HttpGet]
+        public ActionResult ChooseBankProduct(int accountId)
+        {
+            var type = (int)(from accts in db.Accounts
+                       where accts.AccountId == accountId
+                       select accts.TypeId).FirstOrDefault();
+            if (type == 2)
+            {
+                var deposits = (from d in db.DepositCreditModels
+                                where d.AccountTypeId == 2
+                                select d).ToList();
+                ViewBag.AccountId = accountId;
+                return View(deposits);
+            }
+            else if (type == 3)
+            {
+                var credits = (from c in db.DepositCreditModels
+                               where c.AccountTypeId == 3
+                               select c).ToList();
 
+                return View(credits);   
+            }
+            return View();
+        }
+        
+        [HttpPost]   
+        public ActionResult ChooseBankProduct(DepositCreditModel depoCreditModel)
+        {
+
+            return RedirectToAction("ClientsProfile");
+        }
+        
         [Authorize(Roles = "Administrator, Operator")]
         public ActionResult CurrencyList()
         {
             var mostRecentEntries = (from currency in db.Currencies select currency).ToList();
             ViewBag.Currencies = mostRecentEntries;
             return View();
-        }
+        } 
+
         [Authorize(Roles = "Administrator")]
         public ActionResult AddCurrency(String name)
         {

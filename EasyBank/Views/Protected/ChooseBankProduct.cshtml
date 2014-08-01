@@ -1,13 +1,14 @@
 ﻿@model List<EasyBank.Models.DepositCreditModel>
-<br/>
 
-    @Html.ActionLink("Add Bank Product", "AddDepositCredit", "Office")
+@using (Html.BeginForm("ChooseBankProduct", "Protected", FormMethod.Post))
+{
 
-<br/>
 <table>
     <tr>
         <th>
-
+             
+        </th>
+        <th>
             Deposit Name
         </th>
         <th>
@@ -21,9 +22,13 @@
         </th>
 
     </tr>
+    
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @Html.RadioButtonFor(modelItem => item, "Yes")
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
@@ -40,5 +45,9 @@
         </tr>
     }
 </table>
- 
-@Html.Action("CreditList")
+
+        <p>
+            <input type="submit" value="@Resources.Resource.Create"  />
+        </p>
+    
+}
