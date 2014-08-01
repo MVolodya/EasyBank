@@ -74,5 +74,35 @@ namespace EasyBank.Controllers
                 return RedirectToAction("ClientsProfile", "Protected", new { clientId = clientId });
             return RedirectToAction("OperationError", "Error", new { errorCode = result });
         }
+
+        public ActionResult TotalDepositedAmount()
+        {
+            ConnectionContext db = new ConnectionContext();
+            decimal[] depositsAmount = (from da in db.Accounts
+                                  where da.TypeId != 3
+                                  select da.Amount).ToArray();
+            decimal totalDeposits = 0;
+            foreach (var item in depositsAmount)
+            {
+               totalDeposits += item;
+            }
+
+            return View(totalDeposits);
+        }
+
+        public ActionResult TotalCreditedAmount()
+        {
+            ConnectionContext db = new ConnectionContext();
+            decimal[] creditsAmount = (from ca in db.Accounts
+                                        where ca.TypeId == 3
+                                        select ca.Amount).ToArray();
+            decimal totalCredits = 0;
+            foreach (var item in creditsAmount)
+            {
+                totalCredits += item;
+            }
+
+            return PartialView(totalCredits);
+        }
     }
 }

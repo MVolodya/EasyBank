@@ -14,7 +14,7 @@ else
     var base64 = Convert.ToBase64String(Model.ImageContent);
     var imgSrc = String.Format("data:image/jpeg;base64,{0}", base64);
 
-    <img style="width:180px" src="@imgSrc" />
+    <img src="@imgSrc" />
 }
 
 <br />

@@ -67,6 +67,7 @@
                     </section> 
                     <nav>
                         <ul id="menu">
+                                
                                 <li>@Html.ActionLink(Resources.Resource.Home, "Index", "Home")</li>
                             @if (User.IsInRole("Client"))
                             {
@@ -93,6 +94,10 @@
                             @if (User.IsInRole("Administrator"))
                             {
                                 <li>@Html.ActionLink("Bank Products","DepositList","Office")</li>
+                            }
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                <li>@Html.ActionLink("Financial Reports","TotalDepositedAmount","Operation")</li>
                             }
                                     
 
