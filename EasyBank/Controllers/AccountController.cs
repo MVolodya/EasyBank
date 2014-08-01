@@ -50,7 +50,8 @@ namespace EasyBank.Controllers
             }
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                return RedirectToLocal(returnUrl);
+                //return RedirectToLocal(returnUrl);
+                return RedirectToAction("ClientsProfile", "Account");
             }
 
             // If we got this far, something failed, redisplay form
@@ -407,6 +408,46 @@ namespace EasyBank.Controllers
         {
             return View();
         }
+
+        public ActionResult ShowClientPhoto(int? id)
+        {
+            var image = (from images in db.Images
+                         where images.ClientId == id
+                         where images.PhotoType == 1
+                         select images).FirstOrDefault();
+            if (image != null)
+            {
+                return PartialView(image);
+            }
+
+            return PartialView();
+
+        }
+
+        public ActionResult ClientsProfile(int? id)
+        {
+            //Client client = new Client();
+            //Client user = (from clients in db.Clients
+            //               where clients.ClientId == clientId
+            //               select clients).FirstOrDefault();
+            string userName = WebSecurity.CurrentUserName;
+            var client = (from c in db.Clients
+                          where c.Email == userName
+                          select c).FirstOrDefault();
+           /*Client user = db.Clients.FirstOrDefault(c => c.ClientId == id.Value);
+            client.ClientId = user.ClientId;
+            client.BirthDate = user.BirthDate;
+            client.Email = user.Email;
+            client.PIdNumber = user.PIdNumber;
+            client.Name = user.Name;
+            client.RegistrationDate = user.RegistrationDate;
+            client.Surname = user.Surname;
+            client.Images = user.Images;
+            client.Accounts = user.Accounts;*/
+            return View(client);
+        }
+
+
 
         [AllowAnonymous]
         [ChildActionOnly]

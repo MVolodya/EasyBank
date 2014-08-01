@@ -518,6 +518,8 @@
     <Content Include="Views\Operation\TotalDepositedAmount.cshtml" />
     <Content Include="Views\Operation\TotalCreditedAmount.cshtml" />
     <Content Include="Views\Protected\ChooseBankProduct.cshtml" />
+    <Content Include="Views\Account\ClientsProfile.cshtml" />
+    <Content Include="Views\Account\ShowClientPhoto.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

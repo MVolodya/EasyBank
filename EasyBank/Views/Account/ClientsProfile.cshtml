@@ -1,0 +1,135 @@
+﻿@model EasyBank.Models.Client
+
+@{
+    ViewBag.Title = "Clients profile";
+}
+
+<h2>@Html.Label(@Resources.Resource.ClientsProfileTitle)</h2>
+<table>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Name)
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Surname)
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Surname)
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Email)
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Email)
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.BirthDate)
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.PIdNumber)
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.PIdNumber)
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.RegistrationDate)
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.RegistrationDate)
+            </div>
+        </td>
+    </tr>
+
+</table>
+
+@Html.Action("ShowClientPhoto", new { id = Model.ClientId })
+
+<table>
+    @if (Model.Accounts.Count() != 0)
+    {
+        <tr>
+            <th>@Html.Label(@Resources.Resource.AccNumb)</th>
+            <th>@Html.Label(@Resources.Resource.ExpDate)</th>
+            <th>@Html.Label(@Resources.Resource.Amount)</th>
+            <th>@Html.Label(@Resources.Resource.Currency)</th>
+            <th>@Html.Label(@Resources.Resource.Type)</th>
+            <th>@Html.Label(@Resources.Resource.Status)</th>
+        </tr>
+    }
+    else
+    {
+
+        @Resources.Resource.AccountsAreAbsent
+    }
+    @foreach (var item in Model.Accounts)
+    {
+
+        <tr>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(modelItem => item.AccountNumber)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(modelItem => item.ExpirationDate)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(modelItem => item.Currency.CurrencyName)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(modelItem => item.AccountType.TypeName)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(modelItem => item.AccountStatus.StatusName)
+                </div>
+            </td>
+            <td>
+                    </td>
+        </tr>
+    }
+</table>
+

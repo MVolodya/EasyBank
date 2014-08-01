@@ -71,7 +71,11 @@
                                 <li>@Html.ActionLink(Resources.Resource.Home, "Index", "Home")</li>
                             @if (User.IsInRole("Client"))
                             {
-                                <li>@Html.ActionLink(@Resources.Resource.Details, "ClientsProfile", "Protected")</li>
+                                @*<li>@Html.ActionLink(@Resources.Resource.Details, "ClientsProfile", "Protected", new {clientId = WebSecurity.GetUserId(User.Identity.Name) })</li>*@
+                            @*<li>@Html.ActionLink(@Resources.Resource.Details, "ClientsProfile", "Protected")</li>*@
+                            @* <li>@Html.ActionLink(@Resources.Resource.Details, "ClientsProfile", "Account", new { clientId = WebSecurity.GetUserId(User.Identity.Name) }, htmlAttributes: new { clientId = WebSecurity.GetUserId(User.Identity.Name) })</li>*@
+                                @Html.ActionLink(@Resources.Resource.Details, "ClientsProfile", "Account", new { id = WebSecurity.CurrentUserId}, null)
+                            
                             }
                             @if (User.IsInRole("Operator"))
                             {

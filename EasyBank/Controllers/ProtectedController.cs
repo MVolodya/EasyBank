@@ -240,7 +240,7 @@ namespace EasyBank.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         public ActionResult AddClient(Client client, HttpPostedFileBase file)
         {
