@@ -24,7 +24,7 @@ namespace EasyBank.Filters
                 {
                     try
                     {
-                        actualValue = Convert.ToDecimal(valueResult.AttemptedValue, CultureInfo.CurrentCulture);
+                        actualValue = Convert.ToDecimal(valueResult.AttemptedValue, CultureInfo.InvariantCulture);
                     }
                     catch (FormatException e)
                     {

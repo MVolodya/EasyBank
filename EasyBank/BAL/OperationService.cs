@@ -103,8 +103,8 @@ namespace EasyBank
                 case "Credit":
                     {
                         //if (amount > Decimal.Multiply(acc.Amount, (decimal)0.1)) return 3;
-                        if (acc.Amount + amount > 0) return 7;
-                        acc.Amount += (decimal)amount;
+                        if (acc.Amount + amount < 0) return 7;
+                        acc.Amount -= (decimal)amount;
                         dataChanged = true;
                     }
                     break;
@@ -112,7 +112,7 @@ namespace EasyBank
             if (dataChanged)
             {
                 db.Entry(acc).State = System.Data.Entity.EntityState.Modified;
-                HistoryManager.AddDepositOperation(db, (int)amount, (int)toAccountId, (int)oper.OperatorID);
+                HistoryManager.AddDepositOperation(db, (decimal)amount, (int)toAccountId, (int)oper.OperatorID);
                 db.SaveChanges();
                 return 0;
             }
@@ -194,7 +194,7 @@ namespace EasyBank
             if (dataChanged)
             {
                 db.Entry(acc).State = System.Data.Entity.EntityState.Modified;
-                HistoryManager.AddWidthdrawOperation(db, (int)amount, (int)fromAccountId, (int)oper.OperatorID);
+                HistoryManager.AddWidthdrawOperation(db, (decimal)amount, (int)fromAccountId, (int)oper.OperatorID);
                 db.SaveChanges();
 
                 return 0;
@@ -261,7 +261,7 @@ namespace EasyBank
             {
                 db.Entry(fromAcc).State = System.Data.Entity.EntityState.Modified;
                 db.Entry(toAcc).State = System.Data.Entity.EntityState.Modified;
-                HistoryManager.AddTransferOperation(db, (int)amount, (int)fromAccountId, (int)toAccountId, (int)oper.OperatorID);
+                HistoryManager.AddTransferOperation(db, (decimal)amount, (int)fromAccountId, (int)toAccountId, (int)oper.OperatorID);
                 db.SaveChanges();
                 return 0;
             }

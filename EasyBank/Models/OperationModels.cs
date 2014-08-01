@@ -31,7 +31,7 @@ namespace EasyBank.Models
 
         public Operation() : this(0, OperationTypes.None) { }
 
-        public Operation(int amount, OperationTypes type, int? fromAccountId = null, int? toAccountId = null, int? operatorId = null)
+        public Operation(decimal amount, OperationTypes type, int? fromAccountId = null, int? toAccountId = null, int? operatorId = null)
         {
             Date = DateTime.Now;
             Amount = amount;
