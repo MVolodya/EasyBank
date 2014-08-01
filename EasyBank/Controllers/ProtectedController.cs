@@ -269,10 +269,6 @@ namespace EasyBank.Controllers
                         db.SaveChanges();
                         return RedirectToAction("ClientsList");
                     }
-                    else
-                    {
-                        return RedirectToAction("OperationError", "Error", new { id = 100 });
-                    }
                     ViewBag.Message = @Resources.Resource.WrongFileChoose;
                     return View();
                 }
