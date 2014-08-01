@@ -203,6 +203,7 @@
     <Compile Include="Filters\CultureAttribute.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="BAL\OperationService.cs" />
+    <Compile Include="Filters\ModelBinders.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

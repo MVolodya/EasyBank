@@ -26,7 +26,7 @@ namespace EasyBank.Models
 
         [Range(-99999999.99, 99999999.99)]
         [Display(Name = "Amount", ResourceType = typeof(Resources.Resource))]
-        //[RegularExpression(@"^\d+(.\d{0,2})?$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "DecimalFormat")]
+        [RegularExpression(@"^\d+((.|,)\d{0,2})?$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "DecimalFormat")]
         public decimal Amount { get; set; }
 
         [Display(Name = "AvailableAmount", ResourceType = typeof(Resources.Resource))]

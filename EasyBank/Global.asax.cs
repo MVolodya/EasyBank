@@ -24,6 +24,9 @@ namespace EasyBank
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+
+            ModelBinders.Binders.Add(typeof(decimal), new EasyBank.Filters.ModelBinders.DecimalModelBinder());
+            ModelBinders.Binders.Add(typeof(decimal?), new EasyBank.Filters.ModelBinders.DecimalModelBinder());
         }
 
         protected void Application_BeginRequest()
@@ -38,11 +41,6 @@ namespace EasyBank
             System.Threading.Thread.CurrentThread.CurrentCulture = cInf;
             System.Threading.Thread.CurrentThread.CurrentUICulture = cInf;
 
-
-            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
-            customCulture.NumberFormat.NumberDecimalSeparator = ".";
-
-            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
         }
     }
 }
