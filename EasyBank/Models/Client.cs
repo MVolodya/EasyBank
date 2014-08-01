@@ -11,7 +11,7 @@ namespace EasyBank.Models
     {
         public int ClientId { get; set; }
 
-        [Display(Name="IsOnlineUser", ResourceType=typeof(Resources.Resource))]
+        [Display(Name = "IsOnlineUser", ResourceType = typeof(Resources.Resource))]
         public bool IsOnlineUser { get; set; }
 
         public bool IsAlreadyRegistered { get; set; }
@@ -35,6 +35,7 @@ namespace EasyBank.Models
         [RegularExpression(@"^[0-9]+$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "OnlyDigits")]
         public string PIdNumber { get; set; }
 
+        [BirthDate(0, 150)]
         [Display(Name = "BirthDate", ResourceType = typeof(Resources.Resource))]
         [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "BirthDateRequired")]
         [DataType(DataType.Date)]
@@ -54,5 +55,33 @@ namespace EasyBank.Models
         public virtual UserProfile UserProfile { get; set; }
         public virtual ICollection<ClientsImage> Images { get; set; }
         public virtual ICollection<Account> Accounts { get; set; }
+    }
+
+    public class BirthDateAttribute : ValidationAttribute
+    {
+        private readonly int MinAge;
+        private readonly int MaxAge;
+
+        public BirthDateAttribute(int minAge, int maxAge)
+            : base("{0} Wrong birth date.")
+        {
+            MinAge = minAge;
+            MaxAge = maxAge;
+        }
+
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            ValidationResult validationResult = ValidationResult.Success;
+            if (value != null)
+            {
+                DateTime birthDate = (DateTime)value;
+                if (birthDate.AddYears(MinAge) > DateTime.Now)
+                    validationResult = new ValidationResult("Wrong birth date");
+                else
+                    if (birthDate.AddYears(MaxAge) < DateTime.Now)
+                        validationResult = new ValidationResult("Wrong birth date");
+            }
+            return validationResult;
+        }
     }
 }
