@@ -106,14 +106,6 @@ namespace EasyBank.Controllers
                          client.RegistrationDate = DateTime.Now;
                          db.Clients.Add(client);
 
-                         var model = new RegisterModel();
-                         model.UserName = registerCompModel.Client.Email;
-                         model.Password = registerCompModel.Password;
-                         model.ConfirmPassword = registerCompModel.ConfirmPassword;
-                         WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                         Roles.AddUserToRole(model.UserName, "Client");
-
-
                          ClientsImage photo = new ClientsImage();
                          if (fileIsImage(file))
                          {
@@ -125,9 +117,21 @@ namespace EasyBank.Controllers
                              photo.PhotoType = (int)ImageType.PassportScan;
                              photo.ClientId = client.ClientId;
                              db.Images.Add(photo);
+                         }
+                         else
+                         {
+                             return RedirectToAction("OperationError", "Error", new { id = 100 });
+                         }
+
+                         var model = new RegisterModel();
+                         model.UserName = registerCompModel.Client.Email;
+                         model.Password = registerCompModel.Password;
+                         model.ConfirmPassword = registerCompModel.ConfirmPassword;
+                         WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+                         Roles.AddUserToRole(model.UserName, "Client");
                              db.SaveChanges();
                              return RedirectToAction("ClientsList", "Protected");
-                         }
+                         
                      }
                      catch (MembershipCreateUserException e)
                      {
@@ -542,10 +546,15 @@ namespace EasyBank.Controllers
         {
 
             string fileType = file.FileName.ToString().Remove(0, file.FileName.LastIndexOf('.'));
-            if (fileType == ".jpg" || fileType == ".jpeg" || fileType == ".JPG" || fileType == ".JPEG" || fileType == ".png" || fileType == ".PNG")
-            {
-                return true;
-            }
+            int size = file.ContentLength;
+
+                if (fileType == ".jpg" || fileType == ".jpeg" || fileType == ".JPG" || fileType == ".JPEG" || fileType == ".png" || fileType == ".PNG")
+                {
+                    return true;
+                }
+                
+            
+
             return false;
         }
 
