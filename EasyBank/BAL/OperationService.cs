@@ -66,6 +66,8 @@ namespace EasyBank
             if (toAccountId == null) return 11;
             if (amount == null) return 12;
 
+            if (amount <= 0) return 3;
+
             Operator oper = db.Operators.FirstOrDefault(o => o.Email == operatorEmail);
             Account acc = db.Accounts.FirstOrDefault(a => a.AccountId == toAccountId);
 
@@ -76,7 +78,7 @@ namespace EasyBank
             if (acc.AccountType.TypeName == "Frozen") return 45;
             if (acc.AccountType.TypeName == "Expired") return 46;
 
-            bool dataChanged = false;
+            bool dataChanged = false;            
 
             switch (acc.AccountType.TypeName)
             {
