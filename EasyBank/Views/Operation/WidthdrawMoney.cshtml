@@ -5,14 +5,18 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 <script type="text/javascript">
-    $.validator.methods.number = function (value, element) {
+    $.validator.methods.number = function(value, element) {
         return !isNaN(parseFloat(value));
-    }
-    $.validator.methods.range = function (value, element, param) {
+    };
+    $.validator.methods.range = function(value, element, param) {
         var globalizedValue = value.replace(",", ".");
         return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
-    }
+    };
     $(document).ready(function () {
+        $("#Amount").val($("#Amount").val().replace(',', '.'));
+        $("#Amount").keyup(function () {
+            $("#Amount").val($("#Amount").val().replace(',', '.'));
+        });
     });
 </script>
 
@@ -83,12 +87,18 @@
 {
     using (Html.BeginForm("WidthdrawMoney", "Operation", FormMethod.Post))
     {
-        @Html.HiddenFor(model => model.ClientId)
-        @Html.HiddenFor(model => model.AccountId)
-        @Html.EditorFor(model => model.Amount)
-        @Html.ValidationMessageFor(model => model.Amount)
-        <br />
-        <input type="submit" value="submit" />
+    @Html.HiddenFor(model => model.ClientId)
+    @Html.HiddenFor(model => model.AccountId)
+    @Html.EditorFor(model => model.Amount)
+    @Html.ValidationMessageFor(model => model.Amount)
+
+    
+    List<SelectListItem> itemList = ViewBag.itemList;
+    
+    @Html.DropDownList("CurrencyName", itemList)
+
+    <br />
+    <input type="submit" value="submit" />
     }
 }
 else

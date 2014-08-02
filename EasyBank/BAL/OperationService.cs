@@ -9,21 +9,7 @@ namespace EasyBank
 {
     public class OperationManager
     {
-        HistoryManager history = new HistoryManager();
-
-        private static bool MoneyCanBeDeposited(Account account)
-        {
-            if (account != null && account.TypeId != 3 && account.StatusId == 1)
-            {
-                return true;
-            }
-            else return false;
-        }
-
-        private void AddMoneyOnDepositAccount(ConnectionContext db, Account account, decimal amount)
-        {
-
-        }
+        private HistoryManager history = new HistoryManager();
 
         //0 - ok
 
@@ -43,9 +29,15 @@ namespace EasyBank
         //10 - operatorName == null
         //11 - accountId == null
         //12 - amount == null
+        //13 - invalid sourceCurrency
+        //14 - invalid targetCurrency
 
         //21 - operator not found in db
         //22 - account not found in db
+        //23 - sourceCurrency not found in db
+        //24 - targetCurrency not found in db
+        //25 - sourceCurrency fail
+        //26 - targetCurrency fail
 
         //41 - Sending account is blocked
         //42 - Sending account is frozen
@@ -57,14 +49,35 @@ namespace EasyBank
 
         //99 - uncatched error
 
+        private decimal GetConvertedAmount(ConnectionContext db, decimal amount, Currency sourceCurrency, Currency targetCurrency)
+        {
+            if (sourceCurrency == null)
+                return 23;
 
-        public int DepositMoney(string operatorEmail, int? toAccountId, decimal? amount)
+            if (sourceCurrency.CurrencyName == targetCurrency.CurrencyName)
+                return amount;
+            else
+            {
+                if (sourceCurrency.CurrencyName != "UAH")
+                    amount = Math.Round(amount * sourceCurrency.PurchaseRate, 2);
+
+                if (targetCurrency.CurrencyName != "UAH")
+                {
+                    amount = Math.Round(amount / targetCurrency.SaleRate, 2);
+                }
+            }
+            return amount;
+        }
+
+
+        public int DepositMoney(string operatorEmail, int? toAccountId, decimal? amount, string sourceCurrencyName)
         {
             ConnectionContext db = new ConnectionContext();
 
             if (operatorEmail == null) return 10;
             if (toAccountId == null) return 11;
             if (amount == null) return 12;
+            if (sourceCurrencyName == null) return 13;
 
             if (amount <= 0) return 3;
 
@@ -78,7 +91,15 @@ namespace EasyBank
             if (acc.AccountType.TypeName == "Frozen") return 45;
             if (acc.AccountType.TypeName == "Expired") return 46;
 
-            bool dataChanged = false;            
+            Currency sourceCurrency = db.Currencies.FirstOrDefault(c => c.CurrencyName.ToLower() == sourceCurrencyName.ToLower());
+            Currency targetCurrency = acc.Currency;
+
+            if (sourceCurrency == null) return 23;
+            if (targetCurrency == null) return 25;
+
+            amount = GetConvertedAmount(db, (decimal) amount, sourceCurrency, targetCurrency);
+
+            bool dataChanged = false;
 
             switch (acc.AccountType.TypeName)
             {
@@ -103,7 +124,7 @@ namespace EasyBank
                 case "Credit":
                     {
                         //if (amount > Decimal.Multiply(acc.Amount, (decimal)0.1)) return 3;
-                        if (acc.Amount + amount < 0) return 7;
+                        if (acc.Amount - amount < 0) return 7;
                         acc.Amount -= (decimal)amount;
                         dataChanged = true;
                     }
@@ -119,7 +140,7 @@ namespace EasyBank
             return 99;
         }
 
-        public int WithdrawMoney(string operatorEmail, int? fromAccountId, decimal? amount)
+        public int WithdrawMoney(string operatorEmail, int? fromAccountId, decimal? amount, string targetCurrencyName)
         {
             ConnectionContext db = new ConnectionContext();
 
@@ -138,6 +159,14 @@ namespace EasyBank
             if (acc.AccountType.TypeName == "Blocked") return 41;
             if (acc.AccountType.TypeName == "Frozen") return 42;
             if (acc.AccountType.TypeName == "Expired") return 43;
+
+            Currency sourceCurrency = acc.Currency;
+            Currency targetCurrency = db.Currencies.FirstOrDefault(c => c.CurrencyName.ToLower() == targetCurrencyName.ToLower());
+
+            if (sourceCurrency == null) return 26;
+            if (targetCurrency == null) return 24;
+
+            amount = GetConvertedAmount(db, (decimal)amount, sourceCurrency, targetCurrency);
 
             bool dataChanged = false;
 
@@ -225,10 +254,18 @@ namespace EasyBank
 
             if (fromAcc.AccountType.TypeName == "Blocked") return 41;
             if (fromAcc.AccountType.TypeName == "Frozen") return 42;
-            if (fromAcc.AccountType.TypeName == "Expired") return 43; 
+            if (fromAcc.AccountType.TypeName == "Expired") return 43;
             if (toAcc.AccountType.TypeName == "Blocked") return 44;
             if (toAcc.AccountType.TypeName == "Frozen") return 45;
             if (toAcc.AccountType.TypeName == "Expired") return 46;
+
+            Currency sourceCurrency = fromAcc.Currency;
+            Currency targetCurrency = toAcc.Currency;
+
+            if (sourceCurrency == null) return 25;
+            if (targetCurrency == null) return 26;
+
+            amount = GetConvertedAmount(db, (decimal)amount, sourceCurrency, targetCurrency);
 
             bool dataChanged = false;
 

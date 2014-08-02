@@ -46,18 +46,18 @@ namespace EasyBank.Controllers
         {
             if (Roles.IsUserInRole(model.UserName, "Client"))
             {
-                ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                ModelState.AddModelError("", "The user name or password provided is incorrect.");// ---------------------ПЕРЕКЛАД
                 return View(model);
 
             }
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
 
-                return RedirectToLocal(returnUrl);
+                return RedirectToAction("ClientsList", "Protected");
             }
 
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
+            ModelState.AddModelError("", "The user name or password provided is incorrect.");// ---------------------ПЕРЕКЛАД
             return View(model);
         }
 
@@ -277,7 +277,7 @@ namespace EasyBank.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                        ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");// ---------------------ПЕРЕКЛАД
                     }
                 }
             }
@@ -389,7 +389,7 @@ namespace EasyBank.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
+                        ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");// ---------------------ПЕРЕКЛАД
                     }
                 }
             }

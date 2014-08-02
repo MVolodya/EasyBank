@@ -63,7 +63,7 @@ namespace EasyBank.Controllers
         private ConnectionContext db = new ConnectionContext();
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("ClientsList");
         }
 
         [Authorize(Roles = "Administrator")]

@@ -1,4 +1,5 @@
-﻿using EasyBank.Filters;
+﻿using System.Web.UI.WebControls;
+using EasyBank.Filters;
 using EasyBank.Models;
 using SimpleMembershipTest.Filters;
 using System;
@@ -21,15 +22,30 @@ namespace EasyBank.Controllers
         {
             ConnectionContext db = new ConnectionContext();
             Account account = db.Accounts.FirstOrDefault(a => a.AccountId == id);
+
+            List<string> currencyNames = (from c in db.Currencies
+                                      select c.CurrencyName).ToList();
+            List<SelectListItem> itemList = new List<SelectListItem>();
+            foreach (string currencyName in currencyNames)
+            {
+                itemList.Add(new SelectListItem
+                {
+                    Text = currencyName,
+                    Value = currencyName
+                });
+            }
+            ViewBag.itemList = itemList;
+
             if (account != null)
                 return View(account);
             else return HttpNotFound();
         }
         [HttpPost]
-        public ActionResult AddMoney(int? accountId, decimal? amount, int? clientId)
+        public ActionResult AddMoney(int? accountId, decimal? amount, int? clientId, string CurrencyName)
         {
             OperationManager om = new OperationManager();
-            int result = om.DepositMoney(User.Identity.Name, accountId, amount);
+            CurrencyName = Request["CurrencyName"].ToUpper();
+            int result = om.DepositMoney(User.Identity.Name, accountId, amount, CurrencyName);
             if (result == 0)
                 return RedirectToAction("ClientsProfile", "Protected", new { clientId = clientId });
             return RedirectToAction("OperationError", "Error", new { errorCode = result });
@@ -40,15 +56,29 @@ namespace EasyBank.Controllers
         {
             ConnectionContext db = new ConnectionContext();
             Account account = db.Accounts.FirstOrDefault(a => a.AccountId == id);
+
+            List<string> currencyNames = (from c in db.Currencies
+                                          select c.CurrencyName).ToList();
+            List<SelectListItem> itemList = new List<SelectListItem>();
+            foreach (string currencyName in currencyNames)
+            {
+                itemList.Add(new SelectListItem
+                {
+                    Text = currencyName,
+                    Value = currencyName
+                });
+            }
+            ViewBag.itemList = itemList;
+
             if (account != null)
                 return View(account);
             else return HttpNotFound();
         }
         [HttpPost]
-        public ActionResult WidthdrawMoney(int? accountId, decimal? amount, int? clientId)
+        public ActionResult WidthdrawMoney(int? accountId, decimal? amount, int? clientId, string CurrencyName)
         {
             OperationManager om = new OperationManager();
-            int result = om.WithdrawMoney(User.Identity.Name, accountId, amount);
+            int result = om.WithdrawMoney(User.Identity.Name, accountId, amount, CurrencyName);
             if (result == 0)
                 return RedirectToAction("ClientsProfile", "Protected", new { clientId = clientId });
             return RedirectToAction("OperationError", "Error", new { errorCode = result });

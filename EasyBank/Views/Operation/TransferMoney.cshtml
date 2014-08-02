@@ -5,14 +5,18 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 <script type="text/javascript">
-    $.validator.methods.number = function (value, element) {
+    $.validator.methods.number = function(value, element) {
         return !isNaN(parseFloat(value));
-    }
-    $.validator.methods.range = function (value, element, param) {
+    };
+    $.validator.methods.range = function(value, element, param) {
         var globalizedValue = value.replace(",", ".");
         return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
-    }
+    };
     $(document).ready(function () {
+        $("#Amount").val($("#Amount").val().replace(',', '.'));
+        $("#Amount").keyup(function () {
+            $("#Amount").val($("#Amount").val().replace(',', '.'));
+        });
     });
 </script>
 
@@ -73,13 +77,6 @@
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.AccountStatus.StatusName)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Interest)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Interest)
     </div>
 </fieldset>
 
