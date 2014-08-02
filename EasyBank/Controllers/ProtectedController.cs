@@ -63,7 +63,11 @@ namespace EasyBank.Controllers
         private ConnectionContext db = new ConnectionContext();
         public ActionResult Index()
         {
-            return RedirectToAction("ClientsList");
+            var error = (from errorreport in db.ErrorReports
+                         orderby errorreport.ReportDate descending
+                         select errorreport);
+            ViewBag.ErrorReports = error.ToList();
+            return View();
         }
 
         [Authorize(Roles = "Administrator")]

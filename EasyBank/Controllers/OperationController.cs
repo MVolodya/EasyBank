@@ -48,7 +48,7 @@ namespace EasyBank.Controllers
             int result = om.DepositMoney(User.Identity.Name, accountId, amount, CurrencyName);
             if (result == 0)
                 return RedirectToAction("ClientsProfile", "Protected", new { clientId = clientId });
-            return RedirectToAction("OperationError", "Error", new { errorCode = result });
+            return RedirectToAction("OperationError", "Error", new { errorCode = result, AccountId = accountId });
         }
 
         [HttpGet]
@@ -81,7 +81,7 @@ namespace EasyBank.Controllers
             int result = om.WithdrawMoney(User.Identity.Name, accountId, amount, CurrencyName);
             if (result == 0)
                 return RedirectToAction("ClientsProfile", "Protected", new { clientId = clientId });
-            return RedirectToAction("OperationError", "Error", new { errorCode = result });
+            return RedirectToAction("OperationError", "Error", new { errorCode = result, AccountId = accountId });
         }
 
         [HttpGet]
@@ -102,7 +102,7 @@ namespace EasyBank.Controllers
 
             if (result == 0)
                 return RedirectToAction("ClientsProfile", "Protected", new { clientId = clientId });
-            return RedirectToAction("OperationError", "Error", new { errorCode = result });
+            return RedirectToAction("OperationError", "Error", new { errorCode = result, AccountId =  fromAccountId });
         }
 
         public ActionResult TotalDepositedAmount()

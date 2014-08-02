@@ -1,4 +1,5 @@
-﻿@{
+﻿@model EasyBank.Models.ErrorReport
+@{
     Layout = null;
 }
 
@@ -14,6 +15,21 @@
         <h1> Operation error </h1>
         <h3> Error code: @ViewBag.ErrorCode</h3>
         <h4> Please contact System administrator or Operator</h4>
+        <h2>Опишіть проблему</h2>
+        <form method="post" action="OperationError">
+            <fieldset>
+                @* @Html.EditorForModel(Model); *@
+
+                <br />     Введіть текс:     <br />
+                <textarea name="Text" rows="10" cols="40"></textarea>
+                <br />
+                <br />
+                @Html.HiddenFor(model => model.AccountId)
+
+                <input type="submit" value="Submit Entry" />
+            </fieldset>
+        </form>
+
     </div>
 </body>
 </html>
