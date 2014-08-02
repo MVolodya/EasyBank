@@ -259,6 +259,10 @@
     <Compile Include="Migrations\201408011735189_AddedErrorReportAndUpdatedOperatorAndCurrencyModels.Designer.cs">
       <DependentUpon>201408011735189_AddedErrorReportAndUpdatedOperatorAndCurrencyModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408021547253_PurchaseSellRateFieldsAdded.cs" />
+    <Compile Include="Migrations\201408021547253_PurchaseSellRateFieldsAdded.Designer.cs">
+      <DependentUpon>201408021547253_PurchaseSellRateFieldsAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -324,6 +328,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408011735189_AddedErrorReportAndUpdatedOperatorAndCurrencyModels.resx">
       <DependentUpon>201408011735189_AddedErrorReportAndUpdatedOperatorAndCurrencyModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408021547253_PurchaseSellRateFieldsAdded.resx">
+      <DependentUpon>201408021547253_PurchaseSellRateFieldsAdded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

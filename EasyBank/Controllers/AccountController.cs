@@ -19,6 +19,7 @@ using System.Drawing.Drawing2D;
 
 namespace EasyBank.Controllers
 {
+    [Culture]
     [Authorize]
     [InitializeSimpleMembership]
     public class AccountController : Controller

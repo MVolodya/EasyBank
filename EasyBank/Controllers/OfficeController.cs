@@ -15,6 +15,7 @@ using EasyBank.DAL;
 
 namespace EasyBank.Controllers
 {
+    [Culture]
     [Authorize]
     [InitializeSimpleMembership]
     public class OfficeController : Controller

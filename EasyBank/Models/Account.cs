@@ -52,8 +52,6 @@ namespace EasyBank.Models
         [ForeignKey("AccountStatus")]
         public int StatusId { get; set; }
 
-        public decimal Interest { get; set; }
-
         [ForeignKey("DepositCreditModel")]
         public int? DepositCreditModelID { get; set; }
 
@@ -63,6 +61,7 @@ namespace EasyBank.Models
         public virtual AccountStatus AccountStatus { get; set; }
         public virtual ICollection<Operation> OperationsHistory { get; set; }
         public virtual DepositCreditModel DepositCreditModel { get; set; }
+        public  virtual ICollection<ErrorReport> Error { get; set; } 
 
         public Account() 
         {

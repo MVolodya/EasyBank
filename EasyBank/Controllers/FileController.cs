@@ -4,9 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using EasyBank.Filters;
 
 namespace EasyBank.Controllers
 {
+    [Culture]
     public class FileController : Controller
     {
         //
