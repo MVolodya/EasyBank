@@ -759,7 +759,6 @@ C:\Users\V\Desktop\Branch\EasyBank\EasyBank\bin\ko\System.Spatial.resources.dll
 C:\Users\V\Desktop\Branch\EasyBank\EasyBank\bin\ru\System.Spatial.resources.dll
 C:\Users\V\Desktop\Branch\EasyBank\EasyBank\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\V\Desktop\Branch\EasyBank\EasyBank\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.csprojResolveAssemblyReference.cache
 C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.ErrorMessagesAdded.resources
 C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.TablesForFileAdded.resources
 C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.PhotoTypes.resources
@@ -771,7 +770,6 @@ C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.Update
 C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.UpdatedAccountAndClient.resources
 C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.updatedImageModel.resources
 C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.DepCredModel.resources
-C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.DCModel.resources
 C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.Resources.Resource.resources
 C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.first.resources
 C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.Resources.Resource.uk-UA.resources
@@ -903,3 +901,5 @@ C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resour
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.PurchaseSellRateFieldsAdded.resources
+C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.AddedErrorReportAndUpdatedOperatorAndCurrencyModels.resources
+C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.PurchaseSellRateFieldsAdded.resources
