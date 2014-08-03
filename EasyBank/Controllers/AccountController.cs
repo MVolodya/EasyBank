@@ -38,25 +38,29 @@ namespace EasyBank.Controllers
         //
         // POST: /Account/Login
 
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginModel model, string returnUrl)
+        [CaptchaMvc.Attributes.CaptchaVerify("Captcha is not valid")]
+        public ActionResult Login(LoginModel model, string returnUrl, string empty)
         {
-            if (Roles.IsUserInRole(model.UserName, "Administrator") || Roles.IsUserInRole(model.UserName, "Operator"))
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("", "The user name or password provided is incorrect.");
-                return View(model);
+                if (Roles.IsUserInRole(model.UserName, "Administrator") || Roles.IsUserInRole(model.UserName, "Operator"))
+                {
+                    ModelState.AddModelError("", "The user name or password or capcha provided is incorrect.");
+                    return View(model);
 
+                }
+                if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+                {
+                    //return RedirectToLocal(returnUrl);
+                    return RedirectToAction("ClientsProfile", "Account");
+                }
             }
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
-            {
-                //return RedirectToLocal(returnUrl);
-                return RedirectToAction("ClientsProfile", "Account");
-            }
-
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
+            ModelState.AddModelError("", "The user name or password or capcha provided is incorrect.");
             return View(model);
         }
 
