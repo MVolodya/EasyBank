@@ -1016,4 +1016,3 @@ C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\uk-UA\EasyBank.re
 C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resources.dll
 C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
-C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.csprojResolveAssemblyReference.cache
