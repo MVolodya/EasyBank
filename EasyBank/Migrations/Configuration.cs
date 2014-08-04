@@ -61,22 +61,22 @@ namespace EasyBank.Migrations
                 new Account{ 
                     ExpirationDate=DateTime.MaxValue.Date, Amount=23444, ClientId=clients.First(c=>c.Surname=="Symonenko").ClientId,
                     TypeId=accoutTypes.First(t=>t.TypeName=="Normal").TypeId, CurrencyId=currencies.First(c=>c.CurrencyName=="UAH").CurrencyId, 
-                    StatusId=accoutStatuses.First(s=>s.StatusName=="Normal").StatusId
+                    StatusId=accoutStatuses.First(s=>s.StatusName=="Normal").StatusId, OpenDate = DateTime.Now, LastInterestAdded = DateTime.Now
                 },
                 new Account{
                     ExpirationDate=DateTime.MaxValue.Date, Amount=3453, ClientId=clients.First(c=>c.Surname=="Symonenko").ClientId,
                     TypeId=accoutTypes.First(t=>t.TypeName=="Deposit").TypeId, CurrencyId=currencies.First(c=>c.CurrencyName=="USD").CurrencyId, 
-                    StatusId=accoutStatuses.First(s=>s.StatusName=="Normal").StatusId
+                    StatusId=accoutStatuses.First(s=>s.StatusName=="Normal").StatusId, OpenDate = DateTime.Now, LastInterestAdded = DateTime.Now
                 },
                 new Account{
                     ExpirationDate=DateTime.MaxValue.Date, Amount=2323, ClientId=clients.First(c=>c.Surname=="Dontknow").ClientId,
                     TypeId=accoutTypes.First(t=>t.TypeName=="Normal").TypeId, CurrencyId=currencies.First(c=>c.CurrencyName=="EUR").CurrencyId, 
-                    StatusId=accoutStatuses.First(s=>s.StatusName=="Frozen").StatusId
+                    StatusId=accoutStatuses.First(s=>s.StatusName=="Frozen").StatusId, OpenDate = DateTime.Now, LastInterestAdded = DateTime.Now
                 },
                 new Account{
                     ExpirationDate=DateTime.MaxValue.Date, Amount=6654, ClientId=clients.First(c=>c.Surname=="Nikonov").ClientId,
                     TypeId=accoutTypes.First(t=>t.TypeName=="Credit").TypeId, CurrencyId=currencies.First(c=>c.CurrencyName=="USD").CurrencyId, 
-                    StatusId=accoutStatuses.First(s=>s.StatusName=="Normal").StatusId
+                    StatusId=accoutStatuses.First(s=>s.StatusName=="Normal").StatusId, OpenDate = DateTime.Now, LastInterestAdded = DateTime.Now
                 }
             };
             accounts.ForEach(a=>context.Accounts.AddOrUpdate(i=>i.AccountNumber, a));

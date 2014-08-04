@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -22,6 +23,7 @@ namespace EasyBank.Models
         public DbSet<Operator> Operators { get; set; }
         public DbSet<DepositCreditModel> DepositCreditModels { get; set; }
         public DbSet<ErrorReport> ErrorReports { get; set; }
+        public DbSet<BankAccount> BankAccounts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -29,6 +31,8 @@ namespace EasyBank.Models
 
             modelBuilder.Entity<Operation>().HasOptional(u => u.FromAccount).WithMany().WillCascadeOnDelete(false);
             modelBuilder.Entity<Operation>().HasOptional(u => u.ToAccount).WithMany().WillCascadeOnDelete(false);
+            //modelBuilder.Entity<BankAccount>().HasRequired(a=>a.Currency).WithRequiredDependent().WillCascadeOnDelete(false);
+
 
             modelBuilder.Entity<Operation>()
     .HasOptional(o => o.FromAccount)

@@ -52,6 +52,8 @@ namespace EasyBank.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime RegistrationDate { get; set; }
 
+        public string InitialPassword { get; set; }
+
         public virtual UserProfile UserProfile { get; set; }
         public virtual ICollection<ClientsImage> Images { get; set; }
         public virtual ICollection<Account> Accounts { get; set; }
