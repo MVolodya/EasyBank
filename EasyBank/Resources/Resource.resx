@@ -366,4 +366,148 @@
   <data name="DecimalFormat" xml:space="preserve">
     <value>Amount must have a formal like (0.00 or 0.0 or 0)</value>
   </data>
+  <data name="AddBankProduct" xml:space="preserve">
+    <value>Add bank product</value>
+  </data>
+  <data name="AskToAddMoney" xml:space="preserve">
+    <value>Are you sure that you want to add money?</value>
+  </data>
+  <data name="BankProducts" xml:space="preserve">
+    <value>Bank products</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="Clients" xml:space="preserve">
+    <value>Clients</value>
+  </data>
+  <data name="ClientsPassport" xml:space="preserve">
+    <value>Clients passport</value>
+  </data>
+  <data name="ClientsProfile" xml:space="preserve">
+    <value>Clients profile</value>
+  </data>
+  <data name="CreditName" xml:space="preserve">
+    <value>Credit name</value>
+  </data>
+  <data name="Credits" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="CurrencyDelete" xml:space="preserve">
+    <value>Currency delete</value>
+  </data>
+  <data name="DepositName" xml:space="preserve">
+    <value>Deposit name</value>
+  </data>
+  <data name="Deposits" xml:space="preserve">
+    <value>Deposits</value>
+  </data>
+  <data name="DescribeTheProblem" xml:space="preserve">
+    <value>Describe the problem</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="EarlyTermination" xml:space="preserve">
+    <value>Early termination</value>
+  </data>
+  <data name="EarlyTerminationCredit" xml:space="preserve">
+    <value>Early termination</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Enter</value>
+  </data>
+  <data name="ErrorCode" xml:space="preserve">
+    <value>Error code</value>
+  </data>
+  <data name="ErrorTakeMoneyFromCreditAcc" xml:space="preserve">
+    <value>Error: Can't take money from credit account</value>
+  </data>
+  <data name="FinancialReports" xml:space="preserve">
+    <value>Financial reports</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hello</value>
+  </data>
+  <data name="InterestRate" xml:space="preserve">
+    <value>Interest rate</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="LogInForClients" xml:space="preserve">
+    <value>Log in for clients</value>
+  </data>
+  <data name="LoginHelpMessage" xml:space="preserve">
+    <value>Use your credentials to enter the system.</value>
+  </data>
+  <data name="LogInTitle" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Log off</value>
+  </data>
+  <data name="OperationError" xml:space="preserve">
+    <value>Operation error</value>
+  </data>
+  <data name="OperationErrorMessage" xml:space="preserve">
+    <value>Please contact system administrator or operator</value>
+  </data>
+  <data name="Operators" xml:space="preserve">
+    <value>Operators</value>
+  </data>
+  <data name="OperatorsList" xml:space="preserve">
+    <value>Operators list</value>
+  </data>
+  <data name="PayIn" xml:space="preserve">
+    <value>Pay in</value>
+  </data>
+  <data name="PayOut" xml:space="preserve">
+    <value>Pay out</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="RegisterOperator" xml:space="preserve">
+    <value>Register operator</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="SubmitEntry" xml:space="preserve">
+    <value>Submit entry</value>
+  </data>
+  <data name="TakeAPicture" xml:space="preserve">
+    <value>Take a picture</value>
+  </data>
+  <data name="TotalCreditAmount" xml:space="preserve">
+    <value>Total credit amount</value>
+  </data>
+  <data name="TotalDepositedAmount" xml:space="preserve">
+    <value>Total deposited amount</value>
+  </data>
+  <data name="TotalDepositInterests" xml:space="preserve">
+    <value>Total deposits interests</value>
+  </data>
+  <data name="TransferErrorFromCreditAcc" xml:space="preserve">
+    <value>Error: Can't transfer money from credit account</value>
+  </data>
+  <data name="TransferFunds" xml:space="preserve">
+    <value>Transfer funds</value>
+  </data>
+  <data name="TypeTheSymbols" xml:space="preserve">
+    <value>Type the symbols</value>
+  </data>
+  <data name="TypeTheText" xml:space="preserve">
+    <value>Type the text</value>
+  </data>
+  <data name="WithdrawFunds" xml:space="preserve">
+    <value>Withdraw funds</value>
+  </data>
+  <data name="WrongCapchaInput" xml:space="preserve">
+    <value>Wrong capcha input</value>
+  </data>
+  <data name="YouAreLoggedInAs" xml:space="preserve">
+    <value>You're logged in as</value>
+  </data>
 </root>

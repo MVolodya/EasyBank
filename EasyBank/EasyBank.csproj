@@ -507,15 +507,12 @@
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
     <Content Include="Views\Protected\CurrencyList.cshtml" />
     <Content Include="Views\Protected\verifyDelete.cshtml" />
-    <Content Include="Views\Account\RegisterAdmin.cshtml" />
-    <Content Include="Views\Account\RegisterOperator.cshtml" />
     <Content Include="Views\Protected\OperatorsList.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Office\RegisterOperator.cshtml" />

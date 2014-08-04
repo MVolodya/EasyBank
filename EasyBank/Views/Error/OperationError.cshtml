@@ -8,25 +8,25 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>OperationError</title>
+    <title>@Resources.Resource.OperationError</title>
 </head>
 <body>
     <div>
-        <h1> Operation error </h1>
-        <h3> Error code: @ViewBag.ErrorCode</h3>
-        <h4> Please contact System administrator or Operator</h4>
-        <h2>Опишіть проблему</h2>
+        <h1> @Resources.Resource.OperationError </h1>
+        <h3> @Resources.Resource.ErrorCode: @ViewBag.ErrorCode</h3>
+        <h4> @Resources.Resource.OperationErrorMessage</h4>
+        <h2>@Resources.Resource.DescribeTheProblem</h2>
         <form method="post" action="OperationError">
             <fieldset>
                 @* @Html.EditorForModel(Model); *@
 
-                <br />     Введіть текс:     <br />
+                <br />     @Resources.Resource.TypeTheText     <br />
                 <textarea name="Text" rows="10" cols="40"></textarea>
                 <br />
                 <br />
                 @Html.HiddenFor(model => model.AccountId)
 
-                <input type="submit" value="Submit Entry" />
+                <input type="submit" value=@Resources.Resource.SubmitEntry />
             </fieldset>
         </form>
 

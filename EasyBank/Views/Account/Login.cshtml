@@ -1,7 +1,7 @@
 ﻿@using CaptchaMvc.HtmlHelpers
 @model EasyBank.Models.LoginModel
 @{
-    ViewBag.Title = "Log in for clients";
+    ViewBag.Title = @Resources.Resource.LogInForClients;
 }
 
 <hgroup class="title">
@@ -12,7 +12,7 @@
 
 
 <section id="loginForm">
-<h3>Use your credentials to enter the system.</h3>
+<h3>@Resources.Resource.LoginHelpMessage</h3>
 @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -36,13 +36,13 @@
             </li>
             <li>
                 @*Capcha symbols amount*@
-                @Html.Captcha("Refresh", "Type the symbols", 4, "Wrong capcha input")
+                @Html.Captcha(@Resources.Resource.Refresh, @Resources.Resource.TypeTheSymbols, 4, @Resources.Resource.WrongCapchaInput)
             </li>
 
         </ol>
         @ViewBag.Message
         <br />
-        <input type="submit" value="Log in" />
+        <input type="submit" value=@Resources.Resource.LogIn />
 
     </fieldset>
 }
@@ -50,7 +50,7 @@
 
 
 <section class="social" id="socialLoginForm">
-    <h2>Welcome to Easy Bank online service!</h2>
+    <h2>@Resources.Resource.WelcomeMessage</h2>
 
 </section>
 
