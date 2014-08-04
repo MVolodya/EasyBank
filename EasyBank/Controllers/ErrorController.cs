@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using EasyBank.Filters;
 using EasyBank.Models;
+using System.Net.Mail;
+using System.Net;
 
 namespace EasyBank.Controllers
 {
@@ -24,16 +26,15 @@ namespace EasyBank.Controllers
             return View(errorReport);
         }
         [HttpPost]
-        public ActionResult OperationError(ErrorReport errorreport)
+        public ActionResult OperationError(ErrorReport errorReport)
         {
 
-            errorreport.Text = errorreport.Text + "\r\n" + ViewBag.ErrorCode;
-            errorreport.ReportDate = DateTime.Now;
-            errorreport.Account = db.Accounts.SingleOrDefault(m => m.AccountId == errorreport.AccountId);
-            db.ErrorReports.Add(errorreport);
+            errorReport.Text = errorReport.Text + "\r\n" + ViewBag.ErrorCode;
+            errorReport.ReportDate = DateTime.Now;
+            errorReport.Account = db.Accounts.SingleOrDefault(m => m.AccountId == errorReport.AccountId);
+            db.ErrorReports.Add(errorReport);
             db.SaveChanges();
-            return View("Yes");
+            return RedirectToAction("Account/ClientsProfile");
         }
-
     }
 }

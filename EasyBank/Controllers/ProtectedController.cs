@@ -63,11 +63,12 @@ namespace EasyBank.Controllers
         private ConnectionContext db = new ConnectionContext();
         public ActionResult Index()
         {
-            var error = (from errorreport in db.ErrorReports
-                         orderby errorreport.ReportDate descending
-                         select errorreport);
-            ViewBag.ErrorReports = error.ToList();
-            return View();
+            List<ErrorReport> errorReports = (from e in db.ErrorReports select e).ToList();
+            foreach (ErrorReport errorReport in errorReports)
+            {
+                errorReport.Account = db.Accounts.Find(errorReport.AccountId);
+            }
+            return View(errorReports);
         }
 
         [Authorize(Roles = "Administrator")]

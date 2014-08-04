@@ -4,11 +4,21 @@
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>OperationError</title>
+    <script src="~/Scripts/jquery-1.8.2.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#submitButton").click(function () {
+                debugger;
+                errorCode = @ViewBag.ErrorCode
+                $("#text").val("Error code: " + errorCode.toString() + ' ' + $("#text").val());
+            });
+        });
+
+    </script>
 </head>
 <body>
     <div>
@@ -19,17 +29,17 @@
         <form method="post" action="OperationError">
             <fieldset>
                 @* @Html.EditorForModel(Model); *@
-
-                <br />     Введіть текс:     <br />
-                <textarea name="Text" rows="10" cols="40"></textarea>
+                <br />
+                Введіть текс:
+                <br />
+                <textarea name="Text" rows="10" cols="40" id="text"></textarea>
                 <br />
                 <br />
                 @Html.HiddenFor(model => model.AccountId)
 
-                <input type="submit" value="Submit Entry" />
+                <input type="submit" value="Submit Entry" id="submitButton" />
             </fieldset>
         </form>
-
     </div>
 </body>
 </html>
