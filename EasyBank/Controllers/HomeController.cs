@@ -40,7 +40,7 @@ namespace EasyBank.Controllers
             //ALWAYS CHECK FOR NULL
             //!!!!!
             //List<Account>accounts = db.Clients.FirstOrDefault(c => c.Surname == "Symonenko").Accounts.ToList();
-            return View();
+            return RedirectToAction("Login", "Account");
         }
 
         public ActionResult ChangeCulture(string lang)
