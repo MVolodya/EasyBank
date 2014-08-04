@@ -500,7 +500,12 @@ namespace EasyBank.Controllers
                 {
                     Currency currency = new Currency();
                     currency.CurrencyName = name;
+
+                    BankAccount ba = new BankAccount();
+                    ba.CurrencyName = name;
+                    
                     db.Currencies.Add(currency);
+                    db.BankAccounts.Add(ba);
                     db.SaveChanges();
                 }
                 else

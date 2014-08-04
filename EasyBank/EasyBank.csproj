@@ -271,9 +271,9 @@
     <Compile Include="Migrations\201408040843162_AddedInterestCalculation.Designer.cs">
       <DependentUpon>201408040843162_AddedInterestCalculation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201408041134223_addedBankAccounts.cs" />
-    <Compile Include="Migrations\201408041134223_addedBankAccounts.Designer.cs">
-      <DependentUpon>201408041134223_addedBankAccounts.cs</DependentUpon>
+    <Compile Include="Migrations\201408041147338_addedBankAccount.cs" />
+    <Compile Include="Migrations\201408041147338_addedBankAccount.Designer.cs">
+      <DependentUpon>201408041147338_addedBankAccount.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -349,8 +349,8 @@
     <EmbeddedResource Include="Migrations\201408040843162_AddedInterestCalculation.resx">
       <DependentUpon>201408040843162_AddedInterestCalculation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408041134223_addedBankAccounts.resx">
-      <DependentUpon>201408041134223_addedBankAccounts.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201408041147338_addedBankAccount.resx">
+      <DependentUpon>201408041147338_addedBankAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
