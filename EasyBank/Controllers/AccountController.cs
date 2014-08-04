@@ -32,9 +32,10 @@ namespace EasyBank.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            LoginModel newLoginModel = new LoginModel();
-            newLoginModel.CapchaAmount = 3;
-            return View(newLoginModel);
+            /*LoginModel newLoginModel = new LoginModel();
+            newLoginModel.CapchaAmount = 3;*/
+            //return View(newLoginModel);
+            return View();
         }
 
         //
@@ -46,7 +47,7 @@ namespace EasyBank.Controllers
         [CaptchaMvc.Attributes.CaptchaVerify("Captcha is not valid")]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            ModelState.Remove("CapchaAmount");
+            //ModelState.Remove("CapchaAmount");
             string errorMessage = "The user name or password or capcha provided is incorrect. ";
             /*if (model.CapchaAmount < 2) {
                 ModelState.AddModelError("", "Access denied");
@@ -56,8 +57,8 @@ namespace EasyBank.Controllers
             {
                 if (Roles.IsUserInRole(model.UserName, "Administrator") || Roles.IsUserInRole(model.UserName, "Operator"))
                 {
-                    model.CapchaAmount++;
-                    errorMessage += model.CapchaAmount.ToString() + " attempts left.";
+                    //model.CapchaAmount--;
+                    //errorMessage += model.CapchaAmount.ToString() + " attempts left.";
                     ModelState.AddModelError("", errorMessage);
                     return View(model);
 
@@ -69,8 +70,8 @@ namespace EasyBank.Controllers
                 }
             }
             // If we got this far, something failed, redisplay form
-            model.CapchaAmount++;
-            errorMessage += model.CapchaAmount.ToString() + " attempts left.";
+            //model.CapchaAmount--;
+            //errorMessage += model.CapchaAmount.ToString() + " attempts left.";
             ModelState.AddModelError("", errorMessage);
             return View(model);
         }

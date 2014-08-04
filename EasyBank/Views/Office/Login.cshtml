@@ -1,4 +1,5 @@
 ﻿@model EasyBank.Models.LoginModel
+@using CaptchaMvc.HtmlHelpers
 
 @{
     ViewBag.Title = "Log in";
@@ -30,6 +31,10 @@
             <li>
                 @Html.CheckBoxFor(m => m.RememberMe)
                 @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+            </li>
+            <li>
+                @*Capcha symbols amount*@
+                @Html.Captcha("Refresh", "Type the symbols", 4, "Wrong capcha input")
             </li>
         </ol>
         <input type="submit" value="Log in" />

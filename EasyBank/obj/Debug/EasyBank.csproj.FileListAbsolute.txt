@@ -785,8 +785,6 @@ C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migratio
 C:\Users\V\Desktop\GitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.DepCredModel.resources
 C:\Users\V\Desktop\GitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.DCModel.resources
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.DepCredModel.resources
-C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.DCModel.resources
-C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.csprojResolveAssemblyReference.cache
 C:\Users\oper4\Documents\GitHub\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.AddedErrorReportAndUpdatedOperatorAndCurrencyModels.resources
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.AddedErrorReportAndUpdatedOperatorAndCurrencyModels.resources
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\bin\EasyBank.dll
@@ -1016,3 +1014,6 @@ C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\uk-UA\EasyBank.re
 C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resources.dll
 C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
+C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.AddedErrorReportAndUpdatedOperatorAndCurrencyModels.resources
+C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.PurchaseSellRateFieldsAdded.resources
+C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.csprojResolveAssemblyReference.cache
