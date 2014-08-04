@@ -16,6 +16,8 @@ namespace EasyBank.Models
 
         public bool IsAlreadyRegistered { get; set; }
 
+        public int IncorrectPasswordTrials { get; set; }
+
         [Display(Name = "Name", ResourceType = typeof(Resources.Resource))]
         [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "NameRequired")]
         [StringLength(20, MinimumLength = 3, ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "NameLen3To20")]

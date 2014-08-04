@@ -275,6 +275,10 @@
     <Compile Include="Migrations\201408041147338_addedBankAccount.Designer.cs">
       <DependentUpon>201408041147338_addedBankAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408041759114_addedIncorrectPasswordTrialsToClient.cs" />
+    <Compile Include="Migrations\201408041759114_addedIncorrectPasswordTrialsToClient.Designer.cs">
+      <DependentUpon>201408041759114_addedIncorrectPasswordTrialsToClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -352,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408041147338_addedBankAccount.resx">
       <DependentUpon>201408041147338_addedBankAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408041759114_addedIncorrectPasswordTrialsToClient.resx">
+      <DependentUpon>201408041759114_addedIncorrectPasswordTrialsToClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
