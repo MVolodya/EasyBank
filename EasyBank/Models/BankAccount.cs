@@ -12,7 +12,7 @@ namespace EasyBank.Models
         [Key]
         public int BankAccountId { get; set; }
 
-        public int CurrencyName { get; set; }
+        public string CurrencyName { get; set; }
         public int Amount { get; set; }
     }
 }

@@ -11,6 +11,9 @@ namespace EasyBank.Models
     {
         [Key]
         public int CurrencyId { get; set; }
+
+        [StringLength(10, ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "Len10", MinimumLength = 2)]
+        [Index("UniqueCurrencyName", IsUnique = true)]
         [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "CurrencyNameRequired")]
         public string CurrencyName { get; set; }
 
