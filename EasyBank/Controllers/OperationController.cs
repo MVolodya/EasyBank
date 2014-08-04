@@ -21,7 +21,7 @@ namespace EasyBank.Controllers
         [HttpGet]
         public ActionResult AddMoney(int? id)
         {
-            ConnectionContext db = new ConnectionContext();
+
             Account account = db.Accounts.FirstOrDefault(a => a.AccountId == id);
 
             List<string> currencyNames = (from c in db.Currencies
@@ -55,7 +55,7 @@ namespace EasyBank.Controllers
         [HttpGet]
         public ActionResult WidthdrawMoney(int? id)
         {
-            ConnectionContext db = new ConnectionContext();
+
             Account account = db.Accounts.FirstOrDefault(a => a.AccountId == id);
 
             List<string> currencyNames = (from c in db.Currencies
@@ -88,7 +88,7 @@ namespace EasyBank.Controllers
         [HttpGet]
         public ActionResult TransferMoney(int? id)
         {
-            ConnectionContext db = new ConnectionContext();
+
             Account account = db.Accounts.FirstOrDefault(a => a.AccountId == id);
             if (account != null)
                 return View(account);
@@ -108,7 +108,6 @@ namespace EasyBank.Controllers
 
         public ActionResult TotalDepositedAmount()
         {
-            ConnectionContext db = new ConnectionContext();
             decimal[] depositsAmount = (from da in db.Accounts
                                   where da.TypeId != 3
                                   select da.Amount).ToArray();
@@ -123,7 +122,6 @@ namespace EasyBank.Controllers
 
         public ActionResult TotalDepositInterests()
         {
-            ConnectionContext db = new ConnectionContext();
             decimal[] depositInterest = (from di in db.Accounts
                                          where di.TypeId == 2
                                          select di.Interest).ToArray();
@@ -137,7 +135,6 @@ namespace EasyBank.Controllers
 
         public ActionResult TotalCreditedAmount()
         {
-            ConnectionContext db = new ConnectionContext();
             decimal[] creditsAmount = (from ca in db.Accounts
                                         where ca.TypeId == 3
                                         select ca.Amount).ToArray();
@@ -152,7 +149,6 @@ namespace EasyBank.Controllers
 
         public ActionResult TotalCreditInterests()
         {
-            ConnectionContext db = new ConnectionContext();
             decimal[] creditInterest = (from ci in db.Accounts
                                         where ci.TypeId == 3
                                         select ci.Interest).ToArray();
