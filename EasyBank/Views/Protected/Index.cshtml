@@ -1,15 +1,12 @@
-﻿@model EasyBank.Models.ErrorReport
-This is index
+﻿@model List<EasyBank.Models.ErrorReport>
 
-
-@foreach (var errorreport in ViewBag.ErrorReports)
-{   <section class="contact">
-        <header>
-
-            <h3>@errorreport.Text</h3>
-        </header>
-        <p>
-            Posted by @errorreport.ReportDate.ToLongDateString()
-        </p>
-    </section>
+@foreach (EasyBank.Models.ErrorReport errorReport in Model)
+{
+    <p>
+        <b> Posted by,</b> @errorReport.Account.Client.Name @errorReport.Account.Client.Surname<br />
+      <b>  Email:</b> @errorReport.Account.Client.Email<b> Account Number: </b>@errorReport.Account.AccountNumber
+    </p>
+    <h5>@errorReport.Text</h5>
+    <p><b>Posted date:</b> @errorReport.ReportDate.ToLongDateString()</p>
+    <hr />
 }
