@@ -363,4 +363,151 @@
   <data name="DecimalFormat" xml:space="preserve">
     <value>Сумма должна иметь формат (0.00 або 0.0 або 0)</value>
   </data>
+  <data name="AddBankProduct" xml:space="preserve">
+    <value>Добавить банковский продукт</value>
+  </data>
+  <data name="AskToAddMoney" xml:space="preserve">
+    <value>Вы уверенны, что хотите добавить деньги?</value>
+  </data>
+  <data name="BackToProfile" xml:space="preserve">
+    <value>Вернуться к профилю</value>
+  </data>
+  <data name="BankProducts" xml:space="preserve">
+    <value>Продукты банка</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Изменение пароля</value>
+  </data>
+  <data name="Clients" xml:space="preserve">
+    <value>Клиенты</value>
+  </data>
+  <data name="ClientsPassport" xml:space="preserve">
+    <value>Паспорт клиента</value>
+  </data>
+  <data name="ClientsProfile" xml:space="preserve">
+    <value>Профиль клиента</value>
+  </data>
+  <data name="CreditName" xml:space="preserve">
+    <value>Название кредита</value>
+  </data>
+  <data name="Credits" xml:space="preserve">
+    <value>Кредиты</value>
+  </data>
+  <data name="CurrencyDelete" xml:space="preserve">
+    <value>Удалить валюту</value>
+  </data>
+  <data name="DepositName" xml:space="preserve">
+    <value>Название депозита</value>
+  </data>
+  <data name="Deposits" xml:space="preserve">
+    <value>Депозиты</value>
+  </data>
+  <data name="DescribeTheProblem" xml:space="preserve">
+    <value>Опишите проблему</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Продолжительность</value>
+  </data>
+  <data name="EarlyTermination" xml:space="preserve">
+    <value>Досрочное окончание</value>
+  </data>
+  <data name="EarlyTerminationCredit" xml:space="preserve">
+    <value>Досрочное погашение</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="ErrorCode" xml:space="preserve">
+    <value>Код ошибки</value>
+  </data>
+  <data name="ErrorTakeMoneyFromCreditAcc" xml:space="preserve">
+    <value>Ошибка: Невозможно снять деньги из кредитного счета</value>
+  </data>
+  <data name="FinancialReports" xml:space="preserve">
+    <value>Финансовые отчеты</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Здравствуйте</value>
+  </data>
+  <data name="InterestRate" xml:space="preserve">
+    <value>Процентная ставка</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="LogInForClients" xml:space="preserve">
+    <value>Вход для клиентов</value>
+  </data>
+  <data name="LoginHelpMessage" xml:space="preserve">
+    <value>Используйте Ваши учетные данные для входа в систему.</value>
+  </data>
+  <data name="LogInTitle" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="OperationError" xml:space="preserve">
+    <value>Ошибка операции</value>
+  </data>
+  <data name="OperationErrorMessage" xml:space="preserve">
+    <value>Пожалуйста, обратитесь к системному администратору или оператору</value>
+  </data>
+  <data name="Operators" xml:space="preserve">
+    <value>Операторы</value>
+  </data>
+  <data name="OperatorsList" xml:space="preserve">
+    <value>Список операторов</value>
+  </data>
+  <data name="PayIn" xml:space="preserve">
+    <value>Внести средства</value>
+  </data>
+  <data name="PayOut" xml:space="preserve">
+    <value>Снять средства</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="RegisterOperator" xml:space="preserve">
+    <value>Зарегистрировать оператора</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="SubmitEntry" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="TakeAPicture" xml:space="preserve">
+    <value>Сфотографировать</value>
+  </data>
+  <data name="TotalCreditAmount" xml:space="preserve">
+    <value>Общая сумма кредитов</value>
+  </data>
+  <data name="TotalDepositedAmount" xml:space="preserve">
+    <value>Общая сумма депозитов и текущих счетов</value>
+  </data>
+  <data name="TotalDepositInterests" xml:space="preserve">
+    <value>Сумма начислений по депозитам</value>
+  </data>
+  <data name="TransferErrorFromCreditAcc" xml:space="preserve">
+    <value>Ошибка: Невозможно перевести средства из кредитного счета</value>
+  </data>
+  <data name="TransferFunds" xml:space="preserve">
+    <value>Перевод средств</value>
+  </data>
+  <data name="TypeTheSymbols" xml:space="preserve">
+    <value>Введите символы из картинки</value>
+  </data>
+  <data name="TypeTheText" xml:space="preserve">
+    <value>Введите текст</value>
+  </data>
+  <data name="WithdrawFunds" xml:space="preserve">
+    <value>Вывод средств</value>
+  </data>
+  <data name="WrongCapchaInput" xml:space="preserve">
+    <value>Введены неправильные символы из картинки</value>
+  </data>
+  <data name="YouAreLoggedInAs" xml:space="preserve">
+    <value>Вы вошли как</value>
+  </data>
 </root>

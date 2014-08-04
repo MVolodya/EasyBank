@@ -37,7 +37,7 @@
             }
         }
         @Html.DropDownListFor(model => model.CurrencyId, listCurrency, new {@Size="3" })
-        <p>Deposits</p>
+        <p>@Resources.Resource.Deposits</p>
         @{
             List<SelectListItem> listDeposits = new List<SelectListItem>();
             var ListDeposits = ViewBag.Deposits;
@@ -48,7 +48,7 @@
         }
         @Html.DropDownListFor(model => model.TypeId, listDeposits, new { @Size = "3" })
 
-        <p>Credits</p>
+        <p>@Resources.Resource.Credits</p>
         @{
             List<SelectListItem> listCredits = new List<SelectListItem>();
             var ListCredits = ViewBag.Credits;

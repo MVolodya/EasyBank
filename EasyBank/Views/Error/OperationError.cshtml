@@ -7,14 +7,15 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>OperationError</title>
+<<<<<<< HEAD
+    <title>@Resources.Resource.OperationError</title>
     <script src="~/Scripts/jquery-1.8.2.js"></script>
     <script>
         $(document).ready(function () {
             $("#submitButton").click(function () {
                 debugger;
                 errorCode = @ViewBag.ErrorCode
-                $("#text").val("Error code: " + errorCode.toString() + ' ' + $("#text").val());
+                $("#text").val(@ViewBag.ErrorCode + ": " + errorCode.toString() + ' ' + $("#text").val());
             });
         });
 
@@ -22,22 +23,20 @@
 </head>
 <body>
     <div>
-        <h1> Operation error </h1>
-        <h3> Error code: @ViewBag.ErrorCode</h3>
-        <h4> Please contact System administrator or Operator</h4>
-        <h2>Опишіть проблему</h2>
+        <h1> @Resources.Resource.OperationError </h1>
+        <h3> @Resources.Resource.ErrorCode: @ViewBag.ErrorCode</h3>
+        <h4> @Resources.Resource.OperationErrorMessage</h4>
+        <h2>@Resources.Resource.DescribeTheProblem</h2>
         <form method="post" action="OperationError">
             <fieldset>
                 @* @Html.EditorForModel(Model); *@
-                <br />
-                Введіть текс:
-                <br />
-                <textarea name="Text" rows="10" cols="40" id="text"></textarea>
+                <br />     @Resources.Resource.TypeTheText     <br />
+                <textarea name="Text" rows="10" cols="40"></textarea>
                 <br />
                 <br />
                 @Html.HiddenFor(model => model.AccountId)
 
-                <input type="submit" value="Submit Entry" id="submitButton" />
+                <input type="submit" value=@Resources.Resource.SubmitEntry />
             </fieldset>
         </form>
     </div>

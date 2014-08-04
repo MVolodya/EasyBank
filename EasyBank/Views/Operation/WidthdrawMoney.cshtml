@@ -82,7 +82,7 @@
     </div>
 </fieldset>
 
-<h4><b>Widthdraw Funds</b></h4>
+<h4><b>@Resources.Resource.WithdrawFunds</b></h4>
 @if (Model.AccountType.TypeName != "Credit")
 {
     using (Html.BeginForm("WidthdrawMoney", "Operation", FormMethod.Post))
@@ -98,14 +98,14 @@
     @Html.DropDownList("CurrencyName", itemList)
 
     <br />
-    <input type="submit" value="submit" />
+    <input type="submit" value=@Resources.Resource.Submit />
     }
 }
 else
 {
-    <h6>Can't take money from credit account</h6>
+    <h6>@Resources.Resource.ErrorTakeMoneyFromCreditAcc</h6>
 }
 
 <p>
-    @Html.ActionLink("Back to profile", "ClientsProfile", "Protected", new { clientId = Model.ClientId }, null)
+    @Html.ActionLink(@Resources.Resource.BackToProfile, "ClientsProfile", "Protected", new { clientId = Model.ClientId }, null)
 </p>
