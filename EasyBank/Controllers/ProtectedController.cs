@@ -436,6 +436,9 @@ namespace EasyBank.Controllers
         [HttpPost]
         public ActionResult AddAccount(Account account)
         {
+            account.Interest = 0;
+            account.LastInterestAdded = DateTime.Now;
+            account.OpenDate = DateTime.Now;
             account.StatusId = 1;
             // Normal status is default
             if (ModelState.IsValid)

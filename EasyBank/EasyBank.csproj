@@ -291,6 +291,7 @@
     <Compile Include="Models\Operator.cs" />
     <Compile Include="Models\ProfitCalc.cs" />
     <Compile Include="Models\RegisterCompositeModel.cs" />
+    <Compile Include="Models\TotalAmountForCurrency.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.uk-UA.Designer.cs">
       <DependentUpon>Resource.uk-UA.resx</DependentUpon>
