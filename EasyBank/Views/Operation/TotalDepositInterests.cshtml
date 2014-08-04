@@ -1,3 +1,21 @@
-﻿<h2>@Resources.Resource.TotalDepositInterests</h2>
+﻿<h3>Total Deposit Interest</h3>
+<table>
+    <tr>
+        @foreach (var item in Model)
+        {
+            <th>
+                @Html.DisplayFor(modelItem => item.CurrencyName)
+            </th>
+        }
+    </tr>
+    <tr>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+        }
+    </tr>
+</table>
 
-@Html.DisplayFor(model => Model)
+<br />

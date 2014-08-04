@@ -108,20 +108,51 @@ namespace EasyBank.Controllers
 
         public ActionResult TotalDepositedAmount()
         {
-            decimal[] depositsAmount = (from da in db.Accounts
+            var depositAccounts = (from da in db.Accounts
                                   where da.TypeId != 3
-                                  select da.Amount).ToArray();
-            decimal totalDeposits = 0;
-            foreach (var item in depositsAmount)
+                                  select da).ToList();
+            var currencies = (from cur in db.Currencies
+                             select cur).ToList();
+            List<TotalAmountForCurrency> total = new List<TotalAmountForCurrency>();
+            foreach (var currency in currencies)
             {
-               totalDeposits += item;
+                decimal totalAmount = 0;
+                foreach (var account in depositAccounts)
+                {
+                    if (account.Currency.CurrencyName == currency.CurrencyName)
+                    {
+                        totalAmount += account.Amount;
+                    }
+                }
+                total.Add(new TotalAmountForCurrency() { CurrencyName = currency.CurrencyName , TotalAmount = totalAmount});
             }
-
-            return View(totalDeposits);
+            return View(total);
         }
 
         public ActionResult TotalDepositInterests()
         {
+            var depositInterests = (from di in db.Accounts
+                                   where di.TypeId == 2
+                                   select di).ToList();
+            var currencies = (from cur in db.Currencies
+                              select cur).ToList();
+            List<TotalAmountForCurrency> total = new List<TotalAmountForCurrency>();
+            foreach (var currency in currencies)
+            {
+                decimal totalAmount = 0;
+                foreach (var account in depositInterests)
+                {
+                    if (account.Currency.CurrencyName == currency.CurrencyName)
+                    {
+                        totalAmount += account.Interest;
+                    }
+                }
+                total.Add(new TotalAmountForCurrency() { CurrencyName = currency.CurrencyName, TotalAmount = totalAmount });
+            }
+            return PartialView(total);
+
+
+            /*
             decimal[] depositInterest = (from di in db.Accounts
                                          where di.TypeId == 2
                                          select di.Interest).ToArray();
@@ -130,25 +161,56 @@ namespace EasyBank.Controllers
             {
                 totalInterest += item;
             }
-            return PartialView(totalInterest);
+            return PartialView(totalInterest); */
         }
 
         public ActionResult TotalCreditedAmount()
         {
-            decimal[] creditsAmount = (from ca in db.Accounts
-                                        where ca.TypeId == 3
-                                        select ca.Amount).ToArray();
-            decimal totalCredits = 0;
-            foreach (var item in creditsAmount)
+            var creditAccounts = (from ca in db.Accounts
+                                   where ca.TypeId == 3
+                                   select ca).ToList();
+            var currencies = (from cur in db.Currencies
+                              select cur).ToList();
+            List<TotalAmountForCurrency> total = new List<TotalAmountForCurrency>();
+            foreach (var currency in currencies)
             {
-                totalCredits += item;
+                decimal totalAmount = 0;
+                foreach (var account in creditAccounts)
+                {
+                    if (account.Currency.CurrencyName == currency.CurrencyName)
+                    {
+                        totalAmount += account.Amount;
+                    }
+                }
+                total.Add(new TotalAmountForCurrency() { CurrencyName = currency.CurrencyName, TotalAmount = totalAmount });
             }
-
-            return PartialView(totalCredits);
+            return PartialView(total);
         }
 
         public ActionResult TotalCreditInterests()
         {
+            var creditInterests = (from ci in db.Accounts
+                                    where ci.TypeId == 3
+                                    select ci).ToList();
+            var currencies = (from cur in db.Currencies
+                              select cur).ToList();
+            List<TotalAmountForCurrency> total = new List<TotalAmountForCurrency>();
+            foreach (var currency in currencies)
+            {
+                decimal totalAmount = 0;
+                foreach (var account in creditInterests)
+                {
+                    if (account.Currency.CurrencyName == currency.CurrencyName)
+                    {
+                        totalAmount += account.Interest;
+                    }
+                }
+                total.Add(new TotalAmountForCurrency() { CurrencyName = currency.CurrencyName, TotalAmount = totalAmount });
+            }
+            return PartialView(total);
+
+
+            /*
             decimal[] creditInterest = (from ci in db.Accounts
                                         where ci.TypeId == 3
                                         select ci.Interest).ToArray();
@@ -157,7 +219,7 @@ namespace EasyBank.Controllers
             {
                 totalInterest += item;
             }
-            return PartialView(totalInterest);
+            return PartialView(totalInterest); */
         }
 
         [HttpGet]

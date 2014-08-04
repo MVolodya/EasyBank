@@ -1,6 +1,22 @@
-﻿<h2>@Resources.Resource.TotalDepositedAmount</h2>
-
-@Html.DisplayFor(model => Model)
+﻿<h3>Total Deposited Amount</h3>
+<table>
+    <tr>
+        @foreach (var item in Model)
+            {
+        <th>
+                @Html.DisplayFor(modelItem => item.CurrencyName)
+        </th>
+            }
+    </tr>
+    <tr>
+        @foreach (var item in Model)
+            {
+        <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)       
+        </td>
+            }
+    </tr>
+</table>
 
 <br />
 
@@ -8,4 +24,4 @@
 @Html.Action("TotalDepositInterests")
 @Html.Action("TotalCreditInterests")
 
-@Html.Action("ProfitCalc")n("TotalCreditedAmount")
+@Html.Action("ProfitCalc")
