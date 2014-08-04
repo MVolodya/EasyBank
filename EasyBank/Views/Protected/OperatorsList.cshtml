@@ -2,12 +2,12 @@
 @using PagedList.Mvc;
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
-    ViewBag.Title = "Operators";
+    ViewBag.Title = @Resources.Resource.Operators;
 }
-<h2>@Html.Label("Operators")</h2>
+<h2>@Html.Label(@Resources.Resource.Operators)</h2>
 @if (User.IsInRole("Administrator"))
 {
-    @Html.ActionLink("Register Operator", "RegisterOperator", "Account")
+    @Html.ActionLink(@Resources.Resource.RegisterOperator, "RegisterOperator", "Account")
 }
 
 @using (Html.BeginForm("OperatorsList", "Protected", FormMethod.Get))

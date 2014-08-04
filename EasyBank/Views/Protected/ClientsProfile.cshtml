@@ -1,7 +1,7 @@
 ﻿@model EasyBank.Models.Client
 
 @{
-    ViewBag.Title = "Clients profile";
+    ViewBag.Title = @Resources.Resource.ClientsProfile;
 }
 <script>
 
@@ -110,7 +110,7 @@
     @Html.ActionLink(@Resources.Resource.AddAccount, "AddAccount", new { clientId = Model.ClientId })
 </p>
 <div>
-    @Html.ActionLink("AddPhoto", "AddPhoto", new { id = Model.ClientId })
+    @Html.ActionLink(@Resources.Resource.AddPhoto, "AddPhoto", new { id = Model.ClientId })
 </div>
 <table>
     @if (Model.Accounts.Count() != 0)
@@ -173,7 +173,7 @@
         
     }
 </table>
-<a href="#" id="payInButton" style="opacity: 0">Pay in</a>
-<a href="#" id="payOutButton" style="opacity: 0">Pay out</a>
-<a href="#" id="transferButton" style="opacity: 0">Transfer</a>
+<a href="#" id="payInButton" style="opacity: 0">@Resources.Resource.PayIn</a>
+<a href="#" id="payOutButton" style="opacity: 0">@Resources.Resource.PayOut</a>
+<a href="#" id="transferButton" style="opacity: 0">@Resources.Resource.TransMoney</a>
 

@@ -1,23 +1,22 @@
 ﻿@model List<EasyBank.Models.DepositCreditModel>
 <br/>
 
-    @Html.ActionLink("Add Bank Product", "AddDepositCredit", "Office")
+    @Html.ActionLink(@Resources.Resource.AddBankProduct, "AddDepositCredit", "Office")
 
 <br/>
 <table>
     <tr>
         <th>
-
-            Deposit Name
+            @Resources.Resource.DepositName
         </th>
         <th>
-            Duration
+            @Resources.Resource.Duration
         </th>
         <th>
-            Interest Rate
+            @Resources.Resource.InterestRate
         </th>
         <th>
-            Early Termination
+            @Resources.Resource.EarlyTermination
         </th>
 
     </tr>

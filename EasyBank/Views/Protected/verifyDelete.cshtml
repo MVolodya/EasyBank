@@ -1,7 +1,7 @@
 ﻿@model EasyBank.Models.Currency
 
 @{
-    ViewBag.Title = "CurrDelete";
+    ViewBag.Title = @Resources.Resource.CurrencyDelete;
 }
 
 <h2>CurrDelete</h2>
@@ -21,7 +21,7 @@
 {
     <p>
         @Html.Hidden("id", Model.CurrencyId)
-        <input type="submit" value="Delete" />
+        <input type="submit" value=@Resources.Resource.Delete />
         @Html.ActionLink(@Resources.Resource.BackToList, "CurrencyList")
     </p>
 }

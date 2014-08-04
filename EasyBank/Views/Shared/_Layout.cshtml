@@ -50,24 +50,24 @@
                         }
                         @if (User.IsInRole("Operator"))
                         {
-                            <li>@Html.ActionLink(Resources.Resource.ClientsList, "ClientsList", "Protected")</li>
+                            <li>@Html.ActionLink(@Resources.Resource.ClientsList, "ClientsList", "Protected")</li>
                         }
                         @if (User.IsInRole("Administrator"))
                         {
-                            <li>@Html.ActionLink(Resources.Resource.Currencies, "CurrencyList", "Protected")</li>
+                            <li>@Html.ActionLink(@Resources.Resource.Currencies, "CurrencyList", "Protected")</li>
                         }
                         @if (User.IsInRole("Administrator"))
                         {
-                            <li>@Html.ActionLink("Operators list", "OperatorsList", "Protected")</li>
+                            <li>@Html.ActionLink(@Resources.Resource.OperatorsList, "OperatorsList", "Protected")</li>
                         }
 
                         @if (User.IsInRole("Administrator"))
                         {
-                            <li>@Html.ActionLink("Bank Products", "DepositList", "Office")</li>
+                            <li>@Html.ActionLink(@Resources.Resource.BankProducts, "DepositList", "Office")</li>
                         }
                         @if (User.IsInRole("Administrator"))
                         {
-                            <li>@Html.ActionLink("Financial Reports", "TotalDepositedAmount", "Operation")</li>
+                            <li>@Html.ActionLink(@Resources.Resource.FinancialReports, "TotalDepositedAmount", "Operation")</li>
                         }
                                     
 
