@@ -1,0 +1,15 @@
+﻿@model EasyBank.Models.ProfitCalc
+@using (Html.BeginForm("ProfitCalc", "Operation", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <p>Enter number of months to calculate interests.</p>
+    @* <input type="number" name="number"  />*@
+    @Html.ValidationSummary(true)
+    <div class="display-field">
+        @Html.EditorFor(model => model.Months)
+    </div>
+
+    <p>
+        <input type="submit" value="Enter" />
+    </p>
+
+}

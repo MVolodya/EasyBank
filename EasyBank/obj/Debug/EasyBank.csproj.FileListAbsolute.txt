@@ -903,3 +903,5 @@ C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.PurchaseSellRateFieldsAdded.resources
 C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.AddedErrorReportAndUpdatedOperatorAndCurrencyModels.resources
 C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.PurchaseSellRateFieldsAdded.resources
+C:\Users\oper4\Documents\GitHub\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.PurchaseSellRateFieldsAdded.resources
+C:\Users\oper4\Documents\GitHub\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.AddedInterestCalculation.resources

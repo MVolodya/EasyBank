@@ -263,6 +263,10 @@
     <Compile Include="Migrations\201408021547253_PurchaseSellRateFieldsAdded.Designer.cs">
       <DependentUpon>201408021547253_PurchaseSellRateFieldsAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408040843162_AddedInterestCalculation.cs" />
+    <Compile Include="Migrations\201408040843162_AddedInterestCalculation.Designer.cs">
+      <DependentUpon>201408040843162_AddedInterestCalculation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -276,6 +280,7 @@
     <Compile Include="Models\ErrorReport.cs" />
     <Compile Include="Models\OperationModels.cs" />
     <Compile Include="Models\Operator.cs" />
+    <Compile Include="Models\ProfitCalc.cs" />
     <Compile Include="Models\RegisterCompositeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.uk-UA.Designer.cs">
@@ -331,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408021547253_PurchaseSellRateFieldsAdded.resx">
       <DependentUpon>201408021547253_PurchaseSellRateFieldsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408040843162_AddedInterestCalculation.resx">
+      <DependentUpon>201408040843162_AddedInterestCalculation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -528,6 +536,9 @@
     <Content Include="Views\Protected\ChooseBankProduct.cshtml" />
     <Content Include="Views\Account\ClientsProfile.cshtml" />
     <Content Include="Views\Account\ShowClientPhoto.cshtml" />
+    <Content Include="Views\Operation\ProfitCalc.cshtml" />
+    <Content Include="Views\Operation\TotalDepositInterests.cshtml" />
+    <Content Include="Views\Operation\TotalCreditInterests.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

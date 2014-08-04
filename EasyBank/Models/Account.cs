@@ -55,6 +55,12 @@ namespace EasyBank.Models
         [ForeignKey("DepositCreditModel")]
         public int? DepositCreditModelID { get; set; }
 
+        public decimal Interest { get; set; }
+
+        public DateTime OpenDate { get; set; }
+
+        public DateTime LastInterestAdded { get; set; }
+
         public virtual Client Client { get; set; }
         public virtual AccountType AccountType { get; set; }
         public virtual Currency Currency { get; set; }

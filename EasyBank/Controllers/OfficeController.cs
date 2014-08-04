@@ -46,18 +46,25 @@ namespace EasyBank.Controllers
         {
             if (Roles.IsUserInRole(model.UserName, "Client"))
             {
-                ModelState.AddModelError("", "The user name or password provided is incorrect.");// ---------------------ПЕРЕКЛАД
+                ModelState.AddModelError("", "The user name or password provided is incorrect.");
                 return View(model);
-
             }
+
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-
-                return RedirectToAction("ClientsList", "Protected");
+                if (Roles.IsUserInRole(model.UserName, "Operator"))
+                {
+                    return RedirectToAction("ClientsList", "Protected")/*RedirectToLocal(returnUrl)*/;
+                }
+                if (Roles.IsUserInRole(model.UserName, "Administrator"))
+                {
+                    return RedirectToAction("TotalDepositedAmount", "Operation")/*RedirectToLocal(returnUrl)*/;
+                }
             }
 
+
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");// ---------------------ПЕРЕКЛАД
+            ModelState.AddModelError("", "The user name or password provided is incorrect.");
             return View(model);
         }
 

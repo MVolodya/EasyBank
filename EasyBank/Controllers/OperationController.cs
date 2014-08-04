@@ -120,6 +120,20 @@ namespace EasyBank.Controllers
             return View(totalDeposits);
         }
 
+        public ActionResult TotalDepositInterests()
+        {
+            ConnectionContext db = new ConnectionContext();
+            decimal[] depositInterest = (from di in db.Accounts
+                                         where di.TypeId == 2
+                                         select di.Interest).ToArray();
+            decimal totalInterest = 0;
+            foreach (var item in depositInterest)
+            {
+                totalInterest += item;
+            }
+            return PartialView(totalInterest);
+        }
+
         public ActionResult TotalCreditedAmount()
         {
             ConnectionContext db = new ConnectionContext();
@@ -133,6 +147,173 @@ namespace EasyBank.Controllers
             }
 
             return PartialView(totalCredits);
+        }
+
+        public ActionResult TotalCreditInterests()
+        {
+            ConnectionContext db = new ConnectionContext();
+            decimal[] creditInterest = (from ci in db.Accounts
+                                        where ci.TypeId == 3
+                                        select ci.Interest).ToArray();
+            decimal totalInterest = 0;
+            foreach (var item in creditInterest)
+            {
+                totalInterest += item;
+            }
+            return PartialView(totalInterest);
+        }
+
+        [HttpGet]
+        public ActionResult ProfitCalc()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult ProfitCalc(ProfitCalc monthsPassed)
+        {
+            ConnectionContext db = new ConnectionContext();
+            var depositAccountsT = (from depAcc in db.Accounts
+                                    where depAcc.TypeId == 2
+                                    where depAcc.DepositCreditModel.EarlyTermination == true
+                                    select depAcc).ToList();
+
+            DateTime today = DateTime.Now;
+
+            foreach (var item in depositAccountsT)
+            {
+                DateTime newDate = item.LastInterestAdded.AddMonths(monthsPassed.Months);
+                TimeSpan timeSpan = newDate.Subtract(item.LastInterestAdded);
+                TimeSpan daysLeft = item.ExpirationDate.Subtract(item.LastInterestAdded);
+                TimeSpan zero = daysLeft - daysLeft;
+                if (daysLeft > timeSpan)
+                {
+                    decimal timeSpanDec = (decimal)timeSpan.TotalDays;
+
+                    decimal interest = item.DepositCreditModel.InterestRate;
+                    decimal interestForPeriod = interest / 365 * timeSpanDec / 100;
+
+                    decimal amountForPeriod = item.Amount * interestForPeriod;
+
+                    item.Interest += amountForPeriod;
+                    item.AvailableAmount = item.Amount + amountForPeriod;
+
+                    //item.Amount = item.AvailableAmount;
+                    item.LastInterestAdded = item.LastInterestAdded.AddDays((double)timeSpanDec);
+
+
+                    db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                else if (daysLeft < timeSpan && daysLeft > zero)
+                {
+                    decimal daysLeftDec = (decimal)daysLeft.TotalDays;
+
+                    decimal interest = item.DepositCreditModel.InterestRate;
+                    decimal interestForPeriod = interest / 365 * daysLeftDec / 100;
+
+                    decimal amountForPeriod = item.Amount * interestForPeriod;
+
+                    item.Interest += amountForPeriod;
+                    item.AvailableAmount = item.Amount + amountForPeriod;
+                    //item.Amount = item.AvailableAmount;
+                    item.LastInterestAdded = item.LastInterestAdded.AddDays((double)daysLeftDec);
+
+                    db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+
+            var depositAccountsF = (from depAcc in db.Accounts
+                                    where depAcc.TypeId == 2
+                                    where depAcc.DepositCreditModel.EarlyTermination == false
+                                    select depAcc).ToList();
+
+            foreach (var item in depositAccountsF)
+            {
+                DateTime newDate = item.LastInterestAdded.AddMonths(monthsPassed.Months);
+                TimeSpan timeSpan = newDate.Subtract(item.LastInterestAdded);
+                TimeSpan daysLeft = item.ExpirationDate.Subtract(item.LastInterestAdded);
+                TimeSpan zero = daysLeft - daysLeft;
+
+                if (daysLeft > timeSpan)
+                {
+                    decimal timeSpanDec = (decimal)timeSpan.TotalDays;
+
+                    decimal interest = item.DepositCreditModel.InterestRate;
+                    decimal interestForPeriod = interest / 365 * timeSpanDec / 100;
+
+                    decimal amountForPeriod = item.Amount * interestForPeriod;
+
+                    item.Interest += amountForPeriod;
+                    item.AvailableAmount = item.Amount + amountForPeriod;
+                    item.LastInterestAdded = item.LastInterestAdded.AddDays((double)timeSpanDec);
+                    db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+
+                else if (daysLeft < timeSpan && daysLeft > zero)
+                {
+                    decimal daysLeftDec = (decimal)daysLeft.TotalDays;
+
+                    decimal interest = item.DepositCreditModel.InterestRate;
+                    decimal interestForPeriod = interest / 365 * daysLeftDec / 100;
+
+                    decimal amountForPeriod = item.Amount * interestForPeriod;
+
+                    item.Interest = +amountForPeriod;
+                    item.AvailableAmount = item.Amount + amountForPeriod;
+                    item.LastInterestAdded = item.LastInterestAdded.AddDays((double)daysLeftDec);
+                    db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+
+            var creditAccountsT = (from creds in db.Accounts
+                                   where creds.TypeId == 3
+                                   where creds.DepositCreditModel.EarlyTermination == true
+                                   select creds).ToList();
+            /*
+            foreach (var item in creditAccountsT)
+            {
+                DateTime newDate = item.LastInterestAdded.AddMonths(monthsPassed.Months);
+                TimeSpan timeSpan = newDate.Subtract(item.LastInterestAdded);
+                TimeSpan daysLeft = item.ExpirationDate.Subtract(item.LastInterestAdded);
+                TimeSpan zero = daysLeft - daysLeft;
+                if (daysLeft > timeSpan)
+                {
+                    decimal timeSpanDec = (decimal)timeSpan.TotalDays;
+
+                    decimal interest = item.DepositCreditModel.InterestRate;
+                    decimal interestForPeriod = interest / 365 * timeSpanDec / 100;
+
+                    decimal amountForPeriod = item.Amount * interestForPeriod;
+                    item.AvailableAmount = item.Amount + amountForPeriod;
+                   // item.Amount = item.AvailableAmount;
+                    item.Interest += amountForPeriod; 
+             
+                    item.LastInterestAdded = item.LastInterestAdded.AddDays((double)timeSpanDec);
+                    db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                else if (daysLeft < timeSpan && daysLeft > zero)
+                {
+                    decimal daysLeftDec = (decimal)daysLeft.TotalDays;
+
+                    decimal interest = item.DepositCreditModel.InterestRate;
+                    decimal interestForPeriod = interest / 365 * daysLeftDec / 100;
+
+                    decimal amountForPeriod = item.Amount * interestForPeriod;
+                    item.AvailableAmount = item.Amount + amountForPeriod;
+                    //item.Amount = item.AvailableAmount;
+                    item.Interest += amountForPeriod;
+                    item.LastInterestAdded = item.LastInterestAdded.AddDays((double)daysLeftDec);
+                    db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            */
+            return RedirectToAction("TotalDepositedAmount", "Operation");
         }
     }
 }

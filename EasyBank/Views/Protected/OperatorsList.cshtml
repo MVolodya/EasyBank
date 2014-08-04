@@ -5,9 +5,10 @@
     ViewBag.Title = "Operators";
 }
 <h2>@Html.Label("Operators")</h2>
-@*<p>
-    @Html.ActionLink(@Resources.Resource.AddClient, "Register","Account")
-</p> *@
+@if (User.IsInRole("Administrator"))
+{
+    @Html.ActionLink("Register Operator", "RegisterOperator", "Account")
+}
 
 @using (Html.BeginForm("OperatorsList", "Protected", FormMethod.Get))
 {
