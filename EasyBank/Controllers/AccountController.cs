@@ -32,6 +32,9 @@ namespace EasyBank.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            /*LoginModel newLoginModel = new LoginModel();
+            newLoginModel.CapchaAmount = 3;*/
+            //return View(newLoginModel);
             return View();
         }
 
@@ -41,22 +44,29 @@ namespace EasyBank.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [CaptchaMvc.Attributes.CaptchaVerify("Captcha is not valid")]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (Roles.IsUserInRole(model.UserName, "Administrator") || Roles.IsUserInRole(model.UserName, "Operator"))
+            //ModelState.Remove("CapchaAmount");
+            string errorMessage = "The user name or password or capcha provided is incorrect. ";
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("", "The user name or password provided is incorrect."); // --------------------ПЕРЕКЛАД
-                return View(model);
+                if (Roles.IsUserInRole(model.UserName, "Administrator") || Roles.IsUserInRole(model.UserName, "Operator"))
+                {
+                    //model.CapchaAmount--;
+                    //errorMessage += model.CapchaAmount.ToString() + " attempts left.";
+                    ModelState.AddModelError("", errorMessage);
+                    return View(model);
 
+                }
+                if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+                {
+                    //return RedirectToLocal(returnUrl);
+                    return RedirectToAction("ClientsProfile", "Account");
+                }
             }
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
-            {
-                //return RedirectToLocal(returnUrl);
-                return RedirectToAction("ClientsProfile", "Account");
-            }
-
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");// ---------------------ПЕРЕКЛАД
+            ModelState.AddModelError("", errorMessage);
             return View(model);
         }
 

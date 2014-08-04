@@ -42,11 +42,14 @@ namespace EasyBank.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [CaptchaMvc.Attributes.CaptchaVerify("Captcha is not valid")]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
+            string errorMessage = "The user name or password or capcha provided is incorrect. ";
+
             if (Roles.IsUserInRole(model.UserName, "Client"))
             {
-                ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                ModelState.AddModelError("", errorMessage);
                 return View(model);
             }
 
@@ -64,7 +67,7 @@ namespace EasyBank.Controllers
 
 
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
+            ModelState.AddModelError("", errorMessage);
             return View(model);
         }
 
