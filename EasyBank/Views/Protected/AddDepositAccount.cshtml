@@ -1,0 +1,46 @@
+﻿@model EasyBank.Models.Account
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginForm("AddAccount", "Protected", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+    <fieldset>
+        <legend>Account</legend>
+        @Html.HiddenFor(model => model.ClientId, new { @Value = ViewBag.ClientId })
+
+        <p>@Resources.Resource.Currency</p>
+
+        @{
+    List<SelectListItem> listCurrency = new List<SelectListItem>();
+    var ListCurrencys = ViewBag.Currencys;
+    foreach (var item in ListCurrencys)
+    {
+        listCurrency.Add(new SelectListItem() { Text = item.CurrencyName, Value = item.CurrencyId.ToString() });
+    }
+        }
+        @Html.DropDownListFor(model => model.CurrencyId, listCurrency, new { @Size = "3" })
+        <p>@Resources.Resource.Deposits</p>
+        @{
+    List<SelectListItem> listDeposits = new List<SelectListItem>();
+    var ListDeposits = ViewBag.Deposits;
+    foreach (var item in ListDeposits)
+    {
+        listDeposits.Add(new SelectListItem() { Text = item.Name, Value = item.DepositCreditModelID.ToString() });
+    }
+        }
+        @Html.DropDownListFor(model => model.TypeId, listDeposits, new { @Size = "3" })
+
+        <p>@Resources.Resource.Credits</p>
+      
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink(@Resources.Resource.BackToProfile, "ClientsProfile", new { id = ViewBag.ClientId })
+</div>

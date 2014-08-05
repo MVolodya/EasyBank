@@ -363,6 +363,12 @@ namespace EasyBank.Controllers
             }
         }
 
+        public ActionResult BankAccounts()
+        {
+            var bankAccounts = (from ba in db.BankAccounts
+                                select ba).ToList();
+            return PartialView(bankAccounts);
+        }
         //
         // POST: /Account/ExternalLoginConfirmation
 
@@ -465,7 +471,7 @@ namespace EasyBank.Controllers
         {
             db.DepositCreditModels.Add(depositCreditModel);
             db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("DepositList", "Office");
         }
 
         public ActionResult DepositList()
