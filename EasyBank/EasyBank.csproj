@@ -557,6 +557,8 @@
     <Content Include="Views\Operation\ProfitCalc.cshtml" />
     <Content Include="Views\Operation\TotalDepositInterests.cshtml" />
     <Content Include="Views\Operation\TotalCreditInterests.cshtml" />
+    <Content Include="Views\Account\CreditList.cshtml" />
+    <Content Include="Views\Account\DepositList.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

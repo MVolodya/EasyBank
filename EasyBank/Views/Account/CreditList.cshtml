@@ -1,14 +1,9 @@
 ﻿@model List<EasyBank.Models.DepositCreditModel>
-<br/>
-@if (User.IsInRole("Administrator"))
-{ 
-    @Html.ActionLink(@Resources.Resource.AddBankProduct, "AddDepositCredit", "Office")
-}
-<br/>
+
 <table>
     <tr>
         <th>
-            @Resources.Resource.DepositName
+            @Resources.Resource.CreditName
         </th>
         <th>
             @Resources.Resource.Duration
@@ -17,7 +12,7 @@
             @Resources.Resource.InterestRate
         </th>
         <th>
-            @Resources.Resource.EarlyTermination
+            @Resources.Resource.EarlyTerminationCredit
         </th>
 
     </tr>
@@ -40,5 +35,3 @@
         </tr>
     }
 </table>
- 
-@Html.Action("CreditList")

@@ -549,6 +549,24 @@ namespace EasyBank.Controllers
             }
         }
 
+        public ActionResult DepositList()
+        {
+            var deposits = (from d in db.DepositCreditModels
+                            where d.AccountTypeId == 2
+                            select d).ToList();
+
+            return View(deposits);
+        }
+
+        public ActionResult CreditList()
+        {
+            var credits = (from c in db.DepositCreditModels
+                           where c.AccountTypeId == 3
+                           select c).ToList();
+
+            return PartialView(credits);
+        }
+
         private Boolean fileIsImage(HttpPostedFileBase file)
         {
 

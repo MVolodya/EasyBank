@@ -468,7 +468,6 @@ namespace EasyBank.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [Authorize(Roles = "Administrator")]
         public ActionResult DepositList()
         {
             var deposits = (from d in db.DepositCreditModels
@@ -478,7 +477,6 @@ namespace EasyBank.Controllers
             return View(deposits);
         }
 
-        [Authorize(Roles = "Administrator")]
         public ActionResult CreditList()
         {
             var credits = (from c in db.DepositCreditModels
