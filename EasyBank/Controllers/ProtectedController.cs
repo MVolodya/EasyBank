@@ -10,6 +10,8 @@ using EasyBank.DAL;
 using System.IO;
 using SimpleMembershipTest.Filters;
 using System.Net.Mime;
+using EasyBank.Services;
+using System.Web.Security;
 
 namespace EasyBank.Controllers
 {
@@ -308,6 +310,18 @@ namespace EasyBank.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (client.IsOnlineUser == true)
+                {
+                    if (client.IsAlreadyRegistered == true)
+                    {
+                        mailservice ms = new mailservice("easybankbionic@gmail.com", "chudik-l@yandex.ru", "subject", "Your web-access allowed");
+                    }
+                    if (client.IsAlreadyRegistered == false)
+                    { 
+                    mailservice ms = new mailservice("easybankbionic@gmail.com", "chudik-l@yandex.ru", "subject", client.InitialPassword);
+                    client.IsAlreadyRegistered = true;
+                    }  
+                }
                 db.Entry(client).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("ClientsList");

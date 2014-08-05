@@ -312,6 +312,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\mailservice.cs" />
     <EmbeddedResource Include="Migrations\201407181245002_ErrorMessagesAdded.resx">
       <DependentUpon>201407181245002_ErrorMessagesAdded.cs</DependentUpon>
     </EmbeddedResource>
@@ -557,6 +558,9 @@
     <Content Include="Views\Operation\ProfitCalc.cshtml" />
     <Content Include="Views\Operation\TotalDepositInterests.cshtml" />
     <Content Include="Views\Operation\TotalCreditInterests.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\RegisterAdmin.cshtml" />
+    <Content Include="Views\Account\RegisterOperator.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

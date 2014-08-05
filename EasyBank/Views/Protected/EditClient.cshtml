@@ -54,9 +54,15 @@
             @Html.EditorFor(model => model.Email)
             @Html.ValidationMessageFor(model => model.Email)
         </div>
-
+        <div>
+            <h3>Allow web-accees</h3>
+            @Html.CheckBoxFor(m => m.IsOnlineUser)
+        </div>
         <div class="editor-label">
             @Html.HiddenFor(model => model.RegistrationDate)
+        </div>
+        <div class="editor-label">
+            @Html.HiddenFor(model => model.InitialPassword)
         </div>
 
         <p>
