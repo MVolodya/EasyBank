@@ -465,7 +465,7 @@ namespace EasyBank.Controllers
         {
             db.DepositCreditModels.Add(depositCreditModel);
             db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("DepositList", "Office");
         }
 
         [Authorize(Roles = "Administrator")]
