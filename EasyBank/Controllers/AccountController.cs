@@ -44,26 +44,87 @@ namespace EasyBank.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [CaptchaMvc.Attributes.CaptchaVerify("Captcha is not valid")]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            //ModelState.Remove("CapchaAmount");
+            var inputedUser = (from clients in db.Clients
+                               where clients.Email == model.UserName
+                               select clients).FirstOrDefault();
+
+            string errorMessage = "The user name or password is incorrect. ";
+            if (ModelState.IsValid)
+            {
+                if (inputedUser == null)
+                {
+                    errorMessage = "The user name is incorrect.";
+                    ModelState.AddModelError("", errorMessage);
+                    return View(model);
+                }
+
+                if (WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+                {
+                    //return RedirectToLocal(returnUrl);
+                    inputedUser.IncorrectPasswordTrials = 0;
+                    db.SaveChanges();
+                    return RedirectToAction("ClientsProfile", "Account");
+
+                }
+
+                inputedUser.IncorrectPasswordTrials++;
+                db.SaveChanges();
+                if (inputedUser.IncorrectPasswordTrials > 2)
+                {
+                    ModelState.AddModelError("", errorMessage);
+                    return RedirectToAction("LoginWithCapcha", "Account");
+                }
+                ModelState.AddModelError("", errorMessage);
+                return View(model);
+
+            }
+            // If we got this far, something failed, redisplay form
+            ModelState.AddModelError("", errorMessage);
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult LoginWithCapcha(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            /*LoginModel newLoginModel = new LoginModel();
+            newLoginModel.CapchaAmount = 3;*/
+            //return View(newLoginModel);
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        [CaptchaMvc.Attributes.CaptchaVerify("Captcha is not valid")]
+        public ActionResult LoginWithCapcha(LoginModel model, string returnUrl)
+        {
+            var inputedUser = (from clients in db.Clients
+                               where clients.Email == model.UserName
+                               select clients).FirstOrDefault();
+
             string errorMessage = "The user name or password or capcha provided is incorrect. ";
             if (ModelState.IsValid)
             {
-                if (Roles.IsUserInRole(model.UserName, "Administrator") || Roles.IsUserInRole(model.UserName, "Operator"))
+                if (inputedUser == null)
                 {
-                    //model.CapchaAmount--;
-                    //errorMessage += model.CapchaAmount.ToString() + " attempts left.";
+                    errorMessage = "The user name is incorrect.";
                     ModelState.AddModelError("", errorMessage);
                     return View(model);
-
                 }
-                if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+
+                if (WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
                 {
                     //return RedirectToLocal(returnUrl);
+                    inputedUser.IncorrectPasswordTrials = 0;
+                    db.SaveChanges();
                     return RedirectToAction("ClientsProfile", "Account");
                 }
+                ModelState.AddModelError("", errorMessage);
+                return View(model);
+
             }
             // If we got this far, something failed, redisplay form
             ModelState.AddModelError("", errorMessage);

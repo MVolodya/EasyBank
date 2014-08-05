@@ -577,6 +577,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\RegisterAdmin.cshtml" />
     <Content Include="Views\Account\RegisterOperator.cshtml" />
+    <Content Include="Views\Account\LoginWithCapcha.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
