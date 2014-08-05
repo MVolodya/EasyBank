@@ -571,6 +571,7 @@
     <Content Include="Views\Operation\TotalPlannedDepositInterests.cshtml" />
     <Content Include="Views\Operation\ProfitPlanningCalcResults.cshtml" />
     <Content Include="Views\Operation\ProfitPlanningCalcView.cshtml" />
+    <Content Include="Views\Protected\AddAccountPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

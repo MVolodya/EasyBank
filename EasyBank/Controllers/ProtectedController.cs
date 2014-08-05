@@ -453,6 +453,30 @@ namespace EasyBank.Controllers
                 return RedirectToAction("AddAccount");
             }
         }
+
+        public ActionResult AddAccountPartial(int? clientId)
+        {
+            var ListTypes = db.AccountTypes.ToList();
+            ViewBag.Types = ListTypes;
+            var ListCurrency = db.Currencies.ToList();
+            ViewBag.Currencys = ListCurrency;
+            var ListDeposits = (from deps in db.DepositCreditModels
+                                where deps.AccountTypeId == 2
+                                select deps).ToList();
+            ViewBag.Deposits = ListDeposits;
+            var ListCredits = (from creds in db.DepositCreditModels
+                               where creds.AccountTypeId == 3
+                               select creds).ToList();
+            ViewBag.Credits = ListCredits;
+            if (clientId != null)
+            {
+                ViewBag.ClientId = clientId;
+
+                return PartialView();
+            }
+            else return HttpNotFound();
+            return PartialView();
+        }
  
         [HttpGet]
         public ActionResult ChooseBankProduct(int accountId)
