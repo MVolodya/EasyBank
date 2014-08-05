@@ -94,7 +94,7 @@ h5, h6 {
 ----------------------------------------------------------*/
 .content-wrapper {
     margin: 0 auto;
-    max-width: 960px;
+    max-width: 1100px;
 }
 
 #body {
@@ -104,7 +104,7 @@ h5, h6 {
 }
 
     .main-content {
-        background: url("../Images/accent.png") no-repeat;
+        /*background: url("../Images/accent.png") no-repeat;*/
         padding-left: 10px;
         padding-top: 30px;
     }
@@ -136,9 +136,14 @@ footer {
 
 .site-title a, .site-title a:hover, .site-title a:active {
     background: none;
-    color: #c8c8c8;
+    color: #63c05e;
     outline: none;
     text-decoration: none;
+}
+
+#supLogo {
+    font-size: 21px;
+    color: rgb(30, 135, 176);
 }
 
 
@@ -528,16 +533,18 @@ input[type="checkbox"].input-validation-error {
 ----------------------------------------------------------*/
 table {
     border-collapse: collapse;
-    border-spacing: 0;
+    border-spacing: 5px 5px;
     margin-top: 0.75em;
     border: 0 none;
 }
 
 th {
+    min-width: 100px;
     font-size: 1.2em;
     text-align: left;
     border: none 0px;
     padding-left: 0;
+    padding-right: 10px;
 }
 
     th a {
