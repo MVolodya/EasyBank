@@ -1,4 +1,6 @@
-﻿<h3>Total Deposited Amount</h3>
+﻿@model List<EasyBank.Models.TotalAmountForCurrency>
+
+<h3>Total Deposited Amount</h3>
 <table>
     <tr>
         @foreach (var item in Model)
@@ -21,7 +23,8 @@
 <br />
 
 @Html.Action("TotalCreditedAmount")
-@Html.Action("TotalDepositInterests")
-@Html.Action("TotalCreditInterests")
+@*@Html.Action("TotalDepositInterests")
+@Html.Action("TotalCreditInterests")*@
+@Html.Action("ProfitPlanningCalc")
 
-@Html.Action("ProfitCalc")
+

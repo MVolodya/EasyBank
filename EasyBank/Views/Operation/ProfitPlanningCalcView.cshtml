@@ -1,0 +1,58 @@
+﻿@model List<EasyBank.Models.TotalAmountForCurrency>
+@if (Model != null)   
+{
+    <h3>Total Deposit Interests</h3>
+<table>
+    <tr>
+        @foreach (var item in Model)
+        {
+            if(item.TypeId !=3)
+            { 
+            <th>
+                @Html.DisplayFor(modelItem => item.CurrencyName)
+            </th>
+            }
+        }
+    </tr>
+    <tr>
+        @foreach (var item in Model)
+        {
+            if(item.TypeId !=3)
+            { 
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            }
+        }
+    </tr>
+</table>
+<br />
+    <h3>Total Credit Interests</h3>
+<table>
+    <tr>
+        @foreach (var item in Model)
+        {
+            if(item.TypeId ==3)
+            { 
+            <th>
+                @Html.DisplayFor(modelItem => item.CurrencyName)
+            </th>
+            }
+        }
+    </tr>
+    <tr>
+        @foreach (var item in Model)
+        {
+            if(item.TypeId ==3)
+            { 
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            }
+        }
+    </tr>
+</table>
+<br />
+    
+      @Html.ActionLink("Back","TotalDepositedAmount","Operation")  
+}

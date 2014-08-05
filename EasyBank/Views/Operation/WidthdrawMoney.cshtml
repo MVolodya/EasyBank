@@ -13,9 +13,9 @@
         return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
     };
     $(document).ready(function () {
-        $("#Amount").val($("#Amount").val().replace(',', '.'));
-        $("#Amount").keyup(function () {
+        $(document).on('submit', '#submitForm', function () {
             $("#Amount").val($("#Amount").val().replace(',', '.'));
+            alert();
         });
     });
 </script>
@@ -85,7 +85,7 @@
 <h4><b>@Resources.Resource.WithdrawFunds</b></h4>
 @if (Model.AccountType.TypeName != "Credit")
 {
-    using (Html.BeginForm("WidthdrawMoney", "Operation", FormMethod.Post))
+    using (Html.BeginForm("WidthdrawMoney", "Operation", FormMethod.Post, new { @Id = "submitForm" }))
     {
     @Html.HiddenFor(model => model.ClientId)
     @Html.HiddenFor(model => model.AccountId)

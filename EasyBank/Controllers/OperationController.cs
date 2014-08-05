@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using WebMatrix.WebData;
+using EasyBank.BAL;
+
 
 namespace EasyBank.Controllers
 {
@@ -150,18 +152,6 @@ namespace EasyBank.Controllers
                 total.Add(new TotalAmountForCurrency() { CurrencyName = currency.CurrencyName, TotalAmount = totalAmount });
             }
             return PartialView(total);
-
-
-            /*
-            decimal[] depositInterest = (from di in db.Accounts
-                                         where di.TypeId == 2
-                                         select di.Interest).ToArray();
-            decimal totalInterest = 0;
-            foreach (var item in depositInterest)
-            {
-                totalInterest += item;
-            }
-            return PartialView(totalInterest); */
         }
 
         public ActionResult TotalCreditedAmount()
@@ -208,18 +198,6 @@ namespace EasyBank.Controllers
                 total.Add(new TotalAmountForCurrency() { CurrencyName = currency.CurrencyName, TotalAmount = totalAmount });
             }
             return PartialView(total);
-
-
-            /*
-            decimal[] creditInterest = (from ci in db.Accounts
-                                        where ci.TypeId == 3
-                                        select ci.Interest).ToArray();
-            decimal totalInterest = 0;
-            foreach (var item in creditInterest)
-            {
-                totalInterest += item;
-            }
-            return PartialView(totalInterest); */
         }
 
         [HttpGet]
@@ -228,6 +206,7 @@ namespace EasyBank.Controllers
             return PartialView();
         }
 
+        // Начисление процентов на депозитные и кредитные счета
         [HttpPost]
         public ActionResult ProfitCalc(ProfitCalc monthsPassed)
         {
@@ -238,7 +217,7 @@ namespace EasyBank.Controllers
                                     select depAcc).ToList();
 
             DateTime today = DateTime.Now;
-
+            
             foreach (var item in depositAccountsT)
             {
                 InterestCalc(item, monthsPassed);
@@ -261,12 +240,55 @@ namespace EasyBank.Controllers
             
             foreach (var item in creditAccountsT)
             {
-               // InterestCalc(item, monthsPassed);
+                InterestCalc(item, monthsPassed);
             }
             
             return RedirectToAction("TotalDepositedAmount", "Operation");
         }
+        // Вывод планированых процентов по депозитам
+        public ActionResult TotalPlannedDepositInterests(List<VirtualAccount> total)
+        {
+            var currencies = (from cur in db.Currencies
+                              select cur).ToList();
+            List<TotalAmountForCurrency> totalForCurrency = new List<TotalAmountForCurrency>();
+            foreach (var currency in currencies)
+            {
+                decimal totalAmount = 0;
+                foreach (var account in total)
+                {
+                    if (account.CurrencyName == currency.CurrencyName)
+                    {
+                        totalAmount += account.Interest;
+                    }
+                }
+                totalForCurrency.Add(new TotalAmountForCurrency() { CurrencyName = currency.CurrencyName, TotalAmount = totalAmount });
+            }
+            return PartialView(totalForCurrency);
+        }
 
+        //Поанирование начисления процентов на определенный срок
+        [HttpGet]
+        public ActionResult ProfitPlanningCalc()
+        {
+            return PartialView();
+        }
+
+        //Планирование начисления процентов на определенный срок
+        [HttpPost]
+        public ActionResult ProfitPlanningCalc(ProfitCalc monthsPassed)
+        {
+            List<TotalAmountForCurrency> InterestList = new List<TotalAmountForCurrency>();
+            StatisticService SS = new StatisticService();
+            InterestList = SS.InterestPlanning(monthsPassed);
+
+            return View("ProfitPlanningCalcView",InterestList);
+            
+            
+         }
+
+
+
+        //Метод начисления процентов на депозитные и кредитные счета
         private void InterestCalc (Account item,ProfitCalc monthsPassed )
         {
             DateTime newDate = item.LastInterestAdded.AddMonths(monthsPassed.Months);

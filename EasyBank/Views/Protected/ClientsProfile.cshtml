@@ -7,8 +7,10 @@
 
     $(document).ready(function () {
         prevTriggeredTrId = "";
-        $("tr").click(function () {
-                
+
+
+        $(".selectableTr").click(function () {
+            if (this.id != prevTriggeredTrId) {
                 $(this).css("background-color", "white");
                 $("#" + prevTriggeredTrId.toString()).css("background-color", "#efeeef")
                 prevTriggeredTrId = this.id;
@@ -31,7 +33,8 @@
                     $("#payOutButton").css("opacity", 1);
                     $("#transferButton").css("opacity", 1);
                 }
-            
+            }
+
         });
     });
 </script>
@@ -116,8 +119,8 @@
     @if (Model.Accounts.Count() != 0)
     {
         <tr>
-            <th>@Html.Label(@Resources.Resource.AccNumb)</th>
-            <th>@Html.Label(@Resources.Resource.ExpDate)</th>
+            <th>@Html.Label(@Resources.Resource.AccNumb) </th>
+            <th>@Html.Label(@Resources.Resource.ExpDate) </th>
             <th>@Html.Label(@Resources.Resource.Amount)</th>
             <th>@Html.Label(@Resources.Resource.Currency)</th>
             <th>@Html.Label(@Resources.Resource.Type)</th>
@@ -133,10 +136,10 @@
     @foreach (var item in Model.Accounts)
     {
         
-        <tr id="@item.AccountId-@item.AccountType.TypeName">
+        <tr id="@item.AccountId-@item.AccountType.TypeName" class="selectableTr">
             <td>
                 <div class="display-field">
-                    @Html.DisplayFor(modelItem => item.AccountNumber)
+                   @Html.ActionLink(@Html.DisplayFor(modelItem => item.AccountNumber).ToString(), "AccountHistory", "Protected", new{id = item.AccountId}, null)
                 </div>
             </td>
             <td>

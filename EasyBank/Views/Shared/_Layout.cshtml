@@ -30,7 +30,7 @@
                 <a href="/Home/ChangeCulture?lang=uk-UA" name="lang">UA</a>
                 <a href="/Home/ChangeCulture?lang=en" name="lang">EN</a>
                 <a href="/Home/ChangeCulture?lang=ru" name="lang">RU</a>
-                <p class="site-title">@Html.ActionLink("Easy Bank", "Index", "Home")</p>
+                <p class="site-title">@Html.ActionLink("Easy Bank", "Index", "Home")@if(!User.IsInRole("Client")){ <sup id="supLogo">office</sup> }</p>
             </div>
             <div class="float-right">
                 <section id="login">
@@ -38,8 +38,6 @@
                 </section>
                 <nav>
                     <ul id="menu">
-
-
                         @if (User.IsInRole("Client"))
                         {
 @*<li>@Html.ActionLink(@Resources.Resource.Details, "ClientsProfile", "Protected", new {clientId = WebSecurity.GetUserId(User.Identity.Name) })</li>*@
@@ -63,29 +61,21 @@
                         @if (User.IsInRole("Administrator"))
                         {
                             <li>@Html.ActionLink(@Resources.Resource.Currencies, "CurrencyList", "Protected")</li>
-                        }
-                        @if (User.IsInRole("Administrator"))
-                        {
                             <li>@Html.ActionLink(@Resources.Resource.OperatorsList, "OperatorsList", "Protected")</li>
-                        }
-
-                        @if (User.IsInRole("Administrator"))
-                        {
                             <li>@Html.ActionLink(@Resources.Resource.BankProducts, "DepositList", "Office")</li>
-                        }
-                        @if (User.IsInRole("Administrator"))
-                        {
                             <li>@Html.ActionLink(@Resources.Resource.FinancialReports, "TotalDepositedAmount", "Operation")</li>
                         }
                                     
 
 @*<li>@Html.ActionLink("RegisterAdmin","RegisterAdmin","Account")</li>*@
-                    </ul>
+    </ul>
                 </nav>
             </div>
         </div>
     </header>
+    
     <div id="body">
+        
         @RenderSection("featured", required: false)
         <section class="content-wrapper main-content clear-fix">
             @RenderBody()

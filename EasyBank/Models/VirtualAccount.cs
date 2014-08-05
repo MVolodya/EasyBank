@@ -5,10 +5,13 @@ using System.Web;
 
 namespace EasyBank.Models
 {
-    public class TotalAmountForCurrency
+    public class VirtualAccount
     {
+
         public string CurrencyName { get; set; }
-        public decimal TotalAmount { get; set; }
+
+        public decimal Interest { get; set; }
         public int TypeId { get; set; }
+
     }
 }
