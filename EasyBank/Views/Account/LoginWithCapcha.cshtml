@@ -1,0 +1,56 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@model EasyBank.Models.LoginModel
+@{
+    ViewBag.Title = @Resources.Resource.LogInForClients;
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+
+
+
+<section id="loginForm">
+<h3>@Resources.Resource.LoginHelpMessage</h3>
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Log in Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+            <li>
+                @*Capcha symbols amount*@
+                @Html.Captcha(@Resources.Resource.Refresh, @Resources.Resource.TypeTheSymbols, 4, @Resources.Resource.WrongCapchaInput)
+                
+            </li>
+
+        </ol>
+        @ViewBag.Message
+        <br />
+        <input type="submit" value=@Resources.Resource.LogIn />
+
+    </fieldset>
+}
+</section>
+
+
+<section class="social" id="socialLoginForm">
+    <h2>@Resources.Resource.WelcomeMessage</h2>
+
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

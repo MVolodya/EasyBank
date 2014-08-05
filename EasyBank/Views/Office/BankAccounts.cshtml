@@ -1,0 +1,23 @@
+﻿@model List<EasyBank.Models.BankAccount>
+
+<h3>Bank Accounts Balance</h3>
+<table>
+    <tr>
+        @foreach (var item in Model)
+        {
+            <th>
+                @Html.DisplayFor(modelItem => item.CurrencyName)
+            </th>
+        }
+    </tr>
+    <tr>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+        }
+    </tr>
+</table>
+
+<br />

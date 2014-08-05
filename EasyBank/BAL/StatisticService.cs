@@ -8,40 +8,6 @@ namespace EasyBank.BAL
 {
     public class StatisticService
     {
-        /*
-        public List<TotalAmountForCurrency> CreditInterestPlanning(ProfitCalc monthsPassed)
-        {
-            ConnectionContext db = new ConnectionContext();
-            var creditAccountsT = (from creds in db.Accounts
-                                   where creds.TypeId == 3
-                                   where creds.DepositCreditModel.EarlyTermination == true
-                                   select creds).ToList();
-            DateTime today = DateTime.Now;
-            List<VirtualAccount> total = new List<VirtualAccount>();
-            foreach (var item in creditAccountsT)
-            {
-                InterestPlanningCalc(item, monthsPassed, total);
-            }
-            var currencies = (from cur in db.Currencies
-                              select cur).ToList();
-            List<TotalAmountForCurrency> totalForCurrency = new List<TotalAmountForCurrency>();
-            foreach (var currency in currencies)
-            {
-                decimal totalAmount = 0;
-                foreach (var account in total)
-                {
-                    if (account.CurrencyName == currency.CurrencyName)
-                    {
-                        totalAmount += account.Interest;
-                    }
-                }
-                totalForCurrency.Add(new TotalAmountForCurrency() { CurrencyName = currency.CurrencyName, TotalAmount = totalAmount });
-            }
-            return (totalForCurrency);
-
-        }
-        */
-
         public List<TotalAmountForCurrency> InterestPlanning(ProfitCalc monthsPassed) 
         {
             ConnectionContext db = new ConnectionContext();
