@@ -28,13 +28,13 @@ namespace EasyBank.Controllers
         [HttpPost]
         public ActionResult OperationError(ErrorReport errorReport)
         {
-
+            string returnUrl = Request.UrlReferrer.AbsoluteUri;
             errorReport.Text = errorReport.Text + "\r\n" + ViewBag.ErrorCode;
             errorReport.ReportDate = DateTime.Now;
             errorReport.Account = db.Accounts.SingleOrDefault(m => m.AccountId == errorReport.AccountId);
             db.ErrorReports.Add(errorReport);
             db.SaveChanges();
-            return RedirectToAction("Account/ClientsProfile");
+            return Redirect(returnUrl);
         }
     }
 }

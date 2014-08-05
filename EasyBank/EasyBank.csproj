@@ -366,11 +366,13 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.uk-UA.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.ru.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.ru.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -573,6 +575,7 @@
     <Content Include="Views\Operation\TotalPlannedDepositInterests.cshtml" />
     <Content Include="Views\Operation\ProfitPlanningCalcResults.cshtml" />
     <Content Include="Views\Operation\ProfitPlanningCalcView.cshtml" />
+    <Content Include="Views\Protected\ErrorReports.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

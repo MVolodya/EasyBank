@@ -2,12 +2,10 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-<<<<<<< HEAD
     <title>@Resources.Resource.OperationError</title>
     <script src="~/Scripts/jquery-1.8.2.js"></script>
     <script>
@@ -15,10 +13,9 @@
             $("#submitButton").click(function () {
                 debugger;
                 errorCode = @ViewBag.ErrorCode
-                $("#text").val(@ViewBag.ErrorCode + ": " + errorCode.toString() + ' ' + $("#text").val());
+                $("#text").val("Error code: " + errorCode.toString() + " \n " + $("#text").val());
             });
         });
-
     </script>
 </head>
 <body>
@@ -31,12 +28,12 @@
             <fieldset>
                 @* @Html.EditorForModel(Model); *@
                 <br />     @Resources.Resource.TypeTheText     <br />
-                <textarea name="Text" rows="10" cols="40"></textarea>
+                <textarea name="Text" rows="10" cols="40" id="text"></textarea>
                 <br />
                 <br />
                 @Html.HiddenFor(model => model.AccountId)
 
-                <input type="submit" value=@Resources.Resource.SubmitEntry />
+                <input type="submit" value=@Resources.Resource.SubmitEntry id="submitButton"/>
             </fieldset>
         </form>
     </div>

@@ -1,0 +1,12 @@
+﻿@model List<EasyBank.Models.ErrorReport>
+
+@foreach (EasyBank.Models.ErrorReport errorReport in Model)
+{
+    <p>
+        <b> Posted by,</b> @errorReport.Account.Client.Name @errorReport.Account.Client.Surname<br />
+        <b>  Email:</b> @errorReport.Account.Client.Email<b> Account Number: </b>@errorReport.Account.AccountNumber
+    </p>
+    <textarea name="text" rows="3" cols="40" disabled style="resize:none"> @errorReport.Text</textarea>
+    <p><b>Posted date:</b> @errorReport.ReportDate.ToLongDateString()</p>
+    <hr />
+}

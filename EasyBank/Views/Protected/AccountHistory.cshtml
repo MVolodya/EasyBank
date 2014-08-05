@@ -1,19 +1,20 @@
-﻿@model IEnumerable<EasyBank.Models.Operation>
-
+﻿@model PagedList.IPagedList<EasyBank.Models.Operation>
+@using PagedList.Mvc;
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <table style="margin: 0 auto;">
     <tr>
         <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.ActionLink("Date", "AccountHistory", new { sort = ViewBag.SortDate })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Amount)
+            @Html.DisplayName(@Resources.Resource.Amount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FromAccount.AccountNumber)
+            @Html.DisplayName("Відправник")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ToAccount.AccountNumber)
+            @Html.DisplayName("Одержувач")
         </th>
     </tr>
 
@@ -73,7 +74,9 @@
             </td>
 
         </tr>
-    }
-
-
+    }   
 </table>
+<br />
+@Resources.Resource.Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) @Resources.Resource.Of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("AccountHistory", new { page, sort = ViewBag.CurrentSort }))

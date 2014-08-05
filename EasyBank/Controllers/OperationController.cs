@@ -46,6 +46,7 @@ namespace EasyBank.Controllers
         [HttpPost]
         public ActionResult AddMoney(int? accountId, decimal? amount, int? clientId, string CurrencyName)
         {
+            
             OperationManager om = new OperationManager();
             CurrencyName = Request["CurrencyName"].ToUpper();
             int result = om.DepositMoney(User.Identity.Name, accountId, amount, CurrencyName);
