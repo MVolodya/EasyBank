@@ -62,12 +62,14 @@
                                     
 
 @*<li>@Html.ActionLink("RegisterAdmin","RegisterAdmin","Account")</li>*@
-                    </ul>
+    </ul>
                 </nav>
             </div>
         </div>
     </header>
+    
     <div id="body">
+        
         @RenderSection("featured", required: false)
         <section class="content-wrapper main-content clear-fix">
             @RenderBody()
