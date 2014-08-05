@@ -1016,7 +1016,6 @@ C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.AddedErrorReportAndUpdatedOperatorAndCurrencyModels.resources
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.PurchaseSellRateFieldsAdded.resources
-C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.csprojResolveAssemblyReference.cache
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.AddedInterestCalculation.resources
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.AddedInterestCalculation.resources
 C:\Users\V\Desktop\Branch\EasyBank\EasyBank\obj\Debug\EasyBank.csprojResolveAssemblyReference.cache
