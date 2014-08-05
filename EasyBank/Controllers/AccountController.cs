@@ -44,26 +44,87 @@ namespace EasyBank.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [CaptchaMvc.Attributes.CaptchaVerify("Captcha is not valid")]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            //ModelState.Remove("CapchaAmount");
+            var inputedUser = (from clients in db.Clients
+                               where clients.Email == model.UserName
+                               select clients).FirstOrDefault();
+
+            string errorMessage = "The user name or password is incorrect. ";
+            if (ModelState.IsValid)
+            {
+                if (inputedUser == null)
+                {
+                    errorMessage = "The user name is incorrect.";
+                    ModelState.AddModelError("", errorMessage);
+                    return View(model);
+                }
+
+                if (WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+                {
+                    //return RedirectToLocal(returnUrl);
+                    inputedUser.IncorrectPasswordTrials = 0;
+                    db.SaveChanges();
+                    return RedirectToAction("ClientsProfile", "Account");
+
+                }
+
+                inputedUser.IncorrectPasswordTrials++;
+                db.SaveChanges();
+                if (inputedUser.IncorrectPasswordTrials > 2)
+                {
+                    ModelState.AddModelError("", errorMessage);
+                    return RedirectToAction("LoginWithCapcha", "Account");
+                }
+                ModelState.AddModelError("", errorMessage);
+                return View(model);
+
+            }
+            // If we got this far, something failed, redisplay form
+            ModelState.AddModelError("", errorMessage);
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult LoginWithCapcha(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            /*LoginModel newLoginModel = new LoginModel();
+            newLoginModel.CapchaAmount = 3;*/
+            //return View(newLoginModel);
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        [CaptchaMvc.Attributes.CaptchaVerify("Captcha is not valid")]
+        public ActionResult LoginWithCapcha(LoginModel model, string returnUrl)
+        {
+            var inputedUser = (from clients in db.Clients
+                               where clients.Email == model.UserName
+                               select clients).FirstOrDefault();
+
             string errorMessage = "The user name or password or capcha provided is incorrect. ";
             if (ModelState.IsValid)
             {
-                if (Roles.IsUserInRole(model.UserName, "Administrator") || Roles.IsUserInRole(model.UserName, "Operator"))
+                if (inputedUser == null)
                 {
-                    //model.CapchaAmount--;
-                    //errorMessage += model.CapchaAmount.ToString() + " attempts left.";
+                    errorMessage = "The user name is incorrect.";
                     ModelState.AddModelError("", errorMessage);
                     return View(model);
-
                 }
-                if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+
+                if (WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
                 {
                     //return RedirectToLocal(returnUrl);
+                    inputedUser.IncorrectPasswordTrials = 0;
+                    db.SaveChanges();
                     return RedirectToAction("ClientsProfile", "Account");
                 }
+                ModelState.AddModelError("", errorMessage);
+                return View(model);
+
             }
             // If we got this far, something failed, redisplay form
             ModelState.AddModelError("", errorMessage);
@@ -115,12 +176,25 @@ namespace EasyBank.Controllers
                          client.BirthDate = registerCompModel.Client.BirthDate;
                          client.Email = registerCompModel.Client.Email;
                          client.RegistrationDate = DateTime.Now;
+                         
+
+                         string strPwdchar = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                         string strPwd = "";
+                         Random rnd = new Random();
+                         for (int i = 0; i <= 7; i++)
+                         {
+                             int iRandom = rnd.Next(0, strPwdchar.Length - 1);
+                             strPwd += strPwdchar.Substring(iRandom, 1);
+                         }
+
+                         client.InitialPassword = strPwd;
+
                          db.Clients.Add(client);
 
                          var model = new RegisterModel();
                          model.UserName = registerCompModel.Client.Email;
-                         model.Password = registerCompModel.Password;
-                         model.ConfirmPassword = registerCompModel.ConfirmPassword;
+                         model.Password = strPwd;
+                         model.ConfirmPassword = strPwd;
                          WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                          Roles.AddUserToRole(model.UserName, "Client");
 

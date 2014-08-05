@@ -268,6 +268,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Block.
+        /// </summary>
+        public static string Block {
+            get {
+                return ResourceManager.GetString("Block", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change password.
         /// </summary>
         public static string ChangePassword {
@@ -673,6 +682,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Freeze.
+        /// </summary>
+        public static string Freeze {
+            get {
+                return ResourceManager.GetString("Freeze", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello.
         /// </summary>
         public static string Hello {
@@ -966,6 +984,15 @@ namespace Resources {
         public static string Search {
             get {
                 return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set to normal.
+        /// </summary>
+        public static string SetToNormal {
+            get {
+                return ResourceManager.GetString("SetToNormal", resourceCulture);
             }
         }
         

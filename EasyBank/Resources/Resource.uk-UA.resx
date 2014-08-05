@@ -427,7 +427,7 @@
     <value>Фінансові звіти</value>
   </data>
   <data name="Hello" xml:space="preserve">
-    <value>Вітаємо</value>
+    <value>Ви увійшли в систему як</value>
   </data>
   <data name="InterestRate" xml:space="preserve">
     <value>Відсоткова ставка</value>
@@ -509,5 +509,14 @@
   </data>
   <data name="YouAreLoggedInAs" xml:space="preserve">
     <value>Ви ввійшли як</value>
+  </data>
+  <data name="Block" xml:space="preserve">
+    <value>Заблокувати</value>
+  </data>
+  <data name="Freeze" xml:space="preserve">
+    <value>Заморозити</value>
+  </data>
+  <data name="SetToNormal" xml:space="preserve">
+    <value>Зробити нормальним</value>
   </data>
 </root>

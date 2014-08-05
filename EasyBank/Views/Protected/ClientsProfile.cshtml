@@ -4,10 +4,14 @@
     ViewBag.Title = @Resources.Resource.ClientsProfile;
 }
 <script>
-
     $(document).ready(function () {
         prevTriggeredTrId = "";
-
+        $("#types").css("display", "none");
+        $("#currencies").css("display", "none");
+        $("#depositTypes").css("display", "none");
+        $("#creditTypes").css("display", "none");
+        $("#submitButton").css("display", "none");
+        $("#amountDiv").css("display", "none");
 
         $(".selectableTr").click(function () {
             if (this.id != prevTriggeredTrId) {
@@ -34,7 +38,24 @@
                     $("#transferButton").css("opacity", 1);
                 }
             }
+        });
 
+        $("#showFirstBox").click(function () {
+            $("#types").css("display", "inline-block");
+            $("#showFirstBox").css("display", "none");
+        });
+        $("#types").change(function () {
+            $("#currencies").css("display", "inline-block");
+        });
+        $("#currencies").change(function () {
+            if ($("#types select").val() == 1) {
+                $("#depositTypes").css("display", "inline-block");
+                $("#amountDiv").css("display", "inline-block");
+            }
+            else if ($("#types select").val() == 2) {
+                $("#creditTypes").css("display", "inline-block");
+            }
+            $("#submitButton").css("display", "inline-block");
         });
     });
 </script>
@@ -109,12 +130,17 @@
 </table>
 
 @Html.Action("ShowClientPhoto", new { id = Model.ClientId })
-<p>
-    @Html.ActionLink(@Resources.Resource.AddAccount, "AddAccount", new { clientId = Model.ClientId })
-</p>
+
+@*-@Html.ActionLink(@Resources.Resource.AddAccount, "AddAccount", new { clientId = Model.ClientId }, new{@id="createAccount"})*@
+
 <div>
     @Html.ActionLink(@Resources.Resource.AddPhoto, "AddPhoto", new { id = Model.ClientId })
 </div>
+<input type="button" id="showFirstBox" value="@Resources.Resource.AddAccount">
+<div id="accCreateDiv">
+    @Html.Action("AddAccountPartial")
+</div>
+
 <table>
     @if (Model.Accounts.Count() != 0)
     {
@@ -129,7 +155,6 @@
     }
     else
     {
-
         @Resources.Resource.AccountsAreAbsent
     }
 
@@ -139,7 +164,7 @@
         <tr id="@item.AccountId-@item.AccountType.TypeName" class="selectableTr">
             <td>
                 <div class="display-field">
-                   @Html.ActionLink(@Html.DisplayFor(modelItem => item.AccountNumber).ToString(), "AccountHistory", "Protected", new{id = item.AccountId}, null)
+                    @Html.ActionLink(@Html.DisplayFor(modelItem => item.AccountNumber).ToString(), "AccountHistory", "Protected", new { id = item.AccountId }, null)
                 </div>
             </td>
             <td>
@@ -167,11 +192,11 @@
                     @Html.DisplayFor(modelItem => item.AccountStatus.StatusName)
                 </div>
             </td>
-            @*<td>
-                @Html.ActionLink(@Resources.Resource.AddMoney, "AddMoney", "Operation", new { id = item.AccountId }, null) |
-                @Html.ActionLink(@Resources.Resource.WidthdrawMoney, "WidthdrawMoney", "Operation", new { id = item.AccountId }, null) |
-                @Html.ActionLink(@Resources.Resource.TransMoney, "TransferMoney", "Operation", new { id = item.AccountId }, null)
-            </td>*@
+            <td>
+                @Html.ActionLink(@Resources.Resource.Freeze, "Freeze", new { id = item.AccountId, clientId = Model.ClientId }) |
+                @Html.ActionLink(@Resources.Resource.Block, "Block", new { id = item.AccountId, clientId = Model.ClientId }) |
+                @Html.ActionLink(@Resources.Resource.SetToNormal, "SetToNormal", new { id = item.AccountId, clientId = Model.ClientId })
+            </td>
         </tr>
         
     }

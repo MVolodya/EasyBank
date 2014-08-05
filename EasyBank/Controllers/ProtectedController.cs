@@ -10,6 +10,8 @@ using EasyBank.DAL;
 using System.IO;
 using SimpleMembershipTest.Filters;
 using System.Net.Mime;
+using EasyBank.Services;
+using System.Web.Security;
 
 namespace EasyBank.Controllers
 {
@@ -18,46 +20,6 @@ namespace EasyBank.Controllers
     [InitializeSimpleMembership]
     public class ProtectedController : Controller
     {
-        /*[Authorize(Roles="Administrator, Operator")]
-        public ActionResult PreRegister(RegisterCompositeModel registerCompModel, HttpPostedFileBase file)
-        {
-            if (ModelState.IsValid)
-            {
-                if (file != null)
-                {
-                    ClientsImage photo = new ClientsImage();
-                    photo.Name = System.IO.Path.GetFileName(file.FileName);
-                    byte[] n = new byte[file.InputStream.Length];
-
-                    file.InputStream.Read(n, 0, (int)file.InputStream.Length);
-                    photo.ImageContent = n;
-                    photo.ContentType = file.ContentType;
-                    photo.PhotoType = (int)ImageType.PassportScan;
-                    db.Images.Add(photo);
-
-                    Client client = new Client();
-                    client.Name = registerCompModel.Name;
-                    client.Surname = registerCompModel.Surname;
-                    client.PIdNumber = registerCompModel.PIdNumber;
-                    client.BirthDate = registerCompModel.BirthDate;
-                    client.Email = registerCompModel.Email;
-                    client.RegistrationDate = DateTime.Now;
-                    db.Clients.Add(client);
-                    db.SaveChanges();
-
-                    var registerModel = new RegisterModel();
-                    registerModel.UserName = registerCompModel.Email;
-                    registerModel.Password = registerCompModel.Password;
-                    registerModel.ConfirmPassword = registerCompModel.ConfirmPassword;
-                    TempData["a"] = registerModel;
-
-
-                    return RedirectToAction("Register","Account", new { model = registerModel });
-                }
-
-            }
-            return View();
-        } */
         //
         // GET: /Client/
         private ConnectionContext db = new ConnectionContext();
@@ -303,6 +265,19 @@ namespace EasyBank.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (client.IsOnlineUser == true)
+                {
+                    if (client.IsAlreadyRegistered == true)
+                    {
+                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Wed-access", "Your web-access allowed");
+                    }
+                    if (client.IsAlreadyRegistered == false)
+                    {
+                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Wed-access", client.InitialPassword);
+                    bool isRegistered = true;
+                        client.IsAlreadyRegistered = isRegistered;
+                    }  
+                }
                 db.Entry(client).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("ClientsList");
@@ -405,6 +380,41 @@ namespace EasyBank.Controllers
         }
 
         [HttpGet]
+        public ActionResult AddDepositAccount(int? clientId)
+        {
+            var ListCurrency = db.Currencies.ToList();
+            ViewBag.Currencys = ListCurrency;
+            var ListDeposits = (from deps in db.DepositCreditModels
+                                where deps.AccountTypeId == 2
+                                select deps).ToList();
+            ViewBag.Deposits = ListDeposits;
+            if (clientId != null)
+            {
+                ViewBag.ClientId = clientId;
+
+                return View();
+            }
+            else return HttpNotFound();
+        }
+
+        [HttpGet]
+        public ActionResult AddCreditAccount(int? clientId)
+        {
+            var ListCurrency = db.Currencies.ToList();
+            ViewBag.Currencys = ListCurrency;
+            var ListCredits = (from creds in db.DepositCreditModels
+                               where creds.AccountTypeId == 3
+                               select creds).ToList();
+            ViewBag.Credits = ListCredits;
+            if (clientId != null)
+            {
+                ViewBag.ClientId = clientId;
+
+                return View();
+            }
+            else return HttpNotFound();
+        }
+        [HttpGet]
         public ActionResult AddAccount(int? clientId)
         {
             var ListTypes = db.AccountTypes.ToList();
@@ -449,6 +459,31 @@ namespace EasyBank.Controllers
             }
         }
 
+
+        public ActionResult AddAccountPartial(int? clientId)
+        {
+            var ListTypes = db.AccountTypes.ToList();
+            ViewBag.Types = ListTypes;
+            var ListCurrency = db.Currencies.ToList();
+            ViewBag.Currencys = ListCurrency;
+            var ListDeposits = (from deps in db.DepositCreditModels
+                                where deps.AccountTypeId == 2
+                                select deps).ToList();
+            ViewBag.Deposits = ListDeposits;
+            var ListCredits = (from creds in db.DepositCreditModels
+                               where creds.AccountTypeId == 3
+                               select creds).ToList();
+            ViewBag.Credits = ListCredits;
+            if (clientId != null)
+            {
+                ViewBag.ClientId = clientId;
+
+                return PartialView();
+            }
+            else return HttpNotFound();
+            return PartialView();
+        }
+ 
         [HttpGet]
         public ActionResult ChooseBankProduct(int accountId)
         {
@@ -619,5 +654,44 @@ namespace EasyBank.Controllers
             return false;
         }
 
+        public ActionResult Freeze(int? id, int? clientId)
+        {
+            var clientAccount = (from accounts in db.Accounts
+                                  where accounts.AccountId == id
+                                  select accounts).Single();
+            var Client = (from clients in db.Clients
+                                 where clients.ClientId == clientId
+                                 select clients).Single();
+            clientAccount.AccountStatus = db.AccountStatuses.FirstOrDefault(a => a.StatusName == "Frozen");
+            db.Entry(clientAccount).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("ClientsProfile", Client);
+        }
+        public ActionResult Block(int? id, int? clientId)
+        {
+            var clientAccount = (from accounts in db.Accounts
+                                 where accounts.AccountId == id
+                                 select accounts).Single();
+            var Client = (from clients in db.Clients
+                          where clients.ClientId == clientId
+                          select clients).Single();
+            clientAccount.AccountStatus = db.AccountStatuses.FirstOrDefault(a => a.StatusName == "Blocked");
+            db.Entry(clientAccount).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("ClientsProfile", Client);
+        }
+        public ActionResult SetToNormal(int? id, int? clientId)
+        {
+            var clientAccount = (from accounts in db.Accounts
+                                 where accounts.AccountId == id
+                                 select accounts).Single();
+            var Client = (from clients in db.Clients
+                          where clients.ClientId == clientId
+                          select clients).Single();
+            clientAccount.AccountStatus = db.AccountStatuses.FirstOrDefault(a => a.StatusName == "Normal");
+            db.Entry(clientAccount).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("ClientsProfile", Client);
+        }
     }
 }
