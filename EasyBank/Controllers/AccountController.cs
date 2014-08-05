@@ -115,12 +115,25 @@ namespace EasyBank.Controllers
                          client.BirthDate = registerCompModel.Client.BirthDate;
                          client.Email = registerCompModel.Client.Email;
                          client.RegistrationDate = DateTime.Now;
+                         
+
+                         string strPwdchar = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                         string strPwd = "";
+                         Random rnd = new Random();
+                         for (int i = 0; i <= 7; i++)
+                         {
+                             int iRandom = rnd.Next(0, strPwdchar.Length - 1);
+                             strPwd += strPwdchar.Substring(iRandom, 1);
+                         }
+
+                         client.InitialPassword = strPwd;
+
                          db.Clients.Add(client);
 
                          var model = new RegisterModel();
                          model.UserName = registerCompModel.Client.Email;
-                         model.Password = registerCompModel.Password;
-                         model.ConfirmPassword = registerCompModel.ConfirmPassword;
+                         model.Password = strPwd;
+                         model.ConfirmPassword = strPwd;
                          WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                          Roles.AddUserToRole(model.UserName, "Client");
 
