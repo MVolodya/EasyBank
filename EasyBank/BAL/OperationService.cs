@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.Ajax.Utilities;
 
 namespace EasyBank
 {
@@ -57,9 +58,6 @@ namespace EasyBank
 
         private decimal GetConvertedAmount(ConnectionContext db, decimal amount, Currency sourceCurrency, Currency targetCurrency)
         {
-            if (sourceCurrency == null)
-                return 23;
-
             if (sourceCurrency.CurrencyName == targetCurrency.CurrencyName)
                 return amount;
             else
@@ -84,9 +82,8 @@ namespace EasyBank
         /// <param name="amount"></param>
         /// <param name="convertedAmount"></param>
         /// <returns></returns>
-        private int PerformInsideBankMoneyTransfer(ConnectionContext db, Currency sourceCurrency, Currency targetCurrency, decimal amount, ref decimal convertedAmount)
+        private int PerformInsideBankMoneyTransfer(ConnectionContext db, Currency sourceCurrency, Currency targetCurrency, decimal amount, ref decimal convertedAmount, decimal? amountThatHasToBeWithdrawn = null)
         {
-            convertedAmount = 0;
             if (sourceCurrency == targetCurrency)
             {
                 return 0;
@@ -106,6 +103,11 @@ namespace EasyBank
                 return 51;
             }
 
+            if (amountThatHasToBeWithdrawn != null)
+            {
+                amount = (decimal)amountThatHasToBeWithdrawn;
+            }
+
             if (sendingBankAccount.Amount - convertedAmount < 0) return 55;
 
             if (sourceCurrency.CurrencyName != "UAH" && targetCurrency.CurrencyName != "UAH")
@@ -120,7 +122,10 @@ namespace EasyBank
                 decimal sendingAmount = GetConvertedAmount(db, receivedAmountInUah, uahCurrency, targetCurrency);
                 sendingBankAccount.Amount -= sendingAmount;
                 convertedAmount = sendingAmount;
+
                 db.Entry(uahBankAccount).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(receivingBankAccount).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(sendingBankAccount).State = System.Data.Entity.EntityState.Modified;
             }
             else
             {
@@ -128,6 +133,7 @@ namespace EasyBank
                 sendingBankAccount.Amount -= convertedAmount;
                 db.Entry(receivingBankAccount).State = System.Data.Entity.EntityState.Modified;
                 db.Entry(sendingBankAccount).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
             }
 
             return 0;
@@ -183,6 +189,7 @@ namespace EasyBank
                 case "Deposit":
                     {
                         if (amount < 100) return 2;
+
                         PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount);
                         acc.Amount += (decimal)convertedAmount;
                         acc.AvailableAmount += (decimal)convertedAmount;
@@ -193,6 +200,7 @@ namespace EasyBank
                 case "Credit":
                     {
                         if (acc.Amount - convertedAmount < 0) return 7;
+
                         PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount);
                         acc.Amount -= (decimal)convertedAmount;
                         dataChanged = true;
@@ -235,7 +243,24 @@ namespace EasyBank
             if (sourceCurrency == null) return 26;
             if (targetCurrency == null) return 24;
 
-            decimal convertedAmount = GetConvertedAmount(db, (decimal)amount, sourceCurrency, targetCurrency);
+            decimal convertedAmount = (decimal)amount;
+            decimal? amountThatHasToBeWithDrawnFromClient = null;
+            if (targetCurrency.CurrencyName == sourceCurrency.CurrencyName)
+                amountThatHasToBeWithDrawnFromClient = amount;
+            else if (sourceCurrency.CurrencyName == "UAH" || targetCurrency.CurrencyName == "UAH")
+            {
+                if (sourceCurrency.CurrencyName == "UAH")
+                    amountThatHasToBeWithDrawnFromClient = Math.Round((decimal)amount * targetCurrency.SaleRate, 2);
+                if (targetCurrency.CurrencyName == "UAH")
+                    amountThatHasToBeWithDrawnFromClient = Math.Round((decimal)amount/sourceCurrency.PurchaseRate, 2);
+            }
+            else
+            {
+                amountThatHasToBeWithDrawnFromClient = Math.Round((decimal)amount*targetCurrency.SaleRate, 2);
+                amountThatHasToBeWithDrawnFromClient = Math.Round((decimal)amountThatHasToBeWithDrawnFromClient/sourceCurrency.PurchaseRate, 2);
+
+                convertedAmount = GetConvertedAmount(db, (decimal) amount, targetCurrency, sourceCurrency);
+            }
 
             bool dataChanged = false;
 
@@ -244,9 +269,9 @@ namespace EasyBank
                 case "Normal"://transfer account
                     {
                         if (acc.AvailableAmount - convertedAmount < 0) return 5;
-                        PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount);
-                        acc.AvailableAmount -= (decimal)amount;
-                        acc.Amount -= (decimal)amount;
+                        PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
+                        acc.AvailableAmount -= (decimal)amountThatHasToBeWithDrawnFromClient;
+                        acc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient;
                         dataChanged = true;
                     }
                     break;
@@ -259,7 +284,7 @@ namespace EasyBank
                                 if (acc.AvailableAmount - convertedAmount < 0) return 5;
                                 else
                                 {
-                                    PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount);
+                                    PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
                                     acc.Amount -= (decimal)amount;
                                     acc.AvailableAmount -= (decimal)amount;
                                     dataChanged = true;
@@ -270,7 +295,7 @@ namespace EasyBank
                                 if (!(acc.AvailableAmount - convertedAmount).Equals(0)) return 31;
                                 else
                                 {
-                                    PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount);
+                                    PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
                                     acc.Amount -= (decimal)amount;
                                     acc.AvailableAmount -= (decimal)amount;
                                     dataChanged = true;
@@ -279,7 +304,7 @@ namespace EasyBank
                         }
                         else
                         {
-                            PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount);
+                            PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
                             acc.Amount -= (decimal)amount;
                             acc.AvailableAmount -= (decimal)amount;
                             dataChanged = true;
@@ -295,7 +320,8 @@ namespace EasyBank
             if (dataChanged)
             {
                 db.Entry(acc).State = System.Data.Entity.EntityState.Modified;
-                HistoryManager.AddWidthdrawOperation(db, (decimal)amount, (int)fromAccountId, (int)oper.OperatorID);
+                db.SaveChanges();
+                HistoryManager.AddWidthdrawOperation(db, (decimal)amountThatHasToBeWithDrawnFromClient, (int)fromAccountId, (int)oper.OperatorID);
                 db.SaveChanges();
 
                 return 0;
@@ -337,7 +363,24 @@ namespace EasyBank
             if (sourceCurrency == null) return 25;
             if (targetCurrency == null) return 26;
 
-            decimal convertedAmount = GetConvertedAmount(db, (decimal)amount, sourceCurrency, targetCurrency);
+            decimal convertedAmount = (decimal)amount;
+            decimal? amountThatHasToBeWithDrawnFromClient = null;
+            if (targetCurrency.CurrencyName == sourceCurrency.CurrencyName)
+                amountThatHasToBeWithDrawnFromClient = amount;
+            else if (sourceCurrency.CurrencyName == "UAH" || targetCurrency.CurrencyName == "UAH")
+            {
+                if (sourceCurrency.CurrencyName == "UAH")
+                    amountThatHasToBeWithDrawnFromClient = Math.Round((decimal)amount * targetCurrency.SaleRate, 2);
+                if (targetCurrency.CurrencyName == "UAH")
+                    amountThatHasToBeWithDrawnFromClient = Math.Round((decimal)amount / sourceCurrency.PurchaseRate, 2);
+            }
+            else
+            {
+                amountThatHasToBeWithDrawnFromClient = Math.Round((decimal)amount * targetCurrency.SaleRate, 2);
+                amountThatHasToBeWithDrawnFromClient = Math.Round((decimal)amountThatHasToBeWithDrawnFromClient / sourceCurrency.PurchaseRate, 2);
+
+                convertedAmount = GetConvertedAmount(db, (decimal)amount, targetCurrency, sourceCurrency);
+            }
 
             bool dataChanged = false;
 
@@ -349,13 +392,13 @@ namespace EasyBank
 
                         if (toAcc.AccountType.TypeName == "Normal")
                         {
-                            fromAcc.AvailableAmount -= (decimal)amount;
-                            fromAcc.Amount -= (decimal)amount;
+                            PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
 
-                            toAcc.AvailableAmount += (decimal)convertedAmount;
-                            toAcc.Amount += (decimal)convertedAmount;
+                            fromAcc.AvailableAmount -= (decimal)amountThatHasToBeWithDrawnFromClient;
+                            fromAcc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient;
 
-                            PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount);
+                            toAcc.AvailableAmount += (decimal)amount;
+                            toAcc.Amount += (decimal)amount;
 
                             dataChanged = true;
                         }
@@ -371,8 +414,10 @@ namespace EasyBank
             if (dataChanged)
             {
                 db.Entry(fromAcc).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
                 db.Entry(toAcc).State = System.Data.Entity.EntityState.Modified;
-                HistoryManager.AddTransferOperation(db, (decimal)amount, (int)fromAccountId, (int)toAccountId, (int)oper.OperatorID);
+                db.SaveChanges();
+                HistoryManager.AddTransferOperation(db, (decimal)amountThatHasToBeWithDrawnFromClient, (int)fromAccountId, (int)toAccountId, (int)oper.OperatorID);
                 db.SaveChanges();
                 return 0;
             }

@@ -50,3 +50,12 @@ EasyBank.v12.suo
 EasyBank.v12.suo
 EasyBank/App_Data/ASPNETDB.MDF
 EasyBank.v12.suo
+EasyBank/App_Data/EasyBank.mdf
+
+EasyBank/App_Data/EasyBank_log.ldf
+
+EasyBank/App_Data/SimpleMembership.mdf
+
+EasyBank/App_Data/SimpleMembership_log.ldf
+
+EasyBank/bin/EasyBank.pdb
