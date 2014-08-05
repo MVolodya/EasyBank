@@ -167,11 +167,11 @@
                     @Html.DisplayFor(modelItem => item.AccountStatus.StatusName)
                 </div>
             </td>
-            @*<td>
-                @Html.ActionLink(@Resources.Resource.AddMoney, "AddMoney", "Operation", new { id = item.AccountId }, null) |
-                @Html.ActionLink(@Resources.Resource.WidthdrawMoney, "WidthdrawMoney", "Operation", new { id = item.AccountId }, null) |
-                @Html.ActionLink(@Resources.Resource.TransMoney, "TransferMoney", "Operation", new { id = item.AccountId }, null)
-            </td>*@
+            <td>
+                @Html.ActionLink(@Resources.Resource.Freeze, "Freeze", new { id = item.AccountId, clientId = Model.ClientId }) |
+                @Html.ActionLink(@Resources.Resource.Block, "Block", new { id = item.AccountId, clientId = Model.ClientId }) |
+                @Html.ActionLink(@Resources.Resource.SetToNormal, "SetToNormal", new { id = item.AccountId, clientId = Model.ClientId })
+            </td>
         </tr>
         
     }
