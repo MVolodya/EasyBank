@@ -314,12 +314,13 @@ namespace EasyBank.Controllers
                 {
                     if (client.IsAlreadyRegistered == true)
                     {
-                        mailservice ms = new mailservice("easybankbionic@gmail.com", "chudik-l@yandex.ru", "subject", "Your web-access allowed");
+                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Wed-access", "Your web-access allowed");
                     }
                     if (client.IsAlreadyRegistered == false)
-                    { 
-                    mailservice ms = new mailservice("easybankbionic@gmail.com", "chudik-l@yandex.ru", "subject", client.InitialPassword);
-                    client.IsAlreadyRegistered = true;
+                    {
+                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Wed-access", client.InitialPassword);
+                    bool isRegistered = true;
+                        client.IsAlreadyRegistered = isRegistered;
                     }  
                 }
                 db.Entry(client).State = System.Data.Entity.EntityState.Modified;

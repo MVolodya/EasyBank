@@ -126,7 +126,6 @@ namespace EasyBank.Controllers
                              strPwd += strPwdchar.Substring(iRandom, 1);
                          }
 
-                         client.IsAlreadyRegistered = true;
                          client.InitialPassword = strPwd;
 
                          db.Clients.Add(client);

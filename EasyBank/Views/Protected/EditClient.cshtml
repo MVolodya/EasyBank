@@ -64,6 +64,9 @@
         <div class="editor-label">
             @Html.HiddenFor(model => model.InitialPassword)
         </div>
+        <div class="editor-label">
+            @Html.HiddenFor(model => model.IsAlreadyRegistered)
+        </div>
 
         <p>
             <input type="submit" value="@Resources.Resource.Save" />
