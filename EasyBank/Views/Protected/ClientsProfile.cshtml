@@ -139,7 +139,7 @@
         <tr id="@item.AccountId-@item.AccountType.TypeName" class="selectableTr">
             <td>
                 <div class="display-field">
-                    @Html.DisplayFor(modelItem => item.AccountNumber)
+                   @Html.ActionLink(@Html.DisplayFor(modelItem => item.AccountNumber).ToString(), "AccountHistory", "Protected", new{id = item.AccountId}, null)
                 </div>
             </td>
             <td>

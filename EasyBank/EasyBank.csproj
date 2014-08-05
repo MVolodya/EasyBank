@@ -385,6 +385,13 @@
       <DependentUpon>EasyBank.mdf</DependentUpon>
     </Content>
     <Content Include="bin\CaptchaMvc.dll" />
+    <Content Include="Content\images\back_2436.ico" />
+    <Content Include="Content\images\kopeteavailable_4552.ico" />
+    <Content Include="Content\images\misc_26_6816.ico" />
+    <Content Include="Content\images\money_add_3612.ico" />
+    <Content Include="Content\images\money_delete_2216.ico" />
+    <Content Include="Content\images\redo_7625.ico" />
+    <Content Include="Content\images\refresh_2156.ico" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Style.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -559,6 +566,9 @@
     <Content Include="Views\Operation\ProfitCalc.cshtml" />
     <Content Include="Views\Operation\TotalDepositInterests.cshtml" />
     <Content Include="Views\Operation\TotalCreditInterests.cshtml" />
+    <Content Include="Views\Account\CreditList.cshtml" />
+    <Content Include="Views\Account\DepositList.cshtml" />
+    <Content Include="Views\Protected\AccountHistory.cshtml" />
     <Content Include="Views\Operation\ProfitPlanningCalc.cshtml" />
     <Content Include="Views\Operation\TotalPlannedDepositInterests.cshtml" />
     <Content Include="Views\Operation\ProfitPlanningCalcResults.cshtml" />

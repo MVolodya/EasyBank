@@ -71,7 +71,9 @@ namespace EasyBank.Models
 
         public Account() 
         {
-            ExpirationDate = DateTime.Now.AddYears(3);
+            ExpirationDate = DateTime.Now.AddYears(10);
+            OpenDate = DateTime.Now;
+            LastInterestAdded = DateTime.Now;
         }
     }
 }

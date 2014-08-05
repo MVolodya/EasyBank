@@ -577,6 +577,21 @@ namespace EasyBank.Controllers
             }
         }
 
+        public ActionResult AccountHistory(int? id)
+        {
+            if (id != null)
+            {
+                IEnumerable<Operation> operations = db.OperationHistory.Where(o => o.FromAccountId == id || o.ToAccountId == id).ToList();
+                if (operations.Count() != 0)
+                {
+                    ViewBag.ClientsCardId = id;
+                    return View(operations);
+                }
+                else return new HttpNotFoundResult();
+            }
+            else return new HttpNotFoundResult();
+        }
+
         private Boolean fileIsImage(HttpPostedFileBase file)
         {
 
