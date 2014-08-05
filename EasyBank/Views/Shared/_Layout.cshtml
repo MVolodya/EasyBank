@@ -56,10 +56,12 @@
                         }
                         @if (User.IsInRole("Operator"))
                         {
+
                             <li>@Html.ActionLink(@Resources.Resource.BankProducts, "DepositList", "Office")</li>
                         }
                         @if (User.IsInRole("Administrator"))
                         {
+
                             <li>@Html.ActionLink(@Resources.Resource.Currencies, "CurrencyList", "Protected")</li>
                             <li>@Html.ActionLink(@Resources.Resource.OperatorsList, "OperatorsList", "Protected")</li>
                             <li>@Html.ActionLink(@Resources.Resource.BankProducts, "DepositList", "Office")</li>
