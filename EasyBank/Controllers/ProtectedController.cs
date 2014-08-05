@@ -18,46 +18,6 @@ namespace EasyBank.Controllers
     [InitializeSimpleMembership]
     public class ProtectedController : Controller
     {
-        /*[Authorize(Roles="Administrator, Operator")]
-        public ActionResult PreRegister(RegisterCompositeModel registerCompModel, HttpPostedFileBase file)
-        {
-            if (ModelState.IsValid)
-            {
-                if (file != null)
-                {
-                    ClientsImage photo = new ClientsImage();
-                    photo.Name = System.IO.Path.GetFileName(file.FileName);
-                    byte[] n = new byte[file.InputStream.Length];
-
-                    file.InputStream.Read(n, 0, (int)file.InputStream.Length);
-                    photo.ImageContent = n;
-                    photo.ContentType = file.ContentType;
-                    photo.PhotoType = (int)ImageType.PassportScan;
-                    db.Images.Add(photo);
-
-                    Client client = new Client();
-                    client.Name = registerCompModel.Name;
-                    client.Surname = registerCompModel.Surname;
-                    client.PIdNumber = registerCompModel.PIdNumber;
-                    client.BirthDate = registerCompModel.BirthDate;
-                    client.Email = registerCompModel.Email;
-                    client.RegistrationDate = DateTime.Now;
-                    db.Clients.Add(client);
-                    db.SaveChanges();
-
-                    var registerModel = new RegisterModel();
-                    registerModel.UserName = registerCompModel.Email;
-                    registerModel.Password = registerCompModel.Password;
-                    registerModel.ConfirmPassword = registerCompModel.ConfirmPassword;
-                    TempData["a"] = registerModel;
-
-
-                    return RedirectToAction("Register","Account", new { model = registerModel });
-                }
-
-            }
-            return View();
-        } */
         //
         // GET: /Client/
         private ConnectionContext db = new ConnectionContext();
@@ -409,6 +369,41 @@ namespace EasyBank.Controllers
 
         } 
         
+        [HttpGet]
+        public ActionResult AddDepositAccount(int? clientId)
+        {
+            var ListCurrency = db.Currencies.ToList();
+            ViewBag.Currencys = ListCurrency;
+            var ListDeposits = (from deps in db.DepositCreditModels
+                                where deps.AccountTypeId == 2
+                                select deps).ToList();
+            ViewBag.Deposits = ListDeposits;
+            if (clientId != null)
+            {
+                ViewBag.ClientId = clientId;
+
+                return View();
+            }
+            else return HttpNotFound();
+        }
+
+        [HttpGet]
+        public ActionResult AddCreditAccount(int? clientId)
+        {
+            var ListCurrency = db.Currencies.ToList();
+            ViewBag.Currencys = ListCurrency;
+            var ListCredits = (from creds in db.DepositCreditModels
+                               where creds.AccountTypeId == 3
+                               select creds).ToList();
+            ViewBag.Credits = ListCredits;
+            if (clientId != null)
+            {
+                ViewBag.ClientId = clientId;
+
+                return View();
+            }
+            else return HttpNotFound();
+        }
         [HttpGet]
         public ActionResult AddAccount(int? clientId)
         {

@@ -363,6 +363,12 @@ namespace EasyBank.Controllers
             }
         }
 
+        public ActionResult BankAccounts()
+        {
+            var bankAccounts = (from ba in db.BankAccounts
+                                select ba).ToList();
+            return PartialView(bankAccounts);
+        }
         //
         // POST: /Account/ExternalLoginConfirmation
 

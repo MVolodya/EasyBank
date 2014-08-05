@@ -112,6 +112,12 @@
 <p>
     @Html.ActionLink(@Resources.Resource.AddAccount, "AddAccount", new { clientId = Model.ClientId })
 </p>
+<p>
+    @Html.ActionLink("Add Deposit Account", "AddDepositAccount", new { clientId = Model.ClientId })
+</p>
+<p>
+    @Html.ActionLink("Add Credit Account", "AddCreditAccount", new { clientId = Model.ClientId })
+</p>
 <div>
     @Html.ActionLink(@Resources.Resource.AddPhoto, "AddPhoto", new { id = Model.ClientId })
 </div>

@@ -427,7 +427,7 @@
     <value>Financial reports</value>
   </data>
   <data name="Hello" xml:space="preserve">
-    <value>Hello</value>
+    <value>You are signed in as</value>
   </data>
   <data name="InterestRate" xml:space="preserve">
     <value>Interest rate</value>

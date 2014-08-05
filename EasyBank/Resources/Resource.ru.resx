@@ -427,7 +427,7 @@
     <value>Финансовые отчеты</value>
   </data>
   <data name="Hello" xml:space="preserve">
-    <value>Здравствуйте</value>
+    <value>Вы вошли в систему как</value>
   </data>
   <data name="InterestRate" xml:space="preserve">
     <value>Процентная ставка</value>
