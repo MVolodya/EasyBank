@@ -603,5 +603,44 @@ namespace EasyBank.Controllers
             return false;
         }
 
+        public ActionResult Freeze(int? id, int? clientId)
+        {
+            var clientAccount = (from accounts in db.Accounts
+                                  where accounts.AccountId == id
+                                  select accounts).Single();
+            var Client = (from clients in db.Clients
+                                 where clients.ClientId == clientId
+                                 select clients).Single();
+            clientAccount.AccountStatus = db.AccountStatuses.FirstOrDefault(a => a.StatusName == "Frozen");
+            db.Entry(clientAccount).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("ClientsProfile", Client);
+        }
+        public ActionResult Block(int? id, int? clientId)
+        {
+            var clientAccount = (from accounts in db.Accounts
+                                 where accounts.AccountId == id
+                                 select accounts).Single();
+            var Client = (from clients in db.Clients
+                          where clients.ClientId == clientId
+                          select clients).Single();
+            clientAccount.AccountStatus = db.AccountStatuses.FirstOrDefault(a => a.StatusName == "Blocked");
+            db.Entry(clientAccount).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("ClientsProfile", Client);
+        }
+        public ActionResult SetToNormal(int? id, int? clientId)
+        {
+            var clientAccount = (from accounts in db.Accounts
+                                 where accounts.AccountId == id
+                                 select accounts).Single();
+            var Client = (from clients in db.Clients
+                          where clients.ClientId == clientId
+                          select clients).Single();
+            clientAccount.AccountStatus = db.AccountStatuses.FirstOrDefault(a => a.StatusName == "Normal");
+            db.Entry(clientAccount).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("ClientsProfile", Client);
+        }
     }
 }

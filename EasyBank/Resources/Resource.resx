@@ -510,4 +510,13 @@
   <data name="YouAreLoggedInAs" xml:space="preserve">
     <value>You're logged in as</value>
   </data>
+  <data name="Block" xml:space="preserve">
+    <value>Block</value>
+  </data>
+  <data name="Freeze" xml:space="preserve">
+    <value>Freeze</value>
+  </data>
+  <data name="SetToNormal" xml:space="preserve">
+    <value>Set to normal</value>
+  </data>
 </root>
