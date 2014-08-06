@@ -43,6 +43,15 @@ namespace EasyBank.BAL
                 InterestPlanningCalc(item, monthsPassed, total);
             }
 
+            var creditAccountsF = (from creds in db.Accounts
+                                   where creds.TypeId == 3
+                                   where creds.DepositCreditModel.EarlyTermination == false
+                                   select creds).ToList();
+            foreach (var item in creditAccountsT)
+            {
+                InterestPlanningCalc(item, monthsPassed, total);
+            }
+
             var currencies = (from cur in db.Currencies
                               select cur).ToList();
             List<TotalAmountForCurrency> totalForCurrency = new List<TotalAmountForCurrency>();

@@ -458,6 +458,13 @@ namespace EasyBank.Controllers
             account.LastInterestAdded = DateTime.Now;
             account.OpenDate = DateTime.Now;
             account.StatusId = 1;
+            if(account.TypeId !=1){
+            var duration = (from prods in db.DepositCreditModels
+                            where prods.DepositCreditModelID == account.DepositCreditModelID
+                            select prods.Duration).FirstOrDefault();
+            account.ExpirationDate = DateTime.Now.AddMonths(duration);
+            }
+
             // Normal status is default
             if (ModelState.IsValid)
             {
