@@ -1,6 +1,6 @@
 ﻿@model List<EasyBank.Models.BankAccount>
 
-<h3>Bank Accounts Balance</h3>
+<h3>@Resources.Resource.BankAccountsBalance</h3>
 <table>
     <tr>
         @foreach (var item in Model)
@@ -19,5 +19,6 @@
         }
     </tr>
 </table>
-
 <br />
+@Html.ActionLink("Back", "TotalDepositedAmount", "Operation")  
+
