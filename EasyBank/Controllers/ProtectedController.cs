@@ -441,6 +441,7 @@ namespace EasyBank.Controllers
         [HttpPost]
         public ActionResult AddAccount(Account account)
         {
+            if (account.Amount == 0) account.Amount = 0;
             account.Interest = 0;
             account.LastInterestAdded = DateTime.Now;
             account.OpenDate = DateTime.Now;

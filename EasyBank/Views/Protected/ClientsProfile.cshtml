@@ -6,12 +6,14 @@
 <script>
     $(document).ready(function () {
         prevTriggeredTrId = "";
+        
         $("#types").css("display", "none");
         $("#currencies").css("display", "none");
         $("#depositTypes").css("display", "none");
         $("#creditTypes").css("display", "none");
         $("#submitButton").css("display", "none");
         $("#amountDiv").css("display", "none");
+        $("div #cancelButton").css("display", "none");
 
         $(".selectableTr").click(function () {
             if (this.id != prevTriggeredTrId) {
@@ -43,20 +45,40 @@
         $("#showFirstBox").click(function () {
             $("#types").css("display", "inline-block");
             $("#showFirstBox").css("display", "none");
+            $("div #cancelButton").css("display", "inline-block");
+            $("#amountDiv #Amount").val(0);
         });
         $("#types").change(function () {
             $("#currencies").css("display", "inline-block");
         });
         $("#currencies").change(function () {
-            if ($("#types select").val() == 1) {
+            if ($("#types select").val() == 2) {
                 $("#depositTypes").css("display", "inline-block");
                 $("#amountDiv").css("display", "inline-block");
             }
-            else if ($("#types select").val() == 2) {
+            else if ($("#types select").val() == 3) {
                 $("#creditTypes").css("display", "inline-block");
+                $("#amountDiv").css("display", "inline-block");
             }
             $("#submitButton").css("display", "inline-block");
         });
+        $("div #cancelButton").click(function() {
+            $("#types").css("display", "none");
+            $("#currencies").css("display", "none");
+            $("#depositTypes").css("display", "none");
+            $("#creditTypes").css("display", "none");
+            $("#submitButton").css("display", "none");
+            $("#amountDiv").css("display", "none");
+            $("div #cancelButton").css("display", "none");
+            $("#showFirstBox").css("display", "inline-block");
+        });
+        $("select[id='AccountType'] option:lt(1)").attr("disabled", "disabled");
+        $("select[name='CurrencyId'] option:lt(1)").attr("disabled", "disabled");
+        $("select[name='DepositId'] option:lt(1)").attr("disabled", "disabled");
+        $("select[name='CreditId'] option:lt(1)").attr("disabled", "disabled");
+        $("input #submitButton").click(function() {
+            
+        })
     });
 </script>
 <h2>@Html.Label(@Resources.Resource.ClientsProfileTitle)</h2>
@@ -137,6 +159,7 @@
     @Html.ActionLink(@Resources.Resource.AddPhoto, "AddPhoto", new { id = Model.ClientId })
 </div>
 <input type="button" id="showFirstBox" value="@Resources.Resource.AddAccount">
+
 <div id="accCreateDiv">
     @Html.Action("AddAccountPartial")
 </div>

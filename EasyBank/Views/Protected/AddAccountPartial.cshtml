@@ -24,21 +24,21 @@
         listType.Add(new SelectListItem() { Text = item.TypeName, Value = item.TypeId.ToString() });
     }
             }
-            @Html.DropDownListFor(model => model.TypeId, listType)
+            @Html.DropDownListFor(model => model.TypeId, listType, "Select type", new{@id="AccountType"})
         </div>
 
         <div id="currencies">
             @{
     List<SelectListItem> listCurrency = new List<SelectListItem>();
     var ListCurrencys = ViewBag.Currencys;
-                listCurrency.Add(new SelectListItem() {Text = "Select currency", Value = "0"});
+    listCurrency.Add(new SelectListItem() { Text = "Select currency", Value = "0" });
     foreach (var item in ListCurrencys)
     {
-        
+
         listCurrency.Add(new SelectListItem() { Text = item.CurrencyName, Value = item.CurrencyId.ToString() });
     }
             }
-            @Html.DropDownListFor(model => model.CurrencyId, listCurrency)
+            @Html.DropDownListFor(model => model.CurrencyId, listCurrency, new{@id="CurrencyId"})
         </div>
 
 
@@ -51,29 +51,33 @@
         listDeposits.Add(new SelectListItem() { Text = item.Name, Value = item.DepositCreditModelID.ToString() });
     }
             }
-            @Html.DropDownListFor(model => model.TypeId, listDeposits, "Select deposit type")
+            @Html.DropDownListFor(model => model.TypeId, listDeposits, "Select deposit", new{@id="DepositId"})
         </div>
 
         <div id="creditTypes">
             @{
-                List<SelectListItem> listCredits = new List<SelectListItem>();
-                var ListCredits = ViewBag.Credits;
-                foreach (var item in ListCredits)
-                {
-                    listCredits.Add(new SelectListItem() { Text = item.Name, Value = item.DepositCreditModelID.ToString() });
-                }
+    List<SelectListItem> listCredits = new List<SelectListItem>();
+    var ListCredits = ViewBag.Credits;
+    foreach (var item in ListCredits)
+    {
+        listCredits.Add(new SelectListItem() { Text = item.Name, Value = item.DepositCreditModelID.ToString() });
+    }
             }
-            @Html.DropDownListFor(model => model.TypeId, listCredits, "Select credit type")
+            @Html.DropDownListFor(model => model.TypeId, listCredits, "Select credit", new{@id="CreditId"})
         </div>
-        
+
         <div id="amountDiv">
-            @Html.EditorFor(model=>model.Amount)
+            @Html.EditorFor(model => model.Amount)
         </div>
 
         <div id="submitButton" style="display: inline-block">
-        <input type="submit" value="@Resources.Resource.Create"  />
-            </div>
+            <input type="submit" value="@Resources.Resource.Create"  />
+        </div>
         
+        <div id="cancelButton" style="display: inline-block">
+            <input type="button" value="Cancel" id="cancelButton"/>
+        </div>
+
     </fieldset>
 }
 
