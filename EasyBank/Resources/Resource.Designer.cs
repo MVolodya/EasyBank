@@ -250,6 +250,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bank accounts.
+        /// </summary>
+        public static string BankAccounts {
+            get {
+                return ResourceManager.GetString("BankAccounts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bank accounts balance.
         /// </summary>
         public static string BankAccountsBalance {
@@ -516,6 +525,15 @@ namespace Resources {
         public static string CurrencyList {
             get {
                 return ResourceManager.GetString("CurrencyList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency name.
+        /// </summary>
+        public static string CurrencyName {
+            get {
+                return ResourceManager.GetString("CurrencyName", resourceCulture);
             }
         }
         
@@ -1033,6 +1051,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Purchase rate.
+        /// </summary>
+        public static string PurchaseRate {
+            get {
+                return ResourceManager.GetString("PurchaseRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recipient.
         /// </summary>
         public static string Recipient {
@@ -1065,6 +1092,15 @@ namespace Resources {
         public static string RegisterOperator {
             get {
                 return ResourceManager.GetString("RegisterOperator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salling rate.
+        /// </summary>
+        public static string SallingRate {
+            get {
+                return ResourceManager.GetString("SallingRate", resourceCulture);
             }
         }
         

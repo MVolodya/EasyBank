@@ -1,6 +1,6 @@
 ﻿@model EasyBank.Models.Operator
 
-@using (Html.BeginForm("RegisterOperator", "Account", FormMethod.Post))
+@using (Html.BeginForm(@Resources.Resource.RegisterOperator, "Account", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
@@ -43,12 +43,12 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" class="submit" />
+            <input type="submit" value=@Resources.Resource.Create class="submit" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(@Resources.Resource.BackToList, "OperatorsList","Protected")
 </div>
 
