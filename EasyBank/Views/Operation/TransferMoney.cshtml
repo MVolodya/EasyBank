@@ -107,7 +107,7 @@
         </div>
 
         <br />
-    <input type="submit" value=@Resources.Resource.Submit />
+    <input type="submit" value=@Resources.Resource.Submit onclick="return confirm(@Resources.Resource.AskToAddMoney) ? true : false;"/>
     }
 }
 else

@@ -46,7 +46,7 @@ namespace EasyBank.Services
                     client.Send(message1);
                 }
             }
-            catch(Exception e){
+            catch(Exception ex){
                 return false;
             }
             return true;
