@@ -160,10 +160,13 @@
         </div>
         @*-@Html.ActionLink(@Resources.Resource.AddAccount, "AddAccount", new { clientId = Model.ClientId }, new{@id="createAccount"})*@
 
-        <div>
-            @Html.ActionLink(@Resources.Resource.AddPhoto, "AddPhoto", new { id = Model.ClientId })
-        </div>
-    </div>
+<div>
+    @Html.ActionLink(@Resources.Resource.EditPhoto, "AddPhoto", new { id = Model.ClientId })
+</div>
+<input type="button" id="showFirstBox" value="@Resources.Resource.AddAccount">
+<div id="accCreateDiv">
+    @Html.Action("AddAccountPartial")
+
 </div>
 <br/>
 <div style="clear: both; background-color: rgba(255,255,255, 0.4); float: left; padding-top: 10px; padding-left: 20px; padding-bottom: 30px; border-radius: 10px; margin-top: 10px; min-width: 1000px;">
@@ -234,5 +237,7 @@
     <a href="#" id="payInButton" style="opacity: 0">@Resources.Resource.PayIn</a>
     <a href="#" id="payOutButton" style="opacity: 0">@Resources.Resource.PayOut</a>
     <a href="#" id="transferButton" style="opacity: 0">@Resources.Resource.TransMoney</a>
-	<a href="#" id="historyButton" style="opacity: 0">Історія</a>
+	<a href="#" id="historyButton" style="opacity: 0">@Resources.Resource.History</a>
+<div>
+    @Html.ActionLink(Resources.Resource.BackToList, "ClientsList", "Protected")
 </div>
