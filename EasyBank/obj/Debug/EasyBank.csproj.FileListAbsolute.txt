@@ -1026,7 +1026,6 @@ C:\Users\V\Desktop\GitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.Pur
 C:\Users\V\Desktop\GitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.AddedInterestCalculation.resources
 C:\Users\V\Desktop\GitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.addedBankAccount.resources
 C:\Users\V\Desktop\GitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.addedIncorrectPasswordTrialsToClient.resources
-\\psf\Home\Desktop\forTeam11\EasyBank\EasyBank\bin\EasyBank.dll.config
 \\psf\Home\Desktop\forTeam11\EasyBank\EasyBank\bin\EasyBank.dll
 \\psf\Home\Desktop\forTeam11\EasyBank\EasyBank\bin\EasyBank.pdb
 \\psf\Home\Desktop\forTeam11\EasyBank\EasyBank\bin\uk-UA\EasyBank.resources.dll
@@ -1144,13 +1143,3 @@ C:\Users\V\Desktop\GitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.add
 \\psf\Home\Desktop\forTeam11\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resources.dll
 \\psf\Home\Desktop\forTeam11\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 \\psf\Home\Desktop\forTeam11\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
-C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Resources.Resource.resources
-C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.first.resources
-C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Resources.Resource.uk-UA.resources
-C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Resources.Resource.ru.resources
-C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.csproj.GenerateResource.Cache
-C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\uk-UA\EasyBank.resources.dll
-C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resources.dll
-C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.dll
-C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
-C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.csprojResolveAssemblyReference.cache

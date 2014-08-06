@@ -46,12 +46,14 @@
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
+ @Html.AntiForgeryToken()
+ @Html.ValidationSummary()
+
+
 
     <fieldset>
         <legend>Client</legend>
-        
+
         @ViewBag.Message
 
         <div class="editor-label">
@@ -93,22 +95,22 @@
             @Html.EditorFor(model => model.Client.Email)
             @Html.ValidationMessageFor(model => model.Client.Email)
         </div>
-        <div class="editor-label">
+       @* <div class="editor-label">
             @Html.LabelFor(model => model.Password)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Password)
             @Html.ValidationMessageFor(model => model.Password)
-        </div>
+        </div
         <div class="editor-label">
             @Html.LabelFor(model => model.ConfirmPassword)
         </div>
-        <div>
+     <div>
             @Html.EditorFor(model => model.ConfirmPassword)
             @Html.ValidationMessageFor(model => model.ConfirmPassword)
-        </div>
+        </div>*@
 
-                <label for=" file">@Resources.Resource.UploadPassportScan:</label>
+        <label for=" file">@Resources.Resource.UploadPassportScan:</label>
         <input type="file" name="file" id="file" accept="image/jpeg,image/png" style="width: 100%;" value="@Resources.Resource.ChooseFile" />
 
         <p>

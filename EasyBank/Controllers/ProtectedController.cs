@@ -83,7 +83,7 @@ namespace EasyBank.Controllers
             ViewBag.RegistrationDateSort = sort == "registrationDate_desc" ? "registrationdate_asc" : "registrationDate_desc";
 
             var operators = from opr in db.Operators
-                          select opr;
+                            select opr;
 
             string[] searchWords = null;
             if (!String.IsNullOrEmpty(Search))
@@ -136,7 +136,7 @@ namespace EasyBank.Controllers
                     break;
                 case "registrationdate_asc":
                     operators = operators.OrderBy(c => c.RegistrationDate);
-                    break; 
+                    break;
                 default:
                     operators = operators.OrderBy(c => c.Name);
                     break;
@@ -146,7 +146,7 @@ namespace EasyBank.Controllers
             return View(operators.ToPagedList(pageNumber, pageSize));
         }
 
-        [Authorize(Roles="Operator, Administrator")]
+        [Authorize(Roles = "Operator, Administrator")]
         public ActionResult ClientsList(string sort, string currentFilter, string Search, int? page)
         {
             ViewBag.CurrentSort = sort;
@@ -158,7 +158,7 @@ namespace EasyBank.Controllers
             ViewBag.RegistrationDateSort = sort == "registrationDate_desc" ? "registrationdate_asc" : "registrationDate_desc";
 
             var clients = from c in db.Clients
-                      select c;
+                          select c;
 
             string[] searchWords = null;
             if (!String.IsNullOrEmpty(Search))
@@ -247,7 +247,7 @@ namespace EasyBank.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         public ActionResult AddClient(Client client, HttpPostedFileBase file)
         {
@@ -256,7 +256,7 @@ namespace EasyBank.Controllers
                 if (db.Clients.FirstOrDefault(c => c.PIdNumber == client.PIdNumber) != null)
                     return HttpNotFound();//Change for partial view later-----------------------!!!!!!!!!!!!!!!
                 if (file != null)
-                {                    
+                {
                     ClientsImage photo = new ClientsImage();
                     photo.Name = System.IO.Path.GetFileName(file.FileName);
                     byte[] n = new byte[file.InputStream.Length];
@@ -269,7 +269,7 @@ namespace EasyBank.Controllers
                     db.Images.Add(photo);
 
                     client.RegistrationDate = DateTime.Now;
-                    
+
                     db.Clients.Add(client);
                     if (fileIsImage(file))
                     {
@@ -314,14 +314,25 @@ namespace EasyBank.Controllers
                 {
                     if (client.IsAlreadyRegistered == true)
                     {
-                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Wed-access", "Your web-access allowed");
+                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Відновлення доступу Easy Bank!", "Вам відкрито доступ до особистого кабінету\n\nЗ повагою Адміністрація банку");
                     }
                     if (client.IsAlreadyRegistered == false)
                     {
-                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Wed-access", client.InitialPassword);
-                    bool isRegistered = true;
-                        client.IsAlreadyRegistered = isRegistered;
-                    }  
+                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Вітаємо Вас у Easy Bank!",
+                        "Дякуємо, що Ви завітали у Наш банк та стали клієнтом Easy Bank!\n\nДля Вас створено осбистий кабінет в якому Ви можете керувати своїми рахунками.\n" + 
+                        "Для того, щоб увійти у Свій особистий кабінет Вам необхідно ввести Ваш email який Ви вказували при заповненні анкети,\nтакож Вам потрібно ввести згенерований пароль який Вам було надіслано в цьому повідомленні.\n" +
+                        "Ми рекомендуємо при першому входженні в особистий акаунт змінити автоматично згенерований пароль натиснувши на Ваш логін в правому верхньому кутку сторінки.\n" +
+                        "Ваш згенерований пароль: "+ client.InitialPassword +"\n\nЗ повагою Адміністрація банку!");
+                        client.IsAlreadyRegistered = true;
+                    }
+                }
+                if (client.IsOnlineUser == false)
+                {
+                    if (client.IsAlreadyRegistered == true)
+                    {
+                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Обмеження доступу Easy Bank!",
+                        "Доступ до особистого кабінету обмежено");
+                    }
                 }
                 db.Entry(client).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
@@ -422,8 +433,8 @@ namespace EasyBank.Controllers
 
             return PartialView();
 
-        } 
-        
+        }
+
         [HttpGet]
         public ActionResult AddAccount(int? clientId)
         {
@@ -468,13 +479,13 @@ namespace EasyBank.Controllers
                 return RedirectToAction("AddAccount");
             }
         }
- 
+
         [HttpGet]
         public ActionResult ChooseBankProduct(int accountId)
         {
             var type = (int)(from accts in db.Accounts
-                       where accts.AccountId == accountId
-                       select accts.TypeId).FirstOrDefault();
+                             where accts.AccountId == accountId
+                             select accts.TypeId).FirstOrDefault();
             if (type == 2)
             {
                 var deposits = (from d in db.DepositCreditModels
@@ -489,25 +500,25 @@ namespace EasyBank.Controllers
                                where c.AccountTypeId == 3
                                select c).ToList();
 
-                return View(credits);   
+                return View(credits);
             }
             return View();
         }
-        
-        [HttpPost]   
+
+        [HttpPost]
         public ActionResult ChooseBankProduct(DepositCreditModel depoCreditModel)
         {
 
             return RedirectToAction("ClientsProfile");
         }
-        
+
         [Authorize(Roles = "Administrator, Operator")]
         public ActionResult CurrencyList()
         {
             var mostRecentEntries = (from currency in db.Currencies select currency).ToList();
             ViewBag.Currencies = mostRecentEntries;
             return View();
-        } 
+        }
 
         [Authorize(Roles = "Administrator")]
         public ActionResult AddCurrency(String name)
@@ -521,7 +532,7 @@ namespace EasyBank.Controllers
 
                     BankAccount ba = new BankAccount();
                     ba.CurrencyName = name;
-                    
+
                     db.Currencies.Add(currency);
                     db.BankAccounts.Add(ba);
                     db.SaveChanges();
@@ -541,7 +552,7 @@ namespace EasyBank.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult verifyDelete(int? id)
         {
-            
+
             if (id != null)
             {
                 var CurrencyDelete = (from Currency in db.Currencies
@@ -550,7 +561,7 @@ namespace EasyBank.Controllers
                 var CurrencyAvaliable = (from Account in db.Accounts
                                          where Account.CurrencyId == CurrencyDelete.CurrencyId
                                          select Account);
-                if (CurrencyAvaliable.Count()==0)
+                if (CurrencyAvaliable.Count() == 0)
                 {
                     return View(CurrencyDelete);
                 }
@@ -621,11 +632,11 @@ namespace EasyBank.Controllers
         public ActionResult Freeze(int? id, int? clientId)
         {
             var clientAccount = (from accounts in db.Accounts
-                                  where accounts.AccountId == id
-                                  select accounts).Single();
+                                 where accounts.AccountId == id
+                                 select accounts).Single();
             var Client = (from clients in db.Clients
-                                 where clients.ClientId == clientId
-                                 select clients).Single();
+                          where clients.ClientId == clientId
+                          select clients).Single();
             clientAccount.AccountStatus = db.AccountStatuses.FirstOrDefault(a => a.StatusName == "Frozen");
             db.Entry(clientAccount).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
