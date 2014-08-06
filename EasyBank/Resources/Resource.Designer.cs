@@ -223,6 +223,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back to list.
         /// </summary>
         public static string BackToList {
@@ -237,6 +246,15 @@ namespace Resources {
         public static string BackToProfile {
             get {
                 return ResourceManager.GetString("BackToProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank accounts balance.
+        /// </summary>
+        public static string BankAccountsBalance {
+            get {
+                return ResourceManager.GetString("BankAccountsBalance", resourceCulture);
             }
         }
         
@@ -273,6 +291,24 @@ namespace Resources {
         public static string Block {
             get {
                 return ResourceManager.GetString("Block", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calculate.
+        /// </summary>
+        public static string Calculate {
+            get {
+                return ResourceManager.GetString("Calculate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter number of months to calculate interests..
+        /// </summary>
+        public static string CalculateMessage {
+            get {
+                return ResourceManager.GetString("CalculateMessage", resourceCulture);
             }
         }
         
@@ -547,7 +583,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Details.
+        ///   Looks up a localized string similar to My profile.
         /// </summary>
         public static string Details {
             get {
@@ -588,6 +624,15 @@ namespace Resources {
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit photo.
+        /// </summary>
+        public static string EditPhoto {
+            get {
+                return ResourceManager.GetString("EditPhoto", resourceCulture);
             }
         }
         
@@ -633,6 +678,15 @@ namespace Resources {
         public static string ErrorCode {
             get {
                 return ResourceManager.GetString("ErrorCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error reports.
+        /// </summary>
+        public static string ErrorReports {
+            get {
+                return ResourceManager.GetString("ErrorReports", resourceCulture);
             }
         }
         
@@ -691,7 +745,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hello.
+        ///   Looks up a localized string similar to You are signed in as.
         /// </summary>
         public static string Hello {
             get {
@@ -853,6 +907,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Operation date.
+        /// </summary>
+        public static string OperationDate {
+            get {
+                return ResourceManager.GetString("OperationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Operation error.
         /// </summary>
         public static string OperationError {
@@ -943,6 +1006,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Posted by.
+        /// </summary>
+        public static string PostedBy {
+            get {
+                return ResourceManager.GetString("PostedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Posted date.
+        /// </summary>
+        public static string PostedDate {
+            get {
+                return ResourceManager.GetString("PostedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recipient.
+        /// </summary>
+        public static string Recipient {
+            get {
+                return ResourceManager.GetString("Recipient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refresh.
         /// </summary>
         public static string Refresh {
@@ -988,7 +1078,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set to normal.
+        ///   Looks up a localized string similar to Sender.
+        /// </summary>
+        public static string Sender {
+            get {
+                return ResourceManager.GetString("Sender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock.
         /// </summary>
         public static string SetToNormal {
             get {
@@ -1083,6 +1182,15 @@ namespace Resources {
         public static string TotalCreditAmount {
             get {
                 return ResourceManager.GetString("TotalCreditAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total сredit interests in currency:.
+        /// </summary>
+        public static string TotalCreditInterests {
+            get {
+                return ResourceManager.GetString("TotalCreditInterests", resourceCulture);
             }
         }
         

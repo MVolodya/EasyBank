@@ -134,7 +134,7 @@
 @*-@Html.ActionLink(@Resources.Resource.AddAccount, "AddAccount", new { clientId = Model.ClientId }, new{@id="createAccount"})*@
 
 <div>
-    @Html.ActionLink(@Resources.Resource.AddPhoto, "AddPhoto", new { id = Model.ClientId })
+    @Html.ActionLink(@Resources.Resource.EditPhoto, "AddPhoto", new { id = Model.ClientId })
 </div>
 <input type="button" id="showFirstBox" value="@Resources.Resource.AddAccount">
 <div id="accCreateDiv">
@@ -205,3 +205,7 @@
 <a href="#" id="payOutButton" style="opacity: 0">@Resources.Resource.PayOut</a>
 <a href="#" id="transferButton" style="opacity: 0">@Resources.Resource.TransMoney</a>
 
+
+<div>
+    @Html.ActionLink(Resources.Resource.BackToList, "ClientsList", "Protected")
+</div>

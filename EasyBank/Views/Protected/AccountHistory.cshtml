@@ -5,16 +5,16 @@
     <tr>
         <th></th>
         <th>
-            @Html.ActionLink("Date", "AccountHistory", new { sort = ViewBag.SortDate })
+            @Html.ActionLink(Resources.Resource.OperationDate, "AccountHistory", new { sort = ViewBag.SortDate })
         </th>
         <th>
             @Html.DisplayName(@Resources.Resource.Amount)
         </th>
         <th>
-            @Html.DisplayName("Відправник")
+            @Html.DisplayName(@Resources.Resource.Sender)
         </th>
         <th>
-            @Html.DisplayName("Одержувач")
+            @Html.DisplayName(@Resources.Resource.Recipient)
         </th>
     </tr>
 
@@ -77,6 +77,7 @@
     }   
 </table>
 <br />
+
 @Resources.Resource.Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) @Resources.Resource.Of @Model.PageCount
 
 @Html.PagedListPager(Model, page => Url.Action("AccountHistory", new { page, sort = ViewBag.CurrentSort }))
