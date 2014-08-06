@@ -558,4 +558,7 @@
   <data name="History" xml:space="preserve">
     <value>История</value>
   </data>
+  <data name="BankAccounts" xml:space="preserve">
+    <value>Счета банка</value>
+  </data>
 </root>
