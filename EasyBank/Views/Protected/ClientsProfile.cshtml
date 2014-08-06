@@ -22,6 +22,7 @@
                 $("#payInButton").attr("href", "/Operation/AddMoney/" + parms[0]);
                 $("#payOutButton").attr("href", "/Operation/WidthdrawMoney/" + parms[0]);
                 $("#transferButton").attr("href", "/Operation/TransferMoney/" + parms[0]);
+                $("#historyButton").attr("href", "/Protected/AccountHistory/" + parms[0]);
                 if (parms[1] == "Credit") {
                     $("#payInButton").css("opacity", 1);
                     $("#payOutButton").css("opacity", 0);
@@ -37,6 +38,7 @@
                     $("#payOutButton").css("opacity", 1);
                     $("#transferButton").css("opacity", 1);
                 }
+                $("#historyButton").css("opacity", 1);
             }
         });
 
@@ -164,7 +166,7 @@
         <tr id="@item.AccountId-@item.AccountType.TypeName" class="selectableTr">
             <td>
                 <div class="display-field">
-                    @Html.ActionLink(@Html.DisplayFor(modelItem => item.AccountNumber).ToString(), "AccountHistory", "Protected", new { id = item.AccountId }, null)
+                    @Html.DisplayFor(modelItem => item.AccountNumber)
                 </div>
             </td>
             <td>
@@ -204,4 +206,4 @@
 <a href="#" id="payInButton" style="opacity: 0">@Resources.Resource.PayIn</a>
 <a href="#" id="payOutButton" style="opacity: 0">@Resources.Resource.PayOut</a>
 <a href="#" id="transferButton" style="opacity: 0">@Resources.Resource.TransMoney</a>
-
+<a href="#" id="historyButton" style="opacity: 0">Історія</a>
