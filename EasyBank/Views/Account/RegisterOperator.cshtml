@@ -1,5 +1,5 @@
 ﻿@model EasyBank.Models.Operator
-
+<h2>@Html.Label(@Resources.Resource.RegisterOperator)</h2>
 @using (Html.BeginForm("RegisterOperator", "Account", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
