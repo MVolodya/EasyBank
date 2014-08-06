@@ -1146,3 +1146,7 @@ C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resour
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.csprojResolveAssemblyReference.cache
+C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.csprojResolveAssemblyReference.cache
+C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.AddedInterestCalculation.resources
+C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.addedBankAccount.resources
+C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.addedIncorrectPasswordTrialsToClient.resources

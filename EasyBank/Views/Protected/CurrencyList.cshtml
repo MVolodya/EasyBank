@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = @Resources.Resource.CurrencyList;
 }
+<h2>@Html.Label(@Resources.Resource.Currencies)</h2>
+
 <fieldset>
     @using (Html.BeginForm("AddCurrency", "Protected", FormMethod.Post))
     {
