@@ -561,4 +561,13 @@
   <data name="BankAccounts" xml:space="preserve">
     <value>Счета банка</value>
   </data>
+  <data name="CurrencyName" xml:space="preserve">
+    <value>Название валюты</value>
+  </data>
+  <data name="PurchaseRate" xml:space="preserve">
+    <value>Курс покупки</value>
+  </data>
+  <data name="SallingRate" xml:space="preserve">
+    <value>Курс продажи</value>
+  </data>
 </root>

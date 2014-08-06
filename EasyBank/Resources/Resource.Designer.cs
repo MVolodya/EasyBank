@@ -529,6 +529,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Currency name.
+        /// </summary>
+        public static string CurrencyName {
+            get {
+                return ResourceManager.GetString("CurrencyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Currency name required.
         /// </summary>
         public static string CurrencyNameRequired {
@@ -1042,6 +1051,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Purchase rate.
+        /// </summary>
+        public static string PurchaseRate {
+            get {
+                return ResourceManager.GetString("PurchaseRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recipient.
         /// </summary>
         public static string Recipient {
@@ -1074,6 +1092,15 @@ namespace Resources {
         public static string RegisterOperator {
             get {
                 return ResourceManager.GetString("RegisterOperator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salling rate.
+        /// </summary>
+        public static string SallingRate {
+            get {
+                return ResourceManager.GetString("SallingRate", resourceCulture);
             }
         }
         
