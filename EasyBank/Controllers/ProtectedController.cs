@@ -636,7 +636,8 @@ namespace EasyBank.Controllers
             {
                 ViewBag.CurrentSort = sort;
                 ViewBag.SortDate = String.IsNullOrEmpty(sort) ? "Date_asc" : "";
-                var operationHistory = from operation in db.OperationHistory
+                var operationHistory = from operation in db.OperationHistory 
+                                       where operation.FromAccountId == id || operation.ToAccountId == id
                                        select operation;
                 switch (sort)
                 {
@@ -647,7 +648,6 @@ namespace EasyBank.Controllers
                         operationHistory = operationHistory.OrderByDescending(operation => operation.Date);
                         break;
                 }
-                IEnumerable<Operation> operations = db.OperationHistory.Where(o => o.FromAccountId == id || o.ToAccountId == id).ToList();
                 ViewBag.ClientsCardId = id;
                 int pageSize = 10;
                 int pageNumber = (page ?? 1);
