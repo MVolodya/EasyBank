@@ -159,9 +159,9 @@ namespace EasyBank
             if (oper == null) return 21;
             if (acc == null) return 22;
 
-            if (acc.AccountType.TypeName == "Blocked") return 44;
-            if (acc.AccountType.TypeName == "Frozen") return 45;
-            if (acc.AccountType.TypeName == "Expired") return 46;
+            if (acc.AccountStatus.StatusName == "Blocked") return 44;
+            if (acc.AccountStatus.StatusName == "Frozen") return 45;
+            if (acc.AccountStatus.StatusName == "Expired") return 46;
 
             Currency sourceCurrency = db.Currencies.FirstOrDefault(c => c.CurrencyName.ToLower() == sourceCurrencyName.ToLower());
             Currency targetCurrency = acc.Currency;
@@ -233,9 +233,9 @@ namespace EasyBank
             if (oper == null) return 21;
             if (acc == null) return 22;
 
-            if (acc.AccountType.TypeName == "Blocked") return 41;
-            if (acc.AccountType.TypeName == "Frozen") return 42;
-            if (acc.AccountType.TypeName == "Expired") return 43;
+            if (acc.AccountStatus.StatusName == "Blocked") return 41;
+            if (acc.AccountStatus.StatusName == "Frozen") return 42;
+            if (acc.AccountStatus.StatusName == "Expired") return 43;
 
             Currency sourceCurrency = acc.Currency;
             Currency targetCurrency = db.Currencies.FirstOrDefault(c => c.CurrencyName.ToLower() == targetCurrencyName.ToLower());
@@ -296,7 +296,8 @@ namespace EasyBank
                                 else
                                 {
                                     PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
-                                    acc.Amount -= (decimal)amount;
+                                    //acc.Amount -= (decimal)amount;
+                                    acc.Amount = 0;
                                     acc.AvailableAmount -= (decimal)amount;
                                     dataChanged = true;
                                 }
@@ -350,12 +351,12 @@ namespace EasyBank
 
             if (fromAccountId == toAccountId) return 32;
 
-            if (fromAcc.AccountType.TypeName == "Blocked") return 41;
-            if (fromAcc.AccountType.TypeName == "Frozen") return 42;
-            if (fromAcc.AccountType.TypeName == "Expired") return 43;
-            if (toAcc.AccountType.TypeName == "Blocked") return 44;
-            if (toAcc.AccountType.TypeName == "Frozen") return 45;
-            if (toAcc.AccountType.TypeName == "Expired") return 46;
+            if (fromAcc.AccountStatus.StatusName == "Blocked") return 41;
+            if (fromAcc.AccountStatus.StatusName == "Frozen") return 42;
+            if (fromAcc.AccountStatus.StatusName == "Expired") return 43;
+            if (toAcc.AccountStatus.StatusName == "Blocked") return 44;
+            if (toAcc.AccountStatus.StatusName == "Frozen") return 45;
+            if (toAcc.AccountStatus.StatusName == "Expired") return 46;
 
             Currency sourceCurrency = fromAcc.Currency;
             Currency targetCurrency = toAcc.Currency;

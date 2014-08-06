@@ -20,8 +20,6 @@
     });
 </script>
 
-
-
 <fieldset>
     <legend>Account</legend>
 
@@ -80,6 +78,15 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.AccountStatus.StatusName)
     </div>
+    @if (Model.AccountType.TypeId != 1)
+    {
+        <div class="display-label">
+        @Html.DisplayNameFor(model => model.DepositCreditModel.EarlyTermination)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DepositCreditModel.EarlyTermination)
+    </div>
+    }
 </fieldset>
 
 <h4><b>@Resources.Resource.WithdrawFunds</b></h4>
