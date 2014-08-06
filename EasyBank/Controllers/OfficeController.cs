@@ -367,7 +367,7 @@ namespace EasyBank.Controllers
         {
             var bankAccounts = (from ba in db.BankAccounts
                                 select ba).ToList();
-            return PartialView(bankAccounts);
+            return View(bankAccounts);
         }
         //
         // POST: /Account/ExternalLoginConfirmation
