@@ -274,9 +274,9 @@ namespace EasyBank.Controllers
                     if (client.IsAlreadyRegistered == false)
                     {
                         mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Wed-access", client.InitialPassword);
-                    bool isRegistered = true;
+                        bool isRegistered = true;
                         client.IsAlreadyRegistered = isRegistered;
-                    }  
+                    }
                 }
                 db.Entry(client).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
@@ -484,7 +484,7 @@ namespace EasyBank.Controllers
             else return HttpNotFound();
             return PartialView();
         }
- 
+
         [HttpGet]
         public ActionResult ChooseBankProduct(int accountId)
         {
@@ -526,17 +526,15 @@ namespace EasyBank.Controllers
         }
 
         [Authorize(Roles = "Administrator")]
-        public ActionResult AddCurrency(String name)
+        public ActionResult AddCurrency(Currency currency)
         {
-            if (name != null)
+            if (currency != null)
             {
-                if ((from Currency in db.Currencies where Currency.CurrencyName == name select Currency).Count() == 0 && name.Length != 0)
+                if ((from Currency in db.Currencies where Currency.CurrencyName == currency.CurrencyName select Currency).Count() == 0
+                    && currency.CurrencyName.Length != 0 && currency.PurchaseRate > 0 && currency.SaleRate > 0)
                 {
-                    Currency currency = new Currency();
-                    currency.CurrencyName = name;
-
                     BankAccount ba = new BankAccount();
-                    ba.CurrencyName = name;
+                    ba.CurrencyName = currency.CurrencyName;
 
                     db.Currencies.Add(currency);
                     db.BankAccounts.Add(ba);
@@ -658,11 +656,11 @@ namespace EasyBank.Controllers
         public ActionResult Freeze(int? id, int? clientId)
         {
             var clientAccount = (from accounts in db.Accounts
-                                  where accounts.AccountId == id
-                                  select accounts).Single();
+                                 where accounts.AccountId == id
+                                 select accounts).Single();
             var Client = (from clients in db.Clients
-                                 where clients.ClientId == clientId
-                                 select clients).Single();
+                          where clients.ClientId == clientId
+                          select clients).Single();
             clientAccount.AccountStatus = db.AccountStatuses.FirstOrDefault(a => a.StatusName == "Frozen");
             db.Entry(clientAccount).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
