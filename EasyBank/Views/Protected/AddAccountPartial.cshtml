@@ -51,7 +51,7 @@
         listDeposits.Add(new SelectListItem() { Text = item.Name, Value = item.DepositCreditModelID.ToString() });
     }
             }
-            @Html.DropDownListFor(model => model.TypeId, listDeposits, "Select deposit", new{@id="DepositId"})
+            @Html.DropDownListFor(model => model.DepositCreditModelID, listDeposits, "Select deposit", new{@id="DepositId"})
         </div>
 
         <div id="creditTypes">
@@ -63,7 +63,7 @@
         listCredits.Add(new SelectListItem() { Text = item.Name, Value = item.DepositCreditModelID.ToString() });
     }
             }
-            @Html.DropDownListFor(model => model.TypeId, listCredits, "Select credit", new{@id="CreditId"})
+            @Html.DropDownListFor(model => model.DepositCreditModelID, listCredits, "Select credit", new { @id = "CreditId" })
         </div>
 
         <div id="amountDiv">
