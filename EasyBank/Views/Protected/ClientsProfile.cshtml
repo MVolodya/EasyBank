@@ -15,6 +15,11 @@
         $("#amountDiv").css("display", "none");
         $("div #cancelButton").css("display", "none");
 
+        $("#payInButton").css("display", "none");
+        $("#payOutButton").css("display", "none");
+        $("#transferButton").css("display", "none");
+        $("#historyButton").css("display", "none");
+
         $(".selectableTr").click(function () {
             if (this.id != prevTriggeredTrId) {
                 $(this).css("background-color", "white");
@@ -80,9 +85,18 @@
         $("select[id='CreditId'] option:lt(1)").attr("disabled", "disabled");
     });
 </script>
+<style>
+    td {
+        padding: 0.5em; /* Just to spread things out a bit */
+    }
+
+    #account tr:hover {
+        cursor: pointer;
+    }
+</style>
 <div>
-        @Html.ActionLink(Resources.Resource.BackToList, "ClientsList", "Protected")
-    </div>
+    @Html.ActionLink(Resources.Resource.BackToList, "ClientsList", "Protected")
+</div>
 <h2>@Html.Label(@Resources.Resource.ClientsProfileTitle)</h2>
 <div style="background-color: rgba(255,255,255, 0.5); float: left; padding-top: 14px; padding-left: 20px; padding-bottom: 30px; padding-right: 25px; border-radius: 10px;">
     <div style="float: left;">
@@ -162,10 +176,6 @@
             @Html.Action("ShowClientPhoto", new { id = Model.ClientId })
         </div>
 
-
-        <div>
-            @Html.ActionLink(@Resources.Resource.EditPhoto, "AddPhoto", new { id = Model.ClientId })
-        </div>
     </div>
 </div>
 <br />
@@ -175,7 +185,7 @@
         @Html.Action("AddAccountPartial")
     </div>
 
-    <table>
+    <table id="account">
         @if (Model.Accounts.Count() != 0)
         {
             <tr>

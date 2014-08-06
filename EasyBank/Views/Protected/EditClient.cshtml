@@ -12,6 +12,11 @@
         <legend>@Resources.Resource.Client</legend>
         
         @ViewBag.Message
+        
+        <div>
+            @Html.ActionLink(@Resources.Resource.EditPhoto, "AddPhoto", new { id = Model.ClientId })
+        </div>
+        <br/>
 
         @Html.HiddenFor(model => model.ClientId)
 

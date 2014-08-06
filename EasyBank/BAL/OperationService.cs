@@ -268,7 +268,7 @@ namespace EasyBank
             {
                 case "Normal"://transfer account
                     {
-                        if (acc.AvailableAmount - convertedAmount < 0) return 5;
+                        if (acc.AvailableAmount - amountThatHasToBeWithDrawnFromClient < 0) return 5;
                         PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
                         acc.AvailableAmount -= (decimal)amountThatHasToBeWithDrawnFromClient;
                         acc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient;
@@ -281,7 +281,7 @@ namespace EasyBank
                         {
                             if (acc.DepositCreditModel.EarlyTermination == true)
                             {
-                                if (acc.AvailableAmount - convertedAmount < 0) return 5;
+                                if (acc.AvailableAmount - amountThatHasToBeWithDrawnFromClient < 0) return 5;
                                 else
                                 {
                                     PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);

@@ -1,6 +1,6 @@
 ﻿@model EasyBank.Models.Operator
 
-@using (Html.BeginForm(@Resources.Resource.RegisterOperator, "Account", FormMethod.Post))
+@using (Html.BeginForm("RegisterOperator", "Account", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
@@ -33,6 +33,14 @@
             @Html.EditorFor(model => model.Email)
             @Html.ValidationMessageFor(model => model.Email)
         </div>
+        
+                <div class="editor-label">
+            @Html.LabelFor(model => model.PId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PId)
+            @Html.ValidationMessageFor(model => model.PId)
+        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Password)
@@ -41,6 +49,8 @@
             @Html.EditorFor(model => model.Password)
             @Html.ValidationMessageFor(model => model.Password)
         </div>
+        
+        
 
         <p>
             <input type="submit" value=@Resources.Resource.Create class="submit" />
