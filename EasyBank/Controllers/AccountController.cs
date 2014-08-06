@@ -28,7 +28,7 @@ namespace EasyBank.Controllers
         //
         // GET: /Account/Login
 
-        [AllowAnonymous]
+         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -59,13 +59,18 @@ namespace EasyBank.Controllers
                     ModelState.AddModelError("", errorMessage);
                     return View(model);
                 }
-
                 if (WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
                 {
                     //return RedirectToLocal(returnUrl);
-                    inputedUser.IncorrectPasswordTrials = 0;
-                    db.SaveChanges();
-                    return RedirectToAction("ClientsProfile", "Account");
+                    if (Roles.IsUserInRole(model.UserName, "Client"))
+                    {
+                        inputedUser.IncorrectPasswordTrials = 0;
+                        db.SaveChanges();
+                        return RedirectToAction("ClientsProfile", "Account");
+                    }
+                    errorMessage = "The user name is incorrect.";
+                    ModelState.AddModelError("", errorMessage);
+                    return View(model);
 
                 }
 
@@ -117,10 +122,16 @@ namespace EasyBank.Controllers
 
                 if (WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
                 {
-                    //return RedirectToLocal(returnUrl);
-                    inputedUser.IncorrectPasswordTrials = 0;
-                    db.SaveChanges();
-                    return RedirectToAction("ClientsProfile", "Account");
+                    if (Roles.IsUserInRole(model.UserName, "Client"))
+                    {
+                        inputedUser.IncorrectPasswordTrials = 0;
+                        db.SaveChanges();
+                        return RedirectToAction("ClientsProfile", "Account");
+                    }
+                    errorMessage = "The user name is incorrect.";
+                    ModelState.AddModelError("", errorMessage);
+                    return View(model);
+
                 }
                 ModelState.AddModelError("", errorMessage);
                 return View(model);
