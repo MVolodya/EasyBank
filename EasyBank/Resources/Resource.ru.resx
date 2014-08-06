@@ -262,7 +262,7 @@
     <value>Удалить</value>
   </data>
   <data name="Details" xml:space="preserve">
-    <value>Подробности</value>
+    <value>Мой профиль</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Редактировать</value>
@@ -427,7 +427,7 @@
     <value>Финансовые отчеты</value>
   </data>
   <data name="Hello" xml:space="preserve">
-    <value>Здравствуйте</value>
+    <value>Вы вошли в систему как</value>
   </data>
   <data name="InterestRate" xml:space="preserve">
     <value>Процентная ставка</value>
@@ -517,6 +517,45 @@
     <value>Заморозить</value>
   </data>
   <data name="SetToNormal" xml:space="preserve">
-    <value>Сделать нормальным</value>
+    <value>Разблокировать</value>
+  </data>
+  <data name="EditPhoto" xml:space="preserve">
+    <value>Изменить фото</value>
+  </data>
+  <data name="OperationDate" xml:space="preserve">
+    <value>Дата операции</value>
+  </data>
+  <data name="Recipient" xml:space="preserve">
+    <value>Получатель</value>
+  </data>
+  <data name="Sender" xml:space="preserve">
+    <value>Отправитель</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="BankAccountsBalance" xml:space="preserve">
+    <value>Баланс</value>
+  </data>
+  <data name="Calculate" xml:space="preserve">
+    <value>Посчитать</value>
+  </data>
+  <data name="CalculateMessage" xml:space="preserve">
+    <value>Введите количество месяцев для подсчета процентов.</value>
+  </data>
+  <data name="ErrorReports" xml:space="preserve">
+    <value>Отчеты об ошбиках</value>
+  </data>
+  <data name="PostedBy" xml:space="preserve">
+    <value>Сообщил</value>
+  </data>
+  <data name="PostedDate" xml:space="preserve">
+    <value>Отправлено</value>
+  </data>
+  <data name="TotalCreditInterests" xml:space="preserve">
+    <value>Общая сумма процентов по кредитам в валюте:</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>История</value>
   </data>
 </root>

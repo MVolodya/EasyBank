@@ -30,7 +30,16 @@
                 <a href="/Home/ChangeCulture?lang=uk-UA" name="lang">UA</a>
                 <a href="/Home/ChangeCulture?lang=en" name="lang">EN</a>
                 <a href="/Home/ChangeCulture?lang=ru" name="lang">RU</a>
-                <p class="site-title">@Html.ActionLink("Easy Bank", "Index", "Home")@if(!User.IsInRole("Client")){ <sup id="supLogo">office</sup> }</p>
+                <p class="site-title">
+                    @if (User.IsInRole("Administrator") || User.IsInRole("Operator"))
+                    {
+                        @Html.ActionLink("Easy Bank", "ClientsList", "Protected")<sup id="supLogo">office</sup>
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Easy Bank", "Index", "Home")
+                    }
+                </p>
             </div>
             <div class="float-right">
                 <section id="login">
@@ -43,20 +52,12 @@
 @*<li>@Html.ActionLink(@Resources.Resource.Details, "ClientsProfile", "Protected", new {clientId = WebSecurity.GetUserId(User.Identity.Name) })</li>*@
 @*<li>@Html.ActionLink(@Resources.Resource.Details, "ClientsProfile", "Protected")</li>*@
 @* <li>@Html.ActionLink(@Resources.Resource.Details, "ClientsProfile", "Account", new { clientId = WebSecurity.GetUserId(User.Identity.Name) }, htmlAttributes: new { clientId = WebSecurity.GetUserId(User.Identity.Name) })</li>*@
-
                             <li>@Html.ActionLink(@Resources.Resource.Details, "ClientsProfile", "Account", new { id = WebSecurity.CurrentUserId }, null)</li>
-                        }
-                        @if (User.IsInRole("Client"))
-                        {
                             <li>@Html.ActionLink(@Resources.Resource.BankProducts, "DepositList", "Account", new { id = WebSecurity.CurrentUserId }, null)</li>
                         }
                         @if (User.IsInRole("Operator"))
                         {
                             <li>@Html.ActionLink(@Resources.Resource.ClientsList, "ClientsList", "Protected")</li>
-                        }
-                        @if (User.IsInRole("Operator"))
-                        {
-
                             <li>@Html.ActionLink(@Resources.Resource.BankProducts, "DepositList", "Office")</li>
                         }
                         @if (User.IsInRole("Administrator"))
@@ -66,6 +67,7 @@
                             <li>@Html.ActionLink(@Resources.Resource.OperatorsList, "OperatorsList", "Protected")</li>
                             <li>@Html.ActionLink(@Resources.Resource.BankProducts, "DepositList", "Office")</li>
                             <li>@Html.ActionLink(@Resources.Resource.FinancialReports, "TotalDepositedAmount", "Operation")</li>
+                            <li>@Html.ActionLink(@Resources.Resource.ErrorReports, "ErrorReports", "Protected")</li>
                         }
                                     
 

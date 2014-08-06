@@ -32,6 +32,27 @@ namespace EasyBank.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            
+            if (WebSecurity.CurrentUserName != null) {
+                if (Roles.IsUserInRole(WebSecurity.CurrentUserName, "Client"))
+                {
+                    
+                    return RedirectToAction("ClientsProfile", "Account");
+                
+                }
+                if (Roles.IsUserInRole(WebSecurity.CurrentUserName, "Operator"))
+                {
+
+                    return RedirectToAction("ClientsList", "Protected");
+
+                }
+                if (Roles.IsUserInRole(WebSecurity.CurrentUserName, "Administrator"))
+                {
+
+                    return RedirectToAction("TotalDepositedAmount", "Operation");
+
+                }
+            }
             /*LoginModel newLoginModel = new LoginModel();
             newLoginModel.CapchaAmount = 3;*/
             //return View(newLoginModel);
@@ -44,26 +65,98 @@ namespace EasyBank.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [CaptchaMvc.Attributes.CaptchaVerify("Captcha is not valid")]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            //ModelState.Remove("CapchaAmount");
-            string errorMessage = "The user name or password or capcha provided is incorrect. ";
+            var inputedUser = (from clients in db.Clients
+                               where clients.Email == model.UserName
+                               select clients).FirstOrDefault();
+
+            string errorMessage = "The user name or password is incorrect. ";
             if (ModelState.IsValid)
             {
-                if (Roles.IsUserInRole(model.UserName, "Administrator") || Roles.IsUserInRole(model.UserName, "Operator"))
+                if (inputedUser == null)
                 {
-                    //model.CapchaAmount--;
-                    //errorMessage += model.CapchaAmount.ToString() + " attempts left.";
+                    errorMessage = "The user name is incorrect.";
+                    ModelState.AddModelError("", errorMessage);
+                    return View(model);
+                }
+                if (WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+                {
+                    //return RedirectToLocal(returnUrl);
+                    if (Roles.IsUserInRole(model.UserName, "Client"))
+                    {
+                        inputedUser.IncorrectPasswordTrials = 0;
+                        db.SaveChanges();
+                        return RedirectToAction("ClientsProfile", "Account");
+                    }
+                    errorMessage = "The user name is incorrect.";
                     ModelState.AddModelError("", errorMessage);
                     return View(model);
 
                 }
-                if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+
+                inputedUser.IncorrectPasswordTrials++;
+                db.SaveChanges();
+                if (inputedUser.IncorrectPasswordTrials > 2)
                 {
-                    //return RedirectToLocal(returnUrl);
-                    return RedirectToAction("ClientsProfile", "Account");
+                    ModelState.AddModelError("", errorMessage);
+                    return RedirectToAction("LoginWithCapcha", "Account");
                 }
+                ModelState.AddModelError("", errorMessage);
+                return View(model);
+
+            }
+            // If we got this far, something failed, redisplay form
+            ModelState.AddModelError("", errorMessage);
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult LoginWithCapcha(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            /*LoginModel newLoginModel = new LoginModel();
+            newLoginModel.CapchaAmount = 3;*/
+            //return View(newLoginModel);
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        [CaptchaMvc.Attributes.CaptchaVerify("Captcha is not valid")]
+        public ActionResult LoginWithCapcha(LoginModel model, string returnUrl)
+        {
+            var inputedUser = (from clients in db.Clients
+                               where clients.Email == model.UserName
+                               select clients).FirstOrDefault();
+
+            string errorMessage = "The user name or password or capcha provided is incorrect. ";
+            if (ModelState.IsValid)
+            {
+                if (inputedUser == null)
+                {
+                    errorMessage = "The user name is incorrect.";
+                    ModelState.AddModelError("", errorMessage);
+                    return View(model);
+                }
+
+                if (WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+                {
+                    if (Roles.IsUserInRole(model.UserName, "Client"))
+                    {
+                        inputedUser.IncorrectPasswordTrials = 0;
+                        db.SaveChanges();
+                        return RedirectToAction("ClientsProfile", "Account");
+                    }
+                    errorMessage = "The user name is incorrect.";
+                    ModelState.AddModelError("", errorMessage);
+                    return View(model);
+
+                }
+                ModelState.AddModelError("", errorMessage);
+                return View(model);
+
             }
             // If we got this far, something failed, redisplay form
             ModelState.AddModelError("", errorMessage);
@@ -85,7 +178,7 @@ namespace EasyBank.Controllers
         //
         // GET: /Account/Register
 
-        [Authorize(Roles="Operator")]
+        [Authorize(Roles = "Operator")]
         public ActionResult Register()
         {
             return View();
@@ -95,69 +188,69 @@ namespace EasyBank.Controllers
         // POST: /Account/Register
         // Register Clients
         [HttpPost]
-        [Authorize(Roles="Operator")]
+        [Authorize(Roles = "Operator")]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterCompositeModel registerCompModel, HttpPostedFileBase file )
+        public ActionResult Register(RegisterCompositeModel registerCompModel, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                 if (db.Clients.FirstOrDefault(c => c.PIdNumber == registerCompModel.Client.PIdNumber) != null)
+                if (db.Clients.FirstOrDefault(c => c.PIdNumber == registerCompModel.Client.PIdNumber) != null)
                     return HttpNotFound();//Change for partial view later-----------------------!!!!!!!
-                 if (file != null)
-                 {
-                     // Attempt to register the user
-                     try
-                     {
-                         var client = new Client();
-                         client.Name = registerCompModel.Client.Name;
-                         client.Surname = registerCompModel.Client.Surname;
-                         client.PIdNumber = registerCompModel.Client.PIdNumber;
-                         client.BirthDate = registerCompModel.Client.BirthDate;
-                         client.Email = registerCompModel.Client.Email;
-                         client.RegistrationDate = DateTime.Now;
-                         
-
-                         string strPwdchar = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-                         string strPwd = "";
-                         Random rnd = new Random();
-                         for (int i = 0; i <= 7; i++)
-                         {
-                             int iRandom = rnd.Next(0, strPwdchar.Length - 1);
-                             strPwd += strPwdchar.Substring(iRandom, 1);
-                         }
-
-                         client.InitialPassword = strPwd;
-
-                         db.Clients.Add(client);
-
-                         var model = new RegisterModel();
-                         model.UserName = registerCompModel.Client.Email;
-                         model.Password = strPwd;
-                         model.ConfirmPassword = strPwd;
-                         WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                         Roles.AddUserToRole(model.UserName, "Client");
+                if (file != null)
+                {
+                    // Attempt to register the user
+                    try
+                    {
+                        var client = new Client();
+                        client.Name = registerCompModel.Client.Name;
+                        client.Surname = registerCompModel.Client.Surname;
+                        client.PIdNumber = registerCompModel.Client.PIdNumber;
+                        client.BirthDate = registerCompModel.Client.BirthDate;
+                        client.Email = registerCompModel.Client.Email;
+                        client.RegistrationDate = DateTime.Now;
 
 
-                         ClientsImage photo = new ClientsImage();
-                         if (fileIsImage(file))
-                         {
-                             photo.Name = System.IO.Path.GetFileName(file.FileName);
-                             byte[] n = new byte[file.InputStream.Length];
-                             file.InputStream.Read(n, 0, (int)file.InputStream.Length);
-                             photo.ImageContent = GetCompressedImage(n);
-                             photo.ContentType = file.ContentType;
-                             photo.PhotoType = (int)ImageType.PassportScan;
-                             photo.ClientId = client.ClientId;
-                             db.Images.Add(photo);
-                             db.SaveChanges();
-                             return RedirectToAction("ClientsList", "Protected");
-                         }
-                     }
-                     catch (MembershipCreateUserException e)
-                     {
-                         ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
-                     }
-                 }
+                        string strPwdchar = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                        string strPwd = "";
+                        Random rnd = new Random();
+                        for (int i = 0; i <= 7; i++)
+                        {
+                            int iRandom = rnd.Next(0, strPwdchar.Length - 1);
+                            strPwd += strPwdchar.Substring(iRandom, 1);
+                        }
+
+                        client.InitialPassword = strPwd;
+
+                        db.Clients.Add(client);
+
+                        var model = new RegisterModel();
+                        model.UserName = registerCompModel.Client.Email;
+                        model.Password = strPwd;
+                        model.ConfirmPassword = strPwd;
+                        WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+                        Roles.AddUserToRole(model.UserName, "Client");
+
+
+                        ClientsImage photo = new ClientsImage();
+                        if (fileIsImage(file))
+                        {
+                            photo.Name = System.IO.Path.GetFileName(file.FileName);
+                            byte[] n = new byte[file.InputStream.Length];
+                            file.InputStream.Read(n, 0, (int)file.InputStream.Length);
+                            photo.ImageContent = GetCompressedImage(n);
+                            photo.ContentType = file.ContentType;
+                            photo.PhotoType = (int)ImageType.PassportScan;
+                            photo.ClientId = client.ClientId;
+                            db.Images.Add(photo);
+                            db.SaveChanges();
+                            return RedirectToAction("ClientsList", "Protected");
+                        }
+                    }
+                    catch (MembershipCreateUserException e)
+                    {
+                        ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+                    }
+                }
             }
             ViewBag.Message = @Resources.Resource.WrongFileChoose;
             // If we got this far, something failed, redisplay form
@@ -167,38 +260,38 @@ namespace EasyBank.Controllers
 
         //Register Operators
         [HttpGet]
-        [Authorize(Roles="Administrator")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult RegisterOperator()
         {
             return View();
         }
 
         [HttpPost]
-        [Authorize(Roles="Administrator")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult RegisterOperator(Operator oper)
         {
             if (ModelState.IsValid)
             {
-                    // Attempt to register the Operator
-                    try
-                    {
-                        oper.RegistrationDate = DateTime.Now;
-                        db.Operators.Add(oper);
-                        db.SaveChanges();
+                // Attempt to register the Operator
+                try
+                {
+                    oper.RegistrationDate = DateTime.Now;
+                    db.Operators.Add(oper);
+                    db.SaveChanges();
 
-                        var model = new RegisterModel();
-                        model.UserName = oper.Email;
-                        model.Password = oper.Password;
-                        model.ConfirmPassword = oper.Password;
-                        WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                        Roles.AddUserToRole(model.UserName, "Operator");
-                        return RedirectToAction("Index", "Home");
-                    }
-                    catch (MembershipCreateUserException e)
-                    {
-                        ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
-                    }
+                    var model = new RegisterModel();
+                    model.UserName = oper.Email;
+                    model.Password = oper.Password;
+                    model.ConfirmPassword = oper.Password;
+                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+                    Roles.AddUserToRole(model.UserName, "Operator");
+                    return RedirectToAction("Index", "Home");
                 }
+                catch (MembershipCreateUserException e)
+                {
+                    ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+                }
+            }
             // If we got this far, something failed, redisplay form
             return View(oper);
         }
@@ -458,16 +551,16 @@ namespace EasyBank.Controllers
             var client = (from c in db.Clients
                           where c.Email == userName
                           select c).FirstOrDefault();
-           /*Client user = db.Clients.FirstOrDefault(c => c.ClientId == id.Value);
-            client.ClientId = user.ClientId;
-            client.BirthDate = user.BirthDate;
-            client.Email = user.Email;
-            client.PIdNumber = user.PIdNumber;
-            client.Name = user.Name;
-            client.RegistrationDate = user.RegistrationDate;
-            client.Surname = user.Surname;
-            client.Images = user.Images;
-            client.Accounts = user.Accounts;*/
+            /*Client user = db.Clients.FirstOrDefault(c => c.ClientId == id.Value);
+             client.ClientId = user.ClientId;
+             client.BirthDate = user.BirthDate;
+             client.Email = user.Email;
+             client.PIdNumber = user.PIdNumber;
+             client.Name = user.Name;
+             client.RegistrationDate = user.RegistrationDate;
+             client.Surname = user.Surname;
+             client.Images = user.Images;
+             client.Accounts = user.Accounts;*/
             return View(client);
         }
 

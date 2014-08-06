@@ -6,7 +6,7 @@
 }
 <h2>@Html.Label(@Resources.Resource.ClientsListTitle)</h2>
 <p>
-    @Html.ActionLink(@Resources.Resource.AddClient, "Register","Account")
+    @Html.ActionLink(@Resources.Resource.AddClient, "Register", "Account")
 </p>
 
 @using (Html.BeginForm("ClientsList", "Protected", FormMethod.Get))
@@ -27,62 +27,62 @@
 }
 else
 {
-    {
-        <table>
+    
+    <table>
+        <tr>
+            <th>
+
+                @Html.ActionLink(@Resources.Resource.Name, "ClientsList", new { sort = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink(@Resources.Resource.Surname, "ClientsList", new { sort = ViewBag.SurnameSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink(@Resources.Resource.PIdNum, "ClientsList", new { sort = ViewBag.PIdNumberSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink(@Resources.Resource.BirthDate, "ClientsList", new { sort = ViewBag.BirthDateSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink(@Resources.Resource.Email, "ClientsList", new { sort = ViewBag.EmailSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink(@Resources.Resource.RegDate, "ClientsList", new { sort = ViewBag.RegistrationDateSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>
-
-                    @Html.ActionLink(@Resources.Resource.Name, "ClientsList", new { sort = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })
-                </th>
-                <th>
-                    @Html.ActionLink(@Resources.Resource.Surname, "ClientsList", new { sort = ViewBag.SurnameSort, currentFilter = ViewBag.CurrentFilter })
-                </th>
-                <th>
-                    @Html.ActionLink(@Resources.Resource.PIdNum, "ClientsList", new { sort = ViewBag.PIdNumberSort, currentFilter = ViewBag.CurrentFilter })
-                </th>
-                <th>
-                    @Html.ActionLink(@Resources.Resource.BirthDate, "ClientsList", new { sort = ViewBag.BirthDateSort, currentFilter = ViewBag.CurrentFilter })
-                </th>
-                <th>
-                    @Html.ActionLink(@Resources.Resource.Email, "ClientsList", new { sort = ViewBag.EmailSort, currentFilter = ViewBag.CurrentFilter })
-                </th>
-                <th>
-                    @Html.ActionLink(@Resources.Resource.RegDate, "ClientsList", new { sort = ViewBag.RegistrationDateSort, currentFilter = ViewBag.CurrentFilter })
-                </th>
-
-                <th></th>
-            </tr>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.ActionLink(@Html.DisplayFor(modelItem => item.Name).ToString(), "ClientsProfile", new { clientId = item.ClientId })
-                    </td>
-                    <td>
-                        @Html.ActionLink(@Html.DisplayFor(modelItem => item.Surname).ToString(), "ClientsProfile", new { clientId = item.ClientId })
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PIdNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BirthDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RegistrationDate)
-                    </td>
-                    <td>
-                        @Html.ActionLink(@Resources.Resource.Passport, "ShowPassport", new { id = item.ClientId }) |
+                <td>
+                    @Html.ActionLink(@Html.DisplayFor(modelItem => item.Name).ToString(), "ClientsProfile", new { clientId = item.ClientId })
+                </td>
+                <td>
+                    @Html.ActionLink(@Html.DisplayFor(modelItem => item.Surname).ToString(), "ClientsProfile", new { clientId = item.ClientId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PIdNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegistrationDate)
+                </td>
+                <td>
+                    @Html.ActionLink(@Resources.Resource.Passport, "ShowPassport", new { id = item.ClientId })   |
                         @Html.ActionLink(@Resources.Resource.AddPhoto, "AddPhoto", new { id = item.ClientId }) |
                         @Html.ActionLink(@Resources.Resource.Edit, "EditClient", new { id = item.ClientId }) |
-                        @Html.ActionLink(@Resources.Resource.Details, "ClientsProfile", new { clientId = item.ClientId }) |
+                        @Html.ActionLink(@Resources.Resource.ClientsProfile, "ClientsProfile", new { clientId = item.ClientId })
                     </td>
                 </tr>
             }
         </table>
-    }
+    
 }
 <br />
 @if (!Request["Search"].IsEmpty())

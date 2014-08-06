@@ -265,7 +265,7 @@
     <value>Видалити</value>
   </data>
   <data name="Details" xml:space="preserve">
-    <value>Подробиці</value>
+    <value>Мій профіль</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Редагувати</value>
@@ -427,7 +427,7 @@
     <value>Фінансові звіти</value>
   </data>
   <data name="Hello" xml:space="preserve">
-    <value>Вітаємо</value>
+    <value>Ви увійшли в систему як</value>
   </data>
   <data name="InterestRate" xml:space="preserve">
     <value>Відсоткова ставка</value>
@@ -517,6 +517,45 @@
     <value>Заморозити</value>
   </data>
   <data name="SetToNormal" xml:space="preserve">
-    <value>Зробити нормальним</value>
+    <value>Розблокувати</value>
+  </data>
+  <data name="EditPhoto" xml:space="preserve">
+    <value>Змінити фото</value>
+  </data>
+  <data name="OperationDate" xml:space="preserve">
+    <value>Дата операції</value>
+  </data>
+  <data name="Recipient" xml:space="preserve">
+    <value>Одержувач</value>
+  </data>
+  <data name="Sender" xml:space="preserve">
+    <value>Відправник</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="BankAccountsBalance" xml:space="preserve">
+    <value>Баланс</value>
+  </data>
+  <data name="Calculate" xml:space="preserve">
+    <value>Підрахувати</value>
+  </data>
+  <data name="CalculateMessage" xml:space="preserve">
+    <value>Введіть кількість місяців для підрахунку процентів.</value>
+  </data>
+  <data name="ErrorReports" xml:space="preserve">
+    <value>Звіти про помилки</value>
+  </data>
+  <data name="PostedBy" xml:space="preserve">
+    <value>Повідомив</value>
+  </data>
+  <data name="PostedDate" xml:space="preserve">
+    <value>Надіслано</value>
+  </data>
+  <data name="TotalCreditInterests" xml:space="preserve">
+    <value>Загальна сума відсотків по кредитам в валюті:</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Історія</value>
   </data>
 </root>

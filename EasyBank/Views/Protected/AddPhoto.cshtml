@@ -35,8 +35,8 @@
         </script>
         <script>
             $("#Camera").webcam({
-                width: 420,
-                height: 340,
+                width: 320,
+                height: 240,
                 mode: "save",
                 swffile: "@Url.Content("~/Scripts/jscam.swf")",
                 onTick: function () { },
@@ -55,5 +55,5 @@
 }
 
 <div>
-    @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList")
+    @Html.ActionLink(@Resources.Resource.BackToProfile, "ClientsProfile", Model)
 </div>

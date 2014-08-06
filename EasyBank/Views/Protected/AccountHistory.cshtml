@@ -1,25 +1,26 @@
-﻿@model IEnumerable<EasyBank.Models.Operation>
-
+﻿@model PagedList.IPagedList<EasyBank.Models.Operation>
+@using PagedList.Mvc;
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <table style="margin: 0 auto;">
     <tr>
         <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.ActionLink(Resources.Resource.OperationDate, "AccountHistory", new { sort = ViewBag.SortDate })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Amount)
+            @Html.DisplayName(@Resources.Resource.Amount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FromAccount.AccountNumber)
+            @Html.DisplayName(@Resources.Resource.Sender)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ToAccount.AccountNumber)
+            @Html.DisplayName(@Resources.Resource.Recipient)
         </th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr style="height: 60px; border-radius:10px;">
+        <tr style="height: 60px; border-radius: 10px;">
             <td>
                 @if (item.FromAccountId == null)
                 {
@@ -52,7 +53,7 @@
             </td>
 
 
-            @if (item.Amount > 0)
+            @if (item.Amount > 0 || (item.Amount > 0 && item.ToAccountId == ViewBag.ClientCardId))
             { 
                 <td id="positiveAmount" style="color: green">
                     @Html.DisplayFor(modelItem => item.Amount)
@@ -71,9 +72,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ToAccount.AccountNumber)
             </td>
-
         </tr>
     }
-
-
 </table>
+<br />
+
+<div style="width: 100%">
+    <div style="margin: 0 auto; width: 170px;">
+        <span style="padding-left: 30px">
+            @Resources.Resource.Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) @Resources.Resource.Of @Model.PageCount
+        </span>
+        @Html.PagedListPager(Model, page => Url.Action("AccountHistory", new { page, sort = ViewBag.CurrentSort }))
+    </div>
+</div>
+

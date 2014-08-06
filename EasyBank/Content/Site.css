@@ -106,7 +106,7 @@ h5, h6 {
     .main-content {
         /*background: url("../Images/accent.png") no-repeat;*/
         padding-left: 10px;
-        padding-top: 30px;
+        padding-top: 10px;
     }
 
     .featured + .main-content {
@@ -121,7 +121,8 @@ footer {
     clear: both;
     background-color: #e2e2e2;
     font-size: .8em;
-    height: 100px;
+    max-height: 200px;
+    min-height: 70px;
 }
 
 

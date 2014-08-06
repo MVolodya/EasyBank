@@ -1,6 +1,6 @@
-﻿@model List<EasyBank.Models.TotalAmountForCurrency>
+﻿@model List<EasyBank.Models.BankAccount>
 
-<h3>@Resources.Resource.TotalCreditInterests</h3>
+<h3>@Resources.Resource.BankAccountsBalance</h3>
 <table>
     <tr>
         @foreach (var item in Model)
@@ -14,10 +14,11 @@
         @foreach (var item in Model)
         {
             <td>
-                @Html.DisplayFor(modelItem => item.TotalAmount)
+                @Html.DisplayFor(modelItem => item.Amount)
             </td>
         }
     </tr>
 </table>
-
 <br />
+@Html.ActionLink("Back", "TotalDepositedAmount", "Operation")  
+

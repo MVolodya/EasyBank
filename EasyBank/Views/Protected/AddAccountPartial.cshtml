@@ -1,0 +1,83 @@
+﻿@model EasyBank.Models.Account
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginForm("AddAccount", "Protected", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Account</legend>
+
+        @Html.HiddenFor(model => model.ClientId, new { @Value = ViewBag.ClientId })
+
+
+        <div id="types">
+            @{
+    List<SelectListItem> listType = new List<SelectListItem>();
+    var ListTypes = ViewBag.Types;
+    foreach (var item in ListTypes)
+    {
+        listType.Add(new SelectListItem() { Text = item.TypeName, Value = item.TypeId.ToString() });
+    }
+            }
+            @Html.DropDownListFor(model => model.TypeId, listType, "Select type", new{@id="AccountType"})
+        </div>
+
+        <div id="currencies">
+            @{
+    List<SelectListItem> listCurrency = new List<SelectListItem>();
+    var ListCurrencys = ViewBag.Currencys;
+    listCurrency.Add(new SelectListItem() { Text = "Select currency", Value = "0" });
+    foreach (var item in ListCurrencys)
+    {
+
+        listCurrency.Add(new SelectListItem() { Text = item.CurrencyName, Value = item.CurrencyId.ToString() });
+    }
+            }
+            @Html.DropDownListFor(model => model.CurrencyId, listCurrency, new{@id="CurrencyId"})
+        </div>
+
+
+        <div id="depositTypes">
+            @{
+    List<SelectListItem> listDeposits = new List<SelectListItem>();
+    var ListDeposits = ViewBag.Deposits;
+    foreach (var item in ListDeposits)
+    {
+        listDeposits.Add(new SelectListItem() { Text = item.Name, Value = item.DepositCreditModelID.ToString() });
+    }
+            }
+            @Html.DropDownListFor(model => model.TypeId, listDeposits, "Select deposit", new{@id="DepositId"})
+        </div>
+
+        <div id="creditTypes">
+            @{
+    List<SelectListItem> listCredits = new List<SelectListItem>();
+    var ListCredits = ViewBag.Credits;
+    foreach (var item in ListCredits)
+    {
+        listCredits.Add(new SelectListItem() { Text = item.Name, Value = item.DepositCreditModelID.ToString() });
+    }
+            }
+            @Html.DropDownListFor(model => model.TypeId, listCredits, "Select credit", new{@id="CreditId"})
+        </div>
+
+        <div id="amountDiv">
+            @Html.EditorFor(model => model.Amount)
+        </div>
+
+        <div id="submitButton" style="display: inline-block">
+            <input type="submit" value="@Resources.Resource.Create"  />
+        </div>
+        
+        <div id="cancelButton" style="display: inline-block">
+            <input type="button" value="Cancel" id="cancelButton"/>
+        </div>
+
+    </fieldset>
+}
+

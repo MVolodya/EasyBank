@@ -20,57 +20,12 @@ namespace EasyBank.Controllers
     [InitializeSimpleMembership]
     public class ProtectedController : Controller
     {
-        /*[Authorize(Roles="Administrator, Operator")]
-        public ActionResult PreRegister(RegisterCompositeModel registerCompModel, HttpPostedFileBase file)
-        {
-            if (ModelState.IsValid)
-            {
-                if (file != null)
-                {
-                    ClientsImage photo = new ClientsImage();
-                    photo.Name = System.IO.Path.GetFileName(file.FileName);
-                    byte[] n = new byte[file.InputStream.Length];
-
-                    file.InputStream.Read(n, 0, (int)file.InputStream.Length);
-                    photo.ImageContent = n;
-                    photo.ContentType = file.ContentType;
-                    photo.PhotoType = (int)ImageType.PassportScan;
-                    db.Images.Add(photo);
-
-                    Client client = new Client();
-                    client.Name = registerCompModel.Name;
-                    client.Surname = registerCompModel.Surname;
-                    client.PIdNumber = registerCompModel.PIdNumber;
-                    client.BirthDate = registerCompModel.BirthDate;
-                    client.Email = registerCompModel.Email;
-                    client.RegistrationDate = DateTime.Now;
-                    db.Clients.Add(client);
-                    db.SaveChanges();
-
-                    var registerModel = new RegisterModel();
-                    registerModel.UserName = registerCompModel.Email;
-                    registerModel.Password = registerCompModel.Password;
-                    registerModel.ConfirmPassword = registerCompModel.ConfirmPassword;
-                    TempData["a"] = registerModel;
-
-
-                    return RedirectToAction("Register","Account", new { model = registerModel });
-                }
-
-            }
-            return View();
-        } */
         //
         // GET: /Client/
         private ConnectionContext db = new ConnectionContext();
         public ActionResult Index()
         {
-            List<ErrorReport> errorReports = (from e in db.ErrorReports select e).ToList();
-            foreach (ErrorReport errorReport in errorReports)
-            {
-                errorReport.Account = db.Accounts.Find(errorReport.AccountId);
-            }
-            return View(errorReports);
+            return View();
         }
 
         [Authorize(Roles = "Administrator")]
@@ -435,6 +390,47 @@ namespace EasyBank.Controllers
 
         }
 
+<<<<<<< HEAD
+=======
+        [HttpGet]
+        public ActionResult AddDepositAccount(int? clientId)
+        {
+            var ListCurrency = db.Currencies.ToList();
+            ViewBag.Currencys = ListCurrency;
+            var ListDeposits = (from deps in db.DepositCreditModels
+                                where deps.AccountTypeId == 2
+                                select deps).ToList();
+            ViewBag.Deposits = ListDeposits;
+            if (clientId != null)
+            {
+                ViewBag.ClientId = clientId;
+
+                return View();
+            }
+            else return HttpNotFound();
+        }
+
+        [HttpGet]
+        public ActionResult AddCreditAccount(int? clientId)
+        {
+            var ListCurrency = db.Currencies.ToList();
+            ViewBag.Currencys = ListCurrency;
+            var ListCredits = (from creds in db.DepositCreditModels
+                               where creds.AccountTypeId == 3
+                               select creds).ToList();
+            ViewBag.Credits = ListCredits;
+            if (clientId != null)
+            {
+                ViewBag.ClientId = clientId;
+
+                return View();
+            }
+            else return HttpNotFound();
+        }
+
+
+
+>>>>>>> FETCH_HEAD
         [HttpGet]
         public ActionResult AddAccount(int? clientId)
         {
@@ -462,6 +458,7 @@ namespace EasyBank.Controllers
         [HttpPost]
         public ActionResult AddAccount(Account account)
         {
+            if (account.Amount == 0) account.Amount = 0;
             account.Interest = 0;
             account.LastInterestAdded = DateTime.Now;
             account.OpenDate = DateTime.Now;
@@ -480,6 +477,34 @@ namespace EasyBank.Controllers
             }
         }
 
+<<<<<<< HEAD
+=======
+
+        public ActionResult AddAccountPartial(int? clientId)
+        {
+            var ListTypes = db.AccountTypes.ToList();
+            ViewBag.Types = ListTypes;
+            var ListCurrency = db.Currencies.ToList();
+            ViewBag.Currencys = ListCurrency;
+            var ListDeposits = (from deps in db.DepositCreditModels
+                                where deps.AccountTypeId == 2
+                                select deps).ToList();
+            ViewBag.Deposits = ListDeposits;
+            var ListCredits = (from creds in db.DepositCreditModels
+                               where creds.AccountTypeId == 3
+                               select creds).ToList();
+            ViewBag.Credits = ListCredits;
+            if (clientId != null)
+            {
+                ViewBag.ClientId = clientId;
+
+                return PartialView();
+            }
+            else return HttpNotFound();
+            return PartialView();
+        }
+
+>>>>>>> FETCH_HEAD
         [HttpGet]
         public ActionResult ChooseBankProduct(int accountId)
         {
@@ -521,17 +546,19 @@ namespace EasyBank.Controllers
         }
 
         [Authorize(Roles = "Administrator")]
-        public ActionResult AddCurrency(String name)
+        public ActionResult AddCurrency(Currency currency)
         {
-            if (name != null)
+            if (currency != null)
             {
-                if ((from Currency in db.Currencies where Currency.CurrencyName == name select Currency).Count() == 0 && name.Length != 0)
+                if ((from Currency in db.Currencies where Currency.CurrencyName == currency.CurrencyName select Currency).Count() == 0
+                    && currency.CurrencyName.Length != 0 && currency.PurchaseRate > 0 && currency.SaleRate > 0)
                 {
-                    Currency currency = new Currency();
-                    currency.CurrencyName = name;
-
                     BankAccount ba = new BankAccount();
+<<<<<<< HEAD
                     ba.CurrencyName = name;
+=======
+                    ba.CurrencyName = currency.CurrencyName;
+>>>>>>> FETCH_HEAD
 
                     db.Currencies.Add(currency);
                     db.BankAccounts.Add(ba);
@@ -603,19 +630,40 @@ namespace EasyBank.Controllers
             }
         }
 
-        public ActionResult AccountHistory(int? id)
+        public ActionResult AccountHistory(int? id, string sort, int? page)
         {
             if (id != null)
             {
-                IEnumerable<Operation> operations = db.OperationHistory.Where(o => o.FromAccountId == id || o.ToAccountId == id).ToList();
-                if (operations.Count() != 0)
+                ViewBag.CurrentSort = sort;
+                ViewBag.SortDate = String.IsNullOrEmpty(sort) ? "Date_asc" : "";
+                var operationHistory = from operation in db.OperationHistory
+                                       select operation;
+                switch (sort)
                 {
-                    ViewBag.ClientsCardId = id;
-                    return View(operations);
+                    case "Date_asc":
+                        operationHistory = operationHistory.OrderBy(operation => operation.Date);
+                        break;
+                    default:
+                        operationHistory = operationHistory.OrderByDescending(operation => operation.Date);
+                        break;
                 }
-                else return new HttpNotFoundResult();
+                IEnumerable<Operation> operations = db.OperationHistory.Where(o => o.FromAccountId == id || o.ToAccountId == id).ToList();
+                ViewBag.ClientsCardId = id;
+                int pageSize = 10;
+                int pageNumber = (page ?? 1);
+                return View(operationHistory.ToPagedList(pageNumber, pageSize));
             }
             else return new HttpNotFoundResult();
+        }
+        [Authorize(Roles = "Administrator")]
+        public ActionResult ErrorReports()
+        {
+            List<ErrorReport> errorReports = (from e in db.ErrorReports select e).ToList();
+            foreach (ErrorReport errorReport in errorReports)
+            {
+                errorReport.Account = db.Accounts.Find(errorReport.AccountId);
+            }
+            return View(errorReports);
         }
 
         private Boolean fileIsImage(HttpPostedFileBase file)

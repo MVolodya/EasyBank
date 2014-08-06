@@ -99,14 +99,14 @@
             @Html.LabelFor(model => model.Password)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Password)
+            @Html.PasswordFor(model => model.Password)
             @Html.ValidationMessageFor(model => model.Password)
         </div
         <div class="editor-label">
             @Html.LabelFor(model => model.ConfirmPassword)
         </div>
-     <div>
-            @Html.EditorFor(model => model.ConfirmPassword)
+        <div>
+            @Html.PasswordFor(model => model.ConfirmPassword)
             @Html.ValidationMessageFor(model => model.ConfirmPassword)
         </div>*@
 
@@ -114,12 +114,12 @@
         <input type="file" name="file" id="file" accept="image/jpeg,image/png" style="width: 100%;" value="@Resources.Resource.ChooseFile" />
 
         <p>
-            <input type="submit" value="Create" class="submit" />
+            <input type="submit" value=@Resources.Resource.Create class="submit" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "ClientsList")
+    @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList", "Protected")
 </div>
 

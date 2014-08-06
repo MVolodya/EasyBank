@@ -1,7 +1,7 @@
 ﻿@model List<EasyBank.Models.TotalAmountForCurrency>
 @if (Model != null)   
 {
-    <h3>Total Deposit Interests</h3>
+    <h3>@Resources.Resource.TotalDepositInterests</h3>
 <table>
     <tr>
         @foreach (var item in Model)
@@ -27,7 +27,7 @@
     </tr>
 </table>
 <br />
-    <h3>Total Credit Interests</h3>
+    <h3>@Resources.Resource.TotalCreditInterests</h3>
 <table>
     <tr>
         @foreach (var item in Model)
@@ -54,5 +54,5 @@
 </table>
 <br />
     
-      @Html.ActionLink("Back","TotalDepositedAmount","Operation")  
+      @Html.ActionLink(@Resources.Resource.Back,"TotalDepositedAmount","Operation")  
 }

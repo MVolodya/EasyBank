@@ -265,7 +265,7 @@
     <value>Delete</value>
   </data>
   <data name="Details" xml:space="preserve">
-    <value>Details</value>
+    <value>My profile</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
@@ -427,7 +427,7 @@
     <value>Financial reports</value>
   </data>
   <data name="Hello" xml:space="preserve">
-    <value>Hello</value>
+    <value>You are signed in as</value>
   </data>
   <data name="InterestRate" xml:space="preserve">
     <value>Interest rate</value>
@@ -517,6 +517,45 @@
     <value>Freeze</value>
   </data>
   <data name="SetToNormal" xml:space="preserve">
-    <value>Set to normal</value>
+    <value>Unlock</value>
+  </data>
+  <data name="EditPhoto" xml:space="preserve">
+    <value>Edit photo</value>
+  </data>
+  <data name="OperationDate" xml:space="preserve">
+    <value>Operation date</value>
+  </data>
+  <data name="Recipient" xml:space="preserve">
+    <value>Recipient</value>
+  </data>
+  <data name="Sender" xml:space="preserve">
+    <value>Sender</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="BankAccountsBalance" xml:space="preserve">
+    <value>Bank accounts balance</value>
+  </data>
+  <data name="Calculate" xml:space="preserve">
+    <value>Calculate</value>
+  </data>
+  <data name="CalculateMessage" xml:space="preserve">
+    <value>Enter number of months to calculate interests.</value>
+  </data>
+  <data name="ErrorReports" xml:space="preserve">
+    <value>Error reports</value>
+  </data>
+  <data name="PostedBy" xml:space="preserve">
+    <value>Posted by</value>
+  </data>
+  <data name="PostedDate" xml:space="preserve">
+    <value>Posted date</value>
+  </data>
+  <data name="TotalCreditInterests" xml:space="preserve">
+    <value>Total сredit interests in currency:</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
   </data>
 </root>

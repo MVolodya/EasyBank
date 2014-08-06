@@ -1,5 +1,4 @@
 ﻿@model EasyBank.Models.ClientsImage
-<h2>@Resources.Resource.ClientsPhotoTitle</h2>
 
 @{
     ViewBag.Title = @Resources.Resource.ClientsPassport;
@@ -7,7 +6,7 @@
 
 @if (Model == null )
 {  
-        <h2>@Resources.Resource.NoPhoto</h2> 
+       <div style="padding-left: 20px;padding-top: 55px">@Resources.Resource.NoPhoto</div>
 } 
 else
 {

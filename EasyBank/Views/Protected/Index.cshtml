@@ -1,12 +1,1 @@
-﻿@model List<EasyBank.Models.ErrorReport>
-
-@foreach (EasyBank.Models.ErrorReport errorReport in Model)
-{
-    <p>
-        <b> Posted by,</b> @errorReport.Account.Client.Name @errorReport.Account.Client.Surname<br />
-      <b>  Email:</b> @errorReport.Account.Client.Email<b> Account Number: </b>@errorReport.Account.AccountNumber
-    </p>
-    <h5>@errorReport.Text</h5>
-    <p><b>Posted date:</b> @errorReport.ReportDate.ToLongDateString()</p>
-    <hr />
-}
+﻿This is index
