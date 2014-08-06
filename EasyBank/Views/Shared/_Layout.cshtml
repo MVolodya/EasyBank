@@ -30,7 +30,16 @@
                 <a href="/Home/ChangeCulture?lang=uk-UA" name="lang">UA</a>
                 <a href="/Home/ChangeCulture?lang=en" name="lang">EN</a>
                 <a href="/Home/ChangeCulture?lang=ru" name="lang">RU</a>
-                <p class="site-title">@Html.ActionLink("Easy Bank", "Index", "Home")@if(User.IsInRole("Administrator") || User.IsInRole("Operator")){ <sup id="supLogo">office</sup> }</p>
+                <p class="site-title">
+                    @if (User.IsInRole("Administrator") || User.IsInRole("Operator"))
+                    {
+                        @Html.ActionLink("Easy Bank", "ClientsList", "Protected")<sup id="supLogo">office</sup>
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Easy Bank", "Index", "Home")
+                    }
+                </p>
             </div>
             <div class="float-right">
                 <section id="login">
