@@ -390,8 +390,6 @@ namespace EasyBank.Controllers
 
         }
 
-<<<<<<< HEAD
-=======
         [HttpGet]
         public ActionResult AddDepositAccount(int? clientId)
         {
@@ -429,8 +427,6 @@ namespace EasyBank.Controllers
         }
 
 
-
->>>>>>> FETCH_HEAD
         [HttpGet]
         public ActionResult AddAccount(int? clientId)
         {
@@ -477,8 +473,6 @@ namespace EasyBank.Controllers
             }
         }
 
-<<<<<<< HEAD
-=======
 
         public ActionResult AddAccountPartial(int? clientId)
         {
@@ -504,7 +498,7 @@ namespace EasyBank.Controllers
             return PartialView();
         }
 
->>>>>>> FETCH_HEAD
+
         [HttpGet]
         public ActionResult ChooseBankProduct(int accountId)
         {
@@ -548,17 +542,14 @@ namespace EasyBank.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult AddCurrency(Currency currency)
         {
-            if (currency != null)
+            if (currency.CurrencyName != null)
             {
                 if ((from Currency in db.Currencies where Currency.CurrencyName == currency.CurrencyName select Currency).Count() == 0
                     && currency.CurrencyName.Length != 0 && currency.PurchaseRate > 0 && currency.SaleRate > 0)
                 {
                     BankAccount ba = new BankAccount();
-<<<<<<< HEAD
-                    ba.CurrencyName = name;
-=======
+
                     ba.CurrencyName = currency.CurrencyName;
->>>>>>> FETCH_HEAD
 
                     db.Currencies.Add(currency);
                     db.BankAccounts.Add(ba);
