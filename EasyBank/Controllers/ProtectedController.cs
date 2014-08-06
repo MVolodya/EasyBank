@@ -415,6 +415,41 @@ namespace EasyBank.Controllers
             else return HttpNotFound();
         }
         [HttpGet]
+        public ActionResult AddDepositAccount(int? clientId)
+        {
+            var ListCurrency = db.Currencies.ToList();
+            ViewBag.Currencys = ListCurrency;
+            var ListDeposits = (from deps in db.DepositCreditModels
+                                where deps.AccountTypeId == 2
+                                select deps).ToList();
+            ViewBag.Deposits = ListDeposits;
+            if (clientId != null)
+            {
+                ViewBag.ClientId = clientId;
+
+                return View();
+            }
+            else return HttpNotFound();
+        }
+
+        [HttpGet]
+        public ActionResult AddCreditAccount(int? clientId)
+        {
+            var ListCurrency = db.Currencies.ToList();
+            ViewBag.Currencys = ListCurrency;
+            var ListCredits = (from creds in db.DepositCreditModels
+                               where creds.AccountTypeId == 3
+                               select creds).ToList();
+            ViewBag.Credits = ListCredits;
+            if (clientId != null)
+            {
+                ViewBag.ClientId = clientId;
+
+                return View();
+            }
+            else return HttpNotFound();
+        }
+        [HttpGet]
         public ActionResult AddAccount(int? clientId)
         {
             var ListTypes = db.AccountTypes.ToList();
