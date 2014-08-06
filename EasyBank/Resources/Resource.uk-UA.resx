@@ -558,4 +558,16 @@
   <data name="History" xml:space="preserve">
     <value>Історія</value>
   </data>
+  <data name="BankAccounts" xml:space="preserve">
+    <value>Рахунки банку</value>
+  </data>
+  <data name="CurrencyName" xml:space="preserve">
+    <value>Назва валюти</value>
+  </data>
+  <data name="PurchaseRate" xml:space="preserve">
+    <value>Курс покупки</value>
+  </data>
+  <data name="SallingRate" xml:space="preserve">
+    <value>Курс продажу</value>
+  </data>
 </root>

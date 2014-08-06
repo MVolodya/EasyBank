@@ -539,12 +539,13 @@ namespace EasyBank.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult AddCurrency(Currency currency)
         {
-            if (currency != null)
+            if (currency.CurrencyName != null)
             {
                 if ((from Currency in db.Currencies where Currency.CurrencyName == currency.CurrencyName select Currency).Count() == 0
                     && currency.CurrencyName.Length != 0 && currency.PurchaseRate > 0 && currency.SaleRate > 0)
                 {
                     BankAccount ba = new BankAccount();
+
                     ba.CurrencyName = currency.CurrencyName;
 
                     db.Currencies.Add(currency);
