@@ -337,7 +337,7 @@ aside {
 #loginForm {
     border-right: solid 2px #c8c8c8;
     float: left;
-    width: 55%;
+    width: 48%;
 }
 
     #loginForm .validation-error {

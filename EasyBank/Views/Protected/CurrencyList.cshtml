@@ -14,17 +14,17 @@
         {
             <h5>@Resources.Resource.CurrencyName</h5>
             <div class="editor-field">
-                @Html.EditorFor(model => model.CurrencyName)
+                @Html.EditorFor(model => model.CurrencyName)<br/>
                 @Html.ValidationMessageFor(model => model.CurrencyName)
             </div>
             <h5>@Resources.Resource.PurchaseRate</h5>
             <div class="editor-field">
-                @Html.EditorFor(model => model.PurchaseRate)
+                @Html.EditorFor(model => model.PurchaseRate)<br/>
                 @Html.ValidationMessageFor(model => model.PurchaseRate)
             </div>
             <h5>@Resources.Resource.SallingRate</h5>
             <div class="editor-field">
-                @Html.EditorFor(model => model.SaleRate)
+                @Html.EditorFor(model => model.SaleRate)<br/>
                 @Html.ValidationMessageFor(model => model.SaleRate)
             </div>
             <input type="submit" value="@Resources.Resource.AddCurrency" />
@@ -62,17 +62,17 @@
             <tr>
                 <td>
                     <div class="display-field">
-                        @item.CurrencyName;
+                        @item.CurrencyName
                     </div>
                 </td>
                 <td>
                     <div class="display-field">
-                        @item.PurchaseRate;
+                        @item.PurchaseRate
                     </div>
                 </td>
                 <td>
                     <div class="display-field">
-                        @item.SaleRate;
+                        @item.SaleRate
                     </div>
                 </td>
                 <td>
