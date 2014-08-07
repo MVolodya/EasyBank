@@ -35,6 +35,8 @@
 <section class="social" id="socialLoginForm">
     <h2>@Html.Label(@Resources.Resource.CurrencyList)</h2>
     <br />
+@using (Html.BeginForm("verifyDelete", "Protected", FormMethod.Post))
+    {
     <table>
         <tr>
             <th>
@@ -46,6 +48,10 @@
             <th>
                 @Resources.Resource.SallingRate
             </th>
+            <th>
+
+            </th>
+            <th></th>
         </tr>
         @foreach (var item in ViewBag.Currencies)
         {
@@ -65,14 +71,17 @@
                         @item.SaleRate;
                     </div>
                 </td>
+                <td>
+                    @Html.ActionLink(@Resources.Resource.Delete, "verifyDelete", new { id = item.CurrencyId })
+                </td>
+                <td>
+                    @Html.ActionLink(@Resources.Resource.Edit, "EditCurrency", new { id = item.CurrencyId })
+                </td>
             </tr>
 
         }
     </table>
-    @using (Html.BeginForm("verifyDelete", "Protected", FormMethod.Post))
-    {
-
-    }
+}
 </section>
 @*
     @using (Html.BeginForm("verifyDelete", "Protected", FormMethod.Post))

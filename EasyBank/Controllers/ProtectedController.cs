@@ -300,6 +300,39 @@ namespace EasyBank.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult EditCurrency(int? id)
+        {
+            Currency currency = null;
+            if (id != null)
+                currency = db.Currencies.FirstOrDefault(c => c.CurrencyId == id);
+            if (currency != null)
+            {
+                return View(currency);
+            }
+            else
+            {
+                ViewBag.Message = "No currency with this Id";
+                return RedirectToAction("CurrencyList");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditCurrency(Currency currency)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(currency).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("CurrencyList");
+            }
+            else
+            {
+                ViewBag.Message = "OOps.. Something wrong with data";
+                return RedirectToAction("CurrencyList");
+            }
+        }
+
 
         public ActionResult AddPhoto(int? id)
         {
