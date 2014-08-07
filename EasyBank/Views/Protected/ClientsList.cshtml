@@ -30,25 +30,24 @@ else
     
     <table>
         <tr>
-            <th>
-
-                @Html.ActionLink(@Resources.Resource.Name, "ClientsList", new { sort = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })
-            </th>
-            <th>
-                @Html.ActionLink(@Resources.Resource.Surname, "ClientsList", new { sort = ViewBag.SurnameSort, currentFilter = ViewBag.CurrentFilter })
-            </th>
-            <th>
-                @Html.ActionLink(@Resources.Resource.PIdNum, "ClientsList", new { sort = ViewBag.PIdNumberSort, currentFilter = ViewBag.CurrentFilter })
-            </th>
-            <th>
-                @Html.ActionLink(@Resources.Resource.BirthDate, "ClientsList", new { sort = ViewBag.BirthDateSort, currentFilter = ViewBag.CurrentFilter })
-            </th>
-            <th>
+            <td>
+                 @Html.ActionLink(@Resources.Resource.Name, "ClientsList", new { sort = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter }) 
+            </td>
+            <td>
+                  @Html.ActionLink(@Resources.Resource.Surname, "ClientsList", new { sort = ViewBag.SurnameSort, currentFilter = ViewBag.CurrentFilter }) 
+            </td>
+            <td>
+                @Html.ActionLink(@Resources.Resource.PIdNum, "ClientsList", new { sort = ViewBag.PIdNumberSort, currentFilter = ViewBag.CurrentFilter }) 
+            </td>
+            <td>
+                @Html.ActionLink(@Resources.Resource.BirthDate, "ClientsList", new { sort = ViewBag.BirthDateSort, currentFilter = ViewBag.CurrentFilter }) 
+            </td>
+            <td>
                 @Html.ActionLink(@Resources.Resource.Email, "ClientsList", new { sort = ViewBag.EmailSort, currentFilter = ViewBag.CurrentFilter })
-            </th>
-            <th>
+            </td>
+            <td>
                 @Html.ActionLink(@Resources.Resource.RegDate, "ClientsList", new { sort = ViewBag.RegistrationDateSort, currentFilter = ViewBag.CurrentFilter })
-            </th>
+            </td>
 
             <th></th>
         </tr>

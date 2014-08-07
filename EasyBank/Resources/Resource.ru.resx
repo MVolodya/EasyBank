@@ -442,7 +442,7 @@
     <value>Используйте Ваши учетные данные для входа в систему.</value>
   </data>
   <data name="LogInTitle" xml:space="preserve">
-    <value>Вход</value>
+    <value>Вход в офис </value>
   </data>
   <data name="LogOff" xml:space="preserve">
     <value>Выйти</value>

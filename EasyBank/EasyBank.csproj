@@ -398,6 +398,7 @@
     <Content Include="bin\CaptchaMvc.dll" />
     <Content Include="Content\images\back_2436.ico" />
     <Content Include="Content\images\kopeteavailable_4552.ico" />
+    <Content Include="Content\images\magnifying glass.png" />
     <Content Include="Content\images\misc_26_6816.ico" />
     <Content Include="Content\images\money_add_3612.ico" />
     <Content Include="Content\images\money_delete_2216.ico" />
