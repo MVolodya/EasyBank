@@ -58,10 +58,10 @@ else
             </th>
             <th>
                 @Html.ActionLink(@Resources.Resource.Email, "ClientsList", new { sort = ViewBag.EmailSort, currentFilter = ViewBag.CurrentFilter })
-            </th>
-            <th>
+            </td>
+            <td>
                 @Html.ActionLink(@Resources.Resource.RegDate, "ClientsList", new { sort = ViewBag.RegistrationDateSort, currentFilter = ViewBag.CurrentFilter })
-            </th>
+            </td>
 
             <th></th>
         </tr>

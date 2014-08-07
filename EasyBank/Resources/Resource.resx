@@ -289,7 +289,7 @@
     <value>Search</value>
   </data>
   <data name="AccountsAreAbsent" xml:space="preserve">
-    <value>Accounts are absent</value>
+    <value>No accounts open</value>
   </data>
   <data name="ChooseFile" xml:space="preserve">
     <value>Choose file</value>
@@ -541,7 +541,7 @@
     <value>Calculate</value>
   </data>
   <data name="CalculateMessage" xml:space="preserve">
-    <value>Enter number of months to calculate interests.</value>
+    <value>Enter number of months to forecast interests.</value>
   </data>
   <data name="ErrorReports" xml:space="preserve">
     <value>Error reports</value>
