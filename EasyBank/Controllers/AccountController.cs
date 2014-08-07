@@ -541,12 +541,65 @@ namespace EasyBank.Controllers
 
         }
 
-        public ActionResult ClientsProfile(int? id)
+        public ActionResult ClientsProfile(int? id, string sort)
         {
             string userName = WebSecurity.CurrentUserName;
             var client = (from c in db.Clients
                           where c.Email == userName
                           select c).FirstOrDefault();
+
+            ViewBag.CurrentSort = sort;
+            ViewBag.ExpirationDateSort = String.IsNullOrEmpty(sort) ? "expDat_desc" : "";
+            ViewBag.AccountNumberSort = sort == "accNum_desc" ? "accNum_asc" : "accNum_desc";
+            ViewBag.AmountSort = sort == "amount_desc" ? "amount_asc" : "amount_desc";
+            ViewBag.CurrencySort = sort == "currency_desc" ? "currency_asc" : "currency_desc";
+            ViewBag.TypeSort = sort == "type_desc" ? "type_asc" : "type_desc";
+            ViewBag.StatusSort = sort == "status_desc" ? "status_asc" : "status_desc";
+
+            var accounts = from a in db.Accounts
+                           where a.ClientId == id
+                           select a;
+
+            switch (sort)
+            {
+                case "expDat_desc":
+                    accounts = accounts.OrderByDescending(a => a.ExpirationDate);
+                    break;
+                case "accNum_desc":
+                    accounts = accounts.OrderByDescending(a => a.AccountNumber);
+                    break;
+                case "accNum_asc":
+                    accounts = accounts.OrderBy(a => a.AccountNumber);
+                    break;
+                case "amount_desc":
+                    accounts = accounts.OrderByDescending(a => a.AvailableAmount);
+                    break;
+                case "amount_asc":
+                    accounts = accounts.OrderBy(a => a.AvailableAmount);
+                    break;
+                case "currency_desc":
+                    accounts = accounts.OrderByDescending(a => a.CurrencyId);
+                    break;
+                case "currency_asc":
+                    accounts = accounts.OrderBy(a => a.CurrencyId);
+                    break;
+                case "type_desc":
+                    accounts = accounts.OrderByDescending(a => a.TypeId);
+                    break;
+                case "type_asc":
+                    accounts = accounts.OrderBy(a => a.TypeId);
+                    break;
+                case "status_desc":
+                    accounts = accounts.OrderByDescending(a => a.StatusId);
+                    break;
+                case "status_asc":
+                    accounts = accounts.OrderBy(a => a.StatusId);
+                    break;
+                default:
+                    accounts = accounts.OrderBy(a => a.ExpirationDate);
+                    break;
+            }
+            client.Accounts = accounts.ToList();
             return View(client);
         }
 
