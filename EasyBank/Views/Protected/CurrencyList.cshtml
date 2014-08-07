@@ -2,50 +2,93 @@
 @{
     ViewBag.Title = @Resources.Resource.CurrencyList;
 }
-<h2>@Html.Label(@Resources.Resource.Currencies)</h2>
 
-<fieldset>
-    @using (Html.BeginForm("AddCurrency", "Protected", FormMethod.Post))
-    {
-        <h5>@Resources.Resource.CurrencyName</h5>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CurrencyName)
-            @Html.ValidationMessageFor(model => model.CurrencyName)
-        </div>
-        <h5>@Resources.Resource.PurchaseRate</h5>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PurchaseRate)
-            @Html.ValidationMessageFor(model => model.PurchaseRate)
-        </div>
-        <h5>@Resources.Resource.SallingRate</h5>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.SaleRate)
-            @Html.ValidationMessageFor(model => model.SaleRate)
-        </div>
-        <input type="submit" value="@Resources.Resource.AddCurrency" />
-    }
-    @Html.Raw(TempData["verifyDelete"])
-    @Html.Raw(TempData["verifyAdd"])
-
-
-
-</fieldset>
-
-<h2>@Resources.Resource.CurrencyList</h2>
-
-@using (Html.BeginForm("verifyDelete", "Protected", FormMethod.Post))
-{
-    <select id="selection" name="selection">
-        @foreach (var currency in ViewBag.Currencies)
+<section id="loginForm">
+    <h2>@Html.Label(@Resources.Resource.Currencies)</h2>
+    <fieldset>
+        @using (Html.BeginForm("AddCurrency", "Protected", FormMethod.Post))
         {
-            <option value="@currency.CurrencyId">@currency.CurrencyName</option>
+            <h5>@Resources.Resource.CurrencyName</h5>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CurrencyName)
+                @Html.ValidationMessageFor(model => model.CurrencyName)
+            </div>
+            <h5>@Resources.Resource.PurchaseRate</h5>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.PurchaseRate)
+                @Html.ValidationMessageFor(model => model.PurchaseRate)
+            </div>
+            <h5>@Resources.Resource.SallingRate</h5>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.SaleRate)
+                @Html.ValidationMessageFor(model => model.SaleRate)
+            </div>
+            <input type="submit" value="@Resources.Resource.AddCurrency" />
         }
-    </select>
-    <input type="text" name="id" id="hid" hidden="hidden" value="1">
-    <input type="submit" value="@Resources.Resource.Delete" />
-    <script>
-        $("#selection").on("change", function () {
-            $("#hid").val($("#selection").val());
-        });
-    </script>
-}
+        @Html.Raw(TempData["verifyDelete"])
+        @Html.Raw(TempData["verifyAdd"])
+
+
+
+    </fieldset>
+</section>
+<section class="social" id="socialLoginForm">
+    <h2>@Html.Label(@Resources.Resource.CurrencyList)</h2>
+    <br />
+    <table>
+        <tr>
+            <th>
+                @Resources.Resource.CurrencyName
+            </th>
+            <th>
+                @Resources.Resource.PurchaseRate
+            </th>
+            <th>
+                @Resources.Resource.SallingRate
+            </th>
+        </tr>
+        @foreach (var item in ViewBag.Currencies)
+        {
+            <tr>
+                <td>
+                    <div class="display-field">
+                        @item.CurrencyName;
+                    </div>
+                </td>
+                <td>
+                    <div class="display-field">
+                        @item.PurchaseRate;
+                    </div>
+                </td>
+                <td>
+                    <div class="display-field">
+                        @item.SaleRate;
+                    </div>
+                </td>
+            </tr>
+
+        }
+    </table>
+    @using (Html.BeginForm("verifyDelete", "Protected", FormMethod.Post))
+    {
+
+    }
+</section>
+@*
+    @using (Html.BeginForm("verifyDelete", "Protected", FormMethod.Post))
+    {
+        <select id="selection" name="selection">
+            @foreach (var currency in ViewBag.Currencies)
+            {
+                <option value="@currency.CurrencyId">@currency.CurrencyName</option>
+            }
+        </select>
+        <input type="text" name="id" id="hid" hidden="hidden" value="1">
+        <input type="submit" value="@Resources.Resource.Delete" />
+        <script>
+            $("#selection").on("change", function () {
+                $("#hid").val($("#selection").val());
+            });
+        </script>
+    }
+*@

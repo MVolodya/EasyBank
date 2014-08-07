@@ -538,7 +538,9 @@ namespace EasyBank.Controllers
         [Authorize(Roles = "Administrator, Operator")]
         public ActionResult CurrencyList()
         {
-            var mostRecentEntries = (from currency in db.Currencies select currency).ToList();
+            var mostRecentEntries = (from currency in db.Currencies 
+                                     where currency.CurrencyName != "UAH"
+                                     select currency).ToList();
             ViewBag.Currencies = mostRecentEntries;
             return View();
         }
