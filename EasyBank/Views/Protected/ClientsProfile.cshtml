@@ -177,7 +177,7 @@
             <tr>
                 <th>@Html.Label(@Resources.Resource.AccNumb) </th>
                 <th>@Html.Label(@Resources.Resource.ExpDate) </th>
-                <th>@Html.Label(@Resources.Resource.Amount)</th>
+                <th>@Html.Label(@Resources.Resource.AvailableAmount)</th>
                 <th>@Html.Label(@Resources.Resource.Currency)</th>
                 <th>@Html.Label(@Resources.Resource.Type)</th>
                 <th>@Html.Label(@Resources.Resource.Status)</th>
@@ -203,7 +203,13 @@
                 </td>
                 <td>
                     <div class="display-field">
-                        @Html.DisplayFor(modelItem => item.Amount)
+                        @if(item.TypeId == 2)
+                            {
+                                @Html.DisplayFor(modelItem => item.AvailableAmount)
+                            }
+                        else{ 
+                            @Html.DisplayFor(modelItem => item.Amount)
+                            }
                     </div>
                 </td>
                 <td>

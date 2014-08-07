@@ -449,6 +449,7 @@ namespace EasyBank.Controllers
             account.LastInterestAdded = DateTime.Now;
             account.OpenDate = DateTime.Now;
             account.StatusId = 1;
+            account.AvailableAmount = account.Amount;
             if(account.TypeId !=1){
             var duration = (from prods in db.DepositCreditModels
                             where prods.DepositCreditModelID == account.DepositCreditModelID
