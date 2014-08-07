@@ -55,17 +55,26 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
 
+            
 
             @if (item.Amount > 0 && item.ToAccountId == ViewBag.ClientsCardId)
             { 
                 <td id="positiveAmount" style="color: green">
                     @Html.DisplayFor(modelItem => item.Amount)
+                    @if (item.ToAccountId == null || item.FromAccountId == null)
+                    {
+                        @item.ToAccount.Currency.CurrencyName
+                    }
+                    else
+                    {
+                        @item.FromAccount.Currency.CurrencyName
+                    }
                 </td>
             }
             else
             {
                 <td id="negativeAmount" style="color: tomato">
-                    @Html.DisplayFor(modelItem => item.Amount)
+                    @Html.DisplayFor(modelItem => item.Amount)@item.FromAccount.Currency.CurrencyName
                 </td>
             }
 

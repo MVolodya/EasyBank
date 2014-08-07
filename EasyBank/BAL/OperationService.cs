@@ -226,7 +226,7 @@ namespace EasyBank
             if (dataChanged)
             {
                 db.Entry(acc).State = System.Data.Entity.EntityState.Modified;
-                HistoryManager.AddDepositOperation(db, (decimal)amount, (int)toAccountId, (int)oper.OperatorID);
+                HistoryManager.AddDepositOperation(db, (decimal)convertedAmount, (int)toAccountId, (int)oper.OperatorID);
                 db.SaveChanges();
                 return ErrorCode.Ok;
             }

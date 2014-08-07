@@ -16,11 +16,12 @@ namespace EasyBank.Models
         [Display(Name="Product Name")]
         public string Name { get; set; }
 
-
+        [Range(1,24)]
         [Display(Name="Product Duration")]
         [Required(ErrorMessage = "The {0} is required")]
         public int Duration { get; set; }
 
+        [Range(1,100)]
         [Display(Name="Interest")]
         [Required(ErrorMessage = "The {0} is required")]
         public decimal InterestRate { get; set; }

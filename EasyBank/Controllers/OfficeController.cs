@@ -470,6 +470,7 @@ namespace EasyBank.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult AddDepositCredit(DepositCreditModel depositCreditModel)
         {
+            if (depositCreditModel.AccountTypeId == 3) depositCreditModel.EarlyTermination = false;
             db.DepositCreditModels.Add(depositCreditModel);
             db.SaveChanges();
             return RedirectToAction("DepositList", "Office");
