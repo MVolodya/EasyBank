@@ -209,7 +209,7 @@ namespace EasyBank.Controllers
         [HttpGet]
         public ActionResult ProfitCalc()
         {
-            return PartialView();
+            return View();
         }
 
         // Начисление процентов на депозитные и кредитные счета
@@ -306,7 +306,7 @@ namespace EasyBank.Controllers
                 decimal timeSpanDec = (decimal)timeSpan.TotalDays;
 
                 decimal interest = item.DepositCreditModel.InterestRate;
-                decimal interestForPeriod = interest / 365 * timeSpanDec / 100;
+                decimal interestForPeriod = Math.Round(interest / 365 * timeSpanDec / 100,2);
 
                 decimal amountForPeriod = Math.Round(item.Amount * interestForPeriod,2);
 
@@ -326,7 +326,7 @@ namespace EasyBank.Controllers
                 decimal daysLeftDec = (decimal)daysLeft.TotalDays;
 
                 decimal interest = item.DepositCreditModel.InterestRate;
-                decimal interestForPeriod = interest / 365 * daysLeftDec / 100;
+                decimal interestForPeriod = Math.Round(interest / 365 * daysLeftDec / 100,2);
 
                 decimal amountForPeriod = Math.Round(item.Amount * interestForPeriod, 2);
 

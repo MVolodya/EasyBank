@@ -14,16 +14,16 @@ namespace EasyBank.Models
 
         [StringLength(10, ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "Len10", MinimumLength = 2)]
         [Index("UniqueCurrencyName", IsUnique = true)]
-        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "CurrencyNameRequired")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "ThisFieldIsRequired")]
         public string CurrencyName { get; set; }
 
         [Display(Name="Purchase rate")]
-        [Required(ErrorMessage = "Purchase rate field is required")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "ThisFieldIsRequired")]
         [RegularExpression(@"^\d+(.\d{0,2})?$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "DecimalFormat")]
         public decimal PurchaseRate { get; set; }
 
         [Display(Name = "Sale rate")]
-        [Required(ErrorMessage = "Purchase rate field is required")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "ThisFieldIsRequired")]
         [RegularExpression(@"^\d+(.\d{0,2})?$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "DecimalFormat")]
         public decimal SaleRate { get; set; }
 

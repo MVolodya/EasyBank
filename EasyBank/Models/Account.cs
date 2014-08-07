@@ -19,12 +19,12 @@ namespace EasyBank.Models
         public string AccountNumber { get; set; }
 
         [Display(ResourceType = typeof(Resources.Resource), Name = "ExpDate")]
-        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "ExpirationDateRequired")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "ThisFieldIsRequired")]
         [DataType(DataType.Date, ErrorMessageResourceType=typeof(Resources.Resource), ErrorMessageResourceName="DateNotValid")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ExpirationDate { get; set; }
 
-        [Range(0, 100000.00)]
+        [Range(0, 1000000.00)]
         [Display(Name = "Amount", ResourceType = typeof(Resources.Resource))]
         [RegularExpression(@"^\d+((.|,)\d{0,2})?$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "DecimalFormat")]
         public decimal Amount { get; set; }
@@ -34,22 +34,22 @@ namespace EasyBank.Models
         public decimal AvailableAmount { get; set; }
 
         [Display(Name = "Client", ResourceType = typeof(Resources.Resource))]
-        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "ClientIdRequired")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "ThisFieldIsRequired")]
         [ForeignKey("Client")]
         public int ClientId { get; set; }
 
         [Display(Name = "Type", ResourceType = typeof(Resources.Resource))]
-        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "TypeIdRequired")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "ThisFieldIsRequired")]
         [ForeignKey("AccountType")]
         public int TypeId { get; set; }
 
         [Display(Name = "Currency", ResourceType = typeof(Resources.Resource))]
-        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "CurrencyIdRequired")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "ThisFieldIsRequired")]
         [ForeignKey("Currency")]
         public int CurrencyId { get; set; }
 
         [Display(Name = "Status", ResourceType = typeof(Resources.Resource))]
-        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "AccountStatusRequired")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "ThisFieldIsRequired")]
         [ForeignKey("AccountStatus")]
         public int StatusId { get; set; }
 

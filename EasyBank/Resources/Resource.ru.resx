@@ -361,7 +361,7 @@
     <value>Снять деньги</value>
   </data>
   <data name="DecimalFormat" xml:space="preserve">
-    <value>Сумма должна иметь формат (0.00 або 0.0 або 0)</value>
+    <value>Сумма должна иметь формат (0.00 или 0.0 или 0)</value>
   </data>
   <data name="AddBankProduct" xml:space="preserve">
     <value>Добавить банковский продукт</value>
@@ -578,5 +578,47 @@
   </data>
   <data name="EditCurrency" xml:space="preserve">
     <value>Редактировать валюту</value>
+  </data>
+  <data name="Message1" xml:space="preserve">
+    <value>Добро пожаловать в Easy Bank!</value>
+  </data>
+  <data name="Message10" xml:space="preserve">
+    <value>С уважением, Администрация Easy Bank.</value>
+  </data>
+  <data name="Message2" xml:space="preserve">
+    <value>Уважаемый</value>
+  </data>
+  <data name="Message3" xml:space="preserve">
+    <value>Благодарим за то, что посетили Easy Bank и стали нашим клиентом.</value>
+  </data>
+  <data name="Message4" xml:space="preserve">
+    <value>Для Вас создан личный кабинет, в котором Вы сможете управлять своими счетами.</value>
+  </data>
+  <data name="Message5" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="Message6" xml:space="preserve">
+    <value>Для того, чтобы войти в свой личный кабинет, Вам необходимо ввести свой E-mail, который Вы указали при заполнении анкеты.</value>
+  </data>
+  <data name="Message7" xml:space="preserve">
+    <value>Воспользуйтесь автоматически сгенерированным паролем, указанным ниже, для входа в личный кабинет.</value>
+  </data>
+  <data name="Message8" xml:space="preserve">
+    <value>Мы рекомендуем при первой авторизации изменить автоматически сгенерированный пароль, нажав на Ваш логин в правом верхнем углу страницы.</value>
+  </data>
+  <data name="Message9" xml:space="preserve">
+    <value>Ваш сгенерированный пароль:</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="PurchaseRateErrorMessage" xml:space="preserve">
+    <value>Требуется поле курса покупки</value>
+  </data>
+  <data name="ThisFieldIsRequired" xml:space="preserve">
+    <value>Это поле является обязательным для заполнения</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>E-mail пользователя</value>
   </data>
 </root>

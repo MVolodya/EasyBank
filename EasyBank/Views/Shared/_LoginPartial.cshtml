@@ -6,9 +6,9 @@
             <a href="javascript:document.getElementById('logoutForm').submit()">@Resources.Resource.LogOff</a>
         }
     </text>
-} else {
-    <ul>
-        @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
-        <li>@Html.ActionLink(@Resources.Resource.LogIn, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
+}  @*else {
+        <ul>
+           <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink(@Resources.Resource.LogIn, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+    }*@
