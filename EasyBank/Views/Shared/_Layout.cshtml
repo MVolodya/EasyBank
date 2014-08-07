@@ -62,11 +62,10 @@
                         }
                         @if (User.IsInRole("Administrator"))
                         {
-
-                            <li>@Html.ActionLink(@Resources.Resource.Currencies, "CurrencyList", "Protected")</li>
-                            <li>@Html.ActionLink(@Resources.Resource.OperatorsList, "OperatorsList", "Protected")</li>
-                            <li>@Html.ActionLink(@Resources.Resource.BankProducts, "DepositList", "Office")</li>
                             <li>@Html.ActionLink(@Resources.Resource.FinancialReports, "TotalDepositedAmount", "Operation")</li>
+                            <li>@Html.ActionLink(@Resources.Resource.Currencies, "CurrencyList", "Protected")</li>
+                            <li>@Html.ActionLink(@Resources.Resource.BankProducts, "DepositList", "Office")</li>
+                            <li>@Html.ActionLink(@Resources.Resource.OperatorsList, "OperatorsList", "Protected")</li>
                             <li>@Html.ActionLink(@Resources.Resource.ErrorReports, "ErrorReports", "Protected")</li>
                         }
                                     
