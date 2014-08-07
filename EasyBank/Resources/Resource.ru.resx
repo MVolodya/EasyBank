@@ -570,4 +570,10 @@
   <data name="SallingRate" xml:space="preserve">
     <value>Курс продажи</value>
   </data>
+  <data name="AllowWebAccees" xml:space="preserve">
+    <value>Разрешить веб-доступ</value>
+  </data>
+  <data name="EditClient" xml:space="preserve">
+    <value>Редактировать профиль клиента</value>
+  </data>
 </root>

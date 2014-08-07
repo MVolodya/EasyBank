@@ -30,6 +30,7 @@ namespace EasyBank.Models
         public decimal Amount { get; set; }
 
         [Display(Name = "AvailableAmount", ResourceType = typeof(Resources.Resource))]
+        [RegularExpression(@"^\d+((.|,)\d{0,2})?$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "DecimalFormat")]
         public decimal AvailableAmount { get; set; }
 
         [Display(Name = "Client", ResourceType = typeof(Resources.Resource))]

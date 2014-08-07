@@ -3,7 +3,11 @@
 @{
     ViewBag.Title = @Resources.Resource.ClientsPassport;
 }
-<h2>@Resources.Resource.Passport</h2>
+<h2>@Html.Label(@Resources.Resource.Passport)</h2>
+<br />
+@Html.ActionLink(@Resources.Resource.BackToList, "ClientsList")
+<br />
+<br />
 
 @if (Model == null)
 {
@@ -19,4 +23,4 @@ else
 
 <br />
 
-@Html.ActionLink(@Resources.Resource.BackToList, "ClientsList")
+

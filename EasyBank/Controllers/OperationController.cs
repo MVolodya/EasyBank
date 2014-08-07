@@ -272,7 +272,7 @@ namespace EasyBank.Controllers
             return PartialView(totalForCurrency);
         }
 
-        //Поанирование начисления процентов на определенный срок
+        //Планирование начисления процентов на определенный срок
         [HttpGet]
         public ActionResult ProfitPlanningCalc()
         {
@@ -308,14 +308,16 @@ namespace EasyBank.Controllers
                 decimal interest = item.DepositCreditModel.InterestRate;
                 decimal interestForPeriod = interest / 365 * timeSpanDec / 100;
 
-                decimal amountForPeriod = item.Amount * interestForPeriod;
+                decimal amountForPeriod = Math.Round(item.Amount * interestForPeriod,2);
 
                 item.Interest += amountForPeriod;
-                item.AvailableAmount = item.Amount + amountForPeriod;
+                item.AvailableAmount =item.Amount + amountForPeriod;
 
                 item.LastInterestAdded = item.LastInterestAdded.AddDays((double)timeSpanDec);
-
-
+                if (item.DepositCreditModel.EarlyTermination == true)
+                {
+                    item.Amount = item.AvailableAmount;
+                }
                 db.Entry(item).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
@@ -326,13 +328,16 @@ namespace EasyBank.Controllers
                 decimal interest = item.DepositCreditModel.InterestRate;
                 decimal interestForPeriod = interest / 365 * daysLeftDec / 100;
 
-                decimal amountForPeriod = item.Amount * interestForPeriod;
+                decimal amountForPeriod = Math.Round(item.Amount * interestForPeriod, 2);
 
                 item.Interest += amountForPeriod;
                 item.AvailableAmount = item.Amount + amountForPeriod;
 
                 item.LastInterestAdded = item.LastInterestAdded.AddDays((double)daysLeftDec);
-
+                if (item.DepositCreditModel.EarlyTermination == true)
+                {
+                    item.Amount = item.AvailableAmount;
+                }
                 db.Entry(item).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }

@@ -4,9 +4,16 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
+<h2>@Html.Label(@Resources.Resource.EditClient)</h2>
+<br />
+    @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList")
+<br />
+<br />
 @using (Html.BeginForm("EditClient", "Protected", FormMethod.Post)) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+
+
 
     <fieldset>
         <legend>@Resources.Resource.Client</legend>
@@ -60,7 +67,7 @@
             @Html.ValidationMessageFor(model => model.Email)
         </div>
         <div>
-            <h3>Allow web-accees</h3>
+            <h3>@Resources.Resource.AllowWebAccees</h3>
             @Html.CheckBoxFor(m => m.IsOnlineUser)
         </div>
         <div class="editor-label">

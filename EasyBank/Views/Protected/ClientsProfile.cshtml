@@ -95,10 +95,11 @@
         cursor: pointer;
     }
 </style>
-<div>
-    @Html.ActionLink(Resources.Resource.BackToList, "ClientsList", "Protected")
-</div>
+
 <h2>@Html.Label(@Resources.Resource.ClientsProfileTitle)</h2>
+<br />
+@Html.ActionLink(@Resources.Resource.BackToList, "ClientsList", "Protected")
+<br /><br />
 <div style="background-color: rgba(255,255,255, 0.5); float: left; padding-top: 14px; padding-left: 20px; padding-bottom: 30px; padding-right: 25px; border-radius: 10px;">
     <div style="float: left;">
         <table>
@@ -177,8 +178,9 @@
             @Html.Action("ShowClientPhoto", new { id = Model.ClientId })
         </div>
 
+
     </div>
-</div>
+
 <br />
 <div style="clear: both; background-color: rgba(255,255,255, 0.4); float: left; padding-top: 10px; padding-left: 20px; padding-bottom: 30px; border-radius: 10px; margin-top: 10px; min-width: 1000px;">
     <input type="button" id="showFirstBox" value="@Resources.Resource.AddAccount">
@@ -190,12 +192,12 @@
         @if (Model.Accounts.Count() != 0)
         {
             <tr>
-                <th>@Html.Label(@Resources.Resource.AccNumb) </th>
-                <th>@Html.Label(@Resources.Resource.ExpDate) </th>
-                <th>@Html.Label(@Resources.Resource.Amount)</th>
-                <th>@Html.Label(@Resources.Resource.Currency)</th>
-                <th>@Html.Label(@Resources.Resource.Type)</th>
-                <th>@Html.Label(@Resources.Resource.Status)</th>
+                <td>@Html.ActionLink(@Resources.Resource.AccNumb, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.AccountNumberSort })</td>
+                <td>@Html.ActionLink(@Resources.Resource.ExpDate, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.ExpirationDateSort })</td>
+                <td>@Html.ActionLink(@Resources.Resource.Amount, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.AmountSort })</td>
+                <td>@Html.ActionLink(@Resources.Resource.Currency, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.CurrencySort })</td>
+                <td>@Html.ActionLink(@Resources.Resource.Type, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.TypeSort })</td>
+                <td>@Html.ActionLink(@Resources.Resource.Status, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.StatusSort })</td>
             </tr>
         }
         else

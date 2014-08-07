@@ -19,7 +19,11 @@
         });
     });
 </script>
-
+<h2>@Html.Label(@Resources.Resource.AddMoney)</h2>
+<br />
+    @Html.ActionLink(@Resources.Resource.BackToProfile, "ClientsProfile", "Protected", new { clientId = Model.ClientId }, null)
+<br />
+<br />
 
 <fieldset>
     <legend>Account</legend>
@@ -147,6 +151,3 @@
     <input type="submit" value=@Resources.Resource.Submit  onclick="return confirm('@Resources.Resource.AskToAddMoney    ') ? true : false;" />
 }
 
-<p>
-    @Html.ActionLink(@Resources.Resource.BackToList, "ClientsProfile", "Protected", new { clientId = Model.ClientId }, null)
-</p>

@@ -287,7 +287,7 @@ namespace EasyBank
                     break;
                 case "Deposit":
                     {
-                        if (DateTime.Now < acc.ExpirationDate)
+                        if (acc.LastInterestAdded < acc.ExpirationDate)
                         {
                             if (acc.DepositCreditModel.EarlyTermination == true)
                             {

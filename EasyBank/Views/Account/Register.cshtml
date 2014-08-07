@@ -49,8 +49,10 @@
  @Html.AntiForgeryToken()
  @Html.ValidationSummary()
 
-
-
+    <h2>@Html.Label(@Resources.Resource.AddClient)</h2>
+    <br />
+        @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList", "Protected")
+    <br /><br />
     <fieldset>
         <legend>Client</legend>
 
@@ -119,7 +121,5 @@
     </fieldset>
 }
 
-<div>
-    @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList", "Protected")
-</div>
+
 
