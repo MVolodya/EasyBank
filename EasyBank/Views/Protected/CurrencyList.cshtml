@@ -27,7 +27,10 @@
                 @Html.EditorFor(model => model.SaleRate)
                 @Html.ValidationMessageFor(model => model.SaleRate)
             </div>
-            <input type="submit" value="@Resources.Resource.AddCurrency" />
+            <div>
+                <br/>
+                <input type="submit" value="@Resources.Resource.AddCurrency" style="width: 262px" />
+            </div>
         }
         @Html.Raw(TempData["verifyDelete"])
         @Html.Raw(TempData["verifyAdd"])

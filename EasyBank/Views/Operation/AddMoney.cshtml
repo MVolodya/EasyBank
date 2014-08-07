@@ -19,9 +19,10 @@
         });
     });
 </script>
+
 <h2>@Html.Label(@Resources.Resource.AddMoney)</h2>
 <br />
-    @Html.ActionLink(@Resources.Resource.BackToProfile, "ClientsProfile", "Protected", new { clientId = Model.ClientId }, null)
+   &#9664 @Html.ActionLink(@Resources.Resource.BackToProfile, "ClientsProfile", "Protected", new { clientId = Model.ClientId }, new{@id="back"})
 <br />
 <br />
 

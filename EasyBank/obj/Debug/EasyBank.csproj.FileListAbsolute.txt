@@ -1,4 +1,4 @@
-﻿C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\bin\EasyBank.dll.config
+C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\bin\EasyBank.dll.config
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\bin\EasyBank.dll
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\bin\EasyBank.pdb
 C:\Users\oper4\Desktop\MyGitBranch\EasyBank\EasyBank\bin\uk-UA\EasyBank.resources.dll
@@ -1033,6 +1033,7 @@ C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.Migratio
 C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.addedBankAccount.resources
 C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.addedIncorrectPasswordTrialsToClient.resources
 C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.csprojResolveAssemblyReference.cache
+C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.validationsAdded.resources
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\bin\EasyBank.dll
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\bin\EasyBank.pdb
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\bin\uk-UA\EasyBank.resources.dll
@@ -1150,11 +1151,3 @@ C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\uk-UA\EasyBank.res
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resources.dll
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
-C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.csprojResolveAssemblyReference.cache
-C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.csprojResolveAssemblyReference.cache
-C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.AddedInterestCalculation.resources
-C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.addedBankAccount.resources
-C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.addedIncorrectPasswordTrialsToClient.resources
-C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.validationsAdded.resources
-C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.csprojResolveAssemblyReference.cache
-C:\Users\Иван\Desktop\Shit\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.validationsAdded.resources

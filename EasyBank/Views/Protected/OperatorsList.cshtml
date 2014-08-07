@@ -8,7 +8,7 @@
 @if (User.IsInRole("Administrator"))
 {
     <br />
-    @Html.ActionLink(@Resources.Resource.RegisterOperator, "RegisterOperator", "Account")
+    @Html.ActionLink(@Resources.Resource.RegisterOperator, "RegisterOperator", "Account", null, new{@id="add"})
     <br />
 }
 

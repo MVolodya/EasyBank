@@ -54,7 +54,7 @@
 }
     <h2>@Html.Label(@Resources.Resource.AddClient)</h2>
     <br />
-        @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList", "Protected")
+       <span>&#9664</span> @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList", "Protected", null, new{@id="back"})
     <br /><br />
     <fieldset>
         <legend>Client</legend>

@@ -34,9 +34,9 @@ namespace EasyBank
             CultureInfo cInf = new CultureInfo("uk-UA", false);
             // NOTE: change the culture name en-ZA to whatever culture suits your needs
 
-            cInf.DateTimeFormat.DateSeparator = "/";
-            cInf.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
-            cInf.DateTimeFormat.LongDatePattern = "dd/MM/yyyy hh:mm:ss tt";
+            cInf.DateTimeFormat.DateSeparator = "-";
+            cInf.DateTimeFormat.ShortDatePattern = "yyyy-MM-dd";
+            cInf.DateTimeFormat.LongDatePattern = "yyyy-MM-dd hh:mm:ss tt";
 
             System.Threading.Thread.CurrentThread.CurrentCulture = cInf;
             System.Threading.Thread.CurrentThread.CurrentUICulture = cInf;

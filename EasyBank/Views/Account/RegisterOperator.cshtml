@@ -4,10 +4,26 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
+<style>
+     #back {
+        font-size: larger;
+        font-weight: bold;
+        background-color: rgb(182, 179, 179);
+        margin-top: 15px;
+        padding: 5px;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+
+    #back:hover {
+        background-color: lightblue;
+    }
+</style>
+
 <h2>@Html.Label(@Resources.Resource.RegisterOperator)</h2>
 <br />
 
-    @Html.ActionLink(@Resources.Resource.BackToList, "OperatorsList", "Protected")
+   &#9664 @Html.ActionLink(@Resources.Resource.BackToList, "OperatorsList", "Protected", null, new{@id="back"})
 
 <br />
 <br />

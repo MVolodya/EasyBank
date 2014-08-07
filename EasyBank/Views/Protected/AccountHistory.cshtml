@@ -3,98 +3,108 @@
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 <h2>@Html.Label(@Resources.Resource.History)</h2>
+<br />
 
-<table style="margin: 0 auto;">
-    <tr>
-        <th></th>
-        <th>
-            @Html.ActionLink(Resources.Resource.OperationDate, "AccountHistory", new { sort = ViewBag.SortDate })
-        </th>
-        <th>
-            @Html.DisplayName(@Resources.Resource.Amount)
-        </th>
-        <th>
-            @Html.DisplayName(@Resources.Resource.Sender)
-        </th>
-        <th>
-            @Html.DisplayName(@Resources.Resource.Recipient)
-        </th>
-    </tr>
+ &#9664 @Html.ActionLink("Back", "ClientsProfile", "Account", null, new { @id = "back" })
 
-    @foreach (var item in Model)
-    {
-        <tr style="height: 60px; border-radius: 10px;">
-            <td>
-                @if (item.FromAccountId == null)
-                {
-                    <img src="~/Content/images/money_add_3612.ico">
-                }
-                else
-                {
-                    if (item.ToAccountId == null)
+@if (Model.Count != 0)
+{
+    <table style="margin: 0 auto;">
+        <tr>
+            <th></th>
+            <th>
+                @Html.ActionLink(Resources.Resource.OperationDate, "AccountHistory", new { sort = ViewBag.SortDate })
+            </th>
+            <th>
+                @Html.DisplayName(@Resources.Resource.Amount)
+            </th>
+            <th>
+                @Html.DisplayName(@Resources.Resource.Sender)
+            </th>
+            <th>
+                @Html.DisplayName(@Resources.Resource.Recipient)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr style="height: 60px; border-radius: 10px;">
+                <td>
+                    @if (item.FromAccountId == null)
                     {
-                    <img src="~/Content/images/money_delete_2216.ico">
+                        <img src="~/Content/images/money_add_3612.ico">
                     }
                     else
                     {
-                        if (item.FromAccountId == ViewBag.ClientsCardId)
+                        if (item.ToAccountId == null)
                         {
-                    <img src="~/Content/images/kopeteavailable_4552.ico">
-                    <img src="~/Content/images/misc_26_6816.ico">
+                        <img src="~/Content/images/money_delete_2216.ico">
                         }
                         else
                         {
-                    <img src="~/Content/images/kopeteavailable_4552.ico">
-                    <img src="~/Content/images/back_2436.ico">
+                            if (item.FromAccountId == ViewBag.ClientsCardId)
+                            {
+                        <img src="~/Content/images/kopeteavailable_4552.ico">
+                        <img src="~/Content/images/misc_26_6816.ico">
+                            }
+                            else
+                            {
+                        <img src="~/Content/images/kopeteavailable_4552.ico">
+                        <img src="~/Content/images/back_2436.ico">
+                            }
                         }
                     }
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+
+
+
+                @if (item.Amount > 0 && item.ToAccountId == ViewBag.ClientsCardId)
+                {
+                    <td id="positiveAmount" style="color: green">
+                        @Html.DisplayFor(modelItem => item.Amount)
+                        @if (item.ToAccountId == null || item.FromAccountId == null)
+                        {
+                            @item.ToAccount.Currency.CurrencyName
+                        }
+                        else
+                        {
+                            @item.FromAccount.Currency.CurrencyName
+                        }
+                    </td>
                 }
-            </td>
+                else
+                {
+                    <td id="negativeAmount" style="color: tomato">
+                        @Html.DisplayFor(modelItem => item.Amount)@item.FromAccount.Currency.CurrencyName
+                    </td>
+                }
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-
-            
-
-            @if (item.Amount > 0 && item.ToAccountId == ViewBag.ClientsCardId)
-            { 
-                <td id="positiveAmount" style="color: green">
-                    @Html.DisplayFor(modelItem => item.Amount)
-                    @if (item.ToAccountId == null || item.FromAccountId == null)
-                    {
-                        @item.ToAccount.Currency.CurrencyName
-                    }
-                    else
-                    {
-                        @item.FromAccount.Currency.CurrencyName
-                    }
+                <td>
+                    @Html.DisplayFor(modelItem => item.FromAccount.AccountNumber)
                 </td>
-            }
-            else
-            {
-                <td id="negativeAmount" style="color: tomato">
-                    @Html.DisplayFor(modelItem => item.Amount)@item.FromAccount.Currency.CurrencyName
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToAccount.AccountNumber)
                 </td>
-            }
+            </tr>
+        }
+    </table>
+    <br />
 
-            <td>
-                @Html.DisplayFor(modelItem => item.FromAccount.AccountNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ToAccount.AccountNumber)
-            </td>
-        </tr>
-    }
-</table>
-<br />
-
-<div style="width: 100%">
-    <div style="margin: 0 auto; width: 170px;">
-        <span style="padding-left: 30px">
-            @Resources.Resource.Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) @Resources.Resource.Of @Model.PageCount
-        </span>
-        @Html.PagedListPager(Model, page => Url.Action("AccountHistory", new { page, sort = ViewBag.CurrentSort }))
+    <div style="width: 100%">
+        <div style="margin: 0 auto; width: 170px;">
+            <span style="padding-left: 30px">
+                @Resources.Resource.Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) @Resources.Resource.Of @Model.PageCount
+            </span>
+            @Html.PagedListPager(Model, page => Url.Action("AccountHistory", new { page, sort = ViewBag.CurrentSort }))
+        </div>
     </div>
-</div>
+}
+else
+{
+    <h2>Your history is empty =(</h2>
+}
 

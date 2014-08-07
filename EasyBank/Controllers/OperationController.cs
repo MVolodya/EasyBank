@@ -15,12 +15,13 @@ using EasyBank.BAL;
 namespace EasyBank.Controllers
 {
     [Culture]
-    [Authorize(Roles="Administrator, Operator")]
+    [Authorize(Roles="Administrator, Operator, Client")]
     [InitializeSimpleMembership]
     public class OperationController : Controller
     {
         ConnectionContext db = new ConnectionContext();
         [HttpGet]
+        [Authorize(Roles = "Administrator, Operator")]
         public ActionResult AddMoney(int? id)
         {
 
@@ -44,6 +45,7 @@ namespace EasyBank.Controllers
             else return HttpNotFound();
         }
         [HttpPost]
+        [Authorize(Roles = "Administrator, Operator")]
         public ActionResult AddMoney(int? accountId, decimal? amount, int? clientId, string CurrencyName)
         {
             OperationManager om = new OperationManager();
@@ -57,6 +59,7 @@ namespace EasyBank.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator, Operator")]
         public ActionResult WidthdrawMoney(int? id)
         {
 
@@ -80,6 +83,7 @@ namespace EasyBank.Controllers
             else return HttpNotFound();
         }
         [HttpPost]
+        [Authorize(Roles = "Administrator, Operator")]
         public ActionResult WidthdrawMoney(int? accountId, decimal? amount, int? clientId, string CurrencyName)
         {
             OperationManager om = new OperationManager();
@@ -92,15 +96,17 @@ namespace EasyBank.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator, Operator, Client")]
         public ActionResult TransferMoney(int? id)
         {
-
             Account account = db.Accounts.FirstOrDefault(a => a.AccountId == id);
             if (account != null)
                 return View(account);
             else return HttpNotFound();
         }
+
         [HttpPost]
+        [Authorize(Roles = "Administrator, Operator, Client")]
         public ActionResult TransferMoney(int? fromAccountId, string accountNumber, decimal? amount, int? clientId)
         {
             OperationManager om = new OperationManager();
@@ -114,6 +120,7 @@ namespace EasyBank.Controllers
             return RedirectToAction("OperationError", "Error", new { errorCode = result, AccountId = fromAccountId });
         }
 
+        [Authorize(Roles = "Administrator, Operator")]
         public ActionResult TotalDepositedAmount()
         {
             var depositAccounts = (from da in db.Accounts
@@ -137,6 +144,7 @@ namespace EasyBank.Controllers
             return View(total);
         }
 
+        [Authorize(Roles = "Administrator, Operator")]
         public ActionResult TotalDepositInterests()
         {
             var depositInterests = (from di in db.Accounts
@@ -160,6 +168,7 @@ namespace EasyBank.Controllers
             return PartialView(total);
         }
 
+        [Authorize(Roles = "Administrator, Operator")]
         public ActionResult TotalCreditedAmount()
         {
             var creditAccounts = (from ca in db.Accounts
@@ -183,6 +192,7 @@ namespace EasyBank.Controllers
             return PartialView(total);
         }
 
+        [Authorize(Roles = "Administrator, Operator")]
         public ActionResult TotalCreditInterests()
         {
             var creditInterests = (from ci in db.Accounts
@@ -207,6 +217,7 @@ namespace EasyBank.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator, Operator")]
         public ActionResult ProfitCalc()
         {
             return View();
@@ -214,6 +225,7 @@ namespace EasyBank.Controllers
 
         // Начисление процентов на депозитные и кредитные счета
         [HttpPost]
+        [Authorize(Roles = "Administrator, Operator")]
         public ActionResult ProfitCalc(ProfitCalc monthsPassed)
         {
 
@@ -251,7 +263,9 @@ namespace EasyBank.Controllers
             
             return RedirectToAction("TotalDepositedAmount", "Operation");
         }
+
         // Вывод планированых процентов по депозитам
+        [Authorize(Roles = "Administrator, Operator")]
         public ActionResult TotalPlannedDepositInterests(List<VirtualAccount> total)
         {
             var currencies = (from cur in db.Currencies
@@ -274,6 +288,7 @@ namespace EasyBank.Controllers
 
         //Планирование начисления процентов на определенный срок
         [HttpGet]
+        [Authorize(Roles = "Administrator, Operator")]
         public ActionResult ProfitPlanningCalc()
         {
             return PartialView();
@@ -281,6 +296,7 @@ namespace EasyBank.Controllers
 
         //Планирование начисления процентов на определенный срок
         [HttpPost]
+        [Authorize(Roles = "Administrator, Operator")]
         public ActionResult ProfitPlanningCalc(ProfitCalc monthsPassed)
         {
             List<TotalAmountForCurrency> InterestList = new List<TotalAmountForCurrency>();
@@ -295,6 +311,7 @@ namespace EasyBank.Controllers
 
 
         //Метод начисления процентов на депозитные и кредитные счета
+        [Authorize(Roles = "Administrator, Operator")]
         private void InterestCalc (Account item,ProfitCalc monthsPassed )
         {
             DateTime newDate = item.LastInterestAdded.AddMonths(monthsPassed.Months);

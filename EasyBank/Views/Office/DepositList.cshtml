@@ -1,10 +1,11 @@
 ﻿@model List<EasyBank.Models.DepositCreditModel>
 
+
 <h2>@Html.Label(@Resources.Resource.BankProducts)</h2>
 <br/>
 @if (User.IsInRole("Administrator"))
 { 
-    @Html.ActionLink(@Resources.Resource.AddBankProduct, "AddDepositCredit", "Office")
+    @Html.ActionLink(@Resources.Resource.AddBankProduct, "AddDepositCredit", "Office",null, new{@id="add"})
 }
 <br/>
 <table>
@@ -36,7 +37,12 @@
                 @Html.DisplayFor(modelItem => item.InterestRate) %
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EarlyTermination)
+                @{
+                    if (!item.EarlyTermination)
+                    {
+                        <span>YES</span>
+                    }
+                }
             </td>
 
         </tr>

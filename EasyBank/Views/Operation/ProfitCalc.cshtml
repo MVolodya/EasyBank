@@ -1,4 +1,9 @@
 ﻿@model EasyBank.Models.ProfitCalc
+<h2>Profit Calculation</h2>
+<br/>
+<br/>
+&#9664 @Html.ActionLink("Back", "TotalDepositedAmount", null, new{@id="back"})
+
 @using (Html.BeginForm("ProfitCalc", "Operation", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <p>@Resources.Resource.CalculateMessage</p>

@@ -17,7 +17,7 @@
 
 <h2>@Html.Label(@Resources.Resource.AddBankProduct)</h2>
 <br />
-@Html.ActionLink(@Resources.Resource.Back, "DepositList", "Office")
+&#9664 @Html.ActionLink(@Resources.Resource.Back, "DepositList", "Office", null, new{id="back"})
 <br />
 <br />
 
@@ -33,12 +33,12 @@
             @Html.LabelFor(model => model.AccountType)
         </div>
         @{
-    List<SelectListItem> listType = new List<SelectListItem>();
-    var ListTypes = ViewBag.Types;
-    foreach (var item in ListTypes)
-    {
-        listType.Add(new SelectListItem() { Text = item.TypeName, Value = item.TypeId.ToString() });
-    }
+            List<SelectListItem> listType = new List<SelectListItem>();
+            var ListTypes = ViewBag.Types;
+            foreach (var item in ListTypes)
+            {
+                listType.Add(new SelectListItem() { Text = item.TypeName, Value = item.TypeId.ToString() });
+            }
         }
         @Html.DropDownListFor(model => model.AccountTypeId, listType)
 
@@ -77,10 +77,17 @@
 
         <div id="earlyTermination">
             <div class="editor-label">
-                @Html.LabelFor(model => model.EarlyTermination)
+                <table>
+                    <tr>
+                        <td>@Html.EditorFor(model => model.EarlyTermination)</td>
+                        <td>@Html.LabelFor(model => model.EarlyTermination)</td>
+                    </tr>
+                </table>
+                
+                
             </div>
             <div class="editor-field">
-                @Html.EditorFor(model => model.EarlyTermination)
+                
                 @Html.ValidationMessageFor(model => model.EarlyTermination)
             </div>
         </div>

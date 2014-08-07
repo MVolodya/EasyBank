@@ -173,6 +173,8 @@ namespace EasyBank
             if (acc.AccountStatus.StatusName == "Blocked") return ErrorCode.ReceivingAccountIsBlocked;
             if (acc.AccountStatus.StatusName == "Frozen") return ErrorCode.ReceivingAccountIsFrozen;
             if (acc.AccountStatus.StatusName == "Expired") return ErrorCode.ReceivingAccountIsExpired;
+            if (acc.AccountStatus.StatusName == "Closed") return ErrorCode.CantUseClosedAccount;
+
 
             Currency sourceCurrency = db.Currencies.FirstOrDefault(c => c.CurrencyName.ToLower() == sourceCurrencyName.ToLower());
             Currency targetCurrency = acc.Currency;

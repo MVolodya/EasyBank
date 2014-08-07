@@ -9,7 +9,7 @@
             @Resources.Resource.Duration,
         </th>
         <th>
-            @Resources.Resource.InterestRate, %
+            @Resources.Resource.InterestRate
         </th>
         <th>
             @Resources.Resource.EarlyTerminationCredit
@@ -29,7 +29,12 @@
                 @Html.DisplayFor(modelItem => item.InterestRate) %
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EarlyTermination)
+                @{
+                    if (!item.EarlyTermination)
+                    {
+                        <span>YES</span>
+                    }
+                }
             </td>
 
         </tr>

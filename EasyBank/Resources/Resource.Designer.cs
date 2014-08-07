@@ -538,7 +538,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Currency name.
+        ///   Ищет локализованную строку, похожую на Currency.
         /// </summary>
         public static string CurrencyName {
             get {
@@ -898,6 +898,96 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Welcome to Easy Bank!.
+        /// </summary>
+        public static string Message1 {
+            get {
+                return ResourceManager.GetString("Message1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Sincerely yours Bank administration..
+        /// </summary>
+        public static string Message10 {
+            get {
+                return ResourceManager.GetString("Message10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dear.
+        /// </summary>
+        public static string Message2 {
+            get {
+                return ResourceManager.GetString("Message2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Thank you for choosing our bank and becoming an Easy Bank client..
+        /// </summary>
+        public static string Message3 {
+            get {
+                return ResourceManager.GetString("Message3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Your personal page was created..
+        /// </summary>
+        public static string Message4 {
+            get {
+                return ResourceManager.GetString("Message4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на By using it you can manage your personal accounts..
+        /// </summary>
+        public static string Message5 {
+            get {
+                return ResourceManager.GetString("Message5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на In order to enter your personal page you need to input your email you wrote while filling the blank..
+        /// </summary>
+        public static string Message6 {
+            get {
+                return ResourceManager.GetString("Message6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Also you need to input a generated password you were sent in this message..
+        /// </summary>
+        public static string Message7 {
+            get {
+                return ResourceManager.GetString("Message7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на While entering your personal page for the first time we recommend you to change an automatically generated password by pressing on your login in the upper right page corner..
+        /// </summary>
+        public static string Message8 {
+            get {
+                return ResourceManager.GetString("Message8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Your generated password:.
+        /// </summary>
+        public static string Message9 {
+            get {
+                return ResourceManager.GetString("Message9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Name.
         /// </summary>
         public static string Name {
@@ -1024,6 +1114,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Password.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Pay in.
         /// </summary>
         public static string PayIn {
@@ -1078,11 +1177,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Purchase rate.
+        ///   Ищет локализованную строку, похожую на Purchase.
         /// </summary>
         public static string PurchaseRate {
             get {
                 return ResourceManager.GetString("PurchaseRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Purchase rate field is required.
+        /// </summary>
+        public static string PurchaseRateErrorMessage {
+            get {
+                return ResourceManager.GetString("PurchaseRateErrorMessage", resourceCulture);
             }
         }
         
@@ -1123,7 +1231,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Salling rate.
+        ///   Ищет локализованную строку, похожую на Sell.
         /// </summary>
         public static string SallingRate {
             get {
@@ -1245,6 +1353,15 @@ namespace Resources {
         public static string Template {
             get {
                 return ResourceManager.GetString("Template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на This field is required.
+        /// </summary>
+        public static string ThisFieldIsRequired {
+            get {
+                return ResourceManager.GetString("ThisFieldIsRequired", resourceCulture);
             }
         }
         
@@ -1371,6 +1488,15 @@ namespace Resources {
         public static string UploadPassportScan {
             get {
                 return ResourceManager.GetString("UploadPassportScan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Users e-mail.
+        /// </summary>
+        public static string UserName {
+            get {
+                return ResourceManager.GetString("UserName", resourceCulture);
             }
         }
         

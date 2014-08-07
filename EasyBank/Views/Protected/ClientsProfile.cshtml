@@ -94,11 +94,25 @@
     #account tr:hover {
         cursor: pointer;
     }
+
+    #back {
+        font-size: larger;
+        font-weight: bold;
+        background-color: rgb(182, 179, 179);
+        margin-top: 15px;
+        padding: 5px;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+
+    #back:hover {
+        background-color: lightblue;
+    }
 </style>
 
 <h2>@Html.Label(@Resources.Resource.ClientsProfileTitle)</h2>
 <br />
-@Html.ActionLink(@Resources.Resource.BackToList, "ClientsList", "Protected")
+&#9664 @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList", "Protected", new { @id = "back" })
 <br />
 <br />
 <div style="background-color: rgba(255,255,255, 0.5); float: left; padding-top: 14px; padding-left: 20px; padding-bottom: 30px; padding-right: 25px; border-radius: 10px;">
@@ -194,12 +208,12 @@
         @if (Model.Accounts.Count() != 0)
         {
             <tr>
-                <td>@Html.ActionLink(@Resources.Resource.AccNumb, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.AccountNumberSort })</td>
-                <td>@Html.ActionLink(@Resources.Resource.ExpDate, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.ExpirationDateSort })</td>
-                <td>@Html.ActionLink(@Resources.Resource.Amount, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.AmountSort })</td>
-                <td>@Html.ActionLink(@Resources.Resource.Currency, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.CurrencySort })</td>
-                <td>@Html.ActionLink(@Resources.Resource.Type, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.TypeSort })</td>
-                <td>@Html.ActionLink(@Resources.Resource.Status, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.StatusSort })</td>
+                <th>@Html.ActionLink(@Resources.Resource.AccNumb, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.AccountNumberSort })</th>
+                <th>@Html.ActionLink(@Resources.Resource.ExpDate, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.ExpirationDateSort })</th>
+                <th>@Html.ActionLink(@Resources.Resource.Amount, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.AmountSort })</th>
+                <th>@Html.ActionLink(@Resources.Resource.Currency, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.CurrencySort })</th>
+                <th>@Html.ActionLink(@Resources.Resource.Type, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.TypeSort })</th>
+                <th>@Html.ActionLink(@Resources.Resource.Status, "ClientsProfile", new { clientId = Model.ClientId, sort = ViewBag.StatusSort })</th>
             </tr>
         }
         else
@@ -222,13 +236,14 @@
                 </td>
                 <td>
                     <div class="display-field">
-                        @if(item.TypeId != 1)
-                            {
-                                @Html.DisplayFor(modelItem => item.AvailableAmount)
-                            }
-                        else{ 
+                        @if (item.TypeId != 1)
+                        {
+                            @Html.DisplayFor(modelItem => item.AvailableAmount)
+                        }
+                        else
+                        { 
                             @Html.DisplayFor(modelItem => item.Amount)
-                            }
+                        }
                     </div>
                 </td>
                 <td>
@@ -261,8 +276,23 @@
         
         }
     </table>
-    <a href="#" id="payInButton">@Resources.Resource.PayIn</a>
-    <a href="#" id="payOutButton">@Resources.Resource.PayOut</a>
-    <a href="#" id="transferButton">@Resources.Resource.TransMoney</a>
-    <a href="#" id="historyButton">@Resources.Resource.History</a>
+    <style>
+        .ButtonLink {
+            font-size: larger;
+            font-weight: bold;
+            background-color: rgb(182, 179, 179);
+            margin-top: 15px;
+            padding: 5px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+            .ButtonLink:hover {
+                background-color: lightblue;
+            }
+    </style>
+    <a href="#" id="payInButton" class="ButtonLink">@Resources.Resource.PayIn</a>
+    <a href="#" id="payOutButton" class="ButtonLink">@Resources.Resource.PayOut</a>
+    <a href="#" id="transferButton" class="ButtonLink">@Resources.Resource.TransMoney</a>
+    <a href="#" id="historyButton" class="ButtonLink">@Resources.Resource.History</a>
 </div>

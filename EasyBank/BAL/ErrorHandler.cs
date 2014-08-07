@@ -44,6 +44,9 @@ namespace EasyBank.BAL
         [Description("Can't transfer money to yourself")]
         CantTransferMoneyToYourself = 32,
 
+        [Description("Can't use closed account")]
+        CantUseClosedAccount = 33,
+
         [Description("Operators email == null")]
         NullOperatorsEmail = 10,
 

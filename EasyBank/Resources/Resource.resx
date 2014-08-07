@@ -562,13 +562,13 @@
     <value>Bank accounts</value>
   </data>
   <data name="CurrencyName" xml:space="preserve">
-    <value>Currency name</value>
+    <value>Currency</value>
   </data>
   <data name="PurchaseRate" xml:space="preserve">
-    <value>Purchase rate</value>
+    <value>Purchase</value>
   </data>
   <data name="SallingRate" xml:space="preserve">
-    <value>Selling rate</value>
+    <value>Sell</value>
   </data>
   <data name="AllowWebAccees" xml:space="preserve">
     <value>Allow web-accees</value>

@@ -1,4 +1,9 @@
 ﻿@model EasyBank.Models.ProfitCalc
+<style>
+    #Months {
+        width: 100px;
+    }
+</style>
 @using (Html.BeginForm("ProfitPlanningCalc", "Operation", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <p>@Resources.Resource.CalculateMessage</p>
@@ -6,10 +11,11 @@
     @Html.ValidationSummary(true)
     <div class="display-field">
         @Html.EditorFor(model => model.Months)
+        <input type="submit" value=@Resources.Resource.Calculate />
     </div>
 
-    <p>
-        <input type="submit" value=@Resources.Resource.Calculate />
-    </p>
+    
+        
+    
 }
 

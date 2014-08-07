@@ -30,6 +30,11 @@ namespace EasyBank.Models
         [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "NameFromCap")]
         public string Surname { get; set; }
 
+        public string FullName
+        {
+            get { return String.Format("{0} {1}", Surname, Name); }
+        }
+
         [Index("UniquePId", IsUnique = true)]
         [Display(Name = "PIdNum", ResourceType = typeof(Resources.Resource))]
         [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "PIdNumberRequired")]
@@ -50,7 +55,7 @@ namespace EasyBank.Models
         public string Email { get; set; }
 
         [Display(Name = "RegDate", ResourceType = typeof(Resources.Resource))]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime RegistrationDate { get; set; }
 

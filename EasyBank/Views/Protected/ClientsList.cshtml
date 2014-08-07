@@ -1,12 +1,29 @@
 ﻿@model PagedList.IPagedList<EasyBank.Models.Client>
 @using PagedList.Mvc;
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<style>
+     #addAccountButton {
+        font-size: larger;
+        font-weight: bold;
+        background-color: rgb(182, 179, 179);
+        margin-top: 15px;
+        padding: 5px;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+
+    #addAccountButton:hover {
+        background-color: lightblue;
+    }
+</style>
+
 @{
     ViewBag.Title = @Resources.Resource.Clients;
 }
 <h2>@Html.Label(@Resources.Resource.ClientsListTitle)</h2>
 <p>
-    @Html.ActionLink(@Resources.Resource.AddClient, "Register", "Account")
+    @Html.ActionLink(@Resources.Resource.AddClient, "Register", "Account", null, new{id="addAccountButton"})
 </p>
 
 @using (Html.BeginForm("ClientsList", "Protected", FormMethod.Get))
@@ -31,11 +48,7 @@ else
     <table>
         <tr>
             <th>
-
                 @Html.ActionLink(@Resources.Resource.Name, "ClientsList", new { sort = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })
-            </th>
-            <th>
-                @Html.ActionLink(@Resources.Resource.Surname, "ClientsList", new { sort = ViewBag.SurnameSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
                 @Html.ActionLink(@Resources.Resource.PIdNum, "ClientsList", new { sort = ViewBag.PIdNumberSort, currentFilter = ViewBag.CurrentFilter })
@@ -56,10 +69,7 @@ else
         {
             <tr>
                 <td>
-                    @Html.ActionLink(@Html.DisplayFor(modelItem => item.Name).ToString(), "ClientsProfile", new { clientId = item.ClientId })
-                </td>
-                <td>
-                    @Html.ActionLink(@Html.DisplayFor(modelItem => item.Surname).ToString(), "ClientsProfile", new { clientId = item.ClientId })
+                    @Html.ActionLink(@Html.DisplayFor(modelItem => item.FullName).ToString(), "ClientsProfile", new { clientId = item.ClientId })
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PIdNumber)
