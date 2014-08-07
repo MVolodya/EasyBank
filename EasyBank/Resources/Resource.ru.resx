@@ -576,4 +576,7 @@
   <data name="EditClient" xml:space="preserve">
     <value>Редактировать профиль клиента</value>
   </data>
+  <data name="EditCurrency" xml:space="preserve">
+    <value>Редактировать валюту</value>
+  </data>
 </root>
