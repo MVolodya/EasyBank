@@ -36,21 +36,20 @@ namespace EasyBank.BAL
 
             var creditAccountsT = (from creds in db.Accounts
                                    where creds.TypeId == 3
-                                   where creds.DepositCreditModel.EarlyTermination == true
                                    select creds).ToList();
             foreach (var item in creditAccountsT)
             {
                 InterestPlanningCalc(item, monthsPassed, total);
             }
 
-            var creditAccountsF = (from creds in db.Accounts
+           /* var creditAccountsF = (from creds in db.Accounts
                                    where creds.TypeId == 3
                                    where creds.DepositCreditModel.EarlyTermination == false
                                    select creds).ToList();
             foreach (var item in creditAccountsT)
             {
                 InterestPlanningCalc(item, monthsPassed, total);
-            }
+            } */
 
             var currencies = (from cur in db.Currencies
                               select cur).ToList();
@@ -93,14 +92,27 @@ namespace EasyBank.BAL
         {
             DateTime newDate = item.LastInterestAdded.AddMonths(monthsPassed.Months);
             TimeSpan timeSpan = newDate.Subtract(item.LastInterestAdded);
-            TimeSpan daysLeft = item.ExpirationDate.Subtract(item.LastInterestAdded);
+            TimeSpan daysLeft;
+            
+            if (item.TypeId == 3)
+            {
+                TimeSpan daysLeftForCredit = item.ExpirationDate.Subtract(DateTime.Now);
+                daysLeft = daysLeftForCredit;
+            }
+            else  
+            {
+                TimeSpan daysLeftForDeposit = item.ExpirationDate.Subtract(item.LastInterestAdded);
+                daysLeft = daysLeftForDeposit;
+            }
+
             TimeSpan zero = daysLeft - daysLeft;
+
             if (daysLeft > timeSpan)
             {
                 decimal timeSpanDec = (decimal)timeSpan.TotalDays;
                 decimal interest = item.DepositCreditModel.InterestRate;
-                decimal interestForPeriod = interest / 365 * timeSpanDec / 100;
-                decimal amountForPeriod = item.Amount * interestForPeriod;
+                decimal interestForPeriod = Math.Round(interest / 365 * timeSpanDec / 100,2);
+                decimal amountForPeriod = Math.Round(item.Amount * interestForPeriod,2);
 
                 total.Add(new VirtualAccount() { CurrencyName = item.Currency.CurrencyName, Interest = amountForPeriod, TypeId = item.TypeId });
 
@@ -110,8 +122,8 @@ namespace EasyBank.BAL
             {
                 decimal daysLeftDec = (decimal)daysLeft.TotalDays;
                 decimal interest = item.DepositCreditModel.InterestRate;
-                decimal interestForPeriod = interest / 365 * daysLeftDec / 100;
-                decimal amountForPeriod = item.Amount * interestForPeriod;
+                decimal interestForPeriod = Math.Round(interest / 365 * daysLeftDec / 100,2);
+                decimal amountForPeriod = Math.Round(item.Amount * interestForPeriod,2);
 
                 total.Add(new VirtualAccount() { CurrencyName = item.Currency.CurrencyName, Interest = amountForPeriod, TypeId = item.TypeId });
 

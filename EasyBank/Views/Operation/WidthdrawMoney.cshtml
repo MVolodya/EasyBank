@@ -25,74 +25,106 @@
 @Html.ActionLink(@Resources.Resource.BackToProfile, "ClientsProfile", "Protected", new { clientId = Model.ClientId }, null)
 <br />
 <br />
+
 <fieldset>
     <legend>Account</legend>
+    <table>
+        <tr>
+            <td>
+                <div class="display-label">
+                    <b>@Html.DisplayNameFor(model => model.AccountNumber)</b>
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.AccountNumber)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    <b>@Html.DisplayNameFor(model => model.ExpirationDate)</b>
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.ExpirationDate)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    <b>@Html.DisplayNameFor(model => model.Amount)</b>
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Amount)
+                </div>
+            </td>
+        <tr></tr>
+        <td>
+            <div class="display-label">
+                <b>@Html.DisplayNameFor(model => model.AvailableAmount)</b>
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.AvailableAmount)
+            </div>
+        </td>
+        <tr></tr>
+        <td>
+            <div class="display-label">
+                <b>@Html.DisplayNameFor(model => model.ClientId)</b>
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Client.Name)
+            </div>
+        </td>
+        <tr></tr>
+        <td>
+            <div class="display-label">
+                <b>@Html.DisplayNameFor(model => model.TypeId)</b>
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.AccountType.TypeName)
+            </div>
+        </td>
+        <tr></tr>
+        <td>
+            <div class="display-label">
+                <b>@Html.DisplayNameFor(model => model.CurrencyId)</b>
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Currency.CurrencyName)
+            </div>
+        </td>
+        </tr>
+        <tr>
 
-    <div class="display-label">
-        <b>@Html.DisplayNameFor(model => model.AccountNumber)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.AccountNumber)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayNameFor(model => model.ExpirationDate)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ExpirationDate)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayNameFor(model => model.Amount)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Amount)
-    </div>
-
-    <div class="display-label">
-       <b>@Html.DisplayNameFor(model => model.AvailableAmount)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.AvailableAmount)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayNameFor(model => model.ClientId)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Client.Name)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayNameFor(model => model.TypeId)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.AccountType.TypeName)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayNameFor(model => model.CurrencyId)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Currency.CurrencyName)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayNameFor(model => model.StatusId)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.AccountStatus.StatusName)
-    </div>
-    @if (Model.AccountType.TypeId != 1)
-    {
-        <div class="display-label">
-        <b>@Html.DisplayNameFor(model => model.DepositCreditModel.EarlyTermination)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.DepositCreditModel.EarlyTermination)
-    </div>
-    }
+            <td>
+                <div class="display-label">
+                    <b>@Html.DisplayNameFor(model => model.StatusId)</b>
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.AccountStatus.StatusName)
+                </div>
+            </td>
+        </tr>
+    </table>
 </fieldset>
+<br />
 
 <h4><b>@Resources.Resource.WithdrawFunds</b></h4>
 @if (Model.AccountType.TypeName != "Credit")
