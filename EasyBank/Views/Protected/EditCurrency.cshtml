@@ -1,0 +1,55 @@
+﻿@model EasyBank.Models.Currency
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<h2>@Html.Label(@Resources.Resource.EditCurrency)</h2>
+<br />
+@Html.ActionLink(@Resources.Resource.Back, "CurrencyList")
+<br />
+<br />
+@using (Html.BeginForm("EditCurrency", "Protected", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+
+    <fieldset>
+        <legend>@Resources.Resource.Currency</legend>
+
+        @ViewBag.Message
+
+        @Html.HiddenFor(model => model.CurrencyId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CurrencyName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CurrencyName)
+            @Html.ValidationMessageFor(model => model.CurrencyName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PurchaseRate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PurchaseRate)
+            @Html.ValidationMessageFor(model => model.PurchaseRate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SaleRate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SaleRate)
+            @Html.ValidationMessageFor(model => model.SaleRate)
+        </div>
+
+        <p>
+            <input type="submit" value="@Resources.Resource.Save" />
+        </p>
+    </fieldset>
+}
+

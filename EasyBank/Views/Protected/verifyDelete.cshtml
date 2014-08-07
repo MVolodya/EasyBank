@@ -4,7 +4,10 @@
     ViewBag.Title = @Resources.Resource.CurrencyDelete;
 }
 
-<h2>CurrDelete</h2>
+<h2>@Html.Label(@Resources.Resource.CurrencyDelete)</h2>
+<br />
+@Html.ActionLink(@Resources.Resource.BackToList, "CurrencyList")
+<br /><br />
 
 <h3>@Resources.Resource.AskToDeleteCurrency</h3>
 <fieldset>
@@ -22,6 +25,5 @@
     <p>
         @Html.Hidden("id", Model.CurrencyId)
         <input type="submit" value=@Resources.Resource.Delete />
-        @Html.ActionLink(@Resources.Resource.BackToList, "CurrencyList")
     </p>
 }

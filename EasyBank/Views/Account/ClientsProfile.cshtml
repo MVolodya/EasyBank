@@ -151,12 +151,12 @@
         @if (Model.Accounts.Count() != 0)
         {
             <tr>
-                <th>@Html.Label(@Resources.Resource.AccNumb) </th>
-                <th>@Html.Label(@Resources.Resource.ExpDate) </th>
-                <th>@Html.Label(@Resources.Resource.Amount)</th>
-                <th>@Html.Label(@Resources.Resource.Currency)</th>
-                <th>@Html.Label(@Resources.Resource.Type)</th>
-                <th>@Html.Label(@Resources.Resource.Status)</th>
+                <td>@Html.ActionLink(@Resources.Resource.AccNumb, "ClientsProfile", new { id = Model.ClientId, sort = ViewBag.AccountNumberSort })</td>
+                <td>@Html.ActionLink(@Resources.Resource.ExpDate, "ClientsProfile", new { id = Model.ClientId, sort = ViewBag.ExpirationDateSort })</td>
+                <td>@Html.ActionLink(@Resources.Resource.Amount, "ClientsProfile", new { id = Model.ClientId, sort = ViewBag.AmountSort })</td>
+                <td>@Html.ActionLink(@Resources.Resource.Currency, "ClientsProfile", new { id = Model.ClientId, sort = ViewBag.CurrencySort })</td>
+                <td>@Html.ActionLink(@Resources.Resource.Type, "ClientsProfile", new { id = Model.ClientId, sort = ViewBag.TypeSort })</td>
+                <td>@Html.ActionLink(@Resources.Resource.Status, "ClientsProfile", new { id = Model.ClientId, sort = ViewBag.StatusSort })</td>
             </tr>
         }
         else
