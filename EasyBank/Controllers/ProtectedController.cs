@@ -567,11 +567,12 @@ namespace EasyBank.Controllers
                 var creditModel = (from credit in db.DepositCreditModels
                                    where credit.DepositCreditModelID == account.DepositCreditModelID
                                    select credit).FirstOrDefault();
-                account.Interest = (creditModel.Duration / 12 * creditModel.InterestRate / 100) * account.Amount;
+                account.Interest = Math.Round(((decimal)creditModel.Duration / 12 * creditModel.InterestRate / 100) * account.Amount,2);
                 account.AvailableAmount = account.Amount + account.Interest;
-                
+                account.LastInterestAdded = DateTime.Now.AddMonths(creditModel.Duration);
                 bankAccount.Amount -= account.Amount;
                 bankAccount.Amount += account.Interest;
+
             }
             else if (account.TypeId !=3)
             {
@@ -588,6 +589,7 @@ namespace EasyBank.Controllers
             if (ModelState.IsValid)
             {
                 db.Accounts.Add(account);
+                db.Entry(bankAccount).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("ClientsProfile", new { clientId = account.ClientId });
             }

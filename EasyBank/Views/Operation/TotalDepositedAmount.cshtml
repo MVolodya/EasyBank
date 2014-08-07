@@ -1,10 +1,11 @@
 ﻿@model List<EasyBank.Models.TotalAmountForCurrency>
 
+<br />
 <h2>@Html.Label(@Resources.Resource.FinancialReports)</h2>
 <br />
-@Html.ActionLink(@Resources.Resource.BankAccounts, "BankAccounts", "Office")
 
-<br/>
+@Html.Action("BankAccounts", "Office")
+
 <h3>@Resources.Resource.TotalDepositedAmount</h3>
 <table>
     <tr>
@@ -31,6 +32,6 @@
 @*@Html.Action("TotalDepositInterests")
 @Html.Action("TotalCreditInterests")*@
 @Html.Action("ProfitPlanningCalc")
-@Html.Action("ProfitCalc")
+@Html.ActionLink("Interest Charge", "ProfitCalc")
 
 

@@ -24,7 +24,7 @@ namespace EasyBank.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ExpirationDate { get; set; }
 
-        [Range(0, 100000.00)]
+        [Range(0, 1000000.00)]
         [Display(Name = "Amount", ResourceType = typeof(Resources.Resource))]
         [RegularExpression(@"^\d+((.|,)\d{0,2})?$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "DecimalFormat")]
         public decimal Amount { get; set; }
