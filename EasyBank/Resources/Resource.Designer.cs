@@ -898,6 +898,96 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Welcome to Easy Bank!.
+        /// </summary>
+        public static string Message1 {
+            get {
+                return ResourceManager.GetString("Message1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sincerely yours Bank administration..
+        /// </summary>
+        public static string Message10 {
+            get {
+                return ResourceManager.GetString("Message10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dear.
+        /// </summary>
+        public static string Message2 {
+            get {
+                return ResourceManager.GetString("Message2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you for choosing our bank and becoming an Easy Bank client..
+        /// </summary>
+        public static string Message3 {
+            get {
+                return ResourceManager.GetString("Message3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your personal page was created..
+        /// </summary>
+        public static string Message4 {
+            get {
+                return ResourceManager.GetString("Message4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By using it you can manage your personal accounts..
+        /// </summary>
+        public static string Message5 {
+            get {
+                return ResourceManager.GetString("Message5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In order to enter your personal page you need to input your email you wrote while filling the blank..
+        /// </summary>
+        public static string Message6 {
+            get {
+                return ResourceManager.GetString("Message6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also you need to input a generated password you were sent in this message..
+        /// </summary>
+        public static string Message7 {
+            get {
+                return ResourceManager.GetString("Message7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to While entering your personal page for the first time we recommend you to change an automatically generated password by pressing on your login in the upper right page corner..
+        /// </summary>
+        public static string Message8 {
+            get {
+                return ResourceManager.GetString("Message8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your generated password:.
+        /// </summary>
+        public static string Message9 {
+            get {
+                return ResourceManager.GetString("Message9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
@@ -1024,6 +1114,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pay in.
         /// </summary>
         public static string PayIn {
@@ -1087,6 +1186,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Purchase rate field is required.
+        /// </summary>
+        public static string PurchaseRateErrorMessage {
+            get {
+                return ResourceManager.GetString("PurchaseRateErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recipient.
         /// </summary>
         public static string Recipient {
@@ -1123,7 +1231,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Salling rate.
+        ///   Looks up a localized string similar to Selling rate.
         /// </summary>
         public static string SallingRate {
             get {
@@ -1245,6 +1353,15 @@ namespace Resources {
         public static string Template {
             get {
                 return ResourceManager.GetString("Template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field is required.
+        /// </summary>
+        public static string ThisFieldIsRequired {
+            get {
+                return ResourceManager.GetString("ThisFieldIsRequired", resourceCulture);
             }
         }
         
@@ -1371,6 +1488,15 @@ namespace Resources {
         public static string UploadPassportScan {
             get {
                 return ResourceManager.GetString("UploadPassportScan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users e-mail.
+        /// </summary>
+        public static string UserName {
+            get {
+                return ResourceManager.GetString("UserName", resourceCulture);
             }
         }
         
