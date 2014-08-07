@@ -156,6 +156,7 @@ namespace EasyBank
             Operator oper = db.Operators.FirstOrDefault(o => o.Email == operatorEmail);
             Account acc = db.Accounts.FirstOrDefault(a => a.AccountId == toAccountId);
 
+
             if (oper == null) return 21;
             if (acc == null) return 22;
 
@@ -165,6 +166,7 @@ namespace EasyBank
 
             Currency sourceCurrency = db.Currencies.FirstOrDefault(c => c.CurrencyName.ToLower() == sourceCurrencyName.ToLower());
             Currency targetCurrency = acc.Currency;
+            BankAccount bankAcc = db.BankAccounts.FirstOrDefault(b => b.CurrencyName == targetCurrency.CurrencyName);
 
             if (sourceCurrency == null) return 23;
             if (targetCurrency == null) return 25;
@@ -182,6 +184,7 @@ namespace EasyBank
                         PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount);
                         acc.Amount += convertedAmount; //add on main acc
                         acc.AvailableAmount += convertedAmount; // add on available acc
+                        bankAcc.Amount += convertedAmount; // add on bank acc
 
                         dataChanged = true;
                     }
@@ -193,6 +196,7 @@ namespace EasyBank
                         PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount);
                         acc.Amount += (decimal)convertedAmount;
                         acc.AvailableAmount += (decimal)convertedAmount;
+                        bankAcc.Amount += convertedAmount;
 
                         dataChanged = true;
                     }
@@ -203,6 +207,8 @@ namespace EasyBank
 
                         PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount);
                         acc.Amount -= (decimal)convertedAmount;
+                        bankAcc.Amount += convertedAmount;
+
                         dataChanged = true;
                     }
                     break;
@@ -229,6 +235,7 @@ namespace EasyBank
 
             Operator oper = db.Operators.FirstOrDefault(o => o.Email == operatorEmail);
             Account acc = db.Accounts.FirstOrDefault(a => a.AccountId == fromAccountId);
+            
 
             if (oper == null) return 21;
             if (acc == null) return 22;
@@ -239,6 +246,8 @@ namespace EasyBank
 
             Currency sourceCurrency = acc.Currency;
             Currency targetCurrency = db.Currencies.FirstOrDefault(c => c.CurrencyName.ToLower() == targetCurrencyName.ToLower());
+            BankAccount bankAcc = db.BankAccounts.FirstOrDefault(b => b.CurrencyName == sourceCurrency.CurrencyName); // Defining bank account
+
 
             if (sourceCurrency == null) return 26;
             if (targetCurrency == null) return 24;
@@ -272,6 +281,7 @@ namespace EasyBank
                         PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
                         acc.AvailableAmount -= (decimal)amountThatHasToBeWithDrawnFromClient;
                         acc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient;
+                        bankAcc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient; // снимаем с счета банка
                         dataChanged = true;
                     }
                     break;
@@ -285,8 +295,9 @@ namespace EasyBank
                                 else
                                 {
                                     PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
-                                    acc.Amount -= (decimal)amount;
-                                    acc.AvailableAmount -= (decimal)amount;
+                                    acc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient;
+                                    acc.AvailableAmount -= (decimal)amountThatHasToBeWithDrawnFromClient;
+                                    bankAcc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient; //снимаем со счета банка
                                     dataChanged = true;
                                 }
                             }
@@ -298,7 +309,8 @@ namespace EasyBank
                                     PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
                                     //acc.Amount -= (decimal)amount;
                                     acc.Amount = 0;
-                                    acc.AvailableAmount -= (decimal)amount;
+                                    acc.AvailableAmount -= (decimal)amountThatHasToBeWithDrawnFromClient;
+                                    bankAcc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient; //снимаем со счета банка
                                     dataChanged = true;
                                 }
                             }
@@ -306,8 +318,9 @@ namespace EasyBank
                         else
                         {
                             PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
-                            acc.Amount -= (decimal)amount;
-                            acc.AvailableAmount -= (decimal)amount;
+                            acc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient;
+                            acc.AvailableAmount -= (decimal)amountThatHasToBeWithDrawnFromClient;
+                            bankAcc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient; //снимаем со счета банка
                             dataChanged = true;
                         }
                     }
@@ -321,6 +334,7 @@ namespace EasyBank
             if (dataChanged)
             {
                 db.Entry(acc).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(bankAcc).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 HistoryManager.AddWidthdrawOperation(db, (decimal)amountThatHasToBeWithDrawnFromClient, (int)fromAccountId, (int)oper.OperatorID);
                 db.SaveChanges();
