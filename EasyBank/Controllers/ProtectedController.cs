@@ -191,19 +191,23 @@ namespace EasyBank.Controllers
 
         //link to:
         //add account
+        [Authorize(Roles = "Operator, Administrator, Client")]
         public ActionResult ClientsProfile(int? clientId)
         {
             var client = db.Clients.FirstOrDefault(c => c.ClientId == clientId);
             return View(client);
         }
 
+
         [HttpGet]
+        [Authorize(Roles = "Operator, Administrator")]
         public ActionResult AddClient()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Operator, Administrator")]
         public ActionResult AddClient(Client client, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
@@ -244,6 +248,7 @@ namespace EasyBank.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Operator, Administrator")]
         public ActionResult EditClient(int? id)
         {
             Client client = null;
@@ -261,6 +266,7 @@ namespace EasyBank.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Operator, Administrator")]
         public ActionResult EditClient(Client client)
         {
             if (ModelState.IsValid)
@@ -300,7 +306,7 @@ namespace EasyBank.Controllers
             }
         }
 
-
+        [Authorize(Roles = "Operator, Administrator")]
         public ActionResult AddPhoto(int? id)
         {
             Client client = null;
@@ -315,8 +321,9 @@ namespace EasyBank.Controllers
                 ViewBag.Message = "No client with this Id";
                 return RedirectToAction("ClientsList");
             }
-
         }
+
+        [Authorize(Roles = "Operator, Administrator")]
         public ActionResult Capture(int? id)
         {
             var stream = Request.InputStream;
@@ -391,6 +398,7 @@ namespace EasyBank.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Operator, Administrator")]
         public ActionResult AddDepositAccount(int? clientId)
         {
             var ListCurrency = db.Currencies.ToList();
@@ -409,6 +417,7 @@ namespace EasyBank.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Operator, Administrator")]
         public ActionResult AddCreditAccount(int? clientId)
         {
             var ListCurrency = db.Currencies.ToList();
@@ -427,6 +436,7 @@ namespace EasyBank.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Operator, Administrator")]
         public ActionResult AddAccount(int? clientId)
         {
             var ListTypes = db.AccountTypes.ToList();
@@ -451,6 +461,7 @@ namespace EasyBank.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Operator, Administrator")]
         public ActionResult AddAccount(Account account)
         {
             if (account.Amount == 0) account.Amount = 0;
@@ -479,6 +490,7 @@ namespace EasyBank.Controllers
             }
         }
 
+        [Authorize(Roles = "Operator, Administrator")]
         public ActionResult AddAccountPartial(int? clientId)
         {
             var ListTypes = db.AccountTypes.ToList();
@@ -672,19 +684,19 @@ namespace EasyBank.Controllers
             return false;
         }
 
+        [Authorize(Roles = "Client")]
         public ActionResult Freeze(int? id, int? clientId)
         {
             var clientAccount = (from accounts in db.Accounts
                                  where accounts.AccountId == id
                                  select accounts).Single();
-            var Client = (from clients in db.Clients
-                          where clients.ClientId == clientId
-                          select clients).Single();
             clientAccount.AccountStatus = db.AccountStatuses.FirstOrDefault(a => a.StatusName == "Frozen");
             db.Entry(clientAccount).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("ClientsProfile", Client);
+            return RedirectToAction("ClientsProfile", clientAccount.Client);
         }
+
+        [Authorize(Roles = "Operator, Administrator")]
         public ActionResult Block(int? id, int? clientId)
         {
             var clientAccount = (from accounts in db.Accounts
@@ -698,6 +710,8 @@ namespace EasyBank.Controllers
             db.SaveChanges();
             return RedirectToAction("ClientsProfile", Client);
         }
+
+        [Authorize(Roles = "Operator, Administrator")]
         public ActionResult SetToNormal(int? id, int? clientId)
         {
             var clientAccount = (from accounts in db.Accounts

@@ -97,12 +97,14 @@
     @Html.HiddenFor(model => model.ClientId)
     @Html.HiddenFor(model => model.AccountId)
     @Html.EditorFor(model => model.Amount)
+
+    List<SelectListItem> itemList = ViewBag.itemList;
+    @Html.DropDownList("CurrencyName", itemList)
+    
     @Html.ValidationMessageFor(model => model.Amount)
 
     
-    List<SelectListItem> itemList = ViewBag.itemList;
     
-    @Html.DropDownList("CurrencyName", itemList)
 
     <br />
     <input type="submit" value="@Resources.Resource.Submit" onclick="return confirm('@Resources.Resource.AskToAddMoney') ? true : false;"/>

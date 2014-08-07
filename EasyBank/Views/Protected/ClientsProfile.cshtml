@@ -1,4 +1,5 @@
-﻿@model EasyBank.Models.Client
+﻿@using System.Web.Razor.Parser.SyntaxTree
+@model EasyBank.Models.Client
 
 @{
     ViewBag.Title = @Resources.Resource.ClientsProfile;
@@ -236,9 +237,15 @@
                     </div>
                 </td>
                 <td>
-                    @Html.ActionLink(@Resources.Resource.Freeze, "Freeze", new { id = item.AccountId, clientId = Model.ClientId }) |
-                    @Html.ActionLink(@Resources.Resource.Block, "Block", new { id = item.AccountId, clientId = Model.ClientId }) |
-                    @Html.ActionLink(@Resources.Resource.SetToNormal, "SetToNormal", new { id = item.AccountId, clientId = Model.ClientId })
+                    @if (User.IsInRole("Client"))
+                    {
+                        @Html.ActionLink(@Resources.Resource.Freeze, "Freeze", new {id = item.AccountId, clientId = Model.ClientId}); <span>|</span>
+                    }
+                    else
+                    {
+                        @Html.ActionLink(@Resources.Resource.Block, "Block", new {id = item.AccountId, clientId = Model.ClientId}); <span>|</span>
+                        @Html.ActionLink(@Resources.Resource.SetToNormal, "SetToNormal", new {id = item.AccountId, clientId = Model.ClientId});
+                    }
                 </td>
             </tr>
         

@@ -1,4 +1,7 @@
-﻿using EasyBank.DAL;
+﻿using System.ComponentModel;
+using System.Reflection;
+using EasyBank.BAL;
+using EasyBank.DAL;
 using EasyBank.Models;
 using System;
 using System.Collections.Generic;
@@ -12,13 +15,11 @@ namespace EasyBank
     {
         private HistoryManager history = new HistoryManager();
 
-
-
         private const int Ok = 0;
 
         //1 - too small amount (min 5 for TA)
         //2 - too small amount (min 100 for DA)
-        //3 - negative operation amount
+        //3 - negative or zero operation amount
         //--------3 - too small amount (10% of credit for CA) //not developed
         //4 - account is Blocked or Frozen or Expired
         //5 - not enough money on account
@@ -53,7 +54,6 @@ namespace EasyBank
         //51 - No bank sending account with specified name
         //55 - Not enough money on sending bank account
 
-
         //99 - uncatched error
 
         private decimal GetConvertedAmount(ConnectionContext db, decimal amount, Currency sourceCurrency, Currency targetCurrency)
@@ -82,11 +82,11 @@ namespace EasyBank
         /// <param name="amount"></param>
         /// <param name="convertedAmount"></param>
         /// <returns></returns>
-        private int PerformInsideBankMoneyTransfer(ConnectionContext db, Currency sourceCurrency, Currency targetCurrency, decimal amount, ref decimal convertedAmount, decimal? amountThatHasToBeWithdrawn = null)
+        private ErrorCode PerformInsideBankMoneyTransfer(ConnectionContext db, Currency sourceCurrency, Currency targetCurrency, decimal amount, ref decimal convertedAmount, decimal? amountThatHasToBeWithdrawn = null)
         {
             if (sourceCurrency == targetCurrency)
             {
-                return 0;
+                return ErrorCode.Ok;
             }
 
             BankAccount receivingBankAccount = null;
@@ -96,11 +96,11 @@ namespace EasyBank
             sendingBankAccount = db.BankAccounts.FirstOrDefault(a => a.CurrencyName == targetCurrency.CurrencyName);
             if (receivingBankAccount == null)
             {
-                return 50;
+                return ErrorCode.NoBankReceivingAccountWithSpecifiedName;
             }
             if (sendingBankAccount == null)
             {
-                return 51;
+                return ErrorCode.NoBankSendingAccountWithSpecifiedName;
             }
 
             if (amountThatHasToBeWithdrawn != null)
@@ -108,7 +108,7 @@ namespace EasyBank
                 amount = (decimal)amountThatHasToBeWithdrawn;
             }
 
-            if (sendingBankAccount.Amount - convertedAmount < 0) return 55;
+            if (sendingBankAccount.Amount - convertedAmount < 0) return ErrorCode.NotEnoughMoneyOnSendingBankAccount;
 
             if (sourceCurrency.CurrencyName != "UAH" && targetCurrency.CurrencyName != "UAH")
             {
@@ -136,38 +136,48 @@ namespace EasyBank
                 db.SaveChanges();
             }
 
-            return 0;
+            return ErrorCode.Ok;
         }
 
-        public int DepositMoney(string operatorEmail, int? toAccountId, decimal? amount, string sourceCurrencyName)
+        public ErrorCode DepositMoney(string operatorEmail, int? toAccountId, decimal? amount, string sourceCurrencyName)
         {
             ConnectionContext db = new ConnectionContext();
 
-            if (operatorEmail == null) return 10;
+            if (operatorEmail == null) return ErrorCode.NullOperatorsEmail;
             /*{
                 throw new ArgumentException("Parameter required", "operatorEmail");
             }*/
-            if (toAccountId == null) return 11;
-            if (!amount.HasValue) return 12;
-            if (sourceCurrencyName == null) return 13;
+            if (toAccountId == null)
+            {
+                return ErrorCode.NullAccountId;
+            }
+            if (!amount.HasValue)
+            {
+                return ErrorCode.NullAmount;
+            }
+            if (sourceCurrencyName == null)
+            {
+                return ErrorCode.InvalidSourceCurrency;
+            }
 
-            if (amount <= 0) return 3;
+            if (amount <= 0) 
+                return ErrorCode.NegativeOrZeroOperationAmount;
 
             Operator oper = db.Operators.FirstOrDefault(o => o.Email == operatorEmail);
             Account acc = db.Accounts.FirstOrDefault(a => a.AccountId == toAccountId);
 
-            if (oper == null) return 21;
-            if (acc == null) return 22;
+            if (oper == null) return ErrorCode.OperatorNotFoundInDb;
+            if (acc == null) return ErrorCode.AccountNotFoundInDb;
 
-            if (acc.AccountStatus.StatusName == "Blocked") return 44;
-            if (acc.AccountStatus.StatusName == "Frozen") return 45;
-            if (acc.AccountStatus.StatusName == "Expired") return 46;
+            if (acc.AccountStatus.StatusName == "Blocked") return ErrorCode.ReceivingAccountIsBlocked;
+            if (acc.AccountStatus.StatusName == "Frozen") return ErrorCode.ReceivingAccountIsFrozen;
+            if (acc.AccountStatus.StatusName == "Expired") return ErrorCode.ReceivingAccountIsExpired;
 
             Currency sourceCurrency = db.Currencies.FirstOrDefault(c => c.CurrencyName.ToLower() == sourceCurrencyName.ToLower());
             Currency targetCurrency = acc.Currency;
 
-            if (sourceCurrency == null) return 23;
-            if (targetCurrency == null) return 25;
+            if (sourceCurrency == null) return ErrorCode.SourceCurrencyNotFoundInDb;
+            if (targetCurrency == null) return ErrorCode.TargetCurrencyNotFoundInDb;
 
             decimal convertedAmount = GetConvertedAmount(db, amount.Value, sourceCurrency, targetCurrency);
 
@@ -177,7 +187,7 @@ namespace EasyBank
             {
                 case "Normal"://transfer account
                     {
-                        if (amount < 5) return 1;
+                        if (amount < 5) return ErrorCode.TooSmallAmountForTA;
 
                         PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount);
                         acc.Amount += convertedAmount; //add on main acc
@@ -188,7 +198,7 @@ namespace EasyBank
                     break;
                 case "Deposit":
                     {
-                        if (amount < 100) return 2;
+                        if (amount < 100) return ErrorCode.TooSmallAmountForDA;
 
                         PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount);
                         acc.Amount += (decimal)convertedAmount;
@@ -199,7 +209,7 @@ namespace EasyBank
                     break;
                 case "Credit":
                     {
-                        if (acc.Amount - convertedAmount < 0) return 7;
+                        if (acc.Amount - convertedAmount < 0) return ErrorCode.AddingThisAmountWillMakeCredAccNegative;
 
                         PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount);
                         acc.Amount -= (decimal)convertedAmount;
@@ -212,36 +222,36 @@ namespace EasyBank
                 db.Entry(acc).State = System.Data.Entity.EntityState.Modified;
                 HistoryManager.AddDepositOperation(db, (decimal)amount, (int)toAccountId, (int)oper.OperatorID);
                 db.SaveChanges();
-                return 0;
+                return ErrorCode.Ok;
             }
-            return 99;
+            return ErrorCode.UncatchedError;
         }
 
-        public int WithdrawMoney(string operatorEmail, int? fromAccountId, decimal? amount, string targetCurrencyName)
+        public ErrorCode WithdrawMoney(string operatorEmail, int? fromAccountId, decimal? amount, string targetCurrencyName)
         {
             ConnectionContext db = new ConnectionContext();
 
-            if (operatorEmail == null) return 10;
-            if (fromAccountId == null) return 11;
-            if (amount == null) return 12;
+            if (operatorEmail == null) return ErrorCode.NullOperatorsEmail;
+            if (fromAccountId == null) return ErrorCode.NullAccountId;
+            if (amount == null) return ErrorCode.NullAmount;
 
-            if (amount <= 0) return 3;
+            if (amount <= 0) return ErrorCode.NegativeOrZeroOperationAmount;
 
             Operator oper = db.Operators.FirstOrDefault(o => o.Email == operatorEmail);
             Account acc = db.Accounts.FirstOrDefault(a => a.AccountId == fromAccountId);
 
-            if (oper == null) return 21;
-            if (acc == null) return 22;
+            if (oper == null) return ErrorCode.OperatorNotFoundInDb;
+            if (acc == null) return ErrorCode.AccountNotFoundInDb;
 
-            if (acc.AccountStatus.StatusName == "Blocked") return 41;
-            if (acc.AccountStatus.StatusName == "Frozen") return 42;
-            if (acc.AccountStatus.StatusName == "Expired") return 43;
+            if (acc.AccountStatus.StatusName == "Blocked") return ErrorCode.SendingAccountIsBlocked;
+            if (acc.AccountStatus.StatusName == "Frozen") return ErrorCode.SendingAccountIsFrozen;
+            if (acc.AccountStatus.StatusName == "Expired") return ErrorCode.SendingAccountIsExpired;
 
             Currency sourceCurrency = acc.Currency;
             Currency targetCurrency = db.Currencies.FirstOrDefault(c => c.CurrencyName.ToLower() == targetCurrencyName.ToLower());
 
-            if (sourceCurrency == null) return 26;
-            if (targetCurrency == null) return 24;
+            if (sourceCurrency == null) return ErrorCode.SourceCurrencyNotFoundInDb;
+            if (targetCurrency == null) return ErrorCode.TargetCurrencyNotFoundInDb;
 
             decimal convertedAmount = (decimal)amount;
             decimal? amountThatHasToBeWithDrawnFromClient = null;
@@ -252,14 +262,14 @@ namespace EasyBank
                 if (sourceCurrency.CurrencyName == "UAH")
                     amountThatHasToBeWithDrawnFromClient = Math.Round((decimal)amount * targetCurrency.SaleRate, 2);
                 if (targetCurrency.CurrencyName == "UAH")
-                    amountThatHasToBeWithDrawnFromClient = Math.Round((decimal)amount/sourceCurrency.PurchaseRate, 2);
+                    amountThatHasToBeWithDrawnFromClient = Math.Round((decimal)amount / sourceCurrency.PurchaseRate, 2);
             }
             else
             {
-                amountThatHasToBeWithDrawnFromClient = Math.Round((decimal)amount*targetCurrency.SaleRate, 2);
-                amountThatHasToBeWithDrawnFromClient = Math.Round((decimal)amountThatHasToBeWithDrawnFromClient/sourceCurrency.PurchaseRate, 2);
+                amountThatHasToBeWithDrawnFromClient = Math.Round((decimal)amount * targetCurrency.SaleRate, 2);
+                amountThatHasToBeWithDrawnFromClient = Math.Round((decimal)amountThatHasToBeWithDrawnFromClient / sourceCurrency.PurchaseRate, 2);
 
-                convertedAmount = GetConvertedAmount(db, (decimal) amount, targetCurrency, sourceCurrency);
+                convertedAmount = GetConvertedAmount(db, (decimal)amount, targetCurrency, sourceCurrency);
             }
 
             bool dataChanged = false;
@@ -268,7 +278,7 @@ namespace EasyBank
             {
                 case "Normal"://transfer account
                     {
-                        if (acc.AvailableAmount - amountThatHasToBeWithDrawnFromClient < 0) return 5;
+                        if (acc.AvailableAmount - amountThatHasToBeWithDrawnFromClient < 0) return ErrorCode.NotEnoughMoney;
                         PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
                         acc.AvailableAmount -= (decimal)amountThatHasToBeWithDrawnFromClient;
                         acc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient;
@@ -281,7 +291,7 @@ namespace EasyBank
                         {
                             if (acc.DepositCreditModel.EarlyTermination == true)
                             {
-                                if (acc.AvailableAmount - amountThatHasToBeWithDrawnFromClient < 0) return 5;
+                                if (acc.AvailableAmount - amountThatHasToBeWithDrawnFromClient < 0) return ErrorCode.NotEnoughMoney;
                                 else
                                 {
                                     PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
@@ -292,7 +302,7 @@ namespace EasyBank
                             }
                             else
                             {
-                                if (!(acc.AvailableAmount - convertedAmount).Equals(0)) return 31;
+                                if (!(acc.AvailableAmount - convertedAmount).Equals(0)) return ErrorCode.IfEarlyTermFalseOnlyWholeAmountCanBeWidthdrawn;
                                 else
                                 {
                                     PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
@@ -314,7 +324,7 @@ namespace EasyBank
                     break;
                 case "Credit":
                     {
-                        return 6;
+                        return ErrorCode.AttemptToWidthdrawFromCreditAcc;
                     }
                     break;
             }
@@ -325,44 +335,44 @@ namespace EasyBank
                 HistoryManager.AddWidthdrawOperation(db, (decimal)amountThatHasToBeWithDrawnFromClient, (int)fromAccountId, (int)oper.OperatorID);
                 db.SaveChanges();
 
-                return 0;
+                return ErrorCode.Ok;
             }
-            return 99;
+            return ErrorCode.UncatchedError;
         }
-        public int TransferMoney(string operatorEmail, int? fromAccountId, string toAccountNumber, decimal? amount)
+        public ErrorCode TransferMoney(string operatorEmail, int? fromAccountId, string toAccountNumber, decimal? amount)
         {
             ConnectionContext db = new ConnectionContext();
 
-            if (operatorEmail == null) return 10;
-            if (fromAccountId == null || toAccountNumber == null) return 11;
-            if (amount == null) return 12;
+            if (operatorEmail == null) return ErrorCode.NullOperatorsEmail;
+            if (fromAccountId == null || toAccountNumber == null) return ErrorCode.NullAccountId;
+            if (amount == null) return ErrorCode.NullAmount;
 
-            if (amount <= 0) return 3;
+            if (amount <= 0) return ErrorCode.NegativeOrZeroOperationAmount;
 
             Operator oper = db.Operators.FirstOrDefault(o => o.Email == operatorEmail);
             Account fromAcc = db.Accounts.FirstOrDefault(a => a.AccountId == fromAccountId);
             Account toAcc = db.Accounts.FirstOrDefault(a => a.AccountNumber == toAccountNumber);
 
-            if (oper == null) return 21;
-            if (fromAcc == null) return 22;
-            if (toAcc == null) return 22;
+            if (oper == null) return ErrorCode.OperatorNotFoundInDb;
+            if (fromAcc == null) return ErrorCode.AccountNotFoundInDb;
+            if (toAcc == null) return ErrorCode.AccountNotFoundInDb;
 
             int toAccountId = toAcc.AccountId;
 
-            if (fromAccountId == toAccountId) return 32;
+            if (fromAccountId == toAccountId) return ErrorCode.CantTransferMoneyToYourself;
 
-            if (fromAcc.AccountStatus.StatusName == "Blocked") return 41;
-            if (fromAcc.AccountStatus.StatusName == "Frozen") return 42;
-            if (fromAcc.AccountStatus.StatusName == "Expired") return 43;
-            if (toAcc.AccountStatus.StatusName == "Blocked") return 44;
-            if (toAcc.AccountStatus.StatusName == "Frozen") return 45;
-            if (toAcc.AccountStatus.StatusName == "Expired") return 46;
+            if (fromAcc.AccountStatus.StatusName == "Blocked") return ErrorCode.SendingAccountIsBlocked;
+            if (fromAcc.AccountStatus.StatusName == "Frozen") return ErrorCode.SendingAccountIsFrozen;
+            if (fromAcc.AccountStatus.StatusName == "Expired") return ErrorCode.SendingAccountIsExpired;
+            if (toAcc.AccountStatus.StatusName == "Blocked") return ErrorCode.ReceivingAccountIsBlocked;
+            if (toAcc.AccountStatus.StatusName == "Frozen") return ErrorCode.ReceivingAccountIsFrozen;
+            if (toAcc.AccountStatus.StatusName == "Expired") return ErrorCode.ReceivingAccountIsExpired;
 
             Currency sourceCurrency = fromAcc.Currency;
             Currency targetCurrency = toAcc.Currency;
 
-            if (sourceCurrency == null) return 25;
-            if (targetCurrency == null) return 26;
+            if (sourceCurrency == null) return ErrorCode.SourceCurrencyFail;
+            if (targetCurrency == null) return ErrorCode.TargetCurrencyFail;
 
             decimal convertedAmount = (decimal)amount;
             decimal? amountThatHasToBeWithDrawnFromClient = null;
@@ -389,7 +399,7 @@ namespace EasyBank
             {
                 case "Normal"://transfer account
                     {
-                        if (fromAcc.AvailableAmount - convertedAmount < 0) return 5;
+                        if (fromAcc.AvailableAmount - amountThatHasToBeWithDrawnFromClient < 0) return ErrorCode.NotEnoughMoney;
 
                         if (toAcc.AccountType.TypeName == "Normal")
                         {
@@ -403,12 +413,12 @@ namespace EasyBank
 
                             dataChanged = true;
                         }
-                        else return 9;
+                        else return ErrorCode.AttemptToTransferToNotMoneyTransferAcc;
                     }
                     break;
                 default:
                     {
-                        return 8;
+                        return ErrorCode.AttemptToTransferFromNotMoneyTransferAcc;
                     }
                     break;
             }
@@ -420,9 +430,9 @@ namespace EasyBank
                 db.SaveChanges();
                 HistoryManager.AddTransferOperation(db, (decimal)amountThatHasToBeWithDrawnFromClient, (int)fromAccountId, (int)toAccountId, (int)oper.OperatorID);
                 db.SaveChanges();
-                return 0;
+                return ErrorCode.Ok;
             }
-            return 99;
+            return ErrorCode.UncatchedError;
         }
     }
 }

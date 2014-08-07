@@ -543,27 +543,12 @@ namespace EasyBank.Controllers
 
         public ActionResult ClientsProfile(int? id)
         {
-            //Client client = new Client();
-            //Client user = (from clients in db.Clients
-            //               where clients.ClientId == clientId
-            //               select clients).FirstOrDefault();
             string userName = WebSecurity.CurrentUserName;
             var client = (from c in db.Clients
                           where c.Email == userName
                           select c).FirstOrDefault();
-            /*Client user = db.Clients.FirstOrDefault(c => c.ClientId == id.Value);
-             client.ClientId = user.ClientId;
-             client.BirthDate = user.BirthDate;
-             client.Email = user.Email;
-             client.PIdNumber = user.PIdNumber;
-             client.Name = user.Name;
-             client.RegistrationDate = user.RegistrationDate;
-             client.Surname = user.Surname;
-             client.Images = user.Images;
-             client.Accounts = user.Accounts;*/
             return View(client);
         }
-
 
 
         [AllowAnonymous]

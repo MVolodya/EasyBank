@@ -17,7 +17,7 @@ namespace EasyBank.Controllers
         // GET: /Error/
         ConnectionContext db = new ConnectionContext();
 
-        public ActionResult OperationError(int? errorCode, int? AccountId)
+        public ActionResult OperationError(string errorCode, int? AccountId)
         {
             ErrorReport errorReport = new ErrorReport();
             ViewBag.ErrorCode = errorCode;

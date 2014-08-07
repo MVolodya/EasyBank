@@ -1,135 +1,208 @@
-﻿@model EasyBank.Models.Client
+﻿@using System.Web.Razor.Parser.SyntaxTree
+@model EasyBank.Models.Client
 
 @{
     ViewBag.Title = @Resources.Resource.ClientsProfile;
 }
+<script>
+    $(document).ready(function () {
+        prevTriggeredTrId = "";
+        debugger;
+        $("#types").css("display", "none");
+        $("#currencies").css("display", "none");
+        $("#depositTypes").css("display", "none");
+        $("#creditTypes").css("display", "none");
+        $("#submitButton").css("display", "none");
+        $("#amountDiv").css("display", "none");
+        $("div #cancelButton").css("display", "none");
 
+        $("#payInButton").css("display", "none");
+        $("#payOutButton").css("display", "none");
+        $("#transferButton").css("display", "none");
+        $("#historyButton").css("display", "none");
+        $("#freezeButton").css("display", "none");
+
+        $(".selectableTr").click(function () {
+            if (this.id != prevTriggeredTrId) {
+                $(this).css("background-color", "white");
+                $("#" + prevTriggeredTrId.toString()).css("background-color", "rgba(0,0,0,0)");
+                prevTriggeredTrId = this.id;
+                parms = this.id.split('-', 2);
+                $("#payInButton").attr("href", "/Operation/AddMoney/" + parms[0]);
+                $("#payOutButton").attr("href", "/Operation/WidthdrawMoney/" + parms[0]);
+                $("#transferButton").attr("href", "/Operation/TransferMoney/" + parms[0]);
+                $("#historyButton").attr("href", "/Protected/AccountHistory/" + parms[0]);
+                $("#freezeButton").attr("href", "/Protected/Freeze/" + parms[0]);
+                if (parms[1] == "Credit") {
+                    $("#payInButton").css("display", "inline-block");
+                    $("#payOutButton").css("display", "none");
+                    $("#transferButton").css("display", "none");
+                }
+                else if (parms[1] == "Deposit") {
+                    $("#payInButton").css("display", "inline-block");
+                    $("#payOutButton").css("display", "inline-block");
+                    $("#transferButton").css("display", "inline-block");
+                }
+                else if (parms[1] == "Normal") {
+                    $("#payInButton").css("display", "inline-block");
+                    $("#payOutButton").css("display", "inline-block");
+                    $("#transferButton").css("display", "inline-block");
+                }
+                $("#historyButton").css("display", "inline-block");
+                $("#freezeButton").css("display", "inline-block");
+            }
+        });
+    });
+</script>
+<style>
+    td {
+        padding: 0.5em; /* Just to spread things out a bit */
+    }
+
+    #account tr:hover {
+        cursor: pointer;
+    }
+</style>
 <h2>@Html.Label(@Resources.Resource.ClientsProfileTitle)</h2>
-<table>
-    <tr>
-        <td>
-            @Html.DisplayNameFor(model => model.Name)
-        </td>
-        <td>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.Name)
-            </div>
-        </td>
-    </tr>
+<div style="background-color: rgba(255,255,255, 0.5); float: left; padding-top: 14px; padding-left: 20px; padding-bottom: 30px; padding-right: 25px; border-radius: 10px;">
+    <div style="float: left;">
+        <table>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Name)
+                </td>
+                <td>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.Name)
+                    </div>
+                </td>
+            </tr>
 
-    <tr>
-        <td>
-            @Html.DisplayNameFor(model => model.Surname)
-        </td>
-        <td>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.Surname)
-            </div>
-        </td>
-    </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Surname)
+                </td>
+                <td>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.Surname)
+                    </div>
+                </td>
+            </tr>
 
-    <tr>
-        <td>
-            @Html.DisplayNameFor(model => model.Email)
-        </td>
-        <td>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.Email)
-            </div>
-        </td>
-    </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Email)
+                </td>
+                <td>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.Email)
+                    </div>
+                </td>
+            </tr>
 
-    <tr>
-        <td>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </td>
-        <td>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.BirthDate)
-            </div>
-        </td>
-    </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.BirthDate)
+                </td>
+                <td>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.BirthDate)
+                    </div>
+                </td>
+            </tr>
 
-    <tr>
-        <td>
-            @Html.DisplayNameFor(model => model.PIdNumber)
-        </td>
-        <td>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.PIdNumber)
-            </div>
-        </td>
-    </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.PIdNumber)
+                </td>
+                <td>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.PIdNumber)
+                    </div>
+                </td>
+            </tr>
 
-    <tr>
-        <td>
-            @Html.DisplayNameFor(model => model.RegistrationDate)
-        </td>
-        <td>
-            <div class="display-field">
-                @Html.DisplayFor(model => model.RegistrationDate)
-            </div>
-        </td>
-    </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.RegistrationDate)
+                </td>
+                <td>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.RegistrationDate)
+                    </div>
+                </td>
+            </tr>
 
-</table>
+        </table>
+    </div>
 
-@Html.Action("ShowClientPhoto", new { id = Model.ClientId })
+    <div style="float: left; padding-left: 80px; padding-top: 17px;">
 
-<table>
-    @if (Model.Accounts.Count() != 0)
-    {
-        <tr>
-            <th>@Html.Label(@Resources.Resource.AccNumb)</th>
-            <th>@Html.Label(@Resources.Resource.ExpDate)</th>
-            <th>@Html.Label(@Resources.Resource.Amount)</th>
-            <th>@Html.Label(@Resources.Resource.Currency)</th>
-            <th>@Html.Label(@Resources.Resource.Type)</th>
-            <th>@Html.Label(@Resources.Resource.Status)</th>
-        </tr>
-    }
-    else
-    {
-        <br />
-        @Resources.Resource.AccountsAreAbsent
-    }
-    @foreach (var item in Model.Accounts)
-    {
+        <div style="width: 180px; height: 135px; background-color: white">
+            @Html.Action("ShowClientPhoto", new { id = Model.ClientId })
+        </div>
 
-        <tr>
-            <td>
-                <div class="display-field">
-                    @Html.DisplayFor(modelItem => item.AccountNumber)
-                </div>
-            </td>
-            <td>
-                <div class="display-field">
-                    @Html.DisplayFor(modelItem => item.ExpirationDate)
-                </div>
-            </td>
-            <td>
-                <div class="display-field">
-                    @Html.DisplayFor(modelItem => item.Amount)
-                </div>
-            </td>
-            <td>
-                <div class="display-field">
-                    @Html.DisplayFor(modelItem => item.Currency.CurrencyName)
-                </div>
-            </td>
-            <td>
-                <div class="display-field">
-                    @Html.DisplayFor(modelItem => item.AccountType.TypeName)
-                </div>
-            </td>
-            <td>
-                <div class="display-field">
-                    @Html.DisplayFor(modelItem => item.AccountStatus.StatusName)
-                </div>
-            </td>
-            <td>
-                    </td>
-        </tr>
-    }
-</table>
+    </div>
+</div>
+<br />
+<div style="clear: both; background-color: rgba(255,255,255, 0.4); float: left; padding-top: 10px; padding-left: 20px; padding-bottom: 30px; border-radius: 10px; margin-top: 10px; min-width: 800px;">
+    <input type="button" id="showFirstBox" value="@Resources.Resource.AddAccount">
 
+    <table id="account">
+        @if (Model.Accounts.Count() != 0)
+        {
+            <tr>
+                <th>@Html.Label(@Resources.Resource.AccNumb) </th>
+                <th>@Html.Label(@Resources.Resource.ExpDate) </th>
+                <th>@Html.Label(@Resources.Resource.Amount)</th>
+                <th>@Html.Label(@Resources.Resource.Currency)</th>
+                <th>@Html.Label(@Resources.Resource.Type)</th>
+                <th>@Html.Label(@Resources.Resource.Status)</th>
+            </tr>
+        }
+        else
+        {
+            @Resources.Resource.AccountsAreAbsent
+        }
+
+        @foreach (var item in Model.Accounts)
+        {
+            <tr id="@item.AccountId-@item.AccountType.TypeName" class="selectableTr">
+                <td>
+                    <div class="display-field">
+                        @Html.DisplayFor(modelItem => item.AccountNumber)
+                    </div>
+                </td>
+                <td>
+                    <div class="display-field">
+                        @Html.DisplayFor(modelItem => item.ExpirationDate)
+                    </div>
+                </td>
+                <td>
+                    <div class="display-field">
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </div>
+                </td>
+                <td>
+                    <div class="display-field">
+                        @Html.DisplayFor(modelItem => item.Currency.CurrencyName)
+                    </div>
+                </td>
+                <td>
+                    <div class="display-field">
+                        @Html.DisplayFor(modelItem => item.AccountType.TypeName)
+                    </div>
+                </td>
+                <td>
+                    <div class="display-field">
+                        @Html.DisplayFor(modelItem => item.AccountStatus.StatusName)
+                    </div>
+                </td>
+            </tr>
+        
+        }
+    </table>
+    <a href="#" id="transferButton">@Resources.Resource.TransMoney</a>
+    <a href="#" id="historyButton">@Resources.Resource.History</a>
+    <a href="#" id="freezeButton">@Resources.Resource.Freeze</a>
+</div>

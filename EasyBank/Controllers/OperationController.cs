@@ -46,12 +46,13 @@ namespace EasyBank.Controllers
         [HttpPost]
         public ActionResult AddMoney(int? accountId, decimal? amount, int? clientId, string CurrencyName)
         {
-            
             OperationManager om = new OperationManager();
             CurrencyName = Request["CurrencyName"].ToUpper();
-            int result = om.DepositMoney(User.Identity.Name, accountId, amount, CurrencyName);
-            if (result == 0)
+            ErrorCode errorCode = om.DepositMoney(User.Identity.Name, accountId, amount, CurrencyName);
+            if (errorCode == 0)
                 return RedirectToAction("ClientsProfile", "Protected", new { clientId = clientId });
+
+            string result = (int)errorCode + " " + ErrorHandler.GetEnumDescription(errorCode);
             return RedirectToAction("OperationError", "Error", new { errorCode = result, AccountId = accountId });
         }
 
@@ -82,9 +83,11 @@ namespace EasyBank.Controllers
         public ActionResult WidthdrawMoney(int? accountId, decimal? amount, int? clientId, string CurrencyName)
         {
             OperationManager om = new OperationManager();
-            int result = om.WithdrawMoney(User.Identity.Name, accountId, amount, CurrencyName);
-            if (result == 0)
+            ErrorCode errorCode = om.WithdrawMoney(User.Identity.Name, accountId, amount, CurrencyName);
+            if (errorCode == ErrorCode.Ok)
                 return RedirectToAction("ClientsProfile", "Protected", new { clientId = clientId });
+
+            string result = (int)errorCode + " " + ErrorHandler.GetEnumDescription(errorCode);
             return RedirectToAction("OperationError", "Error", new { errorCode = result, AccountId = accountId });
         }
 
@@ -102,11 +105,13 @@ namespace EasyBank.Controllers
         {
             OperationManager om = new OperationManager();
             
-            int result = om.TransferMoney(User.Identity.Name, fromAccountId, accountNumber, amount);
+            ErrorCode errorCode = om.TransferMoney(User.Identity.Name, fromAccountId, accountNumber, amount);
 
-            if (result == 0)
+            if (errorCode == 0)
                 return RedirectToAction("ClientsProfile", "Protected", new { clientId = clientId });
-            return RedirectToAction("OperationError", "Error", new { errorCode = result, AccountId =  fromAccountId });
+
+            string result = (int)errorCode + " " + ErrorHandler.GetEnumDescription(errorCode);
+            return RedirectToAction("OperationError", "Error", new { errorCode = result, AccountId = fromAccountId });
         }
 
         public ActionResult TotalDepositedAmount()
