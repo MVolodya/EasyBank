@@ -541,7 +541,7 @@ namespace EasyBank.Controllers
 
         }
 
-        public ActionResult ClientsProfile(int? id, string sort)
+        public ActionResult ClientsProfile(string sort)
         {
             string userName = WebSecurity.CurrentUserName;
             var client = (from c in db.Clients
@@ -557,7 +557,7 @@ namespace EasyBank.Controllers
             ViewBag.StatusSort = sort == "status_desc" ? "status_asc" : "status_desc";
 
             var accounts = from a in db.Accounts
-                           where a.ClientId == id
+                           where a.ClientId == client.ClientId
                            select a;
 
             switch (sort)
