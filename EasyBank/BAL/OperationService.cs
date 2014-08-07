@@ -307,6 +307,9 @@ namespace EasyBank
                                     PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
                                     acc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient;
                                     acc.AvailableAmount -= (decimal)amountThatHasToBeWithDrawnFromClient;
+
+                                    if (acc.Amount == 0) acc.StatusId = 5;
+
                                     bankAcc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient; //снимаем со счета банка
                                     dataChanged = true;
                                 }
@@ -320,6 +323,7 @@ namespace EasyBank
                                     //acc.Amount -= (decimal)amount;
                                     acc.Amount = 0;
                                     acc.AvailableAmount -= (decimal)amountThatHasToBeWithDrawnFromClient;
+                                    acc.StatusId = 5;
                                     bankAcc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient; //снимаем со счета банка
                                     dataChanged = true;
                                 }
@@ -327,10 +331,15 @@ namespace EasyBank
                         }
                         else
                         {
+                            if (acc.AvailableAmount - amountThatHasToBeWithDrawnFromClient < 0) return ErrorCode.NotEnoughMoney;
+
                             PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
                             acc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient;
                             acc.AvailableAmount -= (decimal)amountThatHasToBeWithDrawnFromClient;
                             bankAcc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient; //снимаем со счета банка
+
+                            if (acc.Amount == 0) acc.StatusId = 5;
+
                             dataChanged = true;
                         }
                     }

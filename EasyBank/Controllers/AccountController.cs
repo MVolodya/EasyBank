@@ -70,8 +70,15 @@ namespace EasyBank.Controllers
             var inputedUser = (from clients in db.Clients
                                where clients.Email == model.UserName
                                select clients).FirstOrDefault();
+            
 
             string errorMessage = "The user name or password is incorrect. ";
+            if (inputedUser != null && !inputedUser.IsOnlineUser)
+            {
+                errorMessage = "Your account is blocked";
+                ModelState.AddModelError("", errorMessage);
+                return View(model);
+            }
             if (ModelState.IsValid)
             {
                 if (inputedUser == null)

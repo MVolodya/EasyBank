@@ -1150,4 +1150,3 @@ C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\uk-UA\EasyBank.res
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\ru\EasyBank.resources.dll
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.dll
 C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.pdb
-C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.csprojResolveAssemblyReference.cache

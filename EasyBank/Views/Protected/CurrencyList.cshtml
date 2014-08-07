@@ -14,17 +14,17 @@
         {
             <h5>@Resources.Resource.CurrencyName</h5>
             <div class="editor-field">
-                @Html.EditorFor(model => model.CurrencyName)<br/>
+                @Html.EditorFor(model => model.CurrencyName)
                 @Html.ValidationMessageFor(model => model.CurrencyName)
             </div>
             <h5>@Resources.Resource.PurchaseRate</h5>
             <div class="editor-field">
-                @Html.EditorFor(model => model.PurchaseRate)<br/>
+                @Html.EditorFor(model => model.PurchaseRate)
                 @Html.ValidationMessageFor(model => model.PurchaseRate)
             </div>
             <h5>@Resources.Resource.SallingRate</h5>
             <div class="editor-field">
-                @Html.EditorFor(model => model.SaleRate)<br/>
+                @Html.EditorFor(model => model.SaleRate)
                 @Html.ValidationMessageFor(model => model.SaleRate)
             </div>
             <input type="submit" value="@Resources.Resource.AddCurrency" />
@@ -52,10 +52,7 @@
             <th>
                 @Resources.Resource.SallingRate
             </th>
-            <th>
-
-            </th>
-            <th></th>
+            
         </tr>
         @foreach (var item in ViewBag.Currencies)
         {

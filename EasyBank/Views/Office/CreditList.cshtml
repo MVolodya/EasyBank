@@ -2,14 +2,14 @@
 
 <table>
     <tr>
-        <th>
+        <th style="width: 130px">
             @Resources.Resource.CreditName
         </th>
         <th>
-            @Resources.Resource.Duration
+            @Resources.Resource.Duration,
         </th>
         <th>
-            @Resources.Resource.InterestRate
+            @Resources.Resource.InterestRate, %
         </th>
         <th>
             @Resources.Resource.EarlyTerminationCredit
@@ -23,10 +23,10 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Duration)
+                @Html.DisplayFor(modelItem => item.Duration) mon.
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.InterestRate)
+                @Html.DisplayFor(modelItem => item.InterestRate) %
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EarlyTermination)

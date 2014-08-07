@@ -137,7 +137,10 @@ footer {
 
 .site-title a, .site-title a:hover, .site-title a:active {
     background: none;
-    color: #63c05e;
+    font-weight: bold;
+    font-family: "Copperplate Gothic Bold";
+    font-size: 30pt;
+    color: rgb(30, 135, 176);
     outline: none;
     text-decoration: none;
 }
@@ -337,7 +340,7 @@ aside {
 #loginForm {
     border-right: solid 2px #c8c8c8;
     float: left;
-    width: 48%;
+    width: 55%;
 }
 
     #loginForm .validation-error {

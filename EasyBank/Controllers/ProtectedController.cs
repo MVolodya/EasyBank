@@ -329,7 +329,7 @@ namespace EasyBank.Controllers
                 {
                     if (client.IsAlreadyRegistered == true)
                     {
-                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Відновлення доступу Easy Bank!", "Вам відкрито доступ до особистого кабінету\n\nЗ повагою Адміністрація банку");
+                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Відновлення доступу Easy Bank!", "Вам відкрито доступ до особистого кабінету\n\nЗ повагою Адміністрація банку" + client.InitialPassword);
                     }
                     if (client.IsAlreadyRegistered == false)
                     {

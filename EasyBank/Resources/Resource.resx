@@ -433,7 +433,7 @@
     <value>Interest rate</value>
   </data>
   <data name="LogIn" xml:space="preserve">
-    <value>Log in</value>
+    <value>Login</value>
   </data>
   <data name="LogInForClients" xml:space="preserve">
     <value>Log in for clients</value>
@@ -442,7 +442,7 @@
     <value>Use your credentials to enter the system.</value>
   </data>
   <data name="LogInTitle" xml:space="preserve">
-    <value>Log in</value>
+    <value>Log in to office</value>
   </data>
   <data name="LogOff" xml:space="preserve">
     <value>Log off</value>
