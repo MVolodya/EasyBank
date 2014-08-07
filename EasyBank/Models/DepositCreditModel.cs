@@ -12,13 +12,17 @@ namespace EasyBank.Models
         [Key]
         public int DepositCreditModelID { get; set; }
 
+        [Required(ErrorMessage = "The {0} is required")]
         [Display(Name="Product Name")]
         public string Name { get; set; }
 
+
         [Display(Name="Product Duration")]
+        [Required(ErrorMessage = "The {0} is required")]
         public int Duration { get; set; }
 
         [Display(Name="Interest")]
+        [Required(ErrorMessage = "The {0} is required")]
         public decimal InterestRate { get; set; }
 
         [Display(Name="Early Termination")]

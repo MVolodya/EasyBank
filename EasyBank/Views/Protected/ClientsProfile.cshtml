@@ -99,7 +99,8 @@
 <h2>@Html.Label(@Resources.Resource.ClientsProfileTitle)</h2>
 <br />
 @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList", "Protected")
-<br /><br />
+<br />
+<br />
 <div style="background-color: rgba(255,255,255, 0.5); float: left; padding-top: 14px; padding-left: 20px; padding-bottom: 30px; padding-right: 25px; border-radius: 10px;">
     <div style="float: left;">
         <table>
@@ -172,14 +173,15 @@
         </table>
     </div>
 
+
     <div style="float: left; padding-left: 80px; padding-top: 17px;">
 
         <div style="width: 180px; height: 135px; background-color: white">
             @Html.Action("ShowClientPhoto", new { id = Model.ClientId })
         </div>
-
-
     </div>
+
+</div>
 
 <br />
 <div style="clear: both; background-color: rgba(255,255,255, 0.4); float: left; padding-top: 10px; padding-left: 20px; padding-bottom: 30px; border-radius: 10px; margin-top: 10px; min-width: 1000px;">
@@ -241,12 +243,12 @@
                 <td>
                     @if (User.IsInRole("Client"))
                     {
-                        @Html.ActionLink(@Resources.Resource.Freeze, "Freeze", new {id = item.AccountId, clientId = Model.ClientId}); <span>|</span>
+                        @Html.ActionLink(@Resources.Resource.Freeze, "Freeze", new { id = item.AccountId, clientId = Model.ClientId }); <span>|</span>
                     }
                     else
                     {
-                        @Html.ActionLink(@Resources.Resource.Block, "Block", new {id = item.AccountId, clientId = Model.ClientId}); <span>|</span>
-                        @Html.ActionLink(@Resources.Resource.SetToNormal, "SetToNormal", new {id = item.AccountId, clientId = Model.ClientId});
+                        @Html.ActionLink(@Resources.Resource.Block, "Block", new { id = item.AccountId, clientId = Model.ClientId }); <span>|</span>
+                        @Html.ActionLink(@Resources.Resource.SetToNormal, "SetToNormal", new { id = item.AccountId, clientId = Model.ClientId });
                     }
                 </td>
             </tr>

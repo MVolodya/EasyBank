@@ -7,7 +7,6 @@ namespace EasyBank.Models
 {
     public class VirtualAccount
     {
-
         public string CurrencyName { get; set; }
 
         public decimal Interest { get; set; }

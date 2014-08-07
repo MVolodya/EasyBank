@@ -1149,3 +1149,4 @@ C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.csprojRe
 C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.AddedInterestCalculation.resources
 C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.addedBankAccount.resources
 C:\Users\Иван\Desktop\EasyBank\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.addedIncorrectPasswordTrialsToClient.resources
+C:\Users\klok\Desktop\myGitBranch\EasyBank\EasyBank\obj\Debug\EasyBank.Migrations.validationsAdded.resources

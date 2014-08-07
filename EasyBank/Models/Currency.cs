@@ -17,7 +17,14 @@ namespace EasyBank.Models
         [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "CurrencyNameRequired")]
         public string CurrencyName { get; set; }
 
+        [Display(Name="Purchase rate")]
+        [Required(ErrorMessage = "Purchase rate field is required")]
+        [RegularExpression(@"^\d+(.\d{0,2})?$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "DecimalFormat")]
         public decimal PurchaseRate { get; set; }
+
+        [Display(Name = "Sale rate")]
+        [Required(ErrorMessage = "Purchase rate field is required")]
+        [RegularExpression(@"^\d+(.\d{0,2})?$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "DecimalFormat")]
         public decimal SaleRate { get; set; }
 
         public virtual ICollection<Account> Account { get; set; }

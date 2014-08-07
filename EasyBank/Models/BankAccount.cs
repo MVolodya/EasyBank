@@ -13,6 +13,7 @@ namespace EasyBank.Models
         public int BankAccountId { get; set; }
 
         public string CurrencyName { get; set; }
+        
         public decimal Amount { get; set; }
     }
 }

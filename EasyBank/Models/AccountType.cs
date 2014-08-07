@@ -10,8 +10,8 @@ namespace EasyBank.Models
     public class AccountType
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TypeId { get; set; }
+
         [Required(ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "AccountTypeRequired")]
         public string TypeName { get; set; }
 
