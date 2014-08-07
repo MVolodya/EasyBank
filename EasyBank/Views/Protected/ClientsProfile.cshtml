@@ -222,7 +222,13 @@
                 </td>
                 <td>
                     <div class="display-field">
-                        @Html.DisplayFor(modelItem => item.Amount)
+                        @if(item.TypeId != 1)
+                            {
+                                @Html.DisplayFor(modelItem => item.AvailableAmount)
+                            }
+                        else{ 
+                            @Html.DisplayFor(modelItem => item.Amount)
+                            }
                     </div>
                 </td>
                 <td>

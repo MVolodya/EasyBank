@@ -552,11 +552,31 @@ namespace EasyBank.Controllers
         [Authorize(Roles = "Operator, Administrator")]
         public ActionResult AddAccount(Account account)
         {
+            account.Currency = db.Currencies.FirstOrDefault(c => c.CurrencyId == account.CurrencyId);
             if (account.Amount == 0) account.Amount = 0;
             account.Interest = 0;
             account.LastInterestAdded = DateTime.Now;
             account.OpenDate = DateTime.Now;
             account.StatusId = 1;
+            account.AvailableAmount = account.Amount;
+            var bankAccount = (from bankAcc in db.BankAccounts
+                               where bankAcc.CurrencyName == account.Currency.CurrencyName
+                               select bankAcc).FirstOrDefault();
+            if (account.TypeId == 3)
+            {
+                var creditModel = (from credit in db.DepositCreditModels
+                                   where credit.DepositCreditModelID == account.DepositCreditModelID
+                                   select credit).FirstOrDefault();
+                account.Interest = (creditModel.Duration / 12 * creditModel.InterestRate / 100) * account.Amount;
+                account.AvailableAmount = account.Amount + account.Interest;
+                
+                bankAccount.Amount -= account.Amount;
+                bankAccount.Amount += account.Interest;
+            }
+            else if (account.TypeId !=3)
+            {
+                bankAccount.Amount += account.Amount;
+            }
             if(account.TypeId !=1){
             var duration = (from prods in db.DepositCreditModels
                             where prods.DepositCreditModelID == account.DepositCreditModelID
