@@ -15,6 +15,11 @@
         $("#amountDiv").css("display", "none");
         $("div #cancelButton").css("display", "none");
 
+        $("#payInButton").css("display", "none");
+        $("#payOutButton").css("display", "none");
+        $("#transferButton").css("display", "none");
+        $("#historyButton").css("display", "none");
+
         $(".selectableTr").click(function () {
             if (this.id != prevTriggeredTrId) {
                 $(this).css("background-color", "white");
@@ -26,21 +31,21 @@
                 $("#transferButton").attr("href", "/Operation/TransferMoney/" + parms[0]);
                 $("#historyButton").attr("href", "/Protected/AccountHistory/" + parms[0]);
                 if (parms[1] == "Credit") {
-                    $("#payInButton").css("opacity", 1);
-                    $("#payOutButton").css("opacity", 0);
-                    $("#transferButton").css("opacity", 0);
+                    $("#payInButton").css("display", "inline-block");
+                    $("#payOutButton").css("display", "none");
+                    $("#transferButton").css("display", "none");
                 }
                 else if (parms[1] == "Deposit") {
-                    $("#payInButton").css("opacity", 1);
-                    $("#payOutButton").css("opacity", 1);
-                    $("#transferButton").css("opacity", 1);
+                    $("#payInButton").css("display", "inline-block");
+                    $("#payOutButton").css("display", "inline-block");
+                    $("#transferButton").css("display", "inline-block");
                 }
                 else if (parms[1] == "Normal") {
-                    $("#payInButton").css("opacity", 1);
-                    $("#payOutButton").css("opacity", 1);
-                    $("#transferButton").css("opacity", 1);
+                    $("#payInButton").css("display", "inline-block");
+                    $("#payOutButton").css("display", "inline-block");
+                    $("#transferButton").css("display", "inline-block");
                 }
-                $("#historyButton").css("opacity", 1);
+                $("#historyButton").css("display", "inline-block");
             }
         });
 
@@ -80,8 +85,21 @@
         $("select[id='CreditId'] option:lt(1)").attr("disabled", "disabled");
     });
 </script>
+<style>
+    td {
+        padding: 0.5em; /* Just to spread things out a bit */
+    }
+
+    #account tr:hover {
+        cursor: pointer;
+    }
+</style>
+
 <h2>@Html.Label(@Resources.Resource.ClientsProfileTitle)</h2>
-<div style="background-color: rgba(255,255,255, 0.5); float: left; padding-top: 14px; padding-left: 20px; padding-bottom: 30px;padding-right: 25px; border-radius: 10px;">
+<br />
+@Html.ActionLink(@Resources.Resource.BackToList, "ClientsList", "Protected")
+<br /><br />
+<div style="background-color: rgba(255,255,255, 0.5); float: left; padding-top: 14px; padding-left: 20px; padding-bottom: 30px; padding-right: 25px; border-radius: 10px;">
     <div style="float: left;">
         <table>
             <tr>
@@ -158,20 +176,18 @@
         <div style="width: 180px; height: 135px; background-color: white">
             @Html.Action("ShowClientPhoto", new { id = Model.ClientId })
         </div>
-       
-@*
-<div>
-    @Html.ActionLink(@Resources.Resource.EditPhoto, "AddPhoto", new { id = Model.ClientId })
-</div> *@
-</div>
-<br/>
+
+
+    </div>
+
+<br />
 <div style="clear: both; background-color: rgba(255,255,255, 0.4); float: left; padding-top: 10px; padding-left: 20px; padding-bottom: 30px; border-radius: 10px; margin-top: 10px; min-width: 1000px;">
     <input type="button" id="showFirstBox" value="@Resources.Resource.AddAccount">
     <div id="accCreateDiv" style="clear: both">
         @Html.Action("AddAccountPartial")
     </div>
 
-    <table>
+    <table id="account">
         @if (Model.Accounts.Count() != 0)
         {
             <tr>
@@ -236,10 +252,8 @@
         
         }
     </table>
-    <a href="#" id="payInButton" style="opacity: 0">@Resources.Resource.PayIn</a>
-    <a href="#" id="payOutButton" style="opacity: 0">@Resources.Resource.PayOut</a>
-    <a href="#" id="transferButton" style="opacity: 0">@Resources.Resource.TransMoney</a>
-	<a href="#" id="historyButton" style="opacity: 0">@Resources.Resource.History</a>
-<div>
-    @Html.ActionLink(Resources.Resource.BackToList, "ClientsList", "Protected")
+    <a href="#" id="payInButton">@Resources.Resource.PayIn</a>
+    <a href="#" id="payOutButton">@Resources.Resource.PayOut</a>
+    <a href="#" id="transferButton">@Resources.Resource.TransMoney</a>
+    <a href="#" id="historyButton">@Resources.Resource.History</a>
 </div>

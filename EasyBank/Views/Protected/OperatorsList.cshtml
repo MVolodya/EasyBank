@@ -7,7 +7,9 @@
 <h2>@Html.Label(@Resources.Resource.Operators)</h2>
 @if (User.IsInRole("Administrator"))
 {
+    <br />
     @Html.ActionLink(@Resources.Resource.RegisterOperator, "RegisterOperator", "Account")
+    <br />
 }
 
 @using (Html.BeginForm("OperatorsList", "Protected", FormMethod.Get))

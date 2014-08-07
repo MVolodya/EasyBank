@@ -4,6 +4,8 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
+<h2>@Html.Label(@Resources.Resource.AddPhoto)</h2>
+
 @using (Html.BeginForm("AddPhoto", "Protected", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()

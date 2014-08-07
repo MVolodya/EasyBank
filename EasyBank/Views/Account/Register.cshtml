@@ -46,12 +46,16 @@
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
+ @Html.AntiForgeryToken()
+ @Html.ValidationSummary()
 
+    <h2>@Html.Label(@Resources.Resource.AddClient)</h2>
+    <br />
+        @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList", "Protected")
+    <br /><br />
     <fieldset>
         <legend>Client</legend>
-        
+
         @ViewBag.Message
 
         <div class="editor-label">
@@ -93,22 +97,22 @@
             @Html.EditorFor(model => model.Client.Email)
             @Html.ValidationMessageFor(model => model.Client.Email)
         </div>
-        <div class="editor-label">
+       @* <div class="editor-label">
             @Html.LabelFor(model => model.Password)
         </div>
         <div class="editor-field">
             @Html.PasswordFor(model => model.Password)
             @Html.ValidationMessageFor(model => model.Password)
-        </div>
+        </div
         <div class="editor-label">
             @Html.LabelFor(model => model.ConfirmPassword)
         </div>
         <div>
             @Html.PasswordFor(model => model.ConfirmPassword)
             @Html.ValidationMessageFor(model => model.ConfirmPassword)
-        </div>
+        </div>*@
 
-                <label for=" file">@Resources.Resource.UploadPassportScan:</label>
+        <label for=" file">@Resources.Resource.UploadPassportScan:</label>
         <input type="file" name="file" id="file" accept="image/jpeg,image/png" style="width: 100%;" value="@Resources.Resource.ChooseFile" />
 
         <p>
@@ -117,7 +121,5 @@
     </fieldset>
 }
 
-<div>
-    @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList", "Protected")
-</div>
+
 

@@ -269,13 +269,24 @@ namespace EasyBank.Controllers
                 {
                     if (client.IsAlreadyRegistered == true)
                     {
-                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Wed-access", "Your web-access allowed");
+                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Відновлення доступу Easy Bank!", "Вам відкрито доступ до особистого кабінету\n\nЗ повагою Адміністрація банку");
                     }
                     if (client.IsAlreadyRegistered == false)
                     {
-                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Wed-access", client.InitialPassword);
-                        bool isRegistered = true;
-                        client.IsAlreadyRegistered = isRegistered;
+                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Вітаємо Вас у Easy Bank!",
+                        "Дякуємо, що Ви завітали у Наш банк та стали клієнтом Easy Bank!\n\nДля Вас створено осбистий кабінет в якому Ви можете керувати своїми рахунками.\n" + 
+                        "Для того, щоб увійти у Свій особистий кабінет Вам необхідно ввести Ваш email який Ви вказували при заповненні анкети,\nтакож Вам потрібно ввести згенерований пароль який Вам було надіслано в цьому повідомленні.\n" +
+                        "Ми рекомендуємо при першому входженні в особистий акаунт змінити автоматично згенерований пароль натиснувши на Ваш логін в правому верхньому кутку сторінки.\n" +
+                        "Ваш згенерований пароль: "+ client.InitialPassword +"\n\nЗ повагою Адміністрація банку!");
+                        client.IsAlreadyRegistered = true;
+                    }
+                }
+                if (client.IsOnlineUser == false)
+                {
+                    if (client.IsAlreadyRegistered == true)
+                    {
+                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Обмеження доступу Easy Bank!",
+                        "Доступ до особистого кабінету обмежено");
                     }
                 }
                 db.Entry(client).State = System.Data.Entity.EntityState.Modified;
@@ -415,8 +426,6 @@ namespace EasyBank.Controllers
             else return HttpNotFound();
         }
 
-
-
         [HttpGet]
         public ActionResult AddAccount(int? clientId)
         {
@@ -470,7 +479,6 @@ namespace EasyBank.Controllers
                 return RedirectToAction("AddAccount");
             }
         }
-
 
         public ActionResult AddAccountPartial(int? clientId)
         {
@@ -539,12 +547,13 @@ namespace EasyBank.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult AddCurrency(Currency currency)
         {
-            if (currency != null)
+            if (currency.CurrencyName != null)
             {
                 if ((from Currency in db.Currencies where Currency.CurrencyName == currency.CurrencyName select Currency).Count() == 0
                     && currency.CurrencyName.Length != 0 && currency.PurchaseRate > 0 && currency.SaleRate > 0)
                 {
                     BankAccount ba = new BankAccount();
+
                     ba.CurrencyName = currency.CurrencyName;
 
                     db.Currencies.Add(currency);
@@ -623,7 +632,8 @@ namespace EasyBank.Controllers
             {
                 ViewBag.CurrentSort = sort;
                 ViewBag.SortDate = String.IsNullOrEmpty(sort) ? "Date_asc" : "";
-                var operationHistory = from operation in db.OperationHistory
+                var operationHistory = from operation in db.OperationHistory 
+                                       where operation.FromAccountId == id || operation.ToAccountId == id
                                        select operation;
                 switch (sort)
                 {
@@ -634,7 +644,6 @@ namespace EasyBank.Controllers
                         operationHistory = operationHistory.OrderByDescending(operation => operation.Date);
                         break;
                 }
-                IEnumerable<Operation> operations = db.OperationHistory.Where(o => o.FromAccountId == id || o.ToAccountId == id).ToList();
                 ViewBag.ClientsCardId = id;
                 int pageSize = 10;
                 int pageNumber = (page ?? 1);

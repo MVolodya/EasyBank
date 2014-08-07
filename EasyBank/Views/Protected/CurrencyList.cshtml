@@ -2,20 +2,22 @@
 @{
     ViewBag.Title = @Resources.Resource.CurrencyList;
 }
+<h2>@Html.Label(@Resources.Resource.Currencies)</h2>
+
 <fieldset>
     @using (Html.BeginForm("AddCurrency", "Protected", FormMethod.Post))
     {
-        <h5>Назва валюти</h5>
+        <h5>@Resources.Resource.CurrencyName</h5>
         <div class="editor-field">
             @Html.EditorFor(model => model.CurrencyName)
             @Html.ValidationMessageFor(model => model.CurrencyName)
         </div>
-        <h5>Курс покупки</h5>
+        <h5>@Resources.Resource.PurchaseRate</h5>
         <div class="editor-field">
             @Html.EditorFor(model => model.PurchaseRate)
             @Html.ValidationMessageFor(model => model.PurchaseRate)
         </div>
-        <h5>Курс продажі</h5>
+        <h5>@Resources.Resource.SallingRate</h5>
         <div class="editor-field">
             @Html.EditorFor(model => model.SaleRate)
             @Html.ValidationMessageFor(model => model.SaleRate)

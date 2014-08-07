@@ -19,69 +19,117 @@
         });
     });
 </script>
+<h2>@Html.Label(@Resources.Resource.AddMoney)</h2>
+<br />
+    @Html.ActionLink(@Resources.Resource.BackToProfile, "ClientsProfile", "Protected", new { clientId = Model.ClientId }, null)
+<br />
+<br />
 
 <fieldset>
     <legend>Account</legend>
+    <table>
+        <tr>
+            <td>
+                <div class="display-label">
+                    <b>@Html.DisplayNameFor(model => model.AccountNumber)</b>
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.AccountNumber)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    <b>@Html.DisplayNameFor(model => model.ExpirationDate)</b>
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.ExpirationDate)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    <b>@Html.DisplayNameFor(model => model.Amount)</b>
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Amount)
+                </div>
+            </td>
+            <tr>
+            </tr>
+            <td>
+                <div class="display-label">
+                    <b>@Html.DisplayNameFor(model => model.AvailableAmount)</b>
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.AvailableAmount)
+                </div>
+            </td>
+            <tr>
+            </tr>
+            <td>
+                <div class="display-label">
+                    <b>@Html.DisplayNameFor(model => model.ClientId)</b>
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Client.Name)
+                </div>
+            </td>
+            <tr>
+            </tr>
+            <td>
+                <div class="display-label">
+                    <b>@Html.DisplayNameFor(model => model.TypeId)</b>
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.AccountType.TypeName)
+                </div>
+            </td>
+            <tr>
+            </tr>
+            <td>
+                <div class="display-label">
+                    <b>@Html.DisplayNameFor(model => model.CurrencyId)</b>
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Currency.CurrencyName)
+                </div>
+            </td>
+        </tr>
+        <tr>
 
-    <div class="display-label">
-        <b>@Html.DisplayNameFor(model => model.AccountNumber)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.AccountNumber)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayNameFor(model => model.ExpirationDate)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ExpirationDate)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayNameFor(model => model.Amount)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Amount)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayNameFor(model => model.AvailableAmount)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.AvailableAmount)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayNameFor(model => model.ClientId)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Client.Name)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayNameFor(model => model.TypeId)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.AccountType.TypeName)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayNameFor(model => model.CurrencyId)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Currency.CurrencyName)
-    </div>
-
-    <div class="display-label">
-        <b>@Html.DisplayNameFor(model => model.StatusId)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.AccountStatus.StatusName)
-    </div>
+            <td>
+                <div class="display-label">
+                    <b>@Html.DisplayNameFor(model => model.StatusId)</b>
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.AccountStatus.StatusName)
+                </div>
+            </td>
+        </tr>
+    </table>
 </fieldset>
 
 <p><b>Add Funds</b></p>
-@using (Html.BeginForm("AddMoney", "Operation",  FormMethod.Post, new { @Id = "submitForm" }))
+@using (Html.BeginForm("AddMoney", "Operation", FormMethod.Post, new { @Id = "submitForm" }))
 {
     @Html.ValidationSummary(true)
     Model.Amount = 0;
@@ -90,17 +138,14 @@
     <div class="editor-field">
         @Html.EditorFor(model => model.Amount)
         @Html.ValidationMessageFor(model => model.Amount)
-        
+
         @{
-            List<SelectListItem> itemList = ViewBag.itemList;
+    List<SelectListItem> itemList = ViewBag.itemList;
         }
-            @Html.DropDownList("CurrencyName", itemList)
-        
+        @Html.DropDownList("CurrencyName", itemList)
+
     </div>
 
-    <input type="submit" value=@Resources.Resource.Submit  onclick="return confirm(@Resources.Resource.AskToAddMoney) ? true : false;" />
+    <input type="submit" value=@Resources.Resource.Submit  onclick="return confirm('@Resources.Resource.AskToAddMoney    ') ? true : false;" />
 }
 
-<p>
-    @Html.ActionLink(@Resources.Resource.BackToList, "ClientsProfile", "Protected", new { clientId = Model.ClientId }, null)
-</p>

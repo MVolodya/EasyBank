@@ -178,6 +178,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow web-accees.
+        /// </summary>
+        public static string AllowWebAccees {
+            get {
+                return ResourceManager.GetString("AllowWebAccees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount.
         /// </summary>
         public static string Amount {
@@ -246,6 +255,15 @@ namespace Resources {
         public static string BackToProfile {
             get {
                 return ResourceManager.GetString("BackToProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank accounts.
+        /// </summary>
+        public static string BankAccounts {
+            get {
+                return ResourceManager.GetString("BankAccounts", resourceCulture);
             }
         }
         
@@ -520,6 +538,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Currency name.
+        /// </summary>
+        public static string CurrencyName {
+            get {
+                return ResourceManager.GetString("CurrencyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Currency name required.
         /// </summary>
         public static string CurrencyNameRequired {
@@ -624,6 +651,15 @@ namespace Resources {
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit client profile.
+        /// </summary>
+        public static string EditClient {
+            get {
+                return ResourceManager.GetString("EditClient", resourceCulture);
             }
         }
         
@@ -1033,6 +1069,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Purchase rate.
+        /// </summary>
+        public static string PurchaseRate {
+            get {
+                return ResourceManager.GetString("PurchaseRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recipient.
         /// </summary>
         public static string Recipient {
@@ -1065,6 +1110,15 @@ namespace Resources {
         public static string RegisterOperator {
             get {
                 return ResourceManager.GetString("RegisterOperator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salling rate.
+        /// </summary>
+        public static string SallingRate {
+            get {
+                return ResourceManager.GetString("SallingRate", resourceCulture);
             }
         }
         

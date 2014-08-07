@@ -558,4 +558,22 @@
   <data name="History" xml:space="preserve">
     <value>History</value>
   </data>
+  <data name="BankAccounts" xml:space="preserve">
+    <value>Bank accounts</value>
+  </data>
+  <data name="CurrencyName" xml:space="preserve">
+    <value>Currency name</value>
+  </data>
+  <data name="PurchaseRate" xml:space="preserve">
+    <value>Purchase rate</value>
+  </data>
+  <data name="SallingRate" xml:space="preserve">
+    <value>Salling rate</value>
+  </data>
+  <data name="AllowWebAccees" xml:space="preserve">
+    <value>Allow web-accees</value>
+  </data>
+  <data name="EditClient" xml:space="preserve">
+    <value>Edit client profile</value>
+  </data>
 </root>
