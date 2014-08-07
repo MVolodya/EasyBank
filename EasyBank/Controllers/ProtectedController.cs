@@ -333,11 +333,11 @@ namespace EasyBank.Controllers
                     }
                     if (client.IsAlreadyRegistered == false)
                     {
-                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, "Вітаємо Вас у Easy Bank!",
-                        "Дякуємо, що Ви завітали у Наш банк та стали клієнтом Easy Bank!\n\nДля Вас створено осбистий кабінет в якому Ви можете керувати своїми рахунками.\n" + 
-                        "Для того, щоб увійти у Свій особистий кабінет Вам необхідно ввести Ваш email який Ви вказували при заповненні анкети,\nтакож Вам потрібно ввести згенерований пароль який Вам було надіслано в цьому повідомленні.\n" +
-                        "Ми рекомендуємо при першому входженні в особистий акаунт змінити автоматично згенерований пароль натиснувши на Ваш логін в правому верхньому кутку сторінки.\n" +
-                        "Ваш згенерований пароль: "+ client.InitialPassword +"\n\nЗ повагою Адміністрація банку!");
+                        mailservice ms = new mailservice("easybankbionic@gmail.com", client.Email, Resources.Resource.Message1,
+                        Resources.Resource.Message2 + " " + client.Name + " " + client.Surname + "!\n\n\n" + Resources.Resource.Message3 + "\n\n" + Resources.Resource.Message4 + " " + Resources.Resource.Message5 + "\n\n" +
+                        Resources.Resource.Message6 + " " + Resources.Resource.Message7 + " " + 
+                        "\n" + Resources.Resource.Message8 + "\n\n" +
+                        Resources.Resource.Message9 + " " + client.InitialPassword + "\n\n" + Resources.Resource.Message10);
                         client.IsAlreadyRegistered = true;
                     }
                 }

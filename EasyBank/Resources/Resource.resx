@@ -568,7 +568,7 @@
     <value>Purchase rate</value>
   </data>
   <data name="SallingRate" xml:space="preserve">
-    <value>Salling rate</value>
+    <value>Selling rate</value>
   </data>
   <data name="AllowWebAccees" xml:space="preserve">
     <value>Allow web-accees</value>
@@ -578,5 +578,47 @@
   </data>
   <data name="EditCurrency" xml:space="preserve">
     <value>Edit currency</value>
+  </data>
+  <data name="Message1" xml:space="preserve">
+    <value>Welcome to Easy Bank!</value>
+  </data>
+  <data name="Message10" xml:space="preserve">
+    <value>Sincerely yours Bank administration.</value>
+  </data>
+  <data name="Message2" xml:space="preserve">
+    <value>Dear</value>
+  </data>
+  <data name="Message3" xml:space="preserve">
+    <value>Thank you for choosing our bank and becoming an Easy Bank client.</value>
+  </data>
+  <data name="Message4" xml:space="preserve">
+    <value>Your personal page was created.</value>
+  </data>
+  <data name="Message5" xml:space="preserve">
+    <value>By using it you can manage your personal accounts.</value>
+  </data>
+  <data name="Message6" xml:space="preserve">
+    <value>In order to enter your personal page you need to input your email you wrote while filling the blank.</value>
+  </data>
+  <data name="Message7" xml:space="preserve">
+    <value>Also you need to input a generated password you were sent in this message.</value>
+  </data>
+  <data name="Message8" xml:space="preserve">
+    <value>While entering your personal page for the first time we recommend you to change an automatically generated password by pressing on your login in the upper right page corner.</value>
+  </data>
+  <data name="Message9" xml:space="preserve">
+    <value>Your generated password:</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PurchaseRateErrorMessage" xml:space="preserve">
+    <value>Purchase rate field is required</value>
+  </data>
+  <data name="ThisFieldIsRequired" xml:space="preserve">
+    <value>This field is required</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Users e-mail</value>
   </data>
 </root>

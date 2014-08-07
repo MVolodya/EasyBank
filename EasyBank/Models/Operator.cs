@@ -39,6 +39,7 @@ namespace EasyBank.Models
         [RegularExpression(@"^[0-9]+$", ErrorMessageResourceType = typeof(Resources.Resource), ErrorMessageResourceName = "OnlyDigits")]
         public string PId { get; set; }
 
+        [Display(Name = "Password", ResourceType = typeof(Resources.Resource))]
         public string Password { get; set; }
         
         public virtual UserProfile UserProfile { get; set; }

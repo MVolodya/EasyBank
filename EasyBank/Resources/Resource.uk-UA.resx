@@ -579,4 +579,13 @@
   <data name="EditCurrency" xml:space="preserve">
     <value>Редагувати валюту</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="ThisFieldIsRequired" xml:space="preserve">
+    <value>Це поле є обов'язковим для заповнення</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>E-mail користувача</value>
+  </data>
 </root>
