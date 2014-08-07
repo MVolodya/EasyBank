@@ -178,6 +178,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow web-accees.
+        /// </summary>
+        public static string AllowWebAccees {
+            get {
+                return ResourceManager.GetString("AllowWebAccees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount.
         /// </summary>
         public static string Amount {
@@ -642,6 +651,15 @@ namespace Resources {
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit client profile.
+        /// </summary>
+        public static string EditClient {
+            get {
+                return ResourceManager.GetString("EditClient", resourceCulture);
             }
         }
         

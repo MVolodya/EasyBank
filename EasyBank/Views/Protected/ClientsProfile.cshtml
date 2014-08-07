@@ -94,10 +94,11 @@
         cursor: pointer;
     }
 </style>
-<div>
-    @Html.ActionLink(Resources.Resource.BackToList, "ClientsList", "Protected")
-</div>
+
 <h2>@Html.Label(@Resources.Resource.ClientsProfileTitle)</h2>
+<br />
+@Html.ActionLink(@Resources.Resource.BackToList, "ClientsList", "Protected")
+<br /><br />
 <div style="background-color: rgba(255,255,255, 0.5); float: left; padding-top: 14px; padding-left: 20px; padding-bottom: 30px; padding-right: 25px; border-radius: 10px;">
     <div style="float: left;">
         <table>

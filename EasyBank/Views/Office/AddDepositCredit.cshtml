@@ -1,5 +1,10 @@
 ﻿@model EasyBank.Models.DepositCreditModel
 <h2>@Html.Label(@Resources.Resource.AddBankProduct)</h2>
+<br />
+@Html.ActionLink(@Resources.Resource.Back, "DepositList", "Office")
+<br />
+<br />
+  
 @using (Html.BeginForm("AddDepositCredit", "Office", FormMethod.Post))
 {
     @Html.AntiForgeryToken()

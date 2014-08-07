@@ -1,5 +1,11 @@
 ﻿@model EasyBank.Models.Operator
 <h2>@Html.Label(@Resources.Resource.RegisterOperator)</h2>
+<br />
+
+    @Html.ActionLink(@Resources.Resource.BackToList, "OperatorsList", "Protected")
+
+<br />
+<br />
 @using (Html.BeginForm("RegisterOperator", "Account", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -58,7 +64,5 @@
     </fieldset>
 }
 
-<div>
-    @Html.ActionLink(@Resources.Resource.BackToList, "OperatorsList","Protected")
-</div>
+
 

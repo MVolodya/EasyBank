@@ -21,7 +21,10 @@
 </script>
 
 <h2>@Html.Label(@Resources.Resource.WidthdrawMoney)</h2>
-
+<br />
+@Html.ActionLink(@Resources.Resource.BackToProfile, "ClientsProfile", "Protected", new { clientId = Model.ClientId }, null)
+<br />
+<br />
 <fieldset>
     <legend>Account</legend>
 
@@ -114,7 +117,3 @@ else
 {
     <h6>@Resources.Resource.ErrorTakeMoneyFromCreditAcc</h6>
 }
-
-<p>
-    @Html.ActionLink(@Resources.Resource.BackToProfile, "ClientsProfile", "Protected", new { clientId = Model.ClientId }, null)
-</p>
