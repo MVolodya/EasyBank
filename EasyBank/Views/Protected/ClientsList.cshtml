@@ -75,7 +75,9 @@ else
                 </td>
                 <td>
                     @Html.ActionLink(@Resources.Resource.Passport, "ShowPassport", new { id = item.ClientId })   |
+
                         @Html.ActionLink(@Resources.Resource.Edit, "EditClient", new { id = item.ClientId })
+
                     </td>
                 </tr>
             }

@@ -177,7 +177,7 @@ namespace EasyBank.Controllers
                     model.ConfirmPassword = oper.Password;
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     Roles.AddUserToRole(model.UserName, "Operator");
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("OperatorsList","Protected");
                 }
                 catch (MembershipCreateUserException e)
                 {
