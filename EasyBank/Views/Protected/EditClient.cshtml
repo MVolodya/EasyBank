@@ -6,7 +6,7 @@
 
 <h2>@Html.Label(@Resources.Resource.EditClient)</h2>
 <br />
-    @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList")
+    &#9664 @Html.ActionLink(@Resources.Resource.BackToList, "ClientsList", null, new{@id="back"})
 <br />
 <br />
 @using (Html.BeginForm("EditClient", "Protected", FormMethod.Post)) {

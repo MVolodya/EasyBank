@@ -94,20 +94,6 @@
     #account tr:hover {
         cursor: pointer;
     }
-
-    #back {
-        font-size: larger;
-        font-weight: bold;
-        background-color: rgb(182, 179, 179);
-        margin-top: 15px;
-        padding: 5px;
-        border-radius: 4px;
-        text-decoration: none;
-    }
-
-    #back:hover {
-        background-color: lightblue;
-    }
 </style>
 
 <h2>@Html.Label(@Resources.Resource.ClientsProfileTitle)</h2>
@@ -120,7 +106,7 @@
         <table>
             <tr>
                 <td>
-                   <b> @Html.DisplayNameFor(model => model.Name)</b>
+                    <b>@Html.DisplayNameFor(model => model.Name)</b>
                 </td>
                 <td>
                     <div class="display-field">
@@ -131,7 +117,7 @@
 
             <tr>
                 <td>
-                   <b>@Html.DisplayNameFor(model => model.Surname)</b>
+                    <b>@Html.DisplayNameFor(model => model.Surname)</b>
                 </td>
                 <td>
                     <div class="display-field">
@@ -142,7 +128,7 @@
 
             <tr>
                 <td>
-                    <b>  @Html.DisplayNameFor(model => model.Email)</b>
+                    <b>@Html.DisplayNameFor(model => model.Email)</b>
                 </td>
                 <td>
                     <div class="display-field">
@@ -153,7 +139,7 @@
 
             <tr>
                 <td>
-                    <b> @Html.DisplayNameFor(model => model.BirthDate)</b>
+                    <b>@Html.DisplayNameFor(model => model.BirthDate)</b>
                 </td>
                 <td>
                     <div class="display-field">
@@ -164,7 +150,7 @@
 
             <tr>
                 <td>
-                    <b> @Html.DisplayNameFor(model => model.PIdNumber)</b>
+                    <b>@Html.DisplayNameFor(model => model.PIdNumber)</b>
                 </td>
                 <td>
                     <div class="display-field">
@@ -175,7 +161,7 @@
 
             <tr>
                 <td>
-                    <b> @Html.DisplayNameFor(model => model.RegistrationDate)</b>
+                    <b>@Html.DisplayNameFor(model => model.RegistrationDate)</b>
                 </td>
                 <td>
                     <div class="display-field">
@@ -236,13 +222,18 @@
                 </td>
                 <td>
                     <div class="display-field">
-                        @if (item.TypeId != 1)
+                        @{
+
+                        if (item.TypeId == 3)
                         {
-                            @Html.DisplayFor(modelItem => item.AvailableAmount)
+                            <span style="color: tomato">
+                                @Html.DisplayFor(modelItem => item.Amount)
+                            </span>
                         }
                         else
-                        { 
+                        {
                             @Html.DisplayFor(modelItem => item.Amount)
+                        }
                         }
                     </div>
                 </td>

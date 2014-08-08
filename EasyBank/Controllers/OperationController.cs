@@ -323,18 +323,20 @@ namespace EasyBank.Controllers
                 decimal timeSpanDec = (decimal)timeSpan.TotalDays;
 
                 decimal interest = item.DepositCreditModel.InterestRate;
-                decimal interestForPeriod = Math.Round(interest / 365 * timeSpanDec / 100,2);
+                decimal interestForPeriod = interest / 365 * timeSpanDec / 100;
 
-                decimal amountForPeriod = Math.Round(item.Amount * interestForPeriod,2);
+                decimal amountForPeriod = Math.Round(item.AvailableAmount * interestForPeriod,2);
 
                 item.Interest += amountForPeriod;
-                item.AvailableAmount =item.Amount + amountForPeriod;
+                
 
                 item.LastInterestAdded = item.LastInterestAdded.AddDays((double)timeSpanDec);
                 if (item.DepositCreditModel.EarlyTermination == true)
                 {
-                    item.Amount = item.AvailableAmount;
+                    item.Amount = item.AvailableAmount + amountForPeriod;
+                    item.AvailableAmount = item.Amount;
                 }
+                else item.Amount = item.AvailableAmount + item.Interest;
                 db.Entry(item).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
@@ -345,16 +347,33 @@ namespace EasyBank.Controllers
                 decimal interest = item.DepositCreditModel.InterestRate;
                 decimal interestForPeriod = Math.Round(interest / 365 * daysLeftDec / 100,2);
 
-                decimal amountForPeriod = Math.Round(item.Amount * interestForPeriod, 2);
+                decimal amountForPeriod = Math.Round(item.AvailableAmount * interestForPeriod, 2);
 
                 item.Interest += amountForPeriod;
-                item.AvailableAmount = item.Amount + amountForPeriod;
+                
 
                 item.LastInterestAdded = item.LastInterestAdded.AddDays((double)daysLeftDec);
                 if (item.DepositCreditModel.EarlyTermination == true)
                 {
-                    item.Amount = item.AvailableAmount;
+                    item.Amount = item.AvailableAmount + amountForPeriod;
+                    item.AvailableAmount = item.Amount;
                 }
+                else item.Amount = item.AvailableAmount + item.Interest;
+                db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+            if (item.DepositCreditModel.EarlyTermination == false &&
+                item.LastInterestAdded.Month == item.ExpirationDate.Month)
+            {
+                item.StatusId = 5;
+                item.AvailableAmount = item.Amount;
+                db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+            if (item.DepositCreditModel.EarlyTermination == true &&
+                item.LastInterestAdded.Month == item.ExpirationDate.Month)
+            {
+                item.StatusId = 5;
                 db.Entry(item).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }

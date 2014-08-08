@@ -21,6 +21,10 @@ namespace EasyBank.DAL
 
         public static void AddTransferOperation(ConnectionContext db, decimal amount, int fromId, int toId, int operatorId)
         {
+            if (operatorId == 0)
+            {
+                db.OperationHistory.Add(new Operation(amount, OperationTypes.Transfer, fromId, toId, null));
+            }else
             db.OperationHistory.Add(new Operation(amount, OperationTypes.Transfer, fromId, toId, operatorId));
         }
     }

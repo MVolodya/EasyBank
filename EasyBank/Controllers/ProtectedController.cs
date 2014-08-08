@@ -245,7 +245,7 @@ namespace EasyBank.Controllers
                     accounts = accounts.OrderBy(a => a.StatusId);
                     break;
                 default:
-                    accounts = accounts.OrderBy(a => a.ExpirationDate);
+                    accounts = accounts.OrderByDescending(a => a.OpenDate);
                     break;
             }
             client.Accounts = accounts.ToList();
@@ -558,7 +558,7 @@ namespace EasyBank.Controllers
             account.LastInterestAdded = DateTime.Now;
             account.OpenDate = DateTime.Now;
             account.StatusId = 1;
-            account.AvailableAmount = account.Amount;
+            
             var bankAccount = (from bankAcc in db.BankAccounts
                                where bankAcc.CurrencyName == account.Currency.CurrencyName
                                select bankAcc).FirstOrDefault();
@@ -568,7 +568,9 @@ namespace EasyBank.Controllers
                                    where credit.DepositCreditModelID == account.DepositCreditModelID
                                    select credit).FirstOrDefault();
                 account.Interest = Math.Round(((decimal)creditModel.Duration / 12 * creditModel.InterestRate / 100) * account.Amount,2);
-                account.AvailableAmount = account.Amount + account.Interest;
+
+                account.Amount = account.Amount + account.Interest;
+                //account.AvailableAmount = account.Amount + account.Interest;
                 account.LastInterestAdded = DateTime.Now.AddMonths(creditModel.Duration);
                 bankAccount.Amount -= account.Amount;
                 bankAccount.Amount += account.Interest;
@@ -576,6 +578,7 @@ namespace EasyBank.Controllers
             }
             else if (account.TypeId !=3)
             {
+                account.AvailableAmount = account.Amount;
                 bankAccount.Amount += account.Amount;
             }
             if(account.TypeId !=1){

@@ -96,11 +96,13 @@ namespace EasyBank
             sendingBankAccount = db.BankAccounts.FirstOrDefault(a => a.CurrencyName == targetCurrency.CurrencyName);
             if (receivingBankAccount == null)
             {
-                return ErrorCode.NoBankReceivingAccountWithSpecifiedName;
+                return 
+                    ErrorCode.NoBankReceivingAccountWithSpecifiedName;
             }
             if (sendingBankAccount == null)
             {
-                return ErrorCode.NoBankSendingAccountWithSpecifiedName;
+                return 
+                    ErrorCode.NoBankSendingAccountWithSpecifiedName;
             }
 
             if (amountThatHasToBeWithdrawn != null)
@@ -108,7 +110,8 @@ namespace EasyBank
                 amount = (decimal)amountThatHasToBeWithdrawn;
             }
 
-            if (sendingBankAccount.Amount - convertedAmount < 0) return ErrorCode.NotEnoughMoneyOnSendingBankAccount;
+            if (sendingBankAccount.Amount - convertedAmount < 0) 
+                return ErrorCode.NotEnoughMoneyOnSendingBankAccount;
 
             if (sourceCurrency.CurrencyName != "UAH" && targetCurrency.CurrencyName != "UAH")
             {
@@ -221,6 +224,8 @@ namespace EasyBank
                         acc.Amount -= (decimal)convertedAmount;
                         bankAcc.Amount += convertedAmount;
 
+                        if (acc.Amount == 0) acc.StatusId = 5;
+
                         dataChanged = true;
                     }
                     break;
@@ -283,6 +288,8 @@ namespace EasyBank
                 convertedAmount = GetConvertedAmount(db, (decimal)amount, targetCurrency, sourceCurrency);
             }
 
+            decimal amountThatHasToBeWithdrawnFromBank = GetConvertedAmount(db, (decimal)amount, targetCurrency, sourceCurrency);
+
             bool dataChanged = false;
 
             switch (acc.AccountType.TypeName)
@@ -293,7 +300,7 @@ namespace EasyBank
                         PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
                         acc.AvailableAmount -= (decimal)amountThatHasToBeWithDrawnFromClient;
                         acc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient;
-                        bankAcc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient; // снимаем с счета банка
+                        bankAcc.Amount -= (decimal)amountThatHasToBeWithdrawnFromBank; // снимаем с счета банка
                         dataChanged = true;
                     }
                     break;
@@ -312,7 +319,7 @@ namespace EasyBank
 
                                     if (acc.Amount == 0) acc.StatusId = 5;
 
-                                    bankAcc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient; //снимаем со счета банка
+                                    bankAcc.Amount -= (decimal)amountThatHasToBeWithdrawnFromBank; //снимаем со счета банка
                                     dataChanged = true;
                                 }
                             }
@@ -326,7 +333,7 @@ namespace EasyBank
                                     acc.Amount = 0;
                                     acc.AvailableAmount -= (decimal)amountThatHasToBeWithDrawnFromClient;
                                     acc.StatusId = 5;
-                                    bankAcc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient; //снимаем со счета банка
+                                    bankAcc.Amount -= (decimal)amountThatHasToBeWithdrawnFromBank; //снимаем со счета банка
                                     dataChanged = true;
                                 }
                             }
@@ -338,7 +345,7 @@ namespace EasyBank
                             PerformInsideBankMoneyTransfer(db, sourceCurrency, targetCurrency, (decimal)amount, ref convertedAmount, amountThatHasToBeWithDrawnFromClient);
                             acc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient;
                             acc.AvailableAmount -= (decimal)amountThatHasToBeWithDrawnFromClient;
-                            bankAcc.Amount -= (decimal)amountThatHasToBeWithDrawnFromClient; //снимаем со счета банка
+                            bankAcc.Amount -= (decimal)amountThatHasToBeWithdrawnFromBank; //снимаем со счета банка
 
                             if (acc.Amount == 0) acc.StatusId = 5;
 
@@ -378,7 +385,7 @@ namespace EasyBank
             Account fromAcc = db.Accounts.FirstOrDefault(a => a.AccountId == fromAccountId);
             Account toAcc = db.Accounts.FirstOrDefault(a => a.AccountNumber == toAccountNumber);
 
-            if (oper == null) return ErrorCode.OperatorNotFoundInDb;
+            //if (oper == null) return ErrorCode.OperatorNotFoundInDb;
             if (fromAcc == null) return ErrorCode.AccountNotFoundInDb;
             if (toAcc == null) return ErrorCode.AccountNotFoundInDb;
 
@@ -453,7 +460,12 @@ namespace EasyBank
                 db.SaveChanges();
                 db.Entry(toAcc).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                HistoryManager.AddTransferOperation(db, (decimal)amountThatHasToBeWithDrawnFromClient, (int)fromAccountId, (int)toAccountId, (int)oper.OperatorID);
+                if (oper == null)
+                {
+                    HistoryManager.AddTransferOperation(db, (decimal)amountThatHasToBeWithDrawnFromClient, (int)fromAccountId, (int)toAccountId, 0);
+                }
+                else 
+                    HistoryManager.AddTransferOperation(db, (decimal)amountThatHasToBeWithDrawnFromClient, (int)fromAccountId, (int)toAccountId, (int)oper.OperatorID);
                 db.SaveChanges();
                 return ErrorCode.Ok;
             }

@@ -62,6 +62,19 @@
     #account tr:hover {
         cursor: pointer;
     }
+    .navBut {
+    font-size: larger;
+    font-weight: bold;
+    background-color: rgb(182, 179, 179);
+    margin-top: 15px;
+    padding: 5px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+    #navBut:hover {
+        background-color: lightblue;
+    }
 </style>
 <h2>@Html.Label(@Resources.Resource.ClientsProfileTitle)</h2>
 <div style="background-color: rgba(255,255,255, 0.5); float: left; padding-top: 14px; padding-left: 20px; padding-bottom: 30px; padding-right: 25px; border-radius: 10px;">
@@ -151,12 +164,12 @@
         @if (Model.Accounts.Count() != 0)
         {
             <tr>
-                <td>@Html.ActionLink(@Resources.Resource.AccNumb, "ClientsProfile", new { sort = ViewBag.AccountNumberSort })</td>
-                <td>@Html.ActionLink(@Resources.Resource.ExpDate, "ClientsProfile", new { sort = ViewBag.ExpirationDateSort })</td>
-                <td>@Html.ActionLink(@Resources.Resource.Amount, "ClientsProfile", new { sort = ViewBag.AmountSort })</td>
-                <td>@Html.ActionLink(@Resources.Resource.Currency, "ClientsProfile", new { sort = ViewBag.CurrencySort })</td>
-                <td>@Html.ActionLink(@Resources.Resource.Type, "ClientsProfile", new { sort = ViewBag.TypeSort })</td>
-                <td>@Html.ActionLink(@Resources.Resource.Status, "ClientsProfile", new { sort = ViewBag.StatusSort })</td>
+                <th>@Html.ActionLink(@Resources.Resource.AccNumb, "ClientsProfile", new { sort = ViewBag.AccountNumberSort })</th>
+                <th>@Html.ActionLink(@Resources.Resource.ExpDate, "ClientsProfile", new { sort = ViewBag.ExpirationDateSort })</th>
+                <th>@Html.ActionLink(@Resources.Resource.Amount, "ClientsProfile", new { sort = ViewBag.AmountSort })</th>
+                <th>@Html.ActionLink(@Resources.Resource.Currency, "ClientsProfile", new { sort = ViewBag.CurrencySort })</th>
+                <th>@Html.ActionLink(@Resources.Resource.Type, "ClientsProfile", new { sort = ViewBag.TypeSort })</th>
+                <th>@Html.ActionLink(@Resources.Resource.Status, "ClientsProfile", new { sort = ViewBag.StatusSort })</th>
             </tr>
         }
         else
@@ -201,7 +214,7 @@
 
         }
     </table>
-    <a href="#" id="transferButton">@Resources.Resource.TransMoney</a>
-    <a href="#" id="historyButton">@Resources.Resource.History</a>
-    <a href="#" id="freezeButton">@Resources.Resource.Freeze</a>
+    <a href="#" id="transferButton" class="navBut">@Resources.Resource.TransMoney</a>
+    <a href="#" id="historyButton" class="navBut">@Resources.Resource.History</a>
+    <a href="#" id="freezeButton" class="navBut">@Resources.Resource.Freeze</a>
 </div>
